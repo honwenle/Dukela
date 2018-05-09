@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="win-wrap">
     <div class="top">
       <div class="avatar">
           <img :src="infoData.Avator" @click="$router.push({name: 'User'})">

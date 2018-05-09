@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="win-wrap">
     <group :gutter="0">
       <cell>
         <div class="avatar" slot="title">

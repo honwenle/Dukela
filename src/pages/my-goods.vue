@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="win-wrap">
     <div class="goods-list" v-if="dataList.length > 0">
       <div class="list-item" v-for="(item, i) in dataList" :key="i">
         <div class="item-row">

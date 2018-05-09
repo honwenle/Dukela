@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <transition name="fade" mode="out-in">
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
@@ -12,7 +14,17 @@ export default {
 
 <style lang="less">
 @import '~vux/src/styles/reset.less';
-
+.win-wrap{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .3s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
 body {
   background-color: #eee;
 }
