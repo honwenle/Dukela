@@ -1,5 +1,6 @@
 <template>
   <div class="win-wrap">
+    <x-header>我的商品库</x-header>
     <div class="goods-list" v-if="dataList.length > 0">
       <div class="list-item" v-for="(item, i) in dataList" :key="i">
         <div class="item-row">
@@ -58,7 +59,9 @@ export default {
 <style scoped>
 .goods-list {
   background: #fff;
-  padding: 1px 0;
+  height: 100%;
+  position: absolute;
+  width: 100%;
 }
 .item-row{
   display: flex;

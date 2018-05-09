@@ -1,5 +1,6 @@
 <template>
   <div class="win-wrap">
+    <x-header :left-options="{showBack: false}">我的</x-header>
     <div class="top">
       <div class="avatar">
           <img :src="infoData.Avator" @click="$router.push({name: 'User'})">

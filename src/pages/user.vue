@@ -1,5 +1,6 @@
 <template>
   <div class="win-wrap">
+    <x-header>个人信息</x-header>
     <group :gutter="0">
       <cell>
         <div class="avatar" slot="title">

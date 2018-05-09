@@ -5,11 +5,13 @@ import FastClick from 'fastclick'
 import App from './App'
 import router from './router'
 import store from './store'
-import FontIcon from '@/components/font-icon'
+import FontIcon from '@/components/font-icon/index.vue'
 import axios from 'axios'
 import qs from 'qs'
-import { ToastPlugin } from 'vux'
+import { ToastPlugin, XHeader } from 'vux'
 
+Vue.component('x-header', XHeader)
+Vue.component('font-icon', FontIcon)
 Vue.use(ToastPlugin)
 
 let baseURL
@@ -30,8 +32,6 @@ axios.interceptors.request.use(function (config) {
 })
 Vue.prototype.$baseURL = baseURL
 Vue.prototype.$http = axios
-
-Vue.component('font-icon', FontIcon)
 
 FastClick.attach(document.body)
 

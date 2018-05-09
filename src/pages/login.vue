@@ -5,7 +5,7 @@
       <div class="top-title">请绑定手机号</div>
     </div>
     <div class="login-input">
-      <font-icon name="user"></font-icon>
+      <font-icon name="wo"></font-icon>
       <input v-model="phone" type="text" pattern="[0-9]*" placeholder="输入手机号">
     </div>
     <div class="login-input">
@@ -139,7 +139,7 @@ export default {
 .login-input.err{
   border-color: #f00;
 }
-.login-input [class^="icon-"] {
+.login-input .iconfont {
   color: #369cfe;
   margin: 0 20px;
   vertical-align: middle;

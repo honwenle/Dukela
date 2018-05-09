@@ -1,5 +1,5 @@
 <template>
-  <span :style="{color: color, fontSize: fontsize}" :class="'icon-' + name"></span>
+  <span :style="{color: color, fontSize: fontsize}" :class="'iconfont icon-' + name"></span>
 </template>
 <script>
 export default {
@@ -15,5 +15,5 @@ export default {
 }
 </script>
 <style scoped>
-@import "./style.css";
+@import "./iconfont.css";
 </style>

@@ -1,5 +1,6 @@
 <template>
   <div class="win-wrap">
+    <x-header>我的订单</x-header>
     <div class="list" v-if="dataList.length > 0">
       <div class="item" v-for="(item, i) in dataList" :key="i">
         <div class="row">
