@@ -22,6 +22,9 @@ export default {
   width: 100%;
   height: 100%;
 }
+.vux-header{
+  border-bottom: 1px #eee solid;
+}
 .fade-enter-active, .fade-leave-active {
   transition: opacity .3s;
 }
