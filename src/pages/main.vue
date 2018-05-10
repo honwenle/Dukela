@@ -32,10 +32,10 @@ export default {
           label: '入住预定',
           icon: 'order',
           route: 'Order'
-        }, {
-          label: '衍生商品城',
-          icon: 'gift',
-          route: 'Mall'
+        // }, {
+        //   label: '衍生商品城',
+        //   icon: 'gift',
+        //   route: 'Mall'
         }, {
           label: '我的',
           icon: 'wo',

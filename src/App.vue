@@ -33,6 +33,7 @@ export default {
 }
 body {
   background-color: #eee;
+  color: #545454;
 }
 input{
   border: none;
@@ -67,5 +68,59 @@ input{
 .btn-main.btn-disable {
   background: #cecece;
   box-shadow: 2px 2px 8px #c7c7c7;
+}
+.flex.space-between{
+  justify-content: space-between;
+}
+.text-right{
+  text-align: right;
+}
+.flex-1{
+  flex: 1;
+}
+.flex-2{
+  flex: 2;
+}
+#app .weui-tabbar{
+  position: fixed;
+}
+.btn-sm {
+  background: #369cfe;
+  color: #fff;
+  font-size: 13px;
+  padding: 5px 8px;
+  text-align: center;
+}
+.group {
+  margin-bottom: 8px;
+  background: #fff;
+}
+.bb{
+  border-bottom: 1px solid #eee;
+}
+.blue{
+  color: #369cfe;
+}
+.cell {
+  padding: 5px 10px;
+}
+.center{
+  text-align: center;
+}
+.gray{
+  color: #b2b2b2;
+}
+.btn-full {
+  width: 100%;
+  background: #369cfe;
+  color: #fff;
+  text-align: center;
+  line-height: 3;
+  font-size: 18px;
+  position: fixed;
+  bottom: 0;
+}
+.fixed-bottom{
+  padding-bottom: 50px;
 }
 </style>

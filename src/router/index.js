@@ -8,6 +8,9 @@ import Me from '@/pages/me'
 import Main from '@/pages/main'
 import User from '@/pages/user'
 import MyGoods from '@/pages/my-goods'
+import Goods from '@/pages/goods'
+import Buy from '@/pages/buy'
+import Pay from '@/pages/pay'
 import MyOrder from '@/pages/my-order'
 
 Vue.use(Router)
@@ -62,6 +65,18 @@ export default new Router({
       name: 'MyOrder',
       component: MyOrder,
       meta: { keepAlive: true }
+    }, {
+      path: '/goods',
+      name: 'Goods',
+      component: Goods
+    }, {
+      path: '/buy',
+      name: 'Buy',
+      component: Buy
+    }, {
+      path: '/pay',
+      name: 'Pay',
+      component: Pay
     }
   ]
 })
