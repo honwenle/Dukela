@@ -1,7 +1,7 @@
 <template>
   <div class="home-wrap fixed-bottom">
     <div class="list">
-      <div class="item" v-for="item in dataList" :key="item.id">
+      <div class="home-item" v-for="item in dataList" :key="item.id">
         <div class="flex space-between">
           <div>{{item.name}}</div>
           <div>
@@ -73,18 +73,11 @@ export default {
   background-repeat: no-repeat;
   position: absolute;
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   background-color: #fff;
 }
 .list{
   padding: 180px 16px 0;
-}
-.item {
-  background: rgba(255,255,255,.8);
-  border-radius: 5px;
-  margin: 18px 0;
-  padding: 16px;
-  box-shadow: 0 0 15px #a4c4ff;
 }
 .blue{
   font-size: 18px;

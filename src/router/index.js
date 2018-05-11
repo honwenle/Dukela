@@ -9,6 +9,7 @@ import Main from '@/pages/main'
 import User from '@/pages/user'
 import MyGoods from '@/pages/my-goods'
 import Goods from '@/pages/goods'
+import Villa from '@/pages/villa'
 import Buy from '@/pages/buy'
 import Pay from '@/pages/pay'
 import MyOrder from '@/pages/my-order'
@@ -77,6 +78,10 @@ export default new Router({
       path: '/pay',
       name: 'Pay',
       component: Pay
+    }, {
+      path: '/villa',
+      name: 'Villa',
+      component: Villa
     }
   ]
 })

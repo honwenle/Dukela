@@ -81,6 +81,9 @@ input{
 .flex-2{
   flex: 2;
 }
+.flex-3{
+  flex: 3;
+}
 #app .weui-tabbar{
   position: fixed;
 }
@@ -122,5 +125,25 @@ input{
 }
 .fixed-bottom{
   padding-bottom: 50px;
+  box-sizing: border-box;
+}
+.home-item {
+  background: rgba(255,255,255,.8);
+  border-radius: 5px;
+  margin: 18px 0;
+  padding: 16px;
+  box-shadow: 0 0 15px #a4c4ff;
+}
+.small{
+  font-size: 12px;
+}
+.fz14{
+  font-size: 14px;
+}
+.fz12{
+  font-size: 12px;
+}
+.orange{
+  color: #fe5900;
 }
 </style>
