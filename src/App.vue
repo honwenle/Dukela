@@ -177,4 +177,17 @@ input{
 .bottom-bar .btn-sm{
   font-size: 13px;
 }
+.bg-fff{
+  position: absolute;
+  width: 100%;
+  min-height: 100%;
+  background-color: #fff;
+}
+.btn-outline{
+  border: 1px solid #369cfe;
+  border-radius: 50px;
+  display: inline-block;
+  color: #369cfe;
+  padding: 2px 15px;
+}
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed-bottom order-wrap">
+  <div class="fixed-bottom bg-fff order-wrap">
     <div class="list">
       <div v-for="i in 10" :key="i" class="home-item flex" @click="goVilla(i)">
         <div class="flex-1">
@@ -32,12 +32,6 @@ export default {
 </script>
 
 <style scoped>
-.order-wrap{
-  width: 100%;
-  min-height: 100%;
-  position: absolute;
-  background: #fff;
-}
 .list{
   padding: 18px;
 }

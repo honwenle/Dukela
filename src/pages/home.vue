@@ -1,5 +1,5 @@
 <template>
-  <div class="home-wrap fixed-bottom">
+  <div class="home-wrap bg-fff fixed-bottom">
     <div class="list">
       <div class="home-item" v-for="item in dataList" :key="item.id">
         <div class="flex space-between">
@@ -71,10 +71,6 @@ export default {
   background: url('../assets/home.jpg');
   background-size: 100%;
   background-repeat: no-repeat;
-  position: absolute;
-  width: 100%;
-  min-height: 100%;
-  background-color: #fff;
 }
 .list{
   padding: 180px 16px 0;
