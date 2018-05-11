@@ -1,6 +1,6 @@
 <template>
   <div>
-    <x-header>商品买入</x-header>
+    <x-header>支付订单<a slot="right">付费规则</a></x-header>
     <div class="group center pay-top">
       <div class="gray">
         支付剩余时间
@@ -9,27 +9,62 @@
       </div>
       <div class="blue">总价：300元</div>
     </div>
-    <div class="check-box">
-      <div class="check-title">余额支付</div>
-      <checklist label-position="left" :options="[{key: 0, value: `账户余额：${balance}`}]"></checklist>
-      <div class="check-title">第三方支付</div>
-      <checklist label-position="left" :max="1" :options="payList"></checklist>
-      <div class="check-title">线下转账</div>
-      <checklist label-position="left" :options="['公司对公账号']"></checklist>
+    <div v-if="deduct">
+      <div class="check-box">
+        <div class="check-title">使用商品抵扣 <span class="orange">(只需390元)</span></div>
+        <checklist label-position="left" :options="goodsList"></checklist>
+      </div>
+      <div class="bottom-bar">
+        <div class="flex">
+          <div class="flex-2 text-right">商品抵扣100元，剩余需支付<span class="blue">200</span>元</div>
+          <div class="flex-1 btn-sm" @click="afterDeduct">下一步</div>
+        </div>
+      </div>
     </div>
-    <div class="btn-full" @click="pay">确认支付300元</div>
+    <div v-else>
+      <div class="check-box">
+        <div class="check-title">余额支付</div>
+        <checklist label-position="left" :options="[{key: 0, value: `账户余额：${balance}`}]"></checklist>
+        <div class="check-title">第三方支付</div>
+        <checklist label-position="left" :max="1" :options="payList"></checklist>
+        <template v-if="offline">
+          <div class="check-title">线下转账</div>
+          <checklist label-position="left" :options="['公司对公账号']"></checklist>
+        </template>
+      </div>
+      <div class="btn-full" @click="pay">确认支付300元</div>
+    </div>
+    <popup v-model="isShowPassword">
+      <password></password>
+    </popup>
   </div>
 </template>
 <script>
-import {Checklist, Clocker} from 'vux'
+import {Checklist, Clocker, Popup} from 'vux'
+import Password from '@/components/password'
 export default {
   components: {
-    Checklist, Clocker
+    Checklist, Clocker, Popup, Password
   },
   data() {
     return {
+      offline: this.$route.query.offline,
+      deduct: this.$route.query.deduct,
+      isShowPassword: false,
       msgTime: '2018-05-12 15:30',
       balance: 500,
+      goodsList: [
+        {
+          key: 1,
+          value: '山庄1项目30㎡',
+          inlineDesc: '商品数：500份     T数：500个'
+        },
+        {
+          key: 2,
+          value: '山庄2项目30㎡',
+          inlineDesc: '商品数：500份     T数：500个'
+        }
+      ],
       payList: [
         {
           key: 0,
@@ -47,11 +82,15 @@ export default {
     }
   },
   methods: {
+    afterDeduct() {
+      this.deduct = 0
+    },
     onFinish() {
       console.log('计时结束')
     },
     pay() {
       console.log('发起支付')
+      this.isShowPassword = true
     }
   }
 }

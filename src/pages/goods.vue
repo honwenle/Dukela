@@ -73,10 +73,6 @@ export default {
 }
 </script>
 <style scoped>
-.h1{
-  color: #545454;
-  font-weight: 600;
-}
 .p{
   color: #545454;
   font-weight: 300;

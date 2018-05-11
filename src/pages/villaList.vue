@@ -6,7 +6,7 @@
           <img class="img" src="https://o5omsejde.qnssl.com/demo/test1.jpg?type=webp" alt="">
         </div>
         <div class="flex-3">
-          <div class="flex space-between">
+          <div class="flex flex-center space-between">
             <div>乔顿山庄</div>
             <div class="fz12 orange">500人已入住</div>
           </div>
@@ -38,14 +38,12 @@ export default {
   position: absolute;
   background: #fff;
 }
-.flex{
-  align-items: center;
-}
 .list{
   padding: 18px;
 }
 .img{
   width: 62px;
   height: 62px;
+  vertical-align: middle;
 }
 </style>

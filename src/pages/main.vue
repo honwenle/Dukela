@@ -31,7 +31,7 @@ export default {
         }, {
           label: '入住预定',
           icon: 'order',
-          route: 'Order'
+          route: 'villaList'
         // }, {
         //   label: '衍生商品城',
         //   icon: 'gift',

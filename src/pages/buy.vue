@@ -22,7 +22,7 @@
     <div class="bottom-bar">
       <div class="flex">
         <div class="flex-2 text-right">总价￥300.00</div>
-        <div class="flex-1 btn-sm" @click="goPay">确定转出</div>
+        <div class="flex-1 btn-sm" @click="submitOrder">确定转出</div>
       </div>
     </div>
   </div>
@@ -30,9 +30,13 @@
 <script>
 export default {
   methods: {
-    goPay() {
+    submitOrder() {
+      // TODO: 提交订单
       this.$router.push({
-        name: 'Pay'
+        name: 'Pay',
+        query: {
+          offline: 1
+        }
       })
     }
   }
@@ -55,17 +59,5 @@ export default {
   border-radius: 50px;
   padding: 0 16px;
   box-sizing: border-box;
-}
-.bottom-bar {
-  position: fixed;
-  width: 100%;
-  background: #fff;
-  bottom: 0;
-}
-.bottom-bar .flex > div{
-  padding: 15px;
-}
-.bottom-bar .btn-sm{
-  font-size: 16px;
 }
 </style>

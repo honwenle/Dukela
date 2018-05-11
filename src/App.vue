@@ -72,6 +72,9 @@ input{
 .flex.space-between{
   justify-content: space-between;
 }
+.flex-center{
+  align-items: center;
+}
 .text-right{
   text-align: right;
 }
@@ -83,6 +86,9 @@ input{
 }
 .flex-3{
   flex: 3;
+}
+.flex-5{
+  flex: 5;
 }
 #app .weui-tabbar{
   position: fixed;
@@ -145,5 +151,30 @@ input{
 }
 .orange{
   color: #fe5900;
+}
+.h1{
+  color: #545454;
+  font-weight: 600;
+}
+.float-right{
+  float: right;
+}
+.feature-item{
+  font-size: 12px;
+  display: inline-block;
+  margin-right: 10px;
+}
+.bottom-bar {
+  position: fixed;
+  width: 100%;
+  background: #fff;
+  bottom: 0;
+  font-size: 13px;
+}
+.bottom-bar .flex > div{
+  padding: 15px;
+}
+.bottom-bar .btn-sm{
+  font-size: 13px;
 }
 </style>

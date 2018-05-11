@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '@/pages/login'
 import Home from '@/pages/home'
-import Order from '@/pages/order'
+import villaList from '@/pages/villaList'
 import Mall from '@/pages/mall'
 import Me from '@/pages/me'
 import Main from '@/pages/main'
@@ -10,6 +10,9 @@ import User from '@/pages/user'
 import MyGoods from '@/pages/my-goods'
 import Goods from '@/pages/goods'
 import Villa from '@/pages/villa'
+import Room from '@/pages/room'
+import Reserve from '@/pages/reserve'
+import Result from '@/pages/result'
 import Buy from '@/pages/buy'
 import Pay from '@/pages/pay'
 import MyOrder from '@/pages/my-order'
@@ -35,9 +38,9 @@ export default new Router({
           component: Home,
           meta: { keepAlive: true }
         }, {
-          path: '/order',
-          name: 'Order',
-          component: Order,
+          path: '/villaList',
+          name: 'villaList',
+          component: villaList,
           meta: { keepAlive: true }
         }, {
           path: '/mall',
@@ -82,6 +85,18 @@ export default new Router({
       path: '/villa',
       name: 'Villa',
       component: Villa
+    }, {
+      path: '/room',
+      name: 'Room',
+      component: Room
+    }, {
+      path: '/reserve',
+      name: 'Reserve',
+      component: Reserve
+    }, {
+      path: '/result',
+      name: 'Result',
+      component: Result
     }
   ]
 })
