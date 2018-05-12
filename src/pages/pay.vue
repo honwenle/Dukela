@@ -12,7 +12,7 @@
     <div v-if="deduct">
       <div class="check-box">
         <div class="check-title">使用商品抵扣 <span class="orange">(只需390元)</span></div>
-        <checklist label-position="left" :options="goodsList"></checklist>
+        <checklist :max="1" label-position="left" :options="goodsList"></checklist>
       </div>
       <div class="bottom-bar">
         <div class="flex">

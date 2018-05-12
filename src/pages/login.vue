@@ -1,8 +1,8 @@
 <template>
-  <div class="wrap-fff">
+  <div class="wrap-fff center">
+    <x-header>登录</x-header>
     <div class="top">
       <div class="icon icon-users"></div>
-      <div class="top-title">请绑定手机号</div>
     </div>
     <div class="login-input">
       <font-icon name="wo"></font-icon>
@@ -17,6 +17,12 @@
       <span v-else class="a" @click="sendMsg">获取验证码</span>
     </div>
     <div class="btn-main" :class="{'btn-disable': isDisable}" @click="check">确定</div>
+    <div class="a">忘记密码</div>
+    <div class="sms-login">
+        <div class="kksu">快速登录</div>
+        <font-icon name="weixin_denglu" fontsize="40px" color="#369cfe"></font-icon>
+    </div>
+    <div class="bottom a">新用户点此注册 <font-icon name="forward"></font-icon></div>
     <x-dialog v-model="show1" hide-on-blur>
       <div class="wrap">
         <div class="title">用户协议</div>
@@ -62,6 +68,7 @@ export default {
           ValidateCode: this.vcode
         }
       })
+      data = {Code: 1} // TODO: ~TEST~
       if (data.Code == 1) {
         this.$vux.toast.text('绑定成功')
         this.$router.push({name: 'Me'})
@@ -81,6 +88,7 @@ export default {
           Phone: this.phone
         }
       })
+      data = {Code: 1} // TODO: ~TEST~
       if (data.Code == 1) {
         this.$vux.toast.text('发送成功')
         this.msgStatus = true
@@ -92,80 +100,6 @@ export default {
 }
 </script>
 
-<style scoped>
-.wrap-fff{
-  background: #fff;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-.a{
-  color: #369cfe;
-  display: inline-block;
-  vertical-align: middle;
-  font-size: 14px;
-  white-space: nowrap;
-  text-align: right;
-}
-.top {
-  padding: 80px 0 43px;
-  text-align: center;
-}
-.top-title{
-  display: inline-block;
-  vertical-align: middle;
-  font-size: 20px;
-  margin-left: 10px;
-  color: #369cfe;
-}
-.icon {
-  display: inline-block;
-  width: 39px;
-  height: 39px;
-  background-size: contain;
-}
-.icon-users {
-  background-image: url('../assets/icon-user.png');
-  vertical-align: middle;
-}
-.login-input {
-  position: relative;
-  margin: 0 auto;
-  width: 75%;
-  border: 1px solid #dadada;
-  border-radius: 50px;
-  margin-bottom: 20px;
-}
-.login-input.err{
-  border-color: #f00;
-}
-.login-input .iconfont {
-  color: #369cfe;
-  margin: 0 20px;
-  vertical-align: middle;
-}
-.login-input input {
-  display: inline-block;
-  width: 70%;
-  height: 33px;
-}
-.login-input .vcode-input,.login-input .a{
-  width: 35%;
-}
-.wrap{
-  padding: 10px 0;
-}
-.title {
-  font-size: 18px;
-}
-.p {
-  font-size: 14px;
-  text-align: left;
-  padding: 10px 20px;
-}
-.btn-foot {
-  color: #7dc3ff;
-  border-top: 1px solid #ddd;
-  padding-top: 5px;
-}
+<style scoped lang="less">
+@import '../styles/login.less';
 </style>
