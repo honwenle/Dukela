@@ -1,6 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '@/pages/login'
+import Register from '@/pages/register'
+import SetPassword from '@/pages/set-password'
+import Realname from '@/pages/realname'
+import Realname2 from '@/pages/realname2'
+import Realname3 from '@/pages/realname3'
 import Home from '@/pages/home'
 import villaList from '@/pages/villaList'
 import Mall from '@/pages/mall'
@@ -25,6 +30,31 @@ export default new Router({
       path: '/login',
       name: 'Login',
       component: Login,
+      meta: { keepAlive: true }
+    },{
+      path: '/register',
+      name: 'Register',
+      component: Register,
+      meta: { keepAlive: true }
+    },{
+      path: '/set-password',
+      name: 'SetPassword',
+      component: SetPassword,
+      meta: { keepAlive: true }
+    },{
+      path: '/realname',
+      name: 'Realname',
+      component: Realname,
+      meta: { keepAlive: true }
+    },{
+      path: '/realname2',
+      name: 'Realname2',
+      component: Realname2,
+      meta: { keepAlive: true }
+    },{
+      path: '/realname3',
+      name: 'Realname3',
+      component: Realname3,
       meta: { keepAlive: true }
     }, {
       path: '/',

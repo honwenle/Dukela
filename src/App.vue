@@ -31,6 +31,12 @@ export default {
 .fade-enter, .fade-leave-to {
   opacity: 0;
 }
+html, body{
+  -webkit-touch-callout:none;
+  -webkit-text-size-adjust:none;
+  -webkit-tap-highlight-color:rgba(0, 0, 0, 0);
+  -webkit-user-select:none;
+}
 body {
   background-color: #eee;
   color: #545454;
@@ -53,6 +59,13 @@ input{
 }
 .flex{
   display: flex;
+}
+.btn-outline{
+  border: 1px solid #369cfe;
+  border-radius: 50px;
+  display: inline-block;
+  color: #369cfe;
+  padding: 2px 15px;
 }
 .btn-main {
   text-align: center;
@@ -182,12 +195,5 @@ input{
   width: 100%;
   min-height: 100%;
   background-color: #fff;
-}
-.btn-outline{
-  border: 1px solid #369cfe;
-  border-radius: 50px;
-  display: inline-block;
-  color: #369cfe;
-  padding: 2px 15px;
 }
 </style>
