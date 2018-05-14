@@ -1,18 +1,17 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+
+import Main from '@/pages/main'
 import Login from '@/pages/login'
 import Register from '@/pages/register'
 import SetPassword from '@/pages/set-password'
 import Realname from '@/pages/realname'
 import Realname2 from '@/pages/realname2'
 import Realname3 from '@/pages/realname3'
+import BindCard from '@/pages/bind-card'
+
 import Home from '@/pages/home'
 import villaList from '@/pages/villaList'
-import Mall from '@/pages/mall'
-import Me from '@/pages/me'
-import Main from '@/pages/main'
-import User from '@/pages/user'
-import MyGoods from '@/pages/my-goods'
 import Goods from '@/pages/goods'
 import Villa from '@/pages/villa'
 import Room from '@/pages/room'
@@ -20,6 +19,13 @@ import Reserve from '@/pages/reserve'
 import Result from '@/pages/result'
 import Buy from '@/pages/buy'
 import Pay from '@/pages/pay'
+
+import Mall from '@/pages/mall'
+
+import Me from '@/pages/me'
+import Settings from '@/pages/settings'
+import User from '@/pages/user'
+import MyGoods from '@/pages/my-goods'
 import MyOrder from '@/pages/my-order'
 
 Vue.use(Router)
@@ -27,35 +33,41 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
+      path: '/settings',
+      name: 'Settings',
+      component: Settings,
+      meta: { keepAlive: true }
+    }, {
       path: '/login',
       name: 'Login',
       component: Login,
       meta: { keepAlive: true }
-    },{
+    }, {
       path: '/register',
       name: 'Register',
       component: Register,
       meta: { keepAlive: true }
-    },{
+    }, {
       path: '/set-password',
       name: 'SetPassword',
       component: SetPassword,
       meta: { keepAlive: true }
-    },{
+    }, {
       path: '/realname',
       name: 'Realname',
-      component: Realname,
-      meta: { keepAlive: true }
-    },{
+      component: Realname
+    }, {
       path: '/realname2',
       name: 'Realname2',
-      component: Realname2,
-      meta: { keepAlive: true }
-    },{
+      component: Realname2
+    }, {
       path: '/realname3',
       name: 'Realname3',
-      component: Realname3,
-      meta: { keepAlive: true }
+      component: Realname3
+    }, {
+      path: '/bindcard',
+      name: 'BindCard',
+      component: BindCard
     }, {
       path: '/',
       name: 'Main',

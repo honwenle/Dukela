@@ -1,26 +1,28 @@
 <template>
   <div class="win-wrap">
-    <x-header :left-options="{showBack: false}">我的</x-header>
     <div class="top">
+      <div class="blue-header">
+        <x-header :left-options="{showBack: false}">
+          <span slot="right" @click="$router.push({name: 'Settings'})">设置</span>
+        </x-header>
+      </div>
       <div class="avatar">
           <img :src="infoData.Avator" @click="$router.push({name: 'User'})">
       </div>
       <div class="nick">{{infoData.FullName}}</div>
     </div>
     <group :gutter="0">
-      <cell title="我的商品库" link="my-goods"></cell>
-      <cell title="我的订单" link="my-order"></cell>
-      <cell title="客服电话">
-        <a href="tel:4000000000">点击拨打400-000-0000</a>
-      </cell>
+      <cell title="我的商品库" link="my-goods"><span class="blue">转让</span></cell>
+      <cell title="我的订单" link="my-order"><span class="blue">共10单</span></cell>
+      <cell title="我的消息" is-link><badge text="NEW"></badge></cell>
     </group>
   </div>
 </template>
 <script>
-import { Group, Cell } from 'vux'
+import { Group, Cell, Badge } from 'vux'
 export default {
   components: {
-    Group, Cell
+    Group, Cell, Badge
   },
   data() {
     return {
@@ -36,6 +38,10 @@ export default {
         method: 'post',
         url: '/User/GetUserModel'
       })
+      data = {Code: 1, Model: {
+        Avator: 'https://media-image1.baydn.com/avatar%2Fmedia_store%2F16a83bca5aac8f45ca8af8bb8e8a51ee.png@128w_128h',
+        FullName: '杏noclip'
+      }}
       if (data.Code == 1) {
         this.infoData = data.Model
       }
@@ -46,7 +52,7 @@ export default {
 
 <style scoped>
 .top{
-  padding: 30px;
+  padding-bottom: 30px;
   text-align: center;
   color: #fff;
   background-color: radial-gradient(at 50% 75%, #91c9ff, #5194ff);
@@ -55,14 +61,11 @@ export default {
   background-repeat: no-repeat;
 }
 .avatar {
-  width: 30%;
+  width: 75px;
   margin: auto;
 }
 .avatar img {
   width: 100%;
   border-radius: 100%;
-}
-.weui-cell a{
-  color: #c8c8cd;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="wrap-fff center">
-    <realname-header :pervent="unRealname">实名认证</realname-header>
+    <realname-header>实名认证</realname-header>
     <div class="pt20 pb20">请确认您的信息</div>
     <div class="login-input">
       <font-icon name="key"></font-icon>

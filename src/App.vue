@@ -17,6 +17,26 @@ export default {
 
 <style lang="less">
 @import '~vux/src/styles/reset.less';
+.blue-header {
+  .vux-header {
+    border-bottom: none;
+    background-color: transparent;
+    .vux-header-left {
+      .left-arrow:before{
+        border-color: #fff;
+      }
+      a{
+        color: #fff;
+      }
+    }
+    .vux-header-right{
+      color: #fff;
+    }
+    .vux-header-title{
+      color: #fff;
+    }
+  }
+}
 .win-wrap{
   position: absolute;
   width: 100%;
