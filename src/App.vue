@@ -98,6 +98,12 @@ input{
   padding: 5px 0;
   box-shadow: 2px 2px 8px #369cfe;
 }
+.bottom-tip {
+  position: absolute;
+  bottom: 37px;
+  left: 50%;
+  transform: translateX(-50%);
+}
 .btn-main.btn-disable {
   background: #cecece;
   box-shadow: 2px 2px 8px #c7c7c7;
@@ -250,12 +256,26 @@ input{
 }
 .detail{
   font-size: 12px;
-  padding: 17px 23px;
+  padding: 40px 23px 0;
+  position: relative;
+  .detail-title {
+    background: #69A7FF;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    color: #fff;
+    font-size: 16px;
+    padding: 17px 23px;
+  }
 }
 .box{
   box-shadow: 0 0 15px #a4c4ff;
   border-radius: 5px;
   margin: 14px 0;
+  position: relative;
+  background: #fff;
   .cell{
     padding: 14px 10px;
   }

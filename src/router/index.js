@@ -26,7 +26,7 @@ import Me from '@/pages/me'
 import Settings from '@/pages/settings'
 import User from '@/pages/user'
 import MyGoods from '@/pages/my-goods'
-import GoodsList from '@/pages/goods-list'
+import GoodsRecord from '@/pages/goods-record'
 import Detail from '@/pages/detail'
 import MyOrder from '@/pages/my-order'
 
@@ -114,9 +114,9 @@ export default new Router({
       component: MyGoods,
       meta: { keepAlive: true }
     }, {
-      path: '/goods-list',
-      name: 'GoodsList',
-      component: GoodsList,
+      path: '/goods-record',
+      name: 'GoodsRecord',
+      component: GoodsRecord,
       meta: { keepAlive: true }
     }, {
       path: '/my-order',

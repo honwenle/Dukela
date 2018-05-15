@@ -4,14 +4,13 @@
       <div class="blue-header">
         <x-header>
           我的商品库
-          <span slot="right" @click="$router.push({name: 'Settings'})">设置</span>
         </x-header>
       </div>
       <div style="padding: 22px">
         <div class="fz25">400</div>
         <span class="fz12">总商品数(个)</span>
         <div class="float-right">
-          <div class="btn-reverse" @click="$router.push({name: 'GoodsList'})">明细</div>
+          <div class="btn-reverse" @click="$router.push({name: 'GoodsRecord'})">明细</div>
         </div>
       </div>
     </div>
@@ -23,12 +22,12 @@
         <div class="item-row">
           <div class="item-t3">
             <div class="item-t2">持有(份)</div>{{item.ProductCount}}
-            <div class="float-right fz12">可转让：420份</div>
+            <!-- <div class="float-right fz12">可转让：420份</div> -->
           </div>
         </div>
-        <div class="item-progress">
+        <!-- <div class="item-progress">
           <div class="item-progress-line" :style="`width:${100*item.TAmount/item.ProductCount}%`"></div>
-        </div>
+        </div> -->
       </div>
       <div class="btn-main" @click="loadMore">加载更多</div>
     </div>

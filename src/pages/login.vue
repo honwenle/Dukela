@@ -19,7 +19,7 @@
         <div class="kksu">快速登录</div>
         <font-icon name="weixin_denglu" fontsize="40px" color="#369cfe"></font-icon>
     </div>
-    <div class="bottom a" @click="$router.replace({name: 'Register'})">
+    <div class="bottom-tip a" @click="$router.replace({name: 'Register'})">
       新用户点此注册 <font-icon name="forward"></font-icon>
     </div>
   </div>

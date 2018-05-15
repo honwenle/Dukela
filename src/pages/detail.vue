@@ -2,6 +2,7 @@
   <div class="bg-fff">
     <x-header>消费明细</x-header>
     <div class="detail">
+      <div class="detail-title">您的商品已购入</div>
       <div class="box center">
         <div class="cell bb">
           <font-icon name="dui" color="#d8efcb" fontsize="30px"></font-icon>
@@ -11,7 +12,6 @@
           商品总计：500个<br>T数：1000个
         </div>
       </div>
-      <div>分红来源</div>
       <div class="box">
         <div class="cell flex space-between bb">
           <div>订单号：</div>

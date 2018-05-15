@@ -14,7 +14,7 @@
       <input v-model="pwd2" type="password" placeholder="输入密码">
     </div>
     <div class="btn-main" :class="{'btn-disable': isDisable}" @click="checkPassword">确定</div>
-    <div class="bottom a" @click="$router.replace({name: 'Login'})">
+    <div class="bottom-tip a" @click="$router.replace({name: 'Login'})">
       已有账号，点此登录 <font-icon name="forward"></font-icon>
     </div>
     <x-dialog hide-on-blur v-model="show1" :dialog-style="{'width': '50%', 'padding': '30px 0'}">

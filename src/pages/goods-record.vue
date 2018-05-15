@@ -1,10 +1,6 @@
 <template>
   <div>
-    <x-header>消费明细</x-header>
-    <tab v-model="tabIndex" prevent-default @on-before-index-change="switchTabItem">
-      <tab-item selected>全部</tab-item>
-      <tab-item>入住</tab-item>
-    </tab>
+    <x-header>商品明细</x-header>
     <div class="list">
       <div class="list-item" @click="goDetail">
         <div class="list-padding">
@@ -38,16 +34,6 @@ export default {
       this.$router.push({
         name: 'Detail'
       })
-    },
-    switchTabItem (index) {
-      console.log('on-before-index-change', index)
-      this.$vux.loading.show({
-        text: '加载中'
-      })
-      setTimeout(() => {
-        this.$vux.loading.hide()
-        this.tabIndex = index
-      }, 500)
     }
   }
 }
