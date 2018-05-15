@@ -1,7 +1,34 @@
 <template>
   <div class="win-wrap">
     <x-header>我的订单</x-header>
-    <div class="list" v-if="dataList.length > 0">
+    <tab v-model="tabIndex" prevent-default @on-before-index-change="switchTabItem">
+      <tab-item selected>买入订单</tab-item>
+      <tab-item>预定订单</tab-item>
+    </tab>
+    <div class="list" v-if="true">
+      <div class="list-item">
+        <div class="list-padding">
+          <div class="flex space-between">
+            <div class="flex-1">山庄1项目</div>
+            <div class="btn-color color-success">买入成功</div>
+          </div>
+          <div class="flex">
+            <div class="gray flex-1">买入</div>
+            <div class="gray flex-1">购入T值(元/份)</div>
+            <div class="flex-2"></div>
+          </div>
+          <div class="flex">
+            <div class="flex-1">1000</div>
+            <div class="flex-1">0.8</div>
+            <div class="gray flex-2 text-right">2018-04-20</div>
+          </div>
+        </div>
+        <div class="list-padding2">
+          <div class="gray">订单号：123456</div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="list" v-if="dataList.length > 0">
       <div class="item" v-for="(item, i) in dataList" :key="i">
         <div class="row">
           {{item.ProductName}}
@@ -22,7 +49,7 @@
         </div>
       </div>
       <div class="btn-main" @click="loadMore">加载更多</div>
-    </div>
+    </div> -->
     <div class="goods-empty" v-else>
       <img src="../assets/icon-empty.png" alt="">
       <div>暂无订单</div>
@@ -30,12 +57,14 @@
   </div>
 </template>
 <script>
-import { dateFormat } from 'vux'
+import { dateFormat, Tab, TabItem } from 'vux'
 export default {
+  components: {Tab, TabItem},
   data() {
     return {
       dataList: [],
-      pageIndex: 1
+      pageIndex: 1,
+      tabIndex: 0
     }
   },
   mounted() {
@@ -65,47 +94,17 @@ export default {
         }
         this.dataList = this.dataList.concat(data.List)
       }
+    },
+    switchTabItem (index) {
+      console.log('on-before-index-change', index)
+      this.$vux.loading.show({
+        text: '加载中'
+      })
+      setTimeout(() => {
+        this.$vux.loading.hide()
+        this.tabIndex = index
+      }, 500)
     }
   }
 }
 </script>
-
-<style scoped>
-.list {
-    font-size: 14px;
-}
-.item {
-    margin-bottom: 10px;
-    background: #fff;
-    padding: 10px 0;
-}
-.row {
-    position: relative;
-    margin: 0 20px;
-}
-.btn-tip {
-    position: absolute;
-    right: 0;
-    top: 0;
-    background: #E6F8DC;
-    color: #9EB68F;
-    padding: .1em 1em;
-}
-.gray{
-  color: #AAA;
-}
-.b1 {
-    width: 25%;
-    white-space: nowrap;
-}
-.date {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-}
-.br {
-    height: 1px;
-    background: #eee;
-    margin: 10px 0;
-}
-</style>

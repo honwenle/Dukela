@@ -1,14 +1,33 @@
 <template>
-  <div class="win-wrap">
-    <x-header>我的商品库</x-header>
+  <div class="bg-fff">
+    <div class="top">
+      <div class="blue-header">
+        <x-header>
+          我的商品库
+          <span slot="right" @click="$router.push({name: 'Settings'})">设置</span>
+        </x-header>
+      </div>
+      <div style="padding: 22px">
+        <div class="fz25">400</div>
+        <span class="fz12">总商品数(个)</span>
+        <div class="float-right">
+          <div class="btn-reverse" @click="$router.push({name: 'GoodsList'})">明细</div>
+        </div>
+      </div>
+    </div>
     <div class="goods-list" v-if="dataList.length > 0">
       <div class="list-item" v-for="(item, i) in dataList" :key="i">
         <div class="item-row">
           <div class="item-t1">{{item.ProductName}}</div>
         </div>
         <div class="item-row">
-          <div class="item-t3"><div class="item-t2">可用(个)</div>{{item.ProductCount}}</div>
-          <div class="item-t1"><div class="item-t2">T(个)</div>{{item.TAmount}}</div>
+          <div class="item-t3">
+            <div class="item-t2">持有(份)</div>{{item.ProductCount}}
+            <div class="float-right fz12">可转让：420份</div>
+          </div>
+        </div>
+        <div class="item-progress">
+          <div class="item-progress-line" :style="`width:${100*item.TAmount/item.ProductCount}%`"></div>
         </div>
       </div>
       <div class="btn-main" @click="loadMore">加载更多</div>
@@ -45,6 +64,23 @@ export default {
           orderby: ''
         }
       })
+      data = {Code: 1, List: [ // TODO: ~TEST~
+        {
+          ProductName: '山庄1项目30㎡',
+          ProductCount: '500',
+          TAmount: '420',
+        },
+        {
+          ProductName: '山庄1项目30㎡',
+          ProductCount: '500',
+          TAmount: '420',
+        },
+        {
+          ProductName: '山庄1项目30㎡',
+          ProductCount: '500',
+          TAmount: '420',
+        }
+      ]}
       if (data.Code == 1) {
         if (data.List.length == 0) {
           this.$vux.toast.text('已无更多')
@@ -57,14 +93,7 @@ export default {
 </script>
 
 <style scoped>
-.goods-list {
-  background: #fff;
-  height: 100%;
-  position: absolute;
-  width: 100%;
-}
 .item-row{
-  display: flex;
   line-height: 2.2;
 }
 .item-row > div {
@@ -82,5 +111,30 @@ export default {
 }
 .item-t3{
   color: #369CFE;
+}
+.fz25{
+  font-size: 25px;
+}
+.top{
+  background: #699eff;
+  color: #fff;
+}
+.btn-reverse {
+  background: #fff;
+  color: #369cfe;
+  font-size: 12px;
+  padding: 3px 15px;
+  border-radius: 3px;
+}
+.item-progress{
+  height: 3px;
+  background: #eee;
+  border-radius: 6px;
+}
+.item-progress-line{
+  border-radius: 6px;
+  height: 3px;
+  width: 0%;
+  background: #369CFE;
 }
 </style>

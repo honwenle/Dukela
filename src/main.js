@@ -8,10 +8,11 @@ import store from './store'
 import FontIcon from '@/components/font-icon/index.vue'
 import axios from 'axios'
 import qs from 'qs'
-import { ToastPlugin, XHeader } from 'vux'
+import { LoadingPlugin, ToastPlugin, XHeader } from 'vux'
 
 Vue.component('x-header', XHeader)
 Vue.component('font-icon', FontIcon)
+Vue.use(LoadingPlugin)
 Vue.use(ToastPlugin)
 
 let baseURL

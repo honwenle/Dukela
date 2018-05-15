@@ -216,4 +216,48 @@ input{
   min-height: 100%;
   background-color: #fff;
 }
+.list{
+  .list-item{
+    font-size: 12px;
+    background: #fff;
+    line-height: 2;
+    margin-bottom: 8px;
+    .list-padding{
+      padding: 15px 25px;
+    }
+    .list-padding2{
+      padding: 5px 25px;
+      border-top: 1px solid #eee;
+    }
+  }
+}
+.btn-color{
+  background: #c4d9ff;
+  color: #699eff;
+  padding: 0 20px;
+}
+.btn-color.color-success{
+  background: #e6f8dc;
+  color: #98b189;
+}
+.btn-color.color-error{
+  background: #fce6e6;
+  color: #9d7f7f;
+}
+.btn-color.color-disable{
+  background: #eee;
+  color: #888;
+}
+.detail{
+  font-size: 12px;
+  padding: 17px 23px;
+}
+.box{
+  box-shadow: 0 0 15px #a4c4ff;
+  border-radius: 5px;
+  margin: 14px 0;
+  .cell{
+    padding: 14px 10px;
+  }
+}
 </style>

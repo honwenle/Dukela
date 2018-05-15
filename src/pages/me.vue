@@ -38,7 +38,7 @@ export default {
         method: 'post',
         url: '/User/GetUserModel'
       })
-      data = {Code: 1, Model: {
+      data = {Code: 1, Model: { // TODO: ~TEST~
         Avator: 'https://media-image1.baydn.com/avatar%2Fmedia_store%2F16a83bca5aac8f45ca8af8bb8e8a51ee.png@128w_128h',
         FullName: '杏noclip'
       }}
@@ -62,6 +62,7 @@ export default {
 }
 .avatar {
   width: 75px;
+  height: 75px;
   margin: auto;
 }
 .avatar img {

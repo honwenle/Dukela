@@ -26,6 +26,8 @@ import Me from '@/pages/me'
 import Settings from '@/pages/settings'
 import User from '@/pages/user'
 import MyGoods from '@/pages/my-goods'
+import GoodsList from '@/pages/goods-list'
+import Detail from '@/pages/detail'
 import MyOrder from '@/pages/my-order'
 
 Vue.use(Router)
@@ -33,6 +35,11 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
+      path: '/detail',
+      name: 'Detail',
+      component: Detail,
+      meta: { keepAlive: true }
+    },{
       path: '/settings',
       name: 'Settings',
       component: Settings,
@@ -105,6 +112,11 @@ export default new Router({
       path: '/my-goods',
       name: 'MyGoods',
       component: MyGoods,
+      meta: { keepAlive: true }
+    }, {
+      path: '/goods-list',
+      name: 'GoodsList',
+      component: GoodsList,
       meta: { keepAlive: true }
     }, {
       path: '/my-order',
