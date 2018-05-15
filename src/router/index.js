@@ -29,16 +29,21 @@ import MyGoods from '@/pages/my-goods'
 import GoodsRecord from '@/pages/goods-record'
 import Detail from '@/pages/detail'
 import MyOrder from '@/pages/my-order'
+import Messages from '@/pages/messages'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
+      path: '/messages',
+      name: 'Messages',
+      component: Messages
+    },
+    {
       path: '/detail',
       name: 'Detail',
-      component: Detail,
-      meta: { keepAlive: true }
+      component: Detail
     },{
       path: '/settings',
       name: 'Settings',

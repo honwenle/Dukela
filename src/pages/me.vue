@@ -14,7 +14,7 @@
     <group :gutter="0">
       <cell title="我的商品库" link="my-goods"><span class="blue">转让</span></cell>
       <cell title="我的订单" link="my-order"><span class="blue">共10单</span></cell>
-      <cell title="我的消息" is-link><badge text="NEW"></badge></cell>
+      <cell title="我的消息" link="messages"><badge text="NEW"></badge></cell>
       <cell title="客服电话" is-link>
         <a class="blue" href="tel:4000000000">点击拨打400-000-0000</a>
       </cell>

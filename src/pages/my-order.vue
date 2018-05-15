@@ -5,7 +5,7 @@
       <tab-item selected>买入订单</tab-item>
       <tab-item>预定订单</tab-item>
     </tab>
-    <div class="list" v-if="dataList.length > 0">
+    <div class="list" v-if="tabIndex == 0 && dataList.length > 0">
       <div class="list-item" v-for="(item, i) in dataList" :key="i">
         <div class="list-padding">
           <div class="flex space-between">
@@ -29,7 +29,29 @@
       </div>
       <div class="btn-main" @click="loadMore">加载更多</div>
     </div>
-    <div class="goods-empty" v-else>
+    <div class="list" v-if="tabIndex == 1 && dataList.length > 0">
+      <div class="list-item" v-for="(item, i) in dataList" :key="i">
+        <div class="list-padding flex">
+          <div class="flex-1">
+            <img class="img" src="https://o5omsejde.qnssl.com/demo/test1.jpg?type=webp">
+          </div>
+          <div class="flex-5">
+            <div class="flex space-between">
+              <div>山庄1项目</div>
+              <div class="btn-color color-error">待支付</div>
+            </div>
+            <div class="gray">1间 大床房</div>
+            <div class="gray">2018-04-09 16：00 至 2018-04-10 15：59</div>
+            <div class="gray">总价：1000元</div>
+          </div>
+        </div>
+        <div class="list-padding2 text-right">
+          <div class="btn-inline">去付款</div>
+        </div>
+      </div>
+      <div class="btn-main" @click="loadMore">加载更多</div>
+    </div>
+    <div class="goods-empty" v-if="dataList.length == 0">
       <img src="../assets/icon-empty.png" alt="">
       <div>暂无订单</div>
     </div>
@@ -96,3 +118,10 @@ export default {
   }
 }
 </script>
+<style scoped>
+.img{
+  width: 50px;
+  height: 50px;
+  vertical-align: middle;
+}
+</style>

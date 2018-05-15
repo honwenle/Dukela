@@ -300,4 +300,11 @@ input{
 .mint{
   color: #7cc74e;
 }
+.btn-inline{
+  background: @theme-color;
+  display: inline-block;
+  color: #fff;
+  border-radius: 50px;
+  padding: 0 15px;
+}
 </style>
