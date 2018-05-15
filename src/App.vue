@@ -280,4 +280,24 @@ input{
     padding: 14px 10px;
   }
 }
+.round-text {
+  background: #000;
+  color: #fff;
+  width: 38px;
+  height: 38px;
+  text-align: center;
+  line-height: 38px;
+  border-radius: 50%;
+  font-size: 20px;
+  margin: auto;
+}
+.round-text.round-orange{
+  background: #ff9b65;
+}
+.round-text.round-mint{
+  background: #bae0a3;
+}
+.mint{
+  color: #7cc74e;
+}
 </style>

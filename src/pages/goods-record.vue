@@ -2,19 +2,30 @@
   <div>
     <x-header>商品明细</x-header>
     <div class="list">
-      <div class="list-item" @click="goDetail">
-        <div class="list-padding">
-          <div class="flex space-between">
-            <div class="flex-1">订单号：123456</div>
-            <div class="btn-color color-success">已入住</div>
-          </div>
-          <div class="flex">
-            <div class="gray">入住花费</div>
-          </div>
-          <div class="flex">
-            <div>10000个商品A</div>
-            <div class="gray flex-2 text-right">2018-04-20</div>
-          </div>
+      <div class="list-item flex cell flex-center" @click="goDetail">
+        <div class="flex-1">
+          <div class="round-text round-orange">收</div>
+        </div>
+        <div class="flex-2">
+          <div>商品A</div>
+          <div class="gray">商品购买</div>
+        </div>
+        <div class="flex-3 text-right">
+          <div class="orange">+1000</div>
+          <div class="gray">2018-05-14 10:52:17</div>
+        </div>
+      </div>
+      <div class="list-item flex cell flex-center" @click="goDetail">
+        <div class="flex-1">
+          <div class="round-text round-mint">支</div>
+        </div>
+        <div class="flex-2">
+          <div>商品B</div>
+          <div class="gray">入住消费</div>
+        </div>
+        <div class="flex-3 text-right">
+          <div class="mint">-1000</div>
+          <div class="gray">2018-05-14 10:52:17</div>
         </div>
       </div>
     </div>
