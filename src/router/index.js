@@ -30,11 +30,22 @@ import GoodsRecord from '@/pages/goods-record'
 import Detail from '@/pages/detail'
 import MyOrder from '@/pages/my-order'
 import Messages from '@/pages/messages'
+import ChangePhone from '@/pages/change-phone'
+import ChangePhone2 from '@/pages/change-phone2'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
+    {
+      path: '/change-phone',
+      name: 'ChangePhone',
+      component: ChangePhone
+    },
+    {
+      component: ChangePhone2,
+      path: '/change-phone2'
+    },
     {
       path: '/messages',
       name: 'Messages',
