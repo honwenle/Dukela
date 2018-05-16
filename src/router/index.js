@@ -32,11 +32,21 @@ import MyOrder from '@/pages/my-order'
 import Messages from '@/pages/messages'
 import ChangePhone from '@/pages/change-phone'
 import ChangePhone2 from '@/pages/change-phone2'
+import MyRealname from '@/pages/my-realname'
+import MyBankcard from '@/pages/my-bankcard'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
+    {
+      component: MyBankcard,
+      path: '/my-bankcard'
+    },
+    {
+      component: MyRealname,
+      path: '/my-realname'
+    },
     {
       path: '/change-phone',
       name: 'ChangePhone',

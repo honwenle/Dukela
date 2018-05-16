@@ -18,7 +18,7 @@
       <cell title="手机号更换" :value="userInfo.Phone" link="change-phone"></cell>
       <cell title="实名认证" value="还未进行实名认证" link="my-realname"></cell>
       <cell title="银行卡管理" value="未绑定" link="my-bankcard"></cell>
-      <cell title="密码管理" link="password-mgr"></cell>
+      <cell title="密码管理" link="my-password"></cell>
     </group>
     <group>
       <cell title="微信绑定" link="bind-wx"></cell>
