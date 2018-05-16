@@ -81,22 +81,22 @@ input{
   display: flex;
 }
 .btn-outline{
-  border: 1px solid #369cfe;
+  border: 1px solid @theme-color;
   border-radius: 50px;
   display: inline-block;
-  color: #369cfe;
+  color: @theme-color;
   padding: 2px 15px;
 }
 .btn-main {
   text-align: center;
-  background: #369cfe;
+  background: @theme-color;
   color: #fff;
   font-size: 14px;
   width: 45%;
   margin: 16px auto;
   border-radius: 30px;
   padding: 5px 0;
-  box-shadow: 2px 2px 8px #369cfe;
+  box-shadow: 2px 2px 8px @theme-color;
 }
 .bottom-tip {
   position: absolute;
@@ -133,7 +133,7 @@ input{
   position: fixed;
 }
 .btn-sm {
-  background: #369cfe;
+  background: @theme-color;
   color: #fff;
   font-size: 13px;
   padding: 5px 8px;
@@ -147,7 +147,7 @@ input{
   border-bottom: 1px solid #eee;
 }
 .blue{
-  color: #369cfe;
+  color: @theme-color;
 }
 .cell {
   padding: 5px 10px;
@@ -160,7 +160,7 @@ input{
 }
 .btn-full {
   width: 100%;
-  background: #369cfe;
+  background: @theme-color;
   color: #fff;
   text-align: center;
   line-height: 3;
@@ -239,7 +239,7 @@ input{
 }
 .btn-color{
   background: #c4d9ff;
-  color: #699eff;
+  color: @theme-color;
   padding: 0 20px;
 }
 .btn-color.color-success{
@@ -259,7 +259,7 @@ input{
   padding: 40px 23px 0;
   position: relative;
   .detail-title {
-    background: #69A7FF;
+    background: @theme-color;
     position: absolute;
     top: 0;
     left: 0;
@@ -271,7 +271,7 @@ input{
   }
 }
 .box{
-  box-shadow: 0 0 15px #a4c4ff;
+  box-shadow: 0 0 15px #a4ffa4;
   border-radius: 5px;
   margin: 14px 0;
   position: relative;
