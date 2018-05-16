@@ -43,7 +43,8 @@ export default {
       phone: '',
       vcode: '',
       msgTime: 60,
-      msgStatus: false
+      msgStatus: false,
+      SmsID: ''
     }
   },
   computed: {
@@ -73,6 +74,7 @@ export default {
       if (data.Code == 1) {
         this.$vux.toast.text('发送成功')
         this.msgStatus = true
+        this.SmsID = data.Model
       } else {
         this.$vux.toast.text(data.Message)
       }
