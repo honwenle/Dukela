@@ -108,7 +108,7 @@ export default new Router({
       meta: { keepAlive: true },
       children: [
         {
-          path: '/home',
+          path: '',
           name: 'Home',
           component: Home,
           meta: { keepAlive: true }
