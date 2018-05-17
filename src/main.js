@@ -39,8 +39,11 @@ FastClick.attach(document.body)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
-new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount('#app-box')
+window.apiready = function(){
+  new Vue({
+    router,
+    store,
+    render: h => h(App)
+  }).$mount('#app-box')
+}
+window.api || window.apiready()

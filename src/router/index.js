@@ -38,6 +38,7 @@ import MyBankcard from '@/pages/my-bankcard'
 Vue.use(Router)
 
 export default new Router({
+  // mode: 'history',
   routes: [
     {
       component: MyBankcard,
