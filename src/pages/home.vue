@@ -27,7 +27,7 @@
                 <div class="gray"><font-icon name="kucun"></font-icon>剩余100000份</div>
               </div>
               <div class="flex-1 center">
-                <div class="btn-outline">立即抢购</div>
+                <div class="btn-outline" @click="goGoods(item.id)">立即抢购</div>
               </div>
             </div>
           </div>
