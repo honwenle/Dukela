@@ -104,7 +104,6 @@ export default new Router({
       component: BindCard
     }, {
       path: '/',
-      name: 'Main',
       component: Main,
       meta: { keepAlive: true },
       children: [
