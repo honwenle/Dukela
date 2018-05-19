@@ -5,9 +5,9 @@ import FastClick from 'fastclick'
 import App from './App'
 import router from './router'
 import store from './store'
+import url from './scripts/url'
+import http from './scripts/http'
 import FontIcon from '@/components/font-icon/index.vue'
-import axios from 'axios'
-import qs from 'qs'
 import { LoadingPlugin, ToastPlugin, XHeader } from 'vux'
 
 Vue.component('x-header', XHeader)
@@ -15,24 +15,8 @@ Vue.component('font-icon', FontIcon)
 Vue.use(LoadingPlugin)
 Vue.use(ToastPlugin)
 
-let baseURL
-if (location.host.indexOf('localhost') > -1) {
-  baseURL = 'http://WeiXin.Doukela.com/WeiXin/'
-} else {
-  baseURL = 'http://WeiXin.Doukela.com/WeiXin/'
-}
-axios.defaults.baseURL = baseURL
-axios.defaults.withCredentials = true
-axios.interceptors.request.use(function (config) {
-  if (config.data) {
-    config.data = qs.stringify(config.data)
-  }
-  return config
-}, function (error) {
-  return Promise.reject(error)
-})
-Vue.prototype.$baseURL = baseURL
-Vue.prototype.$http = axios
+Vue.prototype.$baseURL = url.baseURL
+Vue.prototype.$http = http
 
 FastClick.attach(document.body)
 

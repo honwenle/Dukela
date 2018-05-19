@@ -12,7 +12,7 @@
         height="-230px"
         :pulldown-config="{downContent: '下拉刷新', upContent: '释放后更新', loadingContent: '加载中'}">
         <div style="padding: 0 16px;">
-          <div class="home-item" v-for="item in dataList" :key="item.id">
+          <div class="home-item" v-for="(item, i) in dataList" :key="i">
             <div class="bb" style="padding: 6px 15px">
               <font-icon name="home1" color="#6e9cff"></font-icon>
               {{item.name}}
@@ -43,83 +43,26 @@ export default {
     Scroller
   },
   data() {
-    return {
-      dataList: [
-        {
-          id: 1,
-          name: '乔顿山庄30㎡',
-          price: 1.5,
-          surplus: 10000
-        },
-        {
-          id: 2,
-          name: '乔顿山庄30㎡',
-          price: 1.5,
-          surplus: 10000
-        },
-        {
-          id: 3,
-          name: '乔顿山庄30㎡',
-          price: 1.5,
-          surplus: 10000
-        },
-        {
-          id: 4,
-          name: '乔顿山庄30㎡',
-          price: 1.5,
-          surplus: 10000
-        },
-        {
-          id: 5,
-          name: '乔顿山庄30㎡',
-          price: 1.5,
-          surplus: 10000
-        },
-        {
-          id: 6,
-          name: '乔顿山庄30㎡',
-          price: 1.5,
-          surplus: 10000
-        },
-        {
-          id: 7,
-          name: '乔顿山庄30㎡',
-          price: 1.5,
-          surplus: 10000
-        },
-        {
-          id: 8,
-          name: '乔顿山庄30㎡',
-          price: 1.5,
-          surplus: 10000
-        }
-      ]
+    return {}
+  },
+  computed: {
+    dataList() {
+      return this.$store.state.homeList
     }
   },
   mounted() {
+    this.$store.dispatch('getHomeList')
     this.$nextTick(() => {
       this.$refs.vuxscroller.reset()
     })
   },
   methods: {
-    loadData() {
-      setTimeout(() => {
-        this.dataList = this.dataList.concat({
-          id: Math.random(),
-          name: '乔顿山庄30㎡',
-          price: 1.5,
-          surplus: 10000
-        }, {
-          id: Math.random(),
-          name: '乔顿山庄30㎡',
-          price: 1.5,
-          surplus: 10000
-        })
-        this.$refs.vuxscroller.donePulldown()
-        this.$nextTick(() => {
-          this.$refs.vuxscroller.reset()
-        })
-      }, 500);
+    async loadData() {
+      await this.$store.dispatch('getHomeList')
+      this.$refs.vuxscroller.donePulldown()
+      this.$nextTick(() => {
+        this.$refs.vuxscroller.reset()
+      })
     },
     goGoods(id) {
       this.$router.push({
