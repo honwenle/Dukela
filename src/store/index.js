@@ -7,7 +7,7 @@ export default new Vuex.Store({
     homeList: []
   },
   mutations: {
-    setHomeList (state, items = []) {
+    setHomeList(state, items = []) {
       state.homeList = state.homeList.concat(items)
     }
   },
@@ -15,6 +15,11 @@ export default new Vuex.Store({
     async getHomeList({commit}) {
       let {data} = await http('home.json')
       commit('setHomeList', data)
+    },
+    async login({commit}, dt) {
+      let {data} = await http.post('User/AppLogin', dt)
+      localStorage.setItem('UserKey', data.Model)
+      return data
     }
   }
 })

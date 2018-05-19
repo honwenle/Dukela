@@ -31,3 +31,17 @@ window.apiready = function(){
   }).$mount('#app-box')
 }
 window.api || window.apiready()
+
+// 路由守卫 登录限制
+router.beforeEach((to, from, next) => {
+  if (to.meta.needLogin) {
+    if (localStorage.getItem('UserKey')) {
+      next()
+    } else {
+      // TODO: 弹窗提醒
+      next({name: 'Login'})
+    }
+  } else {
+    next()
+  }
+})

@@ -11,7 +11,7 @@
     </div>
     <div class="login-input">
       <font-icon name="key"></font-icon>
-      <input v-model="vcode" type="password" placeholder="输入密码">
+      <input v-model="password" type="password" placeholder="输入密码">
     </div>
     <div class="btn-main" :class="{'btn-disable': isDisable}" @click="submitBind">登录</div>
     <div class="a">忘记密码</div>
@@ -29,12 +29,12 @@ export default {
   data() {
     return {
       phone: '',
-      vcode: ''
+      password: ''
     }
   },
   computed: {
     isDisable() {
-      return this.phone == '' || this.vcode == ''
+      return this.phone == '' || this.password == ''
     }
   },
   methods: {
@@ -42,15 +42,11 @@ export default {
       if (this.isDisable) {
         return false
       }
-      let {data} = await this.$http({
-        method: 'post',
-        url: '/User/BindPhone',
-        data: {
-          Phone: this.phone,
-          ValidateCode: this.vcode
-        }
+      let data = await this.$store.dispatch('login', {
+        UserName: this.phone,
+        password: this.password,
+        DeviceID: (window.api && window.api.deviceId) || navigator.userAgent
       })
-      data = {Code: 1} // TODO: ~TEST~
       if (data.Code == 1) {
         this.$vux.toast.text('登录成功')
         this.$router.push({name: 'Me'})

@@ -34,7 +34,6 @@ export default {
   },
   mounted() {
     this.getInfo()
-    alert(window.api && window.api.deviceId)
   },
   methods: {
     async getInfo() {

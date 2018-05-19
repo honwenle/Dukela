@@ -3,7 +3,7 @@ isTest = (location.href.indexOf('isTest') > -1 || location.host.indexOf('localho
 if (isTest) {
   baseURL = 'http://192.168.42.28:8081/'
 } else {
-  baseURL = 'http://WeiXin.Doukela.com/WeiXin/'
+  baseURL = 'http://weixin.doukela.com/App/'
 }
 export default {
   baseURL,
