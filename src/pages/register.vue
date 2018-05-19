@@ -43,8 +43,7 @@ export default {
       phone: '',
       vcode: '',
       msgTime: 60,
-      msgStatus: false,
-      SmsID: ''
+      msgStatus: false
     }
   },
   computed: {
@@ -53,28 +52,29 @@ export default {
     }
   },
   methods: {
-    submitBind() {
-      this.$router.push({
-        name: 'SetPassword'
+    async submitBind() {
+      let data = await this.$store.dispatch('checkMsg', {
+        ValidateCode: this.vcode
       })
+      if (data.Code == 1) {
+        this.$router.push({
+          name: 'SetPassword'
+        })
+      } else {
+        this.$vux.toast.text(data.Message)
+      }
     },
     msgRenew() {
       this.msgTime = 60
       this.msgStatus = false
     },
     async sendMsg() {
-      let {data} = await this.$http({
-        method: 'post',
-        url: '/SysSMS/Send',
-        data: {
-          Phone: this.phone
-        }
+      let data = await this.$store.dispatch('sendMsg', {
+        Phone: this.phone
       })
-      data = {Code: 1} // TODO: ~TEST~
       if (data.Code == 1) {
         this.$vux.toast.text('发送成功')
         this.msgStatus = true
-        this.SmsID = data.Model
       } else {
         this.$vux.toast.text(data.Message)
       }

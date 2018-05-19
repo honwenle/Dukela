@@ -4,11 +4,15 @@ import http from '../scripts/http'
 Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
-    homeList: []
+    homeList: [],
+    SmsID: ''
   },
   mutations: {
     setHomeList(state, items = []) {
       state.homeList = state.homeList.concat(items)
+    },
+    setMsgState(state, data) {
+      state.SmsID = data.Model
     }
   },
   actions: {
@@ -20,6 +24,16 @@ export default new Vuex.Store({
       let {data} = await http.post('User/AppLogin', dt)
       localStorage.setItem('UserKey', data.Model)
       return data
-    }
+    },
+    async sendMsg({commit}, dt) {
+      let {data} = await http.post('SysSMS/Send', dt)
+      commit('setMsgState', data)
+      return data
+    },
+    async checkMsg() {
+      let {data} = await http.post('SysSMS/Check', dt)
+      return data
+    },
+    async register() {}
   }
 })
