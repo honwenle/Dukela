@@ -34,6 +34,10 @@ export default new Vuex.Store({
       let {data} = await http.post('SysSMS/Check', dt)
       return data
     },
-    async register() {}
+    async register() {},
+    async bindCard({commit}, dt) {
+      let {data} = await http.post('User/BindBank', dt)
+      return data
+    }
   }
 })

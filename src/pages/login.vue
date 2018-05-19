@@ -44,8 +44,7 @@ export default {
       }
       let data = await this.$store.dispatch('login', {
         UserName: this.phone,
-        password: this.password,
-        DeviceID: (window.api && window.api.deviceId) || navigator.userAgent
+        password: this.password
       })
       if (data.Code == 1) {
         this.$vux.toast.text('登录成功')

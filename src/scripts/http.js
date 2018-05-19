@@ -5,6 +5,7 @@ axios.defaults.baseURL = url.baseURL
 url.isTest || (axios.defaults.withCredentials = true)
 axios.interceptors.request.use(function (config) {
   if (config.data) {
+    config.data.DeviceID = (window.api && window.api.deviceId) || navigator.userAgent
     config.data = qs.stringify(config.data)
   }
   return config
