@@ -18,7 +18,7 @@
       已有账号，点此登录 <font-icon name="forward"></font-icon>
     </div>
     <x-dialog hide-on-blur v-model="show1" :dialog-style="{'width': '50%', 'padding': '30px 0'}">
-      <div class="blue">
+      <div class="theme-color">
         <div>
           15268701773 <br> 注册成功!
         </div>

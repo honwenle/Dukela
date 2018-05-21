@@ -1,5 +1,9 @@
 <template>
-  <div class="bg-fff fixed-bottom">
+  <div class="fixed-bottom">
+    <x-header :left-options="{showBack: false}">
+      都可拉
+      <router-link slot="right" to="login" style="color: #60b63c">登录/注册</router-link>
+    </x-header>
     <div class="top">
       <img src="../assets/banenr.png" alt="">
     </div>
@@ -10,7 +14,7 @@
         use-pulldown
         @on-pulldown-loading="refreshData"
         @on-scroll-bottom="moreData"
-        height="-230px"
+        height="-277px"
         :pulldown-config="{downContent: '下拉刷新', upContent: '释放后更新', loadingContent: '加载中'}">
         <div style="padding: 0 16px;">
           <div class="home-item" v-for="(item, i) in dataList" :key="i">
@@ -24,8 +28,8 @@
                 <div class="big-num">{{item.ProductCost}}</div>
               </div>
               <div class="flex-1 border-left">
-                <div class="gray"><font-icon name="rmb"></font-icon>已出售<span class="orange">{{item.ProductUsedCount}}份</span></div>
-                <div class="gray"><font-icon name="kucun"></font-icon>剩余{{item.ProductLessCount}}份</div>
+                <div class="gray"><font-icon name="rmb"></font-icon>已出售<span class="theme-color">{{item.ProductUsedCount}}小时</span></div>
+                <div class="gray"><font-icon name="kucun"></font-icon>剩余{{item.ProductLessCount}}小时</div>
               </div>
               <div class="flex-1 center">
                 <div class="btn-outline" @click="goGoods(item.ID)">立即抢购</div>
@@ -93,15 +97,12 @@ export default {
 </script>
 <style scoped>
 .list{
-  top: 180px;
-  height: calc(100vh - 180px);
+  top: calc(180px + 47px);
+  height: calc(100vh - 180px - 47px);
   width: 100%;
   box-sizing: border-box;
   position: absolute;
   overflow: hidden;
-}
-.blue{
-  font-size: 18px;
 }
 .top{
   height: 180px;
@@ -117,7 +118,7 @@ export default {
 }
 .big-num{
   font-size: 35px;
-  color: #ff5400;
+  color: #60b63c;
 }
 .border-left{
   padding-left: 18px;

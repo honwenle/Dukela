@@ -1,7 +1,7 @@
 <template>
   <div class="bg-fff">
     <div class="top">
-      <div class="blue-header">
+      <div class="theme-color-header">
         <x-header>
           我的商品库
         </x-header>

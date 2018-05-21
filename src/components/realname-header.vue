@@ -9,7 +9,7 @@
       <slot></slot>
     </x-header>
     <x-dialog v-model="show" :dialog-style="{'width': '50%', 'padding': '30px'}">
-      <div class="blue">
+      <div class="theme-color">
         <div>
           通过实名认证和密码设置才能正常购买
         </div>

@@ -7,7 +7,7 @@
         <clocker :time="msgTime" format="%M：%S" @on-finish="onFinish">
         </clocker>
       </div>
-      <div class="blue">总价：300元</div>
+      <div class="theme-color">总价：300元</div>
     </div>
     <div v-if="deduct">
       <div class="check-box">
@@ -16,7 +16,7 @@
       </div>
       <div class="bottom-bar">
         <div class="flex">
-          <div class="flex-2 text-right">商品抵扣100元，剩余需支付<span class="blue">200</span>元</div>
+          <div class="flex-2 text-right">商品抵扣100元，剩余需支付<span class="theme-color">200</span>元</div>
           <div class="flex-1 btn-sm" @click="afterDeduct">下一步</div>
         </div>
       </div>
@@ -106,7 +106,7 @@ export default {
 .pay-top{
   padding: 15px 0;
 }
-.pay-top .blue{
+.pay-top .theme-color{
   font-size: 20px;
   margin: 5px 0;
 }

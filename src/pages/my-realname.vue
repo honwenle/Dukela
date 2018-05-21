@@ -7,8 +7,8 @@
       <div>您已通过实名认证</div>
     </div>
     <group :gutter="0">
-      <cell title="姓名"><span class="blue">{{infoData.name}}</span></cell>
-      <cell title="证件"><span class="blue">{{infoData.idcard}}</span></cell>
+      <cell title="姓名"><span class="theme-color">{{infoData.name}}</span></cell>
+      <cell title="证件"><span class="theme-color">{{infoData.idcard}}</span></cell>
     </group>
     <div class="btn-main" @click="$router.push({name: 'Realname'})">去认证</div>
   </div>

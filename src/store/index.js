@@ -31,12 +31,12 @@ export default new Vuex.Store({
       data.Code == 1 && commit('setProduct', data.Model)
     },
     async getHomeList({commit}, page = 1) {
-      page == 1 && commit('clearHomeList')
       let {data} = await http.post('Product/GetList', {
         pageSize: PAGE_SIZE,
         pageIndex: page,
         orderby: ''
       })
+      page == 1 && commit('clearHomeList')
       commit('setHomeList', JSON.parse(data.List))
       return data.Count
     },

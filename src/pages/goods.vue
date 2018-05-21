@@ -5,7 +5,7 @@
       <div class="swiper">
         <swiper :list="slideList" loop auto></swiper>
       </div>
-      <div class="blue cell">￥<span style="font-size: 18px">{{detailData.ProductName}}元</span></div>
+      <div class="theme-color cell">￥<span style="font-size: 18px">{{detailData.ProductName}}元</span></div>
       <div class="cell flex space-between bb">
         <div>已售：{{detailData.ProductUsedCount}}小时</div>
         <div class="gray">剩余：{{detailData.ProductLessCount}}小时</div>
@@ -16,7 +16,7 @@
       </div>
     </div>
     <!-- <div class="group">
-      <div class="blue cell center">今日T值：0.3元/份</div>
+      <div class="theme-color cell center">今日T值：0.3元/份</div>
     </div> -->
     <div class="group cell">
       <div class="h1">规则说明</div>
