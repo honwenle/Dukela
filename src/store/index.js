@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import http from '../scripts/http'
 Vue.use(Vuex)
+const PAGE_SIZE = 10
 export default new Vuex.Store({
   state: {
     homeList: [],
@@ -10,7 +11,6 @@ export default new Vuex.Store({
   },
   mutations: {
     setHomeList(state, items = []) {
-      console.log(items)
       state.homeList = state.homeList.concat(items)
     },
     clearHomeList(state) {
@@ -25,11 +25,12 @@ export default new Vuex.Store({
     async getHomeList({commit}, page = 1) {
       page == 1 && commit('clearHomeList')
       let {data} = await http.post('Product/GetList', {
-        pageSize: 10,
+        pageSize: PAGE_SIZE,
         pageIndex: page,
         orderby: ''
       })
       commit('setHomeList', JSON.parse(data.List))
+      return data.Count
     },
     async login({commit}, dt) {
       let {data} = await http.post('User/AppLogin', dt)

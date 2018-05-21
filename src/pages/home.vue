@@ -8,7 +8,8 @@
         ref="vuxscroller"
         lock-x
         use-pulldown
-        @on-pulldown-loading="loadData"
+        @on-pulldown-loading="refreshData"
+        @on-scroll-bottom="moreData"
         height="-230px"
         :pulldown-config="{downContent: '下拉刷新', upContent: '释放后更新', loadingContent: '加载中'}">
         <div style="padding: 0 16px;">
@@ -43,7 +44,10 @@ export default {
     Scroller
   },
   data() {
-    return {}
+    return {
+      page: 1,
+      noMore: false
+    }
   },
   computed: {
     dataList() {
@@ -61,12 +65,20 @@ export default {
       this.page = 1
       this.loadData()
     },
+    moreData() {
+      if (this.onFetching || this.noMore) return false
+      this.page ++
+      this.loadData()
+    },
     async loadData() {
-      await this.$store.dispatch('getHomeList', this.page)
+      this.onFetching = true
+      let count = await this.$store.dispatch('getHomeList', this.page)
       this.$refs.vuxscroller.donePulldown()
       this.$nextTick(() => {
         this.$refs.vuxscroller.reset()
       })
+      this.onFetching = false
+      this.noMore = (count == this.dataList.length)
     },
     goGoods(id) {
       this.$router.push({
