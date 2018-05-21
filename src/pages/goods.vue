@@ -5,9 +5,9 @@
       <div class="swiper">
         <swiper :list="slideList" loop auto></swiper>
       </div>
-      <div class="theme-color cell">￥<span style="font-size: 18px">{{detailData.ProductName}}元</span></div>
+      <div class="cell">{{detailData.ProductName}}</div>
       <div class="cell flex space-between bb">
-        <div>已售：{{detailData.ProductUsedCount}}小时</div>
+        <div class="theme-color">已售：{{detailData.ProductUsedCount}}小时</div>
         <div class="gray">剩余：{{detailData.ProductLessCount}}小时</div>
       </div>
       <div class="cell gray">
@@ -18,15 +18,18 @@
     <!-- <div class="group">
       <div class="theme-color cell center">今日T值：0.3元/份</div>
     </div> -->
+    <div class="h1">规则说明</div>
     <div class="group cell">
-      <div class="h1">规则说明</div>
-      <div class="p" v-html="detailData.ProductContent"></div>
+      <div class="p" v-html="detailData.ProductContent || '暂无说明'"></div>
     </div>
+    <div class="h1">山庄介绍</div>
     <div class="group cell">
-      <div class="h1">山庄介绍</div>
-      <div v-html="detailData.ProRemark"></div>
+      <div v-html="detailData.ProRemark || '暂无介绍'"></div>
     </div>
-    <div class="btn-full" @click="goBuy">立即购买</div>
+    <div class="bottom-bar">
+      <span class="theme-color big">{{detailData.ProductCost}}</span> 元/小时
+      <div class="float-right btn-inline" @click="goBuy">立即购买</div>
+    </div>
   </div>
 </template>
 <script>
@@ -81,5 +84,15 @@ export default {
 .p{
   color: #545454;
   font-weight: 300;
+}
+.h1{
+  padding: 0 15px 8px;
+}
+.bottom-bar{
+  padding: 15px;
+  box-sizing: border-box;
+}
+.big{
+  font-size: 18px;
 }
 </style>
