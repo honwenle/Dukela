@@ -7,7 +7,8 @@ export default new Vuex.Store({
   state: {
     homeList: [],
     SmsID: '',
-    SmsPhone: ''
+    SmsPhone: '',
+    productDetail: {}
   },
   mutations: {
     setHomeList(state, items = []) {
@@ -19,9 +20,16 @@ export default new Vuex.Store({
     setMsgState(state, data) {
       state.SmsID = data.SmsID
       state.SmsPhone = data.SmsPhone
+    },
+    setProduct(state, data) {
+      state.productDetail = data
     }
   },
   actions: {
+    async getProduct({commit}, dt) {
+      let {data} = await http.post('Product/GetModel', dt)
+      data.Code == 1 && commit('setProduct', data.Model)
+    },
     async getHomeList({commit}, page = 1) {
       page == 1 && commit('clearHomeList')
       let {data} = await http.post('Product/GetList', {
