@@ -1,6 +1,6 @@
 <template>
   <div class="wrap-fff center">
-    <realname-header :pervent="unRealname">设置密码</realname-header>
+    <x-header>设置密码</x-header>
     <div class="top">
       <div class="icon icon-users"></div>
       <div class="top-title">设置登录密码</div>
@@ -32,17 +32,15 @@
 </template>
 <script>
 import {XDialog} from 'vux'
-import RealnameHeader from '@/components/realname-header'
 export default {
   components: {
-    XDialog, RealnameHeader
+    XDialog
   },
   data() {
     return {
       show1: false,
       pwd1: '',
-      pwd2: '',
-      unRealname: false
+      pwd2: ''
     }
   },
   computed: {
@@ -72,7 +70,6 @@ export default {
     },
     async submitPassword() {
       this.show1 = true
-      this.unRealname = true
     }
   }
 }

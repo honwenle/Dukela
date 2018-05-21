@@ -6,7 +6,6 @@ import Login from '@/pages/login'
 import Register from '@/pages/register'
 import SetPassword from '@/pages/set-password'
 import Realname from '@/pages/realname'
-import Realname2 from '@/pages/realname2'
 import Realname3 from '@/pages/realname3'
 import BindCard from '@/pages/bind-card'
 
@@ -90,10 +89,6 @@ export default new Router({
       path: '/realname',
       name: 'Realname',
       component: Realname
-    }, {
-      path: '/realname2',
-      name: 'Realname2',
-      component: Realname2
     }, {
       path: '/realname3',
       name: 'Realname3',
