@@ -34,7 +34,7 @@
               <div slot="content" class="popover-content">
                 需要24小时之内打款，订单3个工作日内未打款将失效，打款5个工作日内确认。
               </div>
-              <font-icon name="home1" fontsize="22px" color="#fe5900"></font-icon>
+              <font-icon name="help" fontsize="22px" color="#fe5900"></font-icon>
             </popover>
           </div>
           <checklist label-position="left" :options="['公司对公账号']"></checklist>
