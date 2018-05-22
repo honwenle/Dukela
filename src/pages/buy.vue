@@ -8,7 +8,7 @@
       </cell>
     </group>
     <group label-width="100px">
-      <x-input v-model="num" :is-type="checkNum" @on-change="numParseInt" title="数量" type="number" placeholder="100份起售，最多购入10000元"></x-input>
+      <x-input v-model="num" :is-type="checkNum" @on-change="numParseInt" title="数量" type="number" :placeholder="this.detailData.SellLimitCount+'份起售，最多购入10000元'"></x-input>
     </group>
     <div class="bottom-bar">
       <div class="flex">
@@ -44,10 +44,10 @@ export default {
       })
     },
     checkNum(val) {
-      if (val < 100) {
+      if (val < this.detailData.SellLimitCount) {
         return {
           valid: false,
-          msg: '大一点'
+          msg: this.detailData.SellLimitCount + '份起售'
         }
       } else {
         return {
@@ -55,14 +55,29 @@ export default {
         }
       }
     },
-    submitOrder() {
-      // TODO: 提交订单
-      this.$router.push({
-        name: 'Pay',
-        query: {
-          offline: 1
+    async submitOrder() {
+      let check = this.checkNum(this.num)
+      if(check.valid) {
+        let data = await this.$store.dispatch('buyProduct', {
+          ProductID: this.detailData.ID,
+          ProductName: this.detailData.ProductName,
+          ProductCost: this.detailData.ProductCost,
+          ProductCount: this.num
+        })
+        if (data.Code == 1) {
+          this.$router.push({
+            name: 'Pay',
+            query: {
+              offline: 1
+            }
+          })
+        } else {
+          this.$vux.toast.text(data.Message)
         }
-      })
+      } else {
+        this.$vux.toast.text(check.msg)
+        return false
+      }
     }
   }
 }

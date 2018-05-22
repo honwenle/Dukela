@@ -9,7 +9,8 @@ export default new Vuex.Store({
     SmsID: '',
     SmsPhone: '',
     SmsVCode: '',
-    productDetail: {}
+    productDetail: {},
+    UserKey: localStorage.getItem('UserKey')
   },
   mutations: {
     setHomeList(state, items = []) {
@@ -32,6 +33,10 @@ export default new Vuex.Store({
     },
     setProduct(state, data) {
       state.productDetail = data
+    },
+    setUserKey(state, key) {
+      localStorage.setItem('UserKey', key)
+      state.UserKey = key
     }
   },
   actions: {
@@ -46,17 +51,17 @@ export default new Vuex.Store({
         orderby: ''
       })
       page == 1 && commit('clearHomeList')
-      commit('setHomeList', JSON.parse(data.List))
+      data.Code == 1 && commit('setHomeList', JSON.parse(data.List))
       return data.Count
     },
     async login({commit}, dt) {
       let {data} = await http.post('User/AppLogin', dt)
-      localStorage.setItem('UserKey', data.Model)
+      data.Code == 1 && commit('setUserKey', data.Model)
       return data
     },
     async sendMsg({commit}, dt) {
       let {data} = await http.post('SysSMS/Send', dt)
-      commit('setSmsState', {SmsID: data.Model, Phone: dt.Phone})
+      data.Code == 1 && commit('setSmsState', {SmsID: data.Model, Phone: dt.Phone})
       return data
     },
     async checkMsg({state, commit}, dt) {
@@ -65,7 +70,7 @@ export default new Vuex.Store({
         Phone: state.SmsPhone,
         ...dt
       })
-      commit('setSmsCode', dt)
+      data.Code == 1 && commit('setSmsCode', dt)
       return data
     },
     async register({state, commit}, dt) {
@@ -75,12 +80,18 @@ export default new Vuex.Store({
         ValidateCode: state.SmsVCode,
         ...dt
       })
-      localStorage.setItem('UserKey', data.Model)
-      commit('clearSmsState')
+      if (data.Code == 1) {
+        commit('setUserKey', data.Model)
+        commit('clearSmsState')
+      }
       return data
     },
     async bindCard({commit}, dt) {
       let {data} = await http.post('User/BindBank', dt)
+      return data
+    },
+    async buyProduct({commit}, dt) {
+      let {data} = await http.post('ProductOrderIn/Addinfo', dt)
       return data
     }
   }

@@ -29,10 +29,7 @@ export default {
   },
   methods: {
     async bindCard() {
-      let data = await this.$store.dispatch('bindCard', {
-        UserKey: localStorage.getItem('UserKey'),
-        ...this.formData
-      })
+      let data = await this.$store.dispatch('bindCard', this.formData)
       if (data.Code == 1) {
         this.$vux.toast.text('绑定成功')
         this.$router.back()

@@ -20,7 +20,18 @@
     </div> -->
     <div class="h1">规则说明</div>
     <div class="group cell">
-      <div class="p" v-html="detailData.ProductContent || '暂无说明'"></div>
+      <div>
+        <span class="gray">属性</span>
+        <span>购买可得{{detailData.ShareRate}}W</span>
+      </div>
+      <div>
+        <span class="gray">服务</span>
+        <span>入住权·7天无理由退货</span>
+      </div>
+      <div v-if="detailData.ProductContent">
+        <span class="gray">规则</span>
+        <span v-html="detailData.ProductContent"></span>
+      </div>
     </div>
     <div class="h1">山庄介绍</div>
     <div class="group cell">
