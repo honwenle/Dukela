@@ -17,6 +17,7 @@ import Room from '@/pages/room'
 import Reserve from '@/pages/reserve'
 import Result from '@/pages/result'
 import Buy from '@/pages/buy'
+import PayPublic from '@/pages/pay-public'
 import Pay from '@/pages/pay'
 
 import Mall from '@/pages/mall'
@@ -39,6 +40,10 @@ Vue.use(Router)
 export default new Router({
   // mode: 'history',
   routes: [
+    {
+      component: PayPublic,
+      path: '/pay-public'
+    },
     {
       component: MyBankcard,
       path: '/my-bankcard'

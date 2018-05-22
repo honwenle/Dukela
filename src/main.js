@@ -8,12 +8,13 @@ import store from './store'
 import url from './scripts/url'
 import http from './scripts/http'
 import FontIcon from '@/components/font-icon/index.vue'
-import { LoadingPlugin, ToastPlugin, XHeader } from 'vux'
+import { LoadingPlugin, ToastPlugin, XHeader, AlertPlugin } from 'vux'
 
 Vue.component('x-header', XHeader)
 Vue.component('font-icon', FontIcon)
 Vue.use(LoadingPlugin)
 Vue.use(ToastPlugin)
+Vue.use(AlertPlugin)
 
 Vue.prototype.$imgUrl = url.imgUrl
 Vue.prototype.$baseURL = url.baseURL
