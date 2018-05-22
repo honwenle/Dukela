@@ -7,11 +7,11 @@
     </div>
     <div class="login-input">
       <font-icon name="key"></font-icon>
-      <input v-model="pwd1" type="password" placeholder="输入手机号">
+      <input v-model="pwd1" type="password" placeholder="输入密码">
     </div>
     <div class="login-input">
       <font-icon name="key"></font-icon>
-      <input v-model="pwd2" type="password" placeholder="输入密码">
+      <input v-model="pwd2" type="password" placeholder="再次输入密码">
     </div>
     <div class="btn-main" :class="{'btn-disable': isDisable}" @click="checkPassword">确定</div>
     <div class="bottom-tip a" @click="$router.replace({name: 'Login'})">

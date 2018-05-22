@@ -67,6 +67,7 @@ export default {
   methods: {
     refreshData() {
       this.page = 1
+      this.noMore = false
       this.loadData()
     },
     moreData() {
