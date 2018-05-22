@@ -32,7 +32,7 @@
                 <div class="gray"><font-icon name="kucun"></font-icon>剩余{{item.ProductLessCount}}小时</div>
               </div>
               <div class="flex-1 center">
-                <div class="btn-outline" @click="goGoods(item.ID)">立即抢购</div>
+                <div class="btn-outline orange" @click="goGoods(item.ID)">立即抢购</div>
               </div>
             </div>
           </div>
