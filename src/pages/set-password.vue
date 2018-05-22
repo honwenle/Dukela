@@ -17,24 +17,24 @@
     <div class="bottom-tip a" @click="$router.replace({name: 'Login'})">
       已有账号，点此登录 <font-icon name="forward"></font-icon>
     </div>
-    <x-dialog hide-on-blur v-model="show1" :dialog-style="{'width': '50%', 'padding': '30px 0'}">
-      <div class="theme-color">
+    <confirm v-model="show1"
+      confirm-text="前往实名认证"
+      cancel-text="跳过"
+      @on-cancel="$router.go(-2)"
+      @on-confirm="goRealname">
         <div>
-          15268701773 <br> 注册成功!
+          <font-icon name="dui" fontsize="40px" color="#88c66e"></font-icon>
         </div>
-        <div class="btn-main" @click="goRealname">进入实名认证</div>
-        <div class="xd-close" @click="show1 = false">
-          <font-icon name="Artboard" fontsize="20px"></font-icon>
-        </div>
-      </div>
-    </x-dialog>
+        <div>注册成功！</div>
+        <div>完成实名认证后方可购买！</div>
+    </confirm>
   </div>
 </template>
 <script>
-import {XDialog} from 'vux'
+import {XDialog, Confirm} from 'vux'
 export default {
   components: {
-    XDialog
+    XDialog, Confirm
   },
   data() {
     return {
@@ -69,7 +69,14 @@ export default {
       this.submitPassword()
     },
     async submitPassword() {
-      this.show1 = true
+      let data = await this.$store.dispatch('register', {
+        password: this.pwd1
+      })
+      if (data.Code == 1) {
+        this.show1 = true
+      } else {
+        this.$vux.toast.text(data.Message)
+      }
     }
   }
 }

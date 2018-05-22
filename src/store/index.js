@@ -8,6 +8,7 @@ export default new Vuex.Store({
     homeList: [],
     SmsID: '',
     SmsPhone: '',
+    SmsVCode: '',
     productDetail: {}
   },
   mutations: {
@@ -17,9 +18,17 @@ export default new Vuex.Store({
     clearHomeList(state) {
       state.homeList = []
     },
-    setMsgState(state, data) {
+    setSmsState(state, data) {
       state.SmsID = data.SmsID
-      state.SmsPhone = data.SmsPhone
+      state.SmsPhone = data.Phone
+    },
+    setSmsCode(state, data) {
+      state.SmsVCode = data.ValidateCode
+    },
+    clearSmsState(state) {
+      state.SmsID = ''
+      state.SmsPhone = ''
+      state.SmsVCode = ''
     },
     setProduct(state, data) {
       state.productDetail = data
@@ -47,23 +56,27 @@ export default new Vuex.Store({
     },
     async sendMsg({commit}, dt) {
       let {data} = await http.post('SysSMS/Send', dt)
-      commit('setMsgState', {SmsID: data.Model, Phone: dt.Phone})
+      commit('setSmsState', {SmsID: data.Model, Phone: dt.Phone})
       return data
     },
-    async checkMsg({state}, dt) {
+    async checkMsg({state, commit}, dt) {
       let {data} = await http.post('SysSMS/IsValidateCodeByDeviceID', {
         SmsID: state.SmsID,
-        Phone: state.Phone,
+        Phone: state.SmsPhone,
         ...dt
       })
+      commit('setSmsCode', dt)
       return data
     },
-    async register() {
+    async register({state, commit}, dt) {
       let {data} = await http.post('User/AppRegister', {
         SmsID: state.SmsID,
-        Phone: state.Phone,
+        Phone: state.SmsPhone,
+        ValidateCode: state.SmsVCode,
         ...dt
       })
+      localStorage.setItem('UserKey', data.Model)
+      commit('clearSmsState')
       return data
     },
     async bindCard({commit}, dt) {

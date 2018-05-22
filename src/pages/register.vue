@@ -1,5 +1,5 @@
 <template>
-  <div class="wrap-fff center">
+  <div class="center">
     <x-header>注册</x-header>
     <div class="top">
       <div class="icon icon-users"></div>
