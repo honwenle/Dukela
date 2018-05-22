@@ -40,7 +40,6 @@ export default new Vuex.Store({
       state.UserKey = key
     },
     setProductPic(state, data) {
-      console.log(data)
       state.ProductPic = data
     }
   },

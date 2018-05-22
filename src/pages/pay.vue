@@ -28,7 +28,15 @@
         <div class="check-title">第三方支付</div>
         <checklist label-position="left" :max="1" :options="payList"></checklist>
         <template v-if="offline">
-          <div class="check-title">线下转账</div>
+          <div class="check-title">
+            线下转账
+            <popover placement="right" style="display: inline-block">
+              <div slot="content" class="popover-content">
+                需要24小时之内打款，订单3个工作日内未打款将失效，打款5个工作日内确认。
+              </div>
+              <font-icon name="home1" fontsize="22px" color="#fe5900"></font-icon>
+            </popover>
+          </div>
           <checklist label-position="left" :options="['公司对公账号']"></checklist>
         </template>
       </div>
@@ -40,18 +48,18 @@
   </div>
 </template>
 <script>
-import {Checklist, Clocker, Popup} from 'vux'
+import {Checklist, Clocker, Popup, Popover} from 'vux'
 import Password from '@/components/password'
 export default {
   components: {
-    Checklist, Clocker, Popup, Password
+    Checklist, Clocker, Popup, Popover, Password
   },
   data() {
     return {
       offline: this.$route.query.offline,
       deduct: this.$route.query.deduct,
       isShowPassword: false,
-      msgTime: '2018-05-12 15:30',
+      msgTime: '2018-05-30 15:30',
       balance: 500,
       goodsList: [
         {
@@ -109,5 +117,10 @@ export default {
 .pay-top .theme-color{
   font-size: 20px;
   margin: 5px 0;
+}
+.popover-content{
+  padding: 12px;
+  font-size: 12px;
+  border: 1px solid #eee;
 }
 </style>
