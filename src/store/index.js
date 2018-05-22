@@ -10,7 +10,8 @@ export default new Vuex.Store({
     SmsPhone: '',
     SmsVCode: '',
     productDetail: {},
-    UserKey: localStorage.getItem('UserKey')
+    UserKey: localStorage.getItem('UserKey'),
+    ProductPic: []
   },
   mutations: {
     setHomeList(state, items = []) {
@@ -37,9 +38,17 @@ export default new Vuex.Store({
     setUserKey(state, key) {
       localStorage.setItem('UserKey', key)
       state.UserKey = key
+    },
+    setProductPic(state, data) {
+      console.log(data)
+      state.ProductPic = data
     }
   },
   actions: {
+    async getProductPic({commit}, dt) {
+      let {data} = await http.post('ProductAttachment/Get_Attachment', dt)
+      data.Code == 1 && commit('setProductPic', JSON.parse(data.qyzz))
+    },
     async getProduct({commit}, dt) {
       let {data} = await http.post('Product/GetModel', dt)
       data.Code == 1 && commit('setProduct', data.Model)

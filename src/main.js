@@ -15,6 +15,7 @@ Vue.component('font-icon', FontIcon)
 Vue.use(LoadingPlugin)
 Vue.use(ToastPlugin)
 
+Vue.prototype.$imgUrl = url.imgUrl
 Vue.prototype.$baseURL = url.baseURL
 Vue.prototype.$http = http
 
