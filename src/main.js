@@ -8,13 +8,14 @@ import store from './store'
 import url from './scripts/url'
 import http from './scripts/http'
 import FontIcon from '@/components/font-icon/index.vue'
-import { LoadingPlugin, ToastPlugin, XHeader, AlertPlugin } from 'vux'
+import { LoadingPlugin, ToastPlugin, XHeader, AlertPlugin, ConfirmPlugin } from 'vux'
 
 Vue.component('x-header', XHeader)
 Vue.component('font-icon', FontIcon)
 Vue.use(LoadingPlugin)
 Vue.use(ToastPlugin)
 Vue.use(AlertPlugin)
+Vue.use(ConfirmPlugin)
 
 Vue.prototype.$imgUrl = url.imgUrl
 Vue.prototype.$baseURL = url.baseURL
@@ -40,8 +41,16 @@ router.beforeEach((to, from, next) => {
     if (localStorage.getItem('UserKey')) {
       next()
     } else {
-      // TODO: 弹窗提醒
-      next({name: 'Login'})
+      Vue.$vux.confirm.show({
+        title: '操作提示',
+        content: '是否立即登录',
+        onCancel() {
+          next(false)
+        },
+        onConfirm() {
+          next({name: 'Login'})
+        }
+      })
     }
   } else {
     next()
