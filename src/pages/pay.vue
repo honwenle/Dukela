@@ -7,7 +7,7 @@
         <clocker :time="msgTime" format="%M：%S" @on-finish="onFinish">
         </clocker>
       </div>
-      <div class="theme-color">总价：300元</div>
+      <div class="theme-color">总价：{{detailData.Amount}}元</div>
     </div>
     <div v-if="deduct">
       <div class="check-box">
@@ -24,7 +24,8 @@
     <div v-else>
       <div class="check-box">
         <div class="check-title">余额支付</div>
-        <checklist label-position="left" :options="[{key: 0, value: `账户余额：${balance}`}]"></checklist>
+        <!-- <checklist label-position="left" :options="[{key: 0, value: `账户余额：${balance}`}]"></checklist> -->
+        <check-icon :value.sync="checkedBalnace">账户余额：</check-icon>
         <div class="check-title">第三方支付</div>
         <checklist label-position="left" :max="1" :options="payList"></checklist>
         <template v-if="offline">
@@ -40,7 +41,7 @@
           <checklist label-position="left" :options="['公司对公账号']"></checklist>
         </template>
       </div>
-      <div class="btn-full" @click="pay">确认支付300元</div>
+      <div class="btn-full" @click="payWechat">确认支付{{detailData.Amount}}元</div>
     </div>
     <popup v-model="isShowPassword">
       <password></password>
@@ -48,19 +49,20 @@
   </div>
 </template>
 <script>
-import {Checklist, Clocker, Popup, Popover} from 'vux'
+import {Checklist, Clocker, Popup, Popover, CheckIcon} from 'vux'
 import Password from '@/components/password'
 export default {
   components: {
-    Checklist, Clocker, Popup, Popover, Password
+    Checklist, Clocker, Popup, Popover, Password, CheckIcon
   },
   data() {
     return {
+      id: this.$route.query.id,
       offline: this.$route.query.offline,
       deduct: this.$route.query.deduct,
       isShowPassword: false,
-      msgTime: '2018-05-30 15:30',
       balance: 500,
+      checkedBalnace: false,
       goodsList: [
         {
           key: 1,
@@ -75,19 +77,30 @@ export default {
       ],
       payList: [
         {
-          key: 0,
+          key: 2,
           value: '微信支付'
         },
         {
-          key: 1,
+          key: 3,
           value: '支付宝支付'
         },
         {
-          key: 2,
+          key: 4,
           value: '银行卡支付'
         }
       ]
     }
+  },
+  computed: {
+    detailData() {
+      return this.$store.state.orderDetail
+    },
+    msgTime() {
+      return this.$store.getters.payEndTime
+    }
+  },
+  mounted() {
+    this.$store.dispatch('getOrder', this.id)
   },
   methods: {
     afterDeduct() {
@@ -96,9 +109,42 @@ export default {
     onFinish() {
       console.log('计时结束')
     },
-    pay() {
-      console.log('发起支付')
-      this.isShowPassword = true
+    async payWechat() {
+      let data = await this.$store.dispatch('wxPay', {
+        OrderID: this.id
+      })
+      if (data.Code == 1) {
+        var weiXin = api.require('weiXin')
+        weiXin.payOrder(JSON.parse(data.orderInfo), function(ret, err) {
+          if (ret.status) {
+            // TODO: 成功
+          } else {
+            api.alert({ msg: err.msg })
+          }
+        })
+      } else {
+        this.$vux.toast.text(data.Message)
+      }
+    },
+    async payAlipay() {
+      // this.isShowPassword = true
+      let data = await this.$store.dispatch('Alipay', {
+        OrderID: this.id
+      })
+      if (data.Code == 1) {
+        var aliPay = api.require('aliPay')
+        aliPay.payOrder({
+          orderInfo: data.orderInfo
+        }, function(ret, err) {
+          api.alert({
+            title: '支付结果',
+            msg: ret.code,
+            buttons: ['确定']
+          })
+        })
+      } else {
+        this.$vux.toast.text(data.Message)
+      }
     }
   }
 }

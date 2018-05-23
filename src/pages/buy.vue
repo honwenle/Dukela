@@ -68,6 +68,7 @@ export default {
           this.$router.push({
             name: 'Pay',
             query: {
+              id: data.OrderID,
               offline: 1
             }
           })

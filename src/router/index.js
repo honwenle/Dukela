@@ -156,7 +156,8 @@ export default new Router({
     }, {
       path: '/buy',
       name: 'Buy',
-      component: Buy
+      component: Buy,
+      meta: { needLogin: true }
     }, {
       path: '/pay',
       name: 'Pay',

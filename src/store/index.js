@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import http from '../scripts/http'
+import {dateFormat} from 'vux'
 Vue.use(Vuex)
 const PAGE_SIZE = 10
 export default new Vuex.Store({
@@ -11,7 +12,15 @@ export default new Vuex.Store({
     SmsVCode: '',
     productDetail: {},
     UserKey: localStorage.getItem('UserKey'),
-    ProductPic: []
+    ProductPic: [],
+    orderDetail: {}
+  },
+  getters: {
+    payEndTime: state => {
+      if (state.orderDetail.CreateTime) {
+        return dateFormat(new Date(parseInt(state.orderDetail.CreateTime.match((/\d{13}/))) + 60*30*1000), 'YYYY-MM-DD HH:mm:ss')
+      }
+    }
   },
   mutations: {
     setHomeList(state, items = []) {
@@ -35,15 +44,36 @@ export default new Vuex.Store({
     setProduct(state, data) {
       state.productDetail = data
     },
+    clearUserKey(state) {
+      localStorage.removeItem('UserKey')
+      state.UserKey = ''
+    },
     setUserKey(state, key) {
       localStorage.setItem('UserKey', key)
       state.UserKey = key
     },
     setProductPic(state, data) {
       state.ProductPic = data
+    },
+    setOrder(state, data) {
+      state.orderDetail = data
     }
   },
   actions: {
+    async wxPay({commit}, dt) {
+      let {data} = await http.post('Pay/WxPay', dt)
+      return data
+    },
+    async Alipay({commit}, dt) {
+      let {data} = await http.post('Pay/AliPay', dt)
+      return data
+    },
+    async getOrder({commit}, id) {
+      let {data} = await http.post('ProductOrderIn/GetModel', {
+        id: id
+      })
+      data.Code == 1 && commit('setOrder', data.Model)
+    },
     async getProductPic({commit}, dt) {
       let {data} = await http.post('ProductAttachment/Get_Attachment', dt)
       data.Code == 1 && commit('setProductPic', JSON.parse(data.qyzz))

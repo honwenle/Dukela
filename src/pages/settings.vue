@@ -4,7 +4,7 @@
     <group :gutter="0">
       <cell title="版本信息" link="version">1.0版</cell>
     </group>
-    <div class="btn-main">退出</div>
+    <div class="btn-main" @click="logout">退出</div>
   </div>
 </template>
 <script>
@@ -12,6 +12,12 @@ import { Group, Cell } from 'vux'
 export default {
   components: {
     Group, Cell
+  },
+  methods: {
+    logout() {
+      this.$store.commit('clearUserKey')
+      this.$vux.toast.text('退出成功')
+    }
   }
 }
 </script>
