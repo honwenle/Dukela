@@ -23,11 +23,10 @@
     </div>
     <div v-else>
       <div class="check-box">
-        <div class="check-title">余额支付</div>
-        <!-- <checklist label-position="left" :options="[{key: 0, value: `账户余额：${balance}`}]"></checklist> -->
-        <check-icon :value.sync="checkedBalnace">账户余额：</check-icon>
+        <!-- <div class="check-title">余额支付</div>
+        <checklist label-position="left" :options="[{key: 0, value: `账户余额：${balance}`}]"></checklist> -->
         <div class="check-title">第三方支付</div>
-        <checklist label-position="left" :max="1" :options="payList"></checklist>
+        <checklist @click.native="forPublic = []" label-position="left" :max="1" v-model="forThird" :options="payList"></checklist>
         <template v-if="offline">
           <div class="check-title">
             线下转账
@@ -38,10 +37,10 @@
               <font-icon name="help" fontsize="22px" color="#fe5900"></font-icon>
             </popover>
           </div>
-          <checklist label-position="left" :options="['公司对公账号']"></checklist>
+          <checklist label-position="left" @click.native="forThird = []" v-model="forPublic" :options="['公司对公账号']"></checklist>
         </template>
       </div>
-      <div class="btn-full" @click="payWechat">确认支付{{detailData.Amount}}元</div>
+      <div class="btn-full" @click="pay">确认支付{{detailData.Amount}}元</div>
     </div>
     <popup v-model="isShowPassword">
       <password></password>
@@ -62,17 +61,18 @@ export default {
       deduct: this.$route.query.deduct,
       isShowPassword: false,
       balance: 500,
-      checkedBalnace: false,
+      forThird: [],
+      forPublic: [],
       goodsList: [
         {
           key: 1,
           value: '山庄1项目30㎡',
-          inlineDesc: '商品数：500份     T数：500个'
+          inlineDesc: '商品数：500份 T数：500个'
         },
         {
           key: 2,
           value: '山庄2项目30㎡',
-          inlineDesc: '商品数：500份     T数：500个'
+          inlineDesc: '商品数：500份 T数：500个'
         }
       ],
       payList: [
@@ -109,13 +109,33 @@ export default {
     onFinish() {
       console.log('计时结束')
     },
+    pay() {
+      if (this.forThird.length == 1) {
+        let type = this.forThird[0]
+        if (type == 2) {
+          this.payWechat()
+        } else if (type == 3) {
+          this.payAlipay()
+        } else if (type == 4) {
+          this.payUnion()
+        }
+      } else if (this.forPublic.length == 1) {
+        this.$router.push('pay-public')
+      } else {
+        this.$vux.toast.text('请选择支付方式')
+      }
+    },
+    payBalance() {
+      this.isShowPassword = true
+    },
     async payWechat() {
       let data = await this.$store.dispatch('wxPay', {
         OrderID: this.id
       })
       if (data.Code == 1) {
-        var weiXin = api.require('weiXin')
-        weiXin.payOrder(JSON.parse(data.orderInfo), function(ret, err) {
+        var wxPay = api.require('weiXin')
+        console.log(data.orderInfo)
+        wxPay.payOrder(JSON.parse(data.orderInfo), function(ret, err) {
           if (ret.status) {
             // TODO: 成功
           } else {
@@ -127,7 +147,6 @@ export default {
       }
     },
     async payAlipay() {
-      // this.isShowPassword = true
       let data = await this.$store.dispatch('Alipay', {
         OrderID: this.id
       })
@@ -145,6 +164,9 @@ export default {
       } else {
         this.$vux.toast.text(data.Message)
       }
+    },
+    payUnion() {
+      this.$vux.toast.text('银联接口开发中')
     }
   }
 }
