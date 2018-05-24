@@ -1,6 +1,6 @@
 <template>
   <div class="center">
-    <x-header>注册</x-header>
+    <d-header>注册</d-header>
     <div class="top">
       <div class="icon icon-users"></div>
       <div class="top-title">注册</div>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <x-header>商品明细</x-header>
+    <d-header>商品明细</d-header>
     <div class="list">
       <div class="list-item flex cell flex-center" @click="goDetail">
         <div class="flex-1">

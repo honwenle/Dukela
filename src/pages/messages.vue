@@ -1,6 +1,6 @@
 <template>
   <div>
-    <x-header>我的消息</x-header>
+    <d-header>我的消息</d-header>
     <div class="message-wrap">
       <div class="item flex" v-for="i in 3" :key="i">
         <div class="avatar">

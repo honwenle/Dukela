@@ -1,6 +1,6 @@
 <template>
   <div>
-    <x-header>设置</x-header>
+    <d-header>设置</d-header>
     <group :gutter="0">
       <cell title="版本信息" link="version">1.0版</cell>
     </group>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <x-header>入住预定</x-header>
+    <d-header>入住预定</d-header>
     <div class="group">
       <div class="cell">
         <div>大床房</div>

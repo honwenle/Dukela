@@ -1,6 +1,6 @@
 <template>
   <div>
-    <x-header>对公账户</x-header>
+    <d-header>对公账户</d-header>
     <div class="cell">都克拉账户</div>
     <div class="group">
       <div class="cell">

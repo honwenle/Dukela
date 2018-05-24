@@ -1,6 +1,6 @@
 <template>
   <div class="wrap-fff center">
-    <x-header>设置密码</x-header>
+    <d-header>设置密码</d-header>
     <div class="top">
       <div class="icon icon-users"></div>
       <div class="top-title">设置登录密码</div>

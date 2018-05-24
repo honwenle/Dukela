@@ -1,6 +1,6 @@
 <template>
   <div>
-    <x-header>商品买入</x-header>
+    <d-header>商品买入</d-header>
     <group label-width="100px">
       <cell title="商品名" value-align="left" :value="detailData.ProductName"></cell>
       <cell title="单价" value-align="left">

@@ -1,8 +1,8 @@
 <template>
   <div>
-    <x-header>
+    <d-header>
       银行卡<span slot="right">提现说明</span>
-    </x-header>
+    </d-header>
     <div class="wrap">
       <div class="card">还未绑卡，请绑定</div>
     </div>

@@ -1,6 +1,6 @@
 <template>
   <div class="center">
-    <x-header></x-header>
+    <d-header></d-header>
     <div class="top">
       <div class="icon icon-users"></div>
       <div class="top-title">登录</div>

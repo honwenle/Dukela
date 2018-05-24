@@ -1,6 +1,6 @@
 <template>
   <div>
-    <x-header>手机号更换</x-header>
+    <d-header>手机号更换</d-header>
     <div class="wrap center bg-fff">
       <div>
         您绑定的手机号码为

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <x-header>验证旧手机</x-header>
+    <d-header>验证旧手机</d-header>
     <div class="wrap center bg-fff">
       <div class="login-input">
         <font-icon name="wo"></font-icon>

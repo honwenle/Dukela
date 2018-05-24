@@ -1,11 +1,9 @@
 <template>
   <div class="bg-fff">
     <div class="top">
-      <div class="theme-color-header">
-        <x-header>
-          我的商品库
-        </x-header>
-      </div>
+      <d-header :tran="true">
+        我的商品库
+      </d-header>
       <div style="padding: 22px">
         <div class="fz25">400</div>
         <span class="fz12">总商品数(个)</span>

@@ -1,6 +1,6 @@
 <template>
   <div class="center bg-fff">
-    <x-header>绑定银行卡</x-header>
+    <d-header>绑定银行卡</d-header>
     <group :gutter="0">
       <x-input v-model="formData.Bank" title="用户名" placeholder="请输入用户名" placeholder-align="right"></x-input>
       <x-input v-model="formData.BankCardNo" title="银行" placeholder="请输入银行" placeholder-align="right"></x-input>

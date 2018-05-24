@@ -1,6 +1,6 @@
 <template>
   <div class="bg-fff">
-    <x-header>消费明细</x-header>
+    <d-header>消费明细</d-header>
     <div class="detail">
       <div class="detail-title">您的商品已购入</div>
       <div class="box center">
