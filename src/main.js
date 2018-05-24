@@ -8,12 +8,17 @@ import store from './store'
 import url from './scripts/url'
 import http from './scripts/http'
 import FontIcon from '@/components/font-icon/index.vue'
-import { LoadingPlugin, ToastPlugin, XHeader, AlertPlugin, ConfirmPlugin, Group, Cell } from 'vux'
+import DHeader from '@/components/dkl-header.vue'
+import { LoadingPlugin, ToastPlugin, XHeader,
+  AlertPlugin, ConfirmPlugin,
+  Group, Cell, Scroller } from 'vux'
 
 Vue.component('x-header', XHeader)
+Vue.component('d-header', DHeader)
 Vue.component('font-icon', FontIcon)
 Vue.component('group', Group)
 Vue.component('cell', Cell)
+Vue.component('scroller', Scroller)
 Vue.use(LoadingPlugin)
 Vue.use(ToastPlugin)
 Vue.use(AlertPlugin)
@@ -22,6 +27,8 @@ Vue.use(ConfirmPlugin)
 Vue.prototype.$imgUrl = url.imgUrl
 Vue.prototype.$baseURL = url.baseURL
 Vue.prototype.$http = http
+let isApp = navigator.userAgent.indexOf('dukela') > -1
+Vue.prototype.isApp = isApp
 
 FastClick.attach(document.body)
 
@@ -35,7 +42,7 @@ window.apiready = function(){
     render: h => h(App)
   }).$mount('#app-box')
 }
-window.api || window.apiready()
+isApp || window.apiready()
 
 // 路由守卫 登录限制
 router.beforeEach((to, from, next) => {

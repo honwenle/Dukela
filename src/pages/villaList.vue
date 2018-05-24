@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed-bottom bg-fff order-wrap">
+  <div class="fixed-bottom bg-fff">
     <div class="list">
       <div v-for="i in 10" :key="i" class="home-item flex" @click="goVilla(i)">
         <div class="flex-1">
@@ -8,7 +8,7 @@
         <div class="flex-3">
           <div class="flex flex-center space-between">
             <div>乔顿山庄</div>
-            <div class="fz12 orange">500人已入住</div>
+            <div class="fz12 theme-color">500人已入住</div>
           </div>
           <div class="fz12 gray">山庄简单介绍，100字山庄简单介绍，100字山庄简单介绍，100字</div>
         </div>

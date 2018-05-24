@@ -1,9 +1,9 @@
 <template>
   <div class="fixed-bottom">
-    <x-header :left-options="{showBack: false}">
+    <d-header :showBack="false">
       都可拉
       <router-link v-if="!UserKey" slot="right" to="login" style="color: #60b63c">登录/注册</router-link>
-    </x-header>
+    </d-header>
     <div class="top">
       <img src="../assets/banenr.png" alt="">
     </div>
@@ -42,11 +42,7 @@
   </div>
 </template>
 <script>
-import { Scroller } from 'vux'
 export default {
-  components: {
-    Scroller
-  },
   data() {
     return {
       page: 1,

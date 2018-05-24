@@ -1,11 +1,9 @@
 <template>
   <div class="win-wrap">
     <div class="top">
-      <div class="theme-color-header">
-        <x-header :left-options="{showBack: false}">
-          <span slot="right" @click="$router.push({name: 'Settings'})">设置</span>
-        </x-header>
-      </div>
+      <d-header :tran="true" :showBack="false">
+        <span slot="right" @click="$router.push({name: 'Settings'})">设置</span>
+      </d-header>
       <div class="avatar">
           <img :src="infoData.Avator" @click="$router.push({name: 'User'})">
       </div>
@@ -33,7 +31,7 @@ export default {
     }
   },
   mounted() {
-    this.getInfo()
+    // this.getInfo()
   },
   methods: {
     async getInfo() {
