@@ -1,20 +1,23 @@
 <template>
   <div class="win-wrap">
-    <div class="top">
+    <div class="top" :class="{'unlogin': !UserKey}">
       <d-header :tran="true" :showBack="false">
         <span slot="right" @click="$router.push({name: 'Settings'})">设置</span>
       </d-header>
-      <div class="avatar">
-          <img :src="infoData.Avator" @click="$router.push({name: 'User'})">
+      <div @click="$router.push({name: 'User'})">
+        <div class="avatar">
+          <img :src="dataInfo.Avator || require('../assets/user.png')">
+        </div>
+        <div class="nick">{{dataInfo.FullName || '点击设置更多'}}</div>
       </div>
-      <div class="nick">{{infoData.FullName || '昵称'}}</div>
     </div>
     <group :gutter="0">
-      <cell title="我的商品库" link="my-goods"><span class="theme-color">转让</span></cell>
-      <cell title="我的订单" link="my-order"><span class="theme-color">共10单</span></cell>
-      <cell title="我的消息" link="messages"><badge text="NEW"></badge></cell>
+      <cell title="我的商品库" link="my-goods"></cell>
+      <cell title="我的订单" link="my-order"></cell>
+      <cell title="我的消息" link="messages"><badge text="13"></badge></cell>
       <cell title="客服电话" is-link>
-        <a class="theme-color" href="tel:057786588682">点击拨打0577-86588682</a>
+        <span class="theme-color"><font-icon name="phone"></font-icon></span>
+        <a class="theme-color" href="tel:057786588682">0577-86588682</a>
       </cell>
     </group>
   </div>
@@ -25,27 +28,20 @@ export default {
   components: {
     Group, Cell, Badge
   },
-  data() {
-    return {
-      infoData: {}
+  computed: {
+    dataInfo() {
+      return this.$store.state.UserInfo
+    },
+    UserKey() {
+      return this.$store.state.UserKey
     }
   },
   mounted() {
-    // this.getInfo()
+    this.UserKey && this.getInfo()
   },
   methods: {
     async getInfo() {
-      let {data} = await this.$http({
-        method: 'post',
-        url: '/User/GetUserModel'
-      })
-      data = {Code: 1, Model: { // TODO: ~TEST~
-        Avator: 'https://media-image1.baydn.com/avatar%2Fmedia_store%2F16a83bca5aac8f45ca8af8bb8e8a51ee.png@128w_128h',
-        FullName: '杏noclip'
-      }}
-      if (data.Code == 1) {
-        this.infoData = data.Model
-      }
+      let data = this.$store.dispatch('getUserInfo')
     }
   }
 }
@@ -60,6 +56,10 @@ export default {
   background-image: url('../assets/bg.jpg');
   background-size: cover;
   background-repeat: no-repeat;
+}
+.top.unlogin{
+  /* background-image: url('../assets/bg0.jpg'); */
+  filter: grayscale(100%);
 }
 .avatar {
   width: 75px;

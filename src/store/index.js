@@ -13,7 +13,8 @@ export default new Vuex.Store({
     productDetail: {},
     UserKey: localStorage.getItem('UserKey'),
     ProductPic: [],
-    orderDetail: {}
+    orderDetail: {},
+    UserInfo: {}
   },
   getters: {
     payEndTime: state => {
@@ -57,9 +58,16 @@ export default new Vuex.Store({
     },
     setOrder(state, data) {
       state.orderDetail = data
+    },
+    setUserInfo(state, data) {
+      state.UserInfo = data
     }
   },
   actions: {
+    async getUserInfo({commit}, id) {
+      let {data} = await http.post('User/GetModel')
+      data.Code == 1 && commit('setUserInfo', data.UserInfo)
+    },
     async wxPay({commit}, dt) {
       let {data} = await http.post('Pay/WxPay', dt)
       return data
