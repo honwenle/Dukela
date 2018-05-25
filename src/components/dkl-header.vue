@@ -1,9 +1,9 @@
 <template>
-  <div :class="{'theme-color-header': tran}">
+  <div :class="{'theme-color-header': tran, 'dheader': true}" :style="headStyle">
     <x-header
-    @on-click-back="showMsg"
-    :left-options="{showBack: showBack, backText: '', preventGoBack: pervent}"
-    :style="headStyle">
+      @on-click-back="showMsg"
+      :left-options="{showBack: showBack, backText: '', preventGoBack: pervent}"
+    >
       <slot></slot>
       <div slot="right">
         <slot name="right"></slot>
@@ -16,7 +16,8 @@ export default {
   data() {
     return {
       headStyle: {
-        paddingTop: this.isApp ? (api.systemType == 'ios' && '23px') || (api.systemType == 'android' && '28px'): '0'
+        paddingTop: '20px' // TODO: 根据isApp判断
+        // paddingTop: this.isApp ? (api.systemType == 'ios' && '20px') || (api.systemType == 'android' && '25px'): '0'
       }
     }
   },

@@ -9,10 +9,12 @@ import url from './scripts/url'
 import http from './scripts/http'
 import FontIcon from '@/components/font-icon/index.vue'
 import DHeader from '@/components/dkl-header.vue'
+import List from '@/components/list.vue'
 import { LoadingPlugin, ToastPlugin, XHeader,
   AlertPlugin, ConfirmPlugin,
   Group, Cell, Scroller } from 'vux'
 
+Vue.component('list', List)
 Vue.component('x-header', XHeader)
 Vue.component('d-header', DHeader)
 Vue.component('font-icon', FontIcon)

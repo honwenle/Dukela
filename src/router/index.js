@@ -133,7 +133,7 @@ export default new Router({
       path: '/user',
       name: 'User',
       component: User,
-      meta: { keepAlive: true }
+      meta: { keepAlive: true, needLogin: true }
     }, {
       path: '/my-goods',
       name: 'MyGoods',

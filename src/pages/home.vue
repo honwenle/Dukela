@@ -8,14 +8,11 @@
       <img src="../assets/banenr.png" alt="">
     </div>
     <div class="list">
-      <scroller
-        ref="vuxscroller"
-        lock-x
-        use-pulldown
-        @on-pulldown-loading="refreshData"
-        @on-scroll-bottom="moreData"
-        height="-277px"
-        :pulldown-config="{downContent: '下拉刷新', upContent: '释放后更新', loadingContent: '加载中'}">
+      <list
+        action-name="getHomeList"
+        :dataLength="dataList.length"
+        :height="`-${67 + 180 + 50}px`"
+      >
         <div style="padding: 0 16px;">
           <div class="home-item" v-for="(item, i) in dataList" :key="i">
             <div class="bb" style="padding: 6px 15px">
@@ -37,17 +34,14 @@
             </div>
           </div>
         </div>
-      </scroller>
+      </list>
     </div>
   </div>
 </template>
 <script>
 export default {
   data() {
-    return {
-      page: 1,
-      noMore: false
-    }
+    return {}
   },
   computed: {
     dataList() {
@@ -57,33 +51,7 @@ export default {
       return this.$store.state.UserKey
     }
   },
-  mounted() {
-    this.$store.dispatch('getHomeList')
-    this.$nextTick(() => {
-      this.$refs.vuxscroller.reset()
-    })
-  },
   methods: {
-    refreshData() {
-      this.page = 1
-      this.noMore = false
-      this.loadData()
-    },
-    moreData() {
-      if (this.onFetching || this.noMore) return false
-      this.page ++
-      this.loadData()
-    },
-    async loadData() {
-      this.onFetching = true
-      let count = await this.$store.dispatch('getHomeList', this.page)
-      this.$refs.vuxscroller.donePulldown()
-      this.$nextTick(() => {
-        this.$refs.vuxscroller.reset()
-      })
-      this.onFetching = false
-      this.noMore = (count == this.dataList.length)
-    },
     goGoods(id) {
       this.$router.push({
         name: 'Goods',
@@ -96,14 +64,14 @@ export default {
 }
 </script>
 <style scoped>
-.list{
-  top: calc(180px + 47px);
-  height: calc(100vh - 180px - 47px);
+/* .list{
+  top: calc(180px + 67px);
+  height: calc(100vh - 180px - 67px - 50px);
   width: 100%;
   box-sizing: border-box;
   position: absolute;
   overflow: hidden;
-}
+} */
 .top{
   height: 180px;
 }
