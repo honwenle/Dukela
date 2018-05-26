@@ -7,6 +7,7 @@ const PAGE_SIZE = 10
 export default new Vuex.Store({
   state: {
     homeList: [],
+    villaList: [],
     SmsID: '',
     SmsPhone: '',
     SmsVCode: '',
@@ -24,6 +25,13 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    setVillaList(state, items = []) {
+      console.log(items)
+      state.villaList = state.villaList.concat(items)
+    },
+    clearVillaList(state) {
+      state.villaList = []
+    },
     setHomeList(state, items = []) {
       state.homeList = state.homeList.concat(items)
     },
@@ -89,6 +97,17 @@ export default new Vuex.Store({
     async getProduct({commit}, dt) {
       let {data} = await http.post('Product/GetModel', dt)
       data.Code == 1 && commit('setProduct', data.Model)
+    },
+    async getVillaList({commit}, page = 1) {
+      let {data} = await http.post('Beadhouse/GetList', {
+        pageSize: PAGE_SIZE,
+        pageIndex: page,
+        orderby: '',
+        strSearchName: ''
+      })
+      page == 1 && commit('clearVillaList')
+      data.Code == 1 && commit('setVillaList', JSON.parse(data.List))
+      return data.Count
     },
     async getHomeList({commit}, page = 1) {
       let {data} = await http.post('Product/GetList', {

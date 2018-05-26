@@ -6,7 +6,7 @@ if (isTest) {
   baseURL = 'http://weixin.doukela.com/App/'
 }
 export default {
-  imgUrl: 'http://admin.doukela.com/',
+  imgUrl: 'http://admin.doukela.com',
   baseURL,
   isTest
 }
