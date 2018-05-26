@@ -12,7 +12,7 @@
           <span>{{detailData.ProvinceName+detailData.CityName+detailData.AreaName+detailData.Address}}</span>
         </div>
         <div>
-          <a :href="`tel:${110}`" class="theme-color">
+          <a :href="`tel:${detailData.xxx}`" class="theme-color">
             <font-icon name="phone"></font-icon>
           </a>
         </div>
@@ -67,14 +67,17 @@ export default {
       })
     },
     detailData() {
-      return this.$store.state.villaDetail
+      return this.$store.state.VillaDetail
     }
   },
   mounted() {
     this.$store.dispatch('getVilla', {
-      id: this.id
+      ID: this.id
     })
     this.$store.dispatch('getVillaPic', {
+      BeadhouseID: this.id
+    })
+    this.$store.dispatch('getRoomList', {
       BeadhouseID: this.id
     })
   },

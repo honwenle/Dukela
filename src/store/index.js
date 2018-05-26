@@ -11,18 +11,21 @@ export default new Vuex.Store({
     SmsID: '',
     SmsPhone: '',
     SmsVCode: '',
-    productDetail: {},
+    ProductDetail: {},
     UserKey: localStorage.getItem('UserKey'),
     ProductPic: [],
-    orderDetail: {},
+    OrderDetail: {},
     UserInfo: {},
     VillaPic: [],
-    villaDetail: {}
+    VillaDetail: {},
+    RoomList: [],
+    RoomDetail: {},
+    RoomPic: []
   },
   getters: {
     payEndTime: state => {
-      if (state.orderDetail.CreateTime) {
-        return dateFormat(new Date(parseInt(state.orderDetail.CreateTime.match((/\d{13}/))) + 60*30*1000), 'YYYY-MM-DD HH:mm:ss')
+      if (state.OrderDetail.CreateTime) {
+        return dateFormat(new Date(parseInt(state.OrderDetail.CreateTime.match((/\d{13}/))) + 60*30*1000), 'YYYY-MM-DD HH:mm:ss')
       }
     }
   },
@@ -53,10 +56,10 @@ export default new Vuex.Store({
       state.SmsVCode = ''
     },
     setProduct(state, data) {
-      state.productDetail = data
+      state.ProductDetail = data
     },
     setVilla(state, data) {
-      state.villaDetail = data
+      state.VillaDetail = data
     },
     clearUserKey(state) {
       localStorage.removeItem('UserKey')
@@ -72,8 +75,17 @@ export default new Vuex.Store({
     setVillaPic(state, data) {
       state.VillaPic = data
     },
+    setRoomList(state, data) {
+      state.RoomList = data
+    },
+    setRoom(state, data) {
+      state.RoomDetail = data
+    },
+    setRoomPic(state, data) {
+      state.RoomPic = data
+    },
     setOrder(state, data) {
-      state.orderDetail = data
+      state.OrderDetail = data
     },
     setUserInfo(state, data) {
       state.UserInfo = data
@@ -97,6 +109,18 @@ export default new Vuex.Store({
         id: id
       })
       data.Code == 1 && commit('setOrder', data.Model)
+    },
+    async getRoomPic({commit}, dt) {
+      let {data} = await http.post('BeadhouseRoomAttachment/GetAttachment', dt)
+      data.Code == 1 && commit('setRoomPic', JSON.parse(data.qyzz))
+    },
+    async getRoom({commit}, dt) {
+      let {data} = await http.post('BeadhouseRoomType/GetModel', dt)
+      data.Code == 1 && commit('setRoom', data.Model)
+    },
+    async getRoomList({commit}, dt) {
+      let {data} = await http.post('BeadhouseRoomType/GetModelListByAll', dt)
+      data.Code == 1 && commit('setRoomList', data.Model)
     },
     async getVillaPic({commit}, dt) {
       let {data} = await http.post('BeadhouseAttachment/GetAttachment', dt)

@@ -34,7 +34,7 @@ export default {
       return (this.detailData.ProductCost || 0) * (parseInt(this.num) || 0)
     },
     detailData() {
-      return this.$store.state.productDetail
+      return this.$store.state.ProductDetail
     }
   },
   methods: {

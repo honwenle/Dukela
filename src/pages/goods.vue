@@ -66,7 +66,7 @@ export default {
       })
     },
     detailData() {
-      return this.$store.state.productDetail
+      return this.$store.state.ProductDetail
     }
   },
   mounted() {

@@ -93,7 +93,7 @@ export default {
   },
   computed: {
     detailData() {
-      return this.$store.state.orderDetail
+      return this.$store.state.OrderDetail
     },
     msgTime() {
       return this.$store.getters.payEndTime
