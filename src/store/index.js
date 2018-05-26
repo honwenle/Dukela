@@ -21,7 +21,8 @@ export default new Vuex.Store({
     RoomList: [],
     RoomDetail: {},
     RoomPic: [],
-    UserProduct: []
+    UserProduct: [],
+    ProductStream: []
   },
   getters: {
     payEndTime: state => {
@@ -96,9 +97,26 @@ export default new Vuex.Store({
     },
     clearUserProduct(state) {
       state.UserProduct = []
+    },
+    setProductStream(state, items = []) {
+      state.ProductStream = state.ProductStream.concat(items)
+    },
+    clearProductStream(state) {
+      state.ProductStream = []
     }
   },
   actions: {
+    async getProductStream({commit}, page = 1) {
+      let {data} = await http.post('UserProductStream/GetModelListByUserID', {
+        pageSize: PAGE_SIZE,
+        pageIndex: page,
+        orderby: '',
+        strSearchName: ''
+      })
+      page == 1 && commit('clearProductStream')
+      data.Code == 1 && commit('setProductStream', data.List)
+      return data.Count
+    },
     async getUserProduct({commit}, page = 1) {
       let {data} = await http.post('UserProduct/GetModelListByUserID', {
         pageSize: PAGE_SIZE,
@@ -149,7 +167,7 @@ export default new Vuex.Store({
       data.Code == 1 && commit('setVilla', data.Model)
     },
     async getProductPic({commit}, dt) {
-      let {data} = await http.post('ProductAttachment/Get_Attachment', dt)
+      let {data} = await http.post('ProductAttachment/GetAttachment', dt)
       data.Code == 1 && commit('setProductPic', JSON.parse(data.qyzz))
     },
     async getProduct({commit}, dt) {

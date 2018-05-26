@@ -1,5 +1,5 @@
 <template>
-  <div :class="{'theme-color-header': tran, 'dheader': true}" :style="headStyle">
+  <div :class="{'theme-color-header': tran, 'dheader': true, 'theme-bg': themeColor}" :style="headStyle">
     <x-header
       @on-click-back="showMsg"
       :left-options="{showBack: showBack, backText: '', preventGoBack: pervent}"
@@ -16,6 +16,7 @@ export default {
   data() {
     return {
       headStyle: {
+        background: this.color,
         paddingTop: '20px' // TODO: 根据isApp判断
         // paddingTop: this.isApp ? (api.systemType == 'ios' && '20px') || (api.systemType == 'android' && '25px'): '0'
       }
@@ -30,6 +31,9 @@ export default {
     },
     showBack: {
       default: true
+    },
+    themeColor: {
+      default: false
     }
   },
   methods: {
