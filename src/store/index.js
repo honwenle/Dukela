@@ -20,7 +20,8 @@ export default new Vuex.Store({
     VillaDetail: {},
     RoomList: [],
     RoomDetail: {},
-    RoomPic: []
+    RoomPic: [],
+    UserProduct: []
   },
   getters: {
     payEndTime: state => {
@@ -89,9 +90,26 @@ export default new Vuex.Store({
     },
     setUserInfo(state, data) {
       state.UserInfo = data
+    },
+    setUserProduct(state, items = []) {
+      state.UserProduct = state.UserProduct.concat(items)
+    },
+    clearUserProduct(state) {
+      state.UserProduct = []
     }
   },
   actions: {
+    async getUserProduct({commit}, page = 1) {
+      let {data} = await http.post('UserProduct/GetModelListByUserID', {
+        pageSize: PAGE_SIZE,
+        pageIndex: page,
+        orderby: '',
+        strSearchName: ''
+      })
+      page == 1 && commit('clearUserProduct')
+      data.Code == 1 && commit('setUserProduct', data.List)
+      return data.Count
+    },
     async getUserInfo({commit}, id) {
       let {data} = await http.post('User/GetModel')
       data.Code == 1 && commit('setUserInfo', data.UserInfo)
