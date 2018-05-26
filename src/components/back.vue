@@ -1,5 +1,5 @@
 <template>
-  <div class="back" @click="$router.back()">
+  <div class="back" @click="$router.back()" style="paddingTop: 20px">
     <font-icon name="back" fontsize="25px"></font-icon>
   </div>
 </template>

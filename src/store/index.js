@@ -15,7 +15,9 @@ export default new Vuex.Store({
     UserKey: localStorage.getItem('UserKey'),
     ProductPic: [],
     orderDetail: {},
-    UserInfo: {}
+    UserInfo: {},
+    VillaPic: [],
+    villaDetail: {}
   },
   getters: {
     payEndTime: state => {
@@ -53,6 +55,9 @@ export default new Vuex.Store({
     setProduct(state, data) {
       state.productDetail = data
     },
+    setVilla(state, data) {
+      state.villaDetail = data
+    },
     clearUserKey(state) {
       localStorage.removeItem('UserKey')
       state.UserKey = ''
@@ -63,6 +68,9 @@ export default new Vuex.Store({
     },
     setProductPic(state, data) {
       state.ProductPic = data
+    },
+    setVillaPic(state, data) {
+      state.VillaPic = data
     },
     setOrder(state, data) {
       state.orderDetail = data
@@ -89,6 +97,14 @@ export default new Vuex.Store({
         id: id
       })
       data.Code == 1 && commit('setOrder', data.Model)
+    },
+    async getVillaPic({commit}, dt) {
+      let {data} = await http.post('BeadhouseAttachment/GetAttachment', dt)
+      data.Code == 1 && commit('setVillaPic', JSON.parse(data.qyzz))
+    },
+    async getVilla({commit}, dt) {
+      let {data} = await http.post('Beadhouse/GetModel', dt)
+      data.Code == 1 && commit('setVilla', data.Model)
     },
     async getProductPic({commit}, dt) {
       let {data} = await http.post('ProductAttachment/Get_Attachment', dt)

@@ -94,9 +94,6 @@ export default {
   color: #545454;
   font-weight: 300;
 }
-.h1{
-  padding: 0 15px 8px;
-}
 .bottom-bar{
   padding: 15px;
   box-sizing: border-box;
