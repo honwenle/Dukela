@@ -1,19 +1,22 @@
 <template>
   <div>
-    <d-header>入住预定</d-header>
-    <div class="group">
-      <div class="cell">
+    <div class="theme-bg">
+      <d-header :tran="true">入住预定</d-header>
+      <div class="top-tran">
         <div>大床房</div>
         <span class="feature-item" v-for="(item, i) in ['厨房','空调','洗衣机','独卫']" :key="i">{{item}}</span>
       </div>
     </div>
     <group label-width="100px">
-      <x-number title="房间数" :min="0" fillable align="left"></x-number>
-      <x-input title="姓名" placeholder="请填写姓名"></x-input>
+      <x-input title="房间数" value="1间" disabled></x-input>
+      <x-input title="入住人" placeholder="请填写姓名，需和身份证一致"></x-input>
       <x-input title="身份证" placeholder="请填写身份证号码"></x-input>
       <x-input title="联系手机" placeholder="请填写手机号码"></x-input>
       <datetime title="入住时间" placeholder="请选择"></datetime>
-      <datetime title="入住时间" placeholder="请选择"></datetime>
+      <datetime title="离开时间" placeholder="请选择"></datetime>
+    </group>
+    <group>
+      <cell title="商品抵扣" :link="{name: 'Pay'}"></cell>
     </group>
     <div class="bottom-bar">
       <div class="flex">
@@ -24,9 +27,9 @@
   </div>
 </template>
 <script>
-import {Group, XInput, XNumber, Datetime} from 'vux'
+import {XInput, XNumber, Datetime} from 'vux'
 export default {
-  components: {Group, XInput, XNumber, Datetime},
+  components: {XInput, XNumber, Datetime},
   methods: {
     submitOrder() {
       // TODO: 提交订单
@@ -40,3 +43,13 @@ export default {
   }
 }
 </script>
+<style scoped>
+.top-tran{
+  background: rgba(255, 255, 255, .3);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  margin: 0 12px;
+  padding: 25px 20px 20px;
+  color: #fff;
+}
+</style>
