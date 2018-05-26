@@ -27,6 +27,10 @@
     <div class="group cell">
       <div class="p" v-html="detailData.RoomContent"></div>
     </div>
+    <div class="bottom-bar">
+      <span class="theme-color">￥<span class="big">{{detailData.RoomPrice}}</span></span>
+      <div class="float-right btn-inline" @click="goOrder">立即预定</div>
+    </div>
   </div>
 </template>
 <script>
@@ -78,5 +82,12 @@ export default {
 <style scoped>
 .btn-sm{
   padding: 5px 20px;
+}
+.bottom-bar{
+  padding: 15px;
+  box-sizing: border-box;
+}
+.big{
+  font-size: 18px;
 }
 </style>
