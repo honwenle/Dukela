@@ -4,7 +4,7 @@
     <div class="group center pay-top">
       <div class="gray">
         支付剩余时间
-        <clocker :time="msgTime" format="%M：%S" @on-finish="onFinish">
+        <clocker v-if="detailData.CreateTime" :time="detailData.CreateTime | PAYDATEFORMAT" format="%M：%S" @on-finish="onFinish">
         </clocker>
       </div>
       <div class="theme-color">总价：{{detailData.Amount}}元</div>
@@ -94,9 +94,6 @@ export default {
   computed: {
     detailData() {
       return this.$store.state.OrderDetail
-    },
-    msgTime() {
-      return this.$store.getters.payEndTime
     }
   },
   mounted() {

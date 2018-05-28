@@ -16,7 +16,6 @@ export default {
   data() {
     return {
       headStyle: {
-        background: this.color,
         paddingTop: '20px' // TODO: 根据isApp判断
         // paddingTop: this.isApp ? (api.systemType == 'ios' && '20px') || (api.systemType == 'android' && '25px'): '0'
       }

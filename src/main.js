@@ -12,7 +12,7 @@ import DHeader from '@/components/dkl-header.vue'
 import List from '@/components/list.vue'
 import { LoadingPlugin, ToastPlugin, XHeader,
   AlertPlugin, ConfirmPlugin,
-  Group, Cell, Scroller } from 'vux'
+  Group, Cell, Scroller, dateFormat } from 'vux'
 
 Vue.component('list', List)
 Vue.component('x-header', XHeader)
@@ -31,6 +31,19 @@ Vue.prototype.$baseURL = url.baseURL
 Vue.prototype.$http = http
 let isApp = navigator.userAgent.indexOf('dukela') > -1
 Vue.prototype.isApp = isApp
+
+Vue.filter('isIncome', function (type) {
+  return type < 3 ? 'record-income' : 'record-outcome'
+})
+Vue.filter('typeName', function (type) {
+  return ['无', '商品购买', '商品分红'][type]
+})
+Vue.filter('DATEFORMAT', function (strDate) {
+  return dateFormat(new Date(parseInt(strDate.match(/\d{13}/))), 'YYYY-MM-DD HH:mm:ss')
+})
+Vue.filter('PAYDATEFORMAT', function (strDate) {
+  return dateFormat(new Date(parseInt(strDate.match(/\d{13}/)) + 60*30*1000), 'YYYY-MM-DD HH:mm:ss')
+})
 
 FastClick.attach(document.body)
 

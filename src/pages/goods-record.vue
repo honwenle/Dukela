@@ -11,18 +11,18 @@
           v-for="item in dataList"
           :key="item.ID"
           class="list-item flex cell flex-center"
-          :class="isIncome ? 'record-income' : 'record-outcome'"
-          @click="goDetail">
+          :class="item.Type | isIncome"
+          @click="goDetail(item.ID)">
           <div class="flex-1">
             <div class="round-text"></div>
           </div>
           <div class="flex-2">
             <div>{{item.ProductName}}</div>
-            <div class="gray">{{TYPE_LIST[item.Type]}}</div>
+            <div class="gray">{{item.Type | typeName}}</div>
           </div>
           <div class="flex-3 text-right">
-            <div class="cost-color">{{item.ProductCost}}</div>
-            <div class="gray">2018-05-14 10:52:17</div>
+            <div class="cost-color cost-num">{{item.ProductCount}}</div>
+            <div class="gray">{{item.CreateTime | DATEFORMAT}}</div>
           </div>
         </div>
       </div>
@@ -31,11 +31,6 @@
 </template>
 <script>
 export default {
-  data(){
-    return {
-      TYPE_LIST: ['无', '商品购买', '商品分红']
-    }
-  },
   computed: {
     dataList() {
       return this.$store.state.ProductStream
@@ -45,41 +40,14 @@ export default {
     isIncome(type) {
       return type < 3
     },
-    goDetail() {
+    goDetail(id) {
       this.$router.push({
-        name: 'Detail'
+        path: 'record-detail',
+        query: {
+          id: id
+        }
       })
     }
   }
 }
 </script>
-<style scoped lang="less">
-.record-income {
-  .round-text{
-    background: @main-color;
-  }
-  .cost-color{
-    color: @orange-color;
-  }
-  .cost-color::before{
-    content: '+';
-  }
-  .round-text::before{
-    content: '收';
-  }
-}
-.record-outcome {
-  .round-text{
-    background: @mint-color;
-  }
-  .cost-color{
-    color: @theme-color;
-  }
-  .cost-color::before{
-    content: '-';
-  }
-  .round-text::before{
-    content: '支';
-  }
-}
-</style>

@@ -289,12 +289,6 @@ input{
   font-size: 20px;
   margin: auto;
 }
-.round-text.round-orange{
-  background: #FBB43A;
-}
-.round-text.round-mint{
-  background: #bae0a3;
-}
 .mint{
   color: @mint-color;
 }
@@ -304,4 +298,33 @@ input{
   color: #fff;
   border-radius: 50px;
   padding: 3px 15px;
+}
+
+.record-income {
+  .round-text{
+    background: @main-color;
+  }
+  .cost-color{
+    color: @orange-color;
+  }
+  .cost-num::before{
+    content: '+';
+  }
+  .round-text::before{
+    content: '收';
+  }
+}
+.record-outcome {
+  .round-text{
+    background: @mint-color;
+  }
+  .cost-color{
+    color: @theme-color;
+  }
+  .cost-num::before{
+    content: '-';
+  }
+  .round-text::before{
+    content: '支';
+  }
 }

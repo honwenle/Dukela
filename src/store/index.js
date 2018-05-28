@@ -25,15 +25,12 @@ export default new Vuex.Store({
     ProductStream: []
   },
   getters: {
-    payEndTime: state => {
-      if (state.OrderDetail.CreateTime) {
-        return dateFormat(new Date(parseInt(state.OrderDetail.CreateTime.match((/\d{13}/))) + 60*30*1000), 'YYYY-MM-DD HH:mm:ss')
-      }
+    getRecordDetail: (state) => (id) => {
+      return state.ProductStream.find(item => item.ID == id)
     }
   },
   mutations: {
     setVillaList(state, items = []) {
-      console.log(items)
       state.villaList = state.villaList.concat(items)
     },
     clearVillaList(state) {

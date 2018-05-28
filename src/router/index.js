@@ -27,6 +27,7 @@ import Settings from '@/pages/settings'
 import User from '@/pages/user'
 import MyGoods from '@/pages/my-goods'
 import GoodsRecord from '@/pages/goods-record'
+import RecordDetail from '@/pages/record-detail'
 import Detail from '@/pages/detail'
 import MyOrder from '@/pages/my-order'
 import Messages from '@/pages/messages'
@@ -40,6 +41,10 @@ Vue.use(Router)
 export default new Router({
   // mode: 'history',
   routes: [
+    {
+      component: RecordDetail,
+      path: '/record-detail'
+    },
     {
       component: PayPublic,
       path: '/pay-public'
