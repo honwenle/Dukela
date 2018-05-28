@@ -11,29 +11,17 @@
           v-for="item in dataList"
           :key="item.ID"
           class="list-item flex cell flex-center"
+          :class="isIncome ? 'record-income' : 'record-outcome'"
           @click="goDetail">
           <div class="flex-1">
-            <div class="round-text round-orange">收</div>
+            <div class="round-text"></div>
           </div>
           <div class="flex-2">
             <div>{{item.ProductName}}</div>
-            <div class="gray">商品购买</div>
+            <div class="gray">{{TYPE_LIST[item.Type]}}</div>
           </div>
           <div class="flex-3 text-right">
-            <div class="orange">+{{item.ProductCost}}</div>
-            <div class="gray">2018-05-14 10:52:17</div>
-          </div>
-        </div>
-        <div class="list-item flex cell flex-center" @click="goDetail">
-          <div class="flex-1">
-            <div class="round-text round-mint">支</div>
-          </div>
-          <div class="flex-2">
-            <div>商品B</div>
-            <div class="gray">入住消费</div>
-          </div>
-          <div class="flex-3 text-right">
-            <div class="mint">-1000</div>
+            <div class="cost-color">{{item.ProductCost}}</div>
             <div class="gray">2018-05-14 10:52:17</div>
           </div>
         </div>
@@ -42,14 +30,21 @@
   </div>
 </template>
 <script>
-// TODO: 区分不同type
 export default {
+  data(){
+    return {
+      TYPE_LIST: ['无', '商品购买', '商品分红']
+    }
+  },
   computed: {
     dataList() {
       return this.$store.state.ProductStream
     }
   },
   methods: {
+    isIncome(type) {
+      return type < 3
+    },
     goDetail() {
       this.$router.push({
         name: 'Detail'
@@ -58,3 +53,33 @@ export default {
   }
 }
 </script>
+<style scoped lang="less">
+.record-income {
+  .round-text{
+    background: @main-color;
+  }
+  .cost-color{
+    color: @orange-color;
+  }
+  .cost-color::before{
+    content: '+';
+  }
+  .round-text::before{
+    content: '收';
+  }
+}
+.record-outcome {
+  .round-text{
+    background: @mint-color;
+  }
+  .cost-color{
+    color: @theme-color;
+  }
+  .cost-color::before{
+    content: '-';
+  }
+  .round-text::before{
+    content: '支';
+  }
+}
+</style>
