@@ -28,6 +28,9 @@ export default new Vuex.Store({
   getters: {
     getRecordDetail: (state) => (id) => {
       return state.ProductStream.find(item => item.ID == id)
+    },
+    getOrderDetail: (state) => (id) => {
+      return state.UserOrderList.find(item => parseInt(item.ID) == id)
     }
   },
   mutations: {

@@ -39,7 +39,8 @@ Vue.filter('typeName', function (type) {
   return ['无', '商品购买', '商品分红'][type]
 })
 Vue.filter('DATEFORMAT', function (strDate) {
-  return dateFormat(new Date(parseInt(strDate.match(/\d{13}/))), 'YYYY-MM-DD HH:mm:ss')
+  const intTime = strDate.match(/\d{13}/)
+  return intTime && dateFormat(new Date(parseInt(intTime)), 'YYYY-MM-DD HH:mm:ss')
 })
 Vue.filter('PAYDATEFORMAT', function (strDate) {
   return dateFormat(new Date(parseInt(strDate.match(/\d{13}/)) + 60*30*1000), 'YYYY-MM-DD HH:mm:ss')

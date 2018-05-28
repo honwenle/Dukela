@@ -1,31 +1,41 @@
 <template>
   <div class="bg-fff">
-    <d-header>消费明细</d-header>
+    <d-header :tran="true" :theme-color="true">消费明细</d-header>
     <div class="detail">
-      <div class="detail-title">您的商品已购入</div>
-      <div class="box center">
-        <div class="cell bb">
-          <font-icon name="dui" color="#d8efcb" fontsize="30px"></font-icon>
-          您的商品已入住
-        </div>
-        <div class="cell">
-          商品总计：500个<br>T数：1000个
-        </div>
+      <div class="detail-top">
+        <div class="detail-title">您的商品已购入</div>
       </div>
-      <div class="box">
-        <div class="cell flex space-between bb">
-          <div>订单号：</div>
-          <div>123456</div>
-        </div>
-        <div class="cell flex space-between bb">
-          <div>消费时间：</div>
-          <div>2018-04-18</div>
-        </div>
-        <div class="cell flex space-between">
-          <div>订单状态：</div>
-          <div>消费成功</div>
-        </div>
+      <div class="detail-box">
+        <group class="box" :gutter="0">
+          <cell title="商品总价(元)：">
+            <div class="theme-color">{{detailData.Amount}}</div>
+          </cell>
+          <cell title="商品名称：" :value="detailData.ProductName"></cell>
+          <cell title="商品总数(个)：" :value="detailData.ProductCount"></cell>
+          <cell title="商品单价(元)：" :value="detailData.ProductCost"></cell>
+        </group>
+        <group class="box" :gutter="0">
+          <cell title="支付方式：" :value="detailData.PayType"></cell>
+          <cell title="支付流水号：" :value="detailData.xxx"></cell>
+          <cell title="订单号：" :value="detailData.OrderNumber"></cell>
+          <cell title="支付时间：" :value="detailData.PayDate | DATEFORMAT"></cell>
+          <cell title="创建时间：" :value="detailData.CreateTime | DATEFORMAT"></cell>
+        </group>
       </div>
     </div>
   </div>
 </template>
+<script>
+export default {
+  data() {
+    return {
+      id: this.$route.query.id
+    }
+  },
+  computed: {
+    detailData() {
+      return this.$store.getters.getOrderDetail(this.id)
+    }
+  }
+}
+</script>

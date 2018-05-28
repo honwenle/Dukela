@@ -256,9 +256,10 @@ input{
   font-size: 12px;
   padding: 40px 23px 0;
   position: relative;
-  .detail-title {
+  .detail-top {
     background: @theme-color;
     position: absolute;
+    box-sizing: border-box;
     top: 0;
     left: 0;
     width: 100%;
@@ -267,16 +268,22 @@ input{
     font-size: 16px;
     padding: 17px 23px;
   }
+  .detail-title{
+    background: rgba(255,255,255,.3);
+    padding: 10px;
+    border-radius: 5px;
+  }
+}
+.detail-box{
+  padding-top: 20px;
 }
 .box{
-  box-shadow: 0 0 15px #a4ffa4;
+  box-shadow: 0 0 15px #bbb;
   border-radius: 5px;
-  margin: 14px 0;
+  margin-top: 20px;
+  overflow: hidden;
   position: relative;
   background: #fff;
-  .cell{
-    padding: 14px 10px;
-  }
 }
 .round-text {
   background: #000;
