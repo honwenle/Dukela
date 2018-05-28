@@ -22,6 +22,7 @@ export default new Vuex.Store({
     RoomDetail: {},
     RoomPic: [],
     UserProduct: [],
+    UserOrderList: [],
     ProductStream: []
   },
   getters: {
@@ -30,6 +31,12 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    setUserOrderList(state, items = []) {
+      state.UserOrderList = state.UserOrderList.concat(items)
+    },
+    clearUserOrderList(state) {
+      state.UserOrderList = []
+    },
     setVillaList(state, items = []) {
       state.villaList = state.villaList.concat(items)
     },
@@ -103,6 +110,16 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    async getUserOrderList({commit}, page = 1) {
+      let {data} = await http.post('ProductOrderIn/GetList', {
+        pageSize: PAGE_SIZE,
+        pageIndex: page,
+        orderby: ''
+      })
+      page == 1 && commit('clearUserOrderList')
+      data.Code == 1 && commit('setUserOrderList', JSON.parse(data.List))
+      return data.Count
+    },
     async getProductStream({commit}, page = 1) {
       let {data} = await http.post('UserProductStream/GetModelListByUserID', {
         pageSize: PAGE_SIZE,
