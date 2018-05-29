@@ -33,11 +33,21 @@ export default {
     },
     themeColor: {
       default: false
+    },
+    typeText: {
+      default: 1
     }
   },
   methods: {
     showMsg() {
-      // TODO: 提示是否跳过实名
+      this.$vux.confirm.show({
+        content: '完成实名认证设置交易密码方可购买！',
+        confirmText: '继续',
+        cancelText: '跳过',
+        onCancel: () => {
+          this.$router.go(-2)
+        }
+      })
     }
   }
 }

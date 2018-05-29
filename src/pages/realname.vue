@@ -1,6 +1,6 @@
 <template>
   <div class="center bg-fff">
-    <realname-header>实名认证</realname-header>
+    <d-header :pervent="true">实名认证</d-header>
     <div class="pt20">请上传身份证正面</div>
     <div class="img-upload">
       <img src="../assets/realname1.png" alt="">
