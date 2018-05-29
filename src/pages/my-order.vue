@@ -1,6 +1,6 @@
 <template>
   <div class="win-wrap">
-    <d-header>我的订单</d-header>
+    <d-header :tran="true" :theme-color="true">我的订单</d-header>
     <tab v-model="tabIndex" prevent-default @on-before-index-change="switchTabItem">
       <tab-item selected>买入订单</tab-item>
       <tab-item>预定订单</tab-item>
