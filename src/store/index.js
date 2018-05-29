@@ -23,6 +23,7 @@ export default new Vuex.Store({
     RoomPic: [],
     UserProduct: [],
     UserOrderList: [],
+    UserMessage: [],
     ProductStream: []
   },
   getters: {
@@ -34,6 +35,12 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    setUserMessage(state, items = []) {
+      state.UserMessage = state.UserMessage.concat(items)
+    },
+    clearUserMessage(state) {
+      state.UserMessage = []
+    },
     setUserOrderList(state, items = []) {
       state.UserOrderList = state.UserOrderList.concat(items)
     },
@@ -113,6 +120,16 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    async getUserMessage({commit}, page = 1) {
+      let {data} = await http.post('UserMessage/GetList', {
+        pageSize: PAGE_SIZE,
+        pageIndex: page,
+        orderby: ''
+      })
+      page == 1 && commit('clearUserMessage')
+      data.Code == 1 && commit('setUserMessage', data.List)
+      return data.Count || 0
+    },
     async getUserOrderList({commit}, page = 1) {
       let {data} = await http.post('ProductOrderIn/GetList', {
         pageSize: PAGE_SIZE,
@@ -121,7 +138,7 @@ export default new Vuex.Store({
       })
       page == 1 && commit('clearUserOrderList')
       data.Code == 1 && commit('setUserOrderList', JSON.parse(data.List))
-      return data.Count
+      return data.Count || 0
     },
     async getProductStream({commit}, page = 1) {
       let {data} = await http.post('UserProductStream/GetModelListByUserID', {
@@ -132,7 +149,7 @@ export default new Vuex.Store({
       })
       page == 1 && commit('clearProductStream')
       data.Code == 1 && commit('setProductStream', data.List)
-      return data.Count
+      return data.Count || 0
     },
     async getUserProduct({commit}, page = 1) {
       let {data} = await http.post('UserProduct/GetModelListByUserID', {
@@ -143,7 +160,7 @@ export default new Vuex.Store({
       })
       page == 1 && commit('clearUserProduct')
       data.Code == 1 && commit('setUserProduct', data.List)
-      return data.Count
+      return data.Count || 0
     },
     async getUserInfo({commit}, id) {
       let {data} = await http.post('User/GetModel')
@@ -200,7 +217,7 @@ export default new Vuex.Store({
       })
       page == 1 && commit('clearVillaList')
       data.Code == 1 && commit('setVillaList', JSON.parse(data.List))
-      return data.Count
+      return data.Count || 0
     },
     async getHomeList({commit}, page = 1) {
       let {data} = await http.post('Product/GetList', {
@@ -210,7 +227,7 @@ export default new Vuex.Store({
       })
       page == 1 && commit('clearHomeList')
       data.Code == 1 && commit('setHomeList', JSON.parse(data.List))
-      return data.Count
+      return data.Count || 0
     },
     async login({commit}, dt) {
       let {data} = await http.post('User/AppLogin', dt)

@@ -14,7 +14,9 @@
     <group :gutter="0">
       <cell title="我的商品库" link="my-goods"></cell>
       <cell title="我的订单" link="my-order"></cell>
-      <cell title="我的消息" link="messages"><badge text="13"></badge></cell>
+      <cell title="我的消息" link="messages">
+        <badge v-if="msgList" :text="msgList"></badge>
+      </cell>
       <cell title="客服电话" is-link>
         <span class="theme-color"><font-icon name="phone"></font-icon></span>
         <a class="theme-color" href="tel:057786588682">0577-86588682</a>
@@ -34,10 +36,14 @@ export default {
     },
     UserKey() {
       return this.$store.state.UserKey
+    },
+    msgList() {
+      return this.$store.state.UserMessage.length
     }
   },
   mounted() {
     this.UserKey && this.$store.dispatch('getUserInfo')
+    this.UserKey && this.$store.dispatch('getUserMessage')
   }
 }
 </script>

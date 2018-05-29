@@ -1,26 +1,45 @@
 <template>
   <div>
-    <d-header>我的消息</d-header>
-    <div class="message-wrap">
-      <div class="item flex" v-for="i in 3" :key="i">
-        <div class="avatar">
-          <img src="https://media-image1.baydn.com/avatar%2Fmedia_store%2F16a83bca5aac8f45ca8af8bb8e8a51ee.png@128w_128h" class="img">
-        </div>
-        <div class="flex-1" style="padding: 0 8px 0 17px">
-          <div class="message-box">
-            <div class="row-padding">
-              <div>商品购买成功！</div>
-              <div>2018-04-18</div>
-              <div>xxx{{i}}</div>
-              <div class="gray">订单号：1111111111</div>
+    <d-header :tran="true" :theme-color="true">我的消息</d-header>
+    <list
+      action-name="getUserMessage"
+      :dataLength="dataList.length"
+      :height="`-${67}px`"
+    >
+      <div class="message-wrap">
+        <div class="item flex" v-for="item in dataList" :key="item.ID">
+          <div class="avatar">
+            <img :src="require('../assets/msg-a' + item.EventType + '.png')" class="img">
+          </div>
+          <div class="flex-1" style="padding: 0 8px 0 17px">
+            <div class="message-box">
+              <div class="row-padding">
+                <div>{{item.EventTypeName}}</div>
+                <div>{{item.CreateTime | DATEFORMAT}}</div>
+                <div class="center">
+                  <div>{{item.Title}}</div>
+                  <div class="main-color">{{item.Content}}</div>
+                </div>
+                <div class="gray">订单号：xxxxxx</div>
+              </div>
+              <div class="row-padding2">立即查看</div>
             </div>
-            <div class="row-padding2">立即查看</div>
           </div>
         </div>
       </div>
-    </div>
+    </list>
   </div>
 </template>
+<script>
+export default {
+  computed: {
+    dataList() {
+      return this.$store.state.UserMessage
+    }
+  }
+}
+</script>
+
 <style scoped>
 .message-wrap{
   padding: 20px 22px;
