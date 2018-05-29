@@ -14,7 +14,7 @@
     <div class="group buy-group">
       <div class="cell">请输入打款账号</div>
       <div class="cell cell-input">
-        <input type="text" placeholder="请输入账号">
+        <input type="text" v-model="bankno" placeholder="请输入账号">
       </div>
     </div>
     <div class="btn-full" @click="ok">确定</div>
@@ -22,14 +22,35 @@
 </template>
 <script>
 export default {
+  data() {
+    return {
+      bankno: ''
+    }
+  },
+  computed: {
+    id() {
+      return this.$store.state.OrderDetail.ID
+    }
+  },
   methods: {
-    ok() {
-      this.$vux.alert.show({
-        content: '请务必24小时之内打款！',
-        onHide () {
-          console.log('我知道了')
-        }
+    async ok() {
+      if (this.bankno == '') {
+        this.$vux.toast.text('请输入打款账户')
+      }
+      let data = await this.$store.dispatch('dklPay', {
+        OrderID: this.id,
+        BlankNo: this.bankno
       })
+      if (data.Code == 1) {
+        this.$vux.alert.show({
+          content: '请务必24小时之内打款！',
+          onHide () {
+            console.log('我知道了')
+          }
+        })
+      } else {
+        this.$vux.toast.text(data.Message)
+      }
     }
   }
 }

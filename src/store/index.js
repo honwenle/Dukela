@@ -268,6 +268,10 @@ export default new Vuex.Store({
     async buyProduct({commit}, dt) {
       let {data} = await http.post('ProductOrderIn/Addinfo', dt)
       return data
+    },
+    async dklPay({commit}, dt) {
+      let {data} = await http.post('Pay/DklPay', dt)
+      return data
     }
   }
 })

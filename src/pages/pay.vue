@@ -116,6 +116,7 @@ export default {
         } else if (type == 4) {
           this.payUnion()
         }
+        // TODO: 支付结果弹窗确认
       } else if (this.forPublic.length == 1) {
         this.$router.push('pay-public')
       } else {

@@ -4,7 +4,7 @@
       <d-header :tran="true" :showBack="false">
         <span slot="right" @click="$router.push({name: 'Settings'})">设置</span>
       </d-header>
-      <div @click="UserKey && $router.push({name: 'User'})">
+      <div @click="$router.push({name: 'User'})">
         <div class="avatar">
           <img :src="dataInfo.Avator || require('../assets/user.png')">
         </div>

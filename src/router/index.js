@@ -36,11 +36,17 @@ import ChangePhone2 from '@/pages/change-phone2'
 import MyRealname from '@/pages/my-realname'
 import MyBankcard from '@/pages/my-bankcard'
 
+import Version from '@/pages/version'
+
 Vue.use(Router)
 
 export default new Router({
   // mode: 'history',
   routes: [
+    {
+      component: Version,
+      path: '/version'
+    },
     {
       component: RecordDetail,
       path: '/record-detail'
@@ -69,7 +75,8 @@ export default new Router({
     {
       path: '/messages',
       name: 'Messages',
-      component: Messages
+      component: Messages,
+      meta: { keepAlive: true, needLogin: true }
     },
     {
       path: '/detail',
@@ -153,7 +160,7 @@ export default new Router({
       path: '/my-order',
       name: 'MyOrder',
       component: MyOrder,
-      meta: { keepAlive: true }
+      meta: { keepAlive: true, needLogin: true }
     }, {
       path: '/goods',
       name: 'Goods',
@@ -166,7 +173,8 @@ export default new Router({
     }, {
       path: '/pay',
       name: 'Pay',
-      component: Pay
+      component: Pay,
+      meta: { needLogin: true }
     }, {
       path: '/villa',
       name: 'Villa',
