@@ -78,3 +78,13 @@ npm run dev
 npm run build
 ```
 ### 部署
+> 方法1：静态资源打包进APP
+
+1. 打包vue项目
+2. 将打包后的dist里的所有文件丢到apicloud项目根目录
+3. 同步代码
+4. 云编译
+> 方法2：打开webview引用远程地址
+
+1. 打包vue项目
+2. 将打包后的dist里的所有文件服务器目录
