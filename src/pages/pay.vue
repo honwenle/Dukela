@@ -132,7 +132,6 @@ export default {
       })
       if (data.Code == 1) {
         var wxPay = api.require('weiXin')
-        console.log(data.orderInfo)
         wxPay.payOrder(JSON.parse(data.orderInfo), function(ret, err) {
           if (ret.status) {
             // TODO: 成功

@@ -74,6 +74,7 @@ export default {
       })
       if (data.Code == 1) {
         this.show1 = true
+        this.$store.dispatch('getUserInfo')
       } else {
         this.$vux.toast.text(data.Message)
       }
