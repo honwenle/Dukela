@@ -7,7 +7,9 @@ axios.interceptors.request.use(function (config) {
   config.data = config.data || {}
   config.data.DeviceID = (window.api && window.api.deviceId) || 'TestDeviceID'
   config.data.UserKey = localStorage.getItem('UserKey') || ''
-  config.data = qs.stringify(config.data)
+  if (!config.isUpload) {
+    config.data = qs.stringify(config.data)
+  }
   return config
 }, function (error) {
   return Promise.reject(error)
