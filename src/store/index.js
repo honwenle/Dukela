@@ -189,8 +189,13 @@ export default new Vuex.Store({
       data.Code == 1 && commit('setRoom', data.Model)
     },
     async getRoomList({commit}, dt) {
-      let {data} = await http.post('BeadhouseRoomType/GetModelListByAll', dt)
-      data.Code == 1 && commit('setRoomList', data.Model)
+      let {data} = await http.post('BeadhouseRoomType/GetList', {
+        pageSize: PAGE_SIZE,
+        pageIndex: 1,
+        orderby: '',
+        ...dt
+      })
+      data.Code == 1 && commit('setRoomList', JSON.parse(data.List))
     },
     async getVillaPic({commit}, dt) {
       let {data} = await http.post('BeadhouseAttachment/GetAttachment', dt)
