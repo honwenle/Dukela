@@ -30,7 +30,15 @@
       <cell title="密码管理" link="my-password"></cell>
     </group>
     <group>
-      <cell title="微信绑定" link="bind-wx"></cell>
+      <cell title="微信绑定"
+        @click.native="wxBind"
+        is-link>
+        <div v-if="dataInfo.WXOpenID">
+          <font-icon name="weixin_denglu"></font-icon>
+          {{dataInfo.FullName}}
+        </div>
+        <div v-else>未绑定</div>
+      </cell>
     </group>
     <popup v-model="show1" height="100%">
       <popup-header
@@ -48,7 +56,6 @@
   </div>
 </template>
 <script>
-// TODO: 微信绑定
 import { Group, Cell, XInput, Popup, PopupHeader, Radio } from 'vux'
 export default {
   components: {
@@ -68,6 +75,9 @@ export default {
     }
   },
   methods: {
+    wxBind() {
+      // TODO: 微信绑定
+    },
     hidePhone(tel) {
       return tel.replace(/(\d{3})\d{4}(\d{4})/, '$1****$2')
     },
