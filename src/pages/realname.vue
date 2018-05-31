@@ -48,7 +48,6 @@
     </template>
     <re-confirm
       :show="show1"
-      :back-step="2"
       go-name="set-tran-pwd"
       button="设置交易密码"
       title="实名认证成功！"

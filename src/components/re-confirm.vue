@@ -4,7 +4,7 @@
       :confirm-text="button"
       cancel-text="跳过"
       @on-hide="$emit('update:show', false)"
-      @on-cancel="$router.go(-backStep)"
+      @on-cancel="$router.push('me')"
       @on-confirm="goRoute">
         <div>
           <font-icon name="dui" fontsize="40px" color="#88c66e"></font-icon>
@@ -27,7 +27,6 @@ export default {
   },
   props: [
     'show',
-    'backStep',
     'goName',
     'button',
     'title',

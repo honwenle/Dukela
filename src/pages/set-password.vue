@@ -19,7 +19,6 @@
     </div>
     <re-confirm
       :show="show1"
-      :back-step="1"
       go-name="realname"
       button="前往实名认证"
       title="注册成功！"

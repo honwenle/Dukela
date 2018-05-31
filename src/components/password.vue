@@ -67,6 +67,9 @@ export default {
   font-size: 20px;
   font-weight: 500;
 }
+.pwd-key:active{
+  background: #eee;
+}
 .pwd-h1{
   padding: 15px 0;
 }
