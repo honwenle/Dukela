@@ -11,11 +11,10 @@
   </div>
 </template>
 <script>
-import RealnameHeader from '@/components/realname-header'
-import {Group, XInput} from 'vux'
+import {XInput} from 'vux'
 export default {
   components: {
-    RealnameHeader, Group, XInput
+    XInput
   },
   data() {
     return {
