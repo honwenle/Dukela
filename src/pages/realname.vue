@@ -46,24 +46,20 @@
         <div class="btn-full theme-bg" @click="submitCheck">确定</div>
       </div>
     </template>
-    <confirm v-model="show1"
-      confirm-text="设置交易密码"
-      cancel-text="跳过"
-      @on-cancel="$router.go(-2)"
-      @on-confirm="goSetPwd">
-        <div>
-          <font-icon name="dui" fontsize="40px" color="#88c66e"></font-icon>
-        </div>
-        <div>实名认证成功！</div>
-        <div>设置交易密码后方可购买！</div>
-    </confirm>
+    <re-confirm
+      :show="show1"
+      :back-step="2"
+      go-name="set-password"
+      button="设置交易密码"
+      title="实名认证成功！"
+      content="设置交易密码后方可购买！"/>
   </div>
 </template>
 <script>
-import {XDialog, Confirm} from 'vux'
+import ReConfirm from '@/components/re-confirm'
 export default {
   components: {
-    XDialog, Confirm
+    ReConfirm
   },
   data() {
     return {

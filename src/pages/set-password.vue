@@ -17,24 +17,20 @@
     <div class="bottom-tip a" @click="$router.replace({name: 'Login'})">
       已有账号，点此登录 <font-icon name="forward"></font-icon>
     </div>
-    <confirm v-model="show1"
-      confirm-text="前往实名认证"
-      cancel-text="跳过"
-      @on-cancel="$router.go(-2)"
-      @on-confirm="goRealname">
-        <div>
-          <font-icon name="dui" fontsize="40px" color="#88c66e"></font-icon>
-        </div>
-        <div>注册成功！</div>
-        <div>完成实名认证后方可购买！</div>
-    </confirm>
+    <re-confirm
+      :show="show1"
+      :back-step="1"
+      go-name="realname"
+      button="前往实名认证"
+      title="注册成功！"
+      content="完成实名认证后方可购买！"/>
   </div>
 </template>
 <script>
-import {XDialog, Confirm} from 'vux'
+import ReConfirm from '@/components/re-confirm'
 export default {
   components: {
-    XDialog, Confirm
+    ReConfirm
   },
   data() {
     return {
