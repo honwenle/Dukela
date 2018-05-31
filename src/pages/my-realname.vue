@@ -1,5 +1,6 @@
 <template>
   <div>
+    <d-header>实名认证</d-header>
     <div class="top">
       <div class="realname-top-round">
         <font-icon name="wo" fontsize="40px"></font-icon>
@@ -7,8 +8,10 @@
       <div>您已通过实名认证</div>
     </div>
     <group :gutter="0">
-      <cell title="姓名"><span class="theme-color">{{infoData.name}}</span></cell>
-      <cell title="证件"><span class="theme-color">{{infoData.idcard}}</span></cell>
+      <cell title="姓名"><span class="theme-color">{{dataInfo.RealName}}</span></cell>
+      <cell title="证件"><span class="theme-color">{{dataInfo.CardID}}</span></cell>
+      <cell title="性别"><span class="theme-color">{{['女', '男'][+dataInfo.Sex]}}</span></cell>
+      <cell title="年龄"><span class="theme-color">{{dataInfo.Age}}</span></cell>
     </group>
     <div class="btn-main" @click="$router.push({name: 'Realname'})">去认证</div>
   </div>
@@ -19,12 +22,9 @@ export default {
   components: {
     Group, Cell
   },
-  data() {
-    return {
-      infoData: {
-        name: '童盈盈',
-        idcard: '3****************6'
-      }
+  computed: {
+    dataInfo() {
+      return this.$store.state.UserInfo
     }
   }
 }
