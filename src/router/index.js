@@ -5,6 +5,7 @@ import Main from '@/pages/main'
 import Login from '@/pages/login'
 import Register from '@/pages/register'
 import SetPassword from '@/pages/set-password'
+import SetTranPwd from '@/pages/set-tran-pwd'
 import Realname from '@/pages/realname'
 import BindCard from '@/pages/bind-card'
 
@@ -42,6 +43,10 @@ Vue.use(Router)
 export default new Router({
   // mode: 'history',
   routes: [
+    {
+      component: SetTranPwd,
+      path: '/set-tran-pwd'
+    },
     {
       component: Version,
       path: '/version'

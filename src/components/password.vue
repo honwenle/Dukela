@@ -1,7 +1,7 @@
 <template>
   <div class="center">
-    <div class="pwd-h1">请输入交易密码</div>
-    <div class="pwd-box">
+    <div class="pwd-h1">{{title}}</div>
+    <div class="pwd-box" :class="isPay ? '' : 'mb150'">
       <div class="pwd-block"
       v-for="i in 6"
       :key="i"
@@ -9,7 +9,7 @@
       ></div>
     </div>
     <div class="pwd-keys">
-      <div class="pwd-tip">安全输入键盘</div>
+      <div class="pwd-tip" v-show="isPay">安全输入键盘</div>
       <div class="flex" v-for="i in 3" :key="i">
         <div class="pwd-key"
         v-for="j in 3"
@@ -33,6 +33,14 @@ export default {
       password: []
     }
   },
+  props: {
+    isPay: {
+      default: true
+    },
+    title: {
+      default: '请输入交易密码'
+    }
+  },
   methods: {
     pwdDel() {
       this.password.pop()
@@ -40,16 +48,16 @@ export default {
     pwdInput(n) {
       this.password.push(n)
       if (this.password.length == 6) {
-        // TODO: 提交支付
-        this.$router.push({
-          name: 'Result'
-        })
+        this.$emit('finishpwd', this.password.join(''))
       }
     }
   }
 }
 </script>
 <style scoped>
+.mb150{
+  margin-bottom: 150px;
+}
 .pwd-key{
   flex: 1;
   border-right: 1px solid #eee;
@@ -72,6 +80,11 @@ export default {
   background: #fff;
   border-right: 1px solid #eee;
   position: relative;
+  border-bottom: 1px solid #eee;
+  border-top: 1px solid #eee;
+}
+.pwd-block:first-child{
+  border-left: 1px solid #eee;
 }
 .pwd-block.dot::before{
   content: '';

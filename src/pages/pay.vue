@@ -23,8 +23,8 @@
     </div>
     <div v-else>
       <div class="check-box">
-        <!-- <div class="check-title">余额支付</div>
-        <checklist label-position="left" :options="[{key: 0, value: `账户余额：${balance}`}]"></checklist> -->
+        <div class="check-title">余额支付</div>
+        <!-- <checklist v-model="forBalance" label-position="left" :options="[{key: 0, value: `账户余额：${balance}`}]"></checklist> -->
         <div class="check-title">第三方支付</div>
         <checklist @click.native="forPublic = []" label-position="left" :max="1" v-model="forThird" :options="payList"></checklist>
         <template v-if="offline">
@@ -43,7 +43,7 @@
       <div class="btn-full" @click="pay">确认支付{{detailData.Amount}}元</div>
     </div>
     <popup v-model="isShowPassword">
-      <password></password>
+      <password @finishpwd="payBalance"></password>
     </popup>
   </div>
 </template>
@@ -63,6 +63,7 @@ export default {
       balance: 500,
       forThird: [],
       forPublic: [],
+      forBalance: [],
       goodsList: [
         {
           key: 1,
@@ -119,12 +120,18 @@ export default {
         // TODO: 支付结果弹窗确认
       } else if (this.forPublic.length == 1) {
         this.$router.push('pay-public')
+      } else if (this.forBalance.length == 1) {
+        this.isShowPassword = true
       } else {
         this.$vux.toast.text('请选择支付方式')
       }
     },
-    payBalance() {
-      this.isShowPassword = true
+    payBalance(pwd) {
+      // TODO: 提交支付
+      console.log(pwd)
+      this.$router.push({
+        name: 'Result'
+      })
     },
     async payWechat() {
       let data = await this.$store.dispatch('wxPay', {
