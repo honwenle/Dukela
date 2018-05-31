@@ -132,7 +132,16 @@ export default {
       })
       if (data.Code == 1) {
         var wxPay = api.require('weiXin')
-        wxPay.payOrder(JSON.parse(data.orderInfo), function(ret, err) {
+        console.log(data.orderInfo)
+        let orderInfo = JSON.parse(data.orderInfo)
+        wxPay.payOrder({
+          orderId: orderInfo.orderId,
+          partnerId: orderInfo.partnerId,
+          nonceStr: orderInfo.nonceStr,
+          timeStamp: orderInfo.timeStamp,
+          package: orderInfo.package,
+          sign: orderInfo.sign
+        }, function(ret, err) {
           if (ret.status) {
             // TODO: 成功
           } else {
