@@ -35,6 +35,7 @@ import ChangePhone from '@/pages/change-phone'
 import ChangePhone2 from '@/pages/change-phone2'
 import MyRealname from '@/pages/my-realname'
 import MyBankcard from '@/pages/my-bankcard'
+import MyPassword from '@/pages/my-password'
 
 import Version from '@/pages/version'
 
@@ -43,6 +44,10 @@ Vue.use(Router)
 export default new Router({
   // mode: 'history',
   routes: [
+    {
+      component: MyPassword,
+      path: '/my-password'
+    },
     {
       component: SetTranPwd,
       path: '/set-tran-pwd'

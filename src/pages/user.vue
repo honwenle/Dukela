@@ -7,7 +7,7 @@
           <img :src="dataInfo.Avator">
           <div>
             <div>{{hidePhone(dataInfo.Phone)}}</div>
-            <div class="gray">ID:{{10000 + parseInt(dataInfo.ID)}}</div>
+            <div class="gray">ID:{{dataInfo.UserName}}</div>
           </div>
         </div>
       </cell>
@@ -19,8 +19,14 @@
     </group>
     <group>
       <cell title="手机号更换" :value="hidePhone(dataInfo.Phone)" link="change-phone"></cell>
-      <cell title="实名认证" value="还未进行实名认证" link="my-realname"></cell>
-      <cell title="银行卡管理" value="未绑定" link="my-bankcard"></cell>
+      <cell title="实名认证"
+        :value="dataInfo.IsCardID ? '已实名认证' : '还未进行实名认证'"
+        :link="dataInfo.IsCardID ? 'my-realname' : 'realname'">
+      </cell>
+      <cell title="银行卡管理"
+        :value="dataInfo.IsBank ? '已绑定' : '未绑定'"
+        :link="dataInfo.IsBank ? 'my-bankcard' : 'bindcard'">
+      </cell>
       <cell title="密码管理" link="my-password"></cell>
     </group>
     <group>
@@ -42,6 +48,7 @@
   </div>
 </template>
 <script>
+// TODO: 微信绑定
 import { Group, Cell, XInput, Popup, PopupHeader, Radio } from 'vux'
 export default {
   components: {
