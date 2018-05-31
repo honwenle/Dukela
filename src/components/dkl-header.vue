@@ -45,7 +45,7 @@ export default {
         confirmText: '继续',
         cancelText: '跳过',
         onCancel: () => {
-          this.$router.go(-2)
+          this.$router.push('me')
         }
       })
     }
