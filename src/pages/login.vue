@@ -17,7 +17,7 @@
     <div class="a">忘记密码</div>
     <div class="sms-login">
         <div class="kksu">快速登录</div>
-        <font-icon name="weixin_denglu" fontsize="40px"></font-icon>
+        <font-icon name="weixin_denglu" fontsize="40px" @click.native="wxLogin"></font-icon>
     </div>
     <div class="bottom-tip a" @click="$router.replace({name: 'Register'})">
       新用户点此注册 <font-icon name="forward"></font-icon>
@@ -29,7 +29,8 @@ export default {
   data() {
     return {
       phone: '',
-      password: ''
+      password: '',
+      weiXinPlugin: window.api.require('weiXin')
     }
   },
   computed: {
@@ -37,7 +38,33 @@ export default {
       return this.phone == '' || this.password == ''
     }
   },
+  mounted() {
+    this.weiXinPlugin.registerApp(function(ret, err) {
+      if (ret.status) {
+        console.log(ret.status)
+      } else {
+        console.log(err.msg)
+      }
+    })
+  },
   methods: {
+    wxLogin() {
+      this.weiXinPlugin.auth(function(ret, err) {
+        if (ret.status) {
+          console.log(ret.token)
+        } else {
+          console.log(err.msg)
+        }
+        this.weiXinPlugin.getUserInfo(function(ret, err) {
+          if (ret.status) {
+            console.log(ret.token)
+            // TODO: 微信接口
+          } else {
+            console.log(err.msg)
+          }
+        })
+      })
+    },
     async submitBind() {
       if (this.isDisable) {
         return false

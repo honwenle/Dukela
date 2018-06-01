@@ -32,6 +32,7 @@ Vue.prototype.$imgUrl = url.imgUrl
 Vue.prototype.$baseURL = url.baseURL
 Vue.prototype.$http = http
 let isApp = navigator.userAgent.indexOf('dukela') > -1
+console.log(navigator.userAgent)
 Vue.prototype.isApp = isApp
 
 Vue.filter('isIncome', function (type) {
