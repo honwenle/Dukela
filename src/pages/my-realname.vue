@@ -13,7 +13,6 @@
       <cell title="性别"><span class="theme-color">{{['女', '男'][+dataInfo.Sex]}}</span></cell>
       <cell title="年龄"><span class="theme-color">{{dataInfo.Age}}</span></cell>
     </group>
-    <div class="btn-main" @click="$router.push({name: 'Realname'})">去认证</div>
   </div>
 </template>
 <script>

@@ -33,7 +33,12 @@
       </cell>
       <cell title="银行卡管理"
         :value="dataInfo.IsBank ? '已绑定' : '未绑定'"
-        :link="dataInfo.IsBank ? 'my-bankcard' : 'bindcard'">
+        :link="{
+          name: 'BindCard',
+          params: {
+            isBank: dataInfo.IsBank
+          }
+        }">
       </cell>
       <cell title="密码管理" link="my-password"></cell>
     </group>

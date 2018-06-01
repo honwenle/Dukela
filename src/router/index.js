@@ -34,7 +34,6 @@ import Messages from '@/pages/messages'
 import ChangePhone from '@/pages/change-phone'
 import CheckPhone from '@/pages/check-phone'
 import MyRealname from '@/pages/my-realname'
-import MyBankcard from '@/pages/my-bankcard'
 import MyPassword from '@/pages/my-password'
 
 import Version from '@/pages/version'
@@ -63,10 +62,6 @@ export default new Router({
     {
       component: PayPublic,
       path: '/pay-public'
-    },
-    {
-      component: MyBankcard,
-      path: '/my-bankcard'
     },
     {
       component: MyRealname,
