@@ -9,14 +9,7 @@
       <font-icon name="wo"></font-icon>
       <input v-model="phone" type="text" pattern="[0-9]*" placeholder="输入手机号">
     </div>
-    <div class="login-input">
-      <font-icon name="key"></font-icon>
-      <input v-model="vcode" class="vcode-input" type="number" placeholder="输入验证码">
-      <span class="a" v-if="msgStatus">
-        <countdown v-model="msgTime" :start="msgStatus" @on-finish="msgRenew"></countdown>秒后重新发送
-      </span>
-      <span v-else class="a" @click="sendMsg">获取验证码</span>
-    </div>
+    <sms-send v-model="vcode" :phone="phone" :type="4"></sms-send>
     <div class="fz12">点击注册，即代表同意<div class="a" @click="show1 = true">《TIME平台用户协议》</div></div>
     <div class="btn-main" :class="{'btn-disable': isDisable}" @click="submitBind">注册</div>
     <div class="bottom-tip a" @click="$router.replace({name: 'Login'})">
@@ -32,18 +25,16 @@
   </div>
 </template>
 <script>
-import { Countdown, XDialog } from 'vux'
+import { XDialog } from 'vux'
 export default {
   components: {
-    Countdown, XDialog
+    XDialog
   },
   data() {
     return {
       show1: false,
       phone: '',
-      vcode: '',
-      msgTime: 60,
-      msgStatus: false
+      vcode: ''
     }
   },
   computed: {
@@ -60,21 +51,6 @@ export default {
         this.$router.push({
           name: 'SetPassword'
         })
-      } else {
-        this.$vux.toast.text(data.Message)
-      }
-    },
-    msgRenew() {
-      this.msgTime = 60
-      this.msgStatus = false
-    },
-    async sendMsg() {
-      let data = await this.$store.dispatch('sendMsg', {
-        Phone: this.phone
-      })
-      if (data.Code == 1) {
-        this.$vux.toast.text('发送成功')
-        this.msgStatus = true
       } else {
         this.$vux.toast.text(data.Message)
       }

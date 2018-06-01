@@ -10,6 +10,7 @@ import http from './scripts/http'
 import FontIcon from '@/components/font-icon/index.vue'
 import DHeader from '@/components/dkl-header.vue'
 import List from '@/components/list.vue'
+import SmsSend from '@/components/sms-send'
 import { LoadingPlugin, ToastPlugin, XHeader,
   AlertPlugin, ConfirmPlugin,
   Group, Cell, Scroller, dateFormat } from 'vux'
@@ -21,6 +22,7 @@ Vue.component('font-icon', FontIcon)
 Vue.component('group', Group)
 Vue.component('cell', Cell)
 Vue.component('scroller', Scroller)
+Vue.component('sms-send', SmsSend)
 Vue.use(LoadingPlugin)
 Vue.use(ToastPlugin)
 Vue.use(AlertPlugin)
