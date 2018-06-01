@@ -6,7 +6,7 @@
         <div class="avatar flex" slot="title">
           <img :src="dataInfo.Avator">
           <div>
-            <div>{{hidePhone(dataInfo.Phone)}}</div>
+            <div>{{dataInfo.Phone | hidePhone}}</div>
             <div class="gray">ID:{{dataInfo.UserName}}</div>
           </div>
         </div>
@@ -18,7 +18,15 @@
       <cell title="性别" :value="genderList[+dataInfo.Sex]"></cell>
     </group>
     <group>
-      <cell title="手机号更换" :value="hidePhone(dataInfo.Phone)" link="change-phone"></cell>
+      <cell title="手机号更换"
+        :value="dataInfo.Phone | hidePhone"
+        :link="{
+          name: 'CheckPhone',
+          params: {
+            nextPath: 'change-phone'
+          }
+        }">
+      </cell>
       <cell title="实名认证"
         :value="dataInfo.IsCardID ? '已实名认证' : '还未进行实名认证'"
         :link="dataInfo.IsCardID ? 'my-realname' : 'realname'">
@@ -77,9 +85,6 @@ export default {
   methods: {
     wxBind() {
       // TODO: 微信绑定
-    },
-    hidePhone(tel) {
-      return tel.replace(/(\d{3})\d{4}(\d{4})/, '$1****$2')
     },
     showChangeNick() {
       this.nickName = this.dataInfo.FullName

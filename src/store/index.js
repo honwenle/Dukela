@@ -245,6 +245,12 @@ export default new Vuex.Store({
       return data
     },
     async checkMsg({state, commit}, dt) {
+      if (!state.SmsID) {
+        return {
+          Code: 2,
+          Message: '请先获取验证码'
+        }
+      }
       let {data} = await http.post('SysSMS/IsValidateCodeByDeviceID', {
         SmsID: state.SmsID,
         Phone: state.SmsPhone,

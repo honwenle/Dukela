@@ -37,6 +37,9 @@ Vue.prototype.isApp = isApp
 Vue.filter('isIncome', function (type) {
   return type < 3 ? 'record-income' : 'record-outcome'
 })
+Vue.filter('hidePhone', function (tel) {
+  return tel.replace(/(\d{3})\d{4}(\d{4})/, '$1****$2')
+})
 Vue.filter('typeName', function (type) {
   return ['无', '商品购买', '商品分红'][type]
 })
