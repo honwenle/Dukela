@@ -28,18 +28,24 @@ export default {
         this.reFresh()
       } else {
         if (pwd == this.pwd) {
+          // TODO: 区分是否有短信验证码
           let {data} = await this.$http.post('User/UpdateSellPassword', {
             SellPassword: pwd
           })
           if (data.Code == 1) {
-            this.$vux.alert.show({
-              title: '交易密码设置成功！',
-              content: '现可正常购买和入住！',
-              buttonText: '我知道了',
-              onHide: () => {
-                this.$router.push('me')
-              }
-            })
+            if (this.$store.state.UserInfo.isSetPwd) {
+              this.$vux.toast.text('修改成功')
+              this.$router.push('me')
+            } else {
+              this.$vux.alert.show({
+                title: '交易密码设置成功！',
+                content: '现可正常购买和入住！',
+                buttonText: '我知道了',
+                onHide: () => {
+                  this.$router.push('me')
+                }
+              })
+            }
           } else {
             this.$vux.toast.text(data.Message)
           }

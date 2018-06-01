@@ -40,6 +40,7 @@ export default {
         ValidateCode: this.vcode
       })
       if (data.Code == 1) {
+        this.$store.commit('clearSmsState')
         this.$vux.toast.text('修改成功')
         this.$router.push('me')
       }
