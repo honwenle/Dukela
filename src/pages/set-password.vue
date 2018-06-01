@@ -14,9 +14,6 @@
       <input v-model="pwd2" type="password" placeholder="再次输入密码">
     </div>
     <div class="btn-main" :class="{'btn-disable': isDisable}" @click="checkPassword">确定</div>
-    <div class="bottom-tip a" @click="$router.replace({name: 'Login'})">
-      已有账号，点此登录 <font-icon name="forward"></font-icon>
-    </div>
     <re-confirm
       :show="show1"
       go-name="realname"
@@ -26,6 +23,7 @@
   </div>
 </template>
 <script>
+// TODO: 区分改密码/设置密码/忘记密码
 import ReConfirm from '@/components/re-confirm'
 export default {
   components: {

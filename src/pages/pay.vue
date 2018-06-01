@@ -23,8 +23,8 @@
     </div>
     <div v-else>
       <div class="check-box">
-        <div class="check-title">余额支付</div>
-        <!-- <checklist v-model="forBalance" label-position="left" :options="[{key: 0, value: `账户余额：${balance}`}]"></checklist> -->
+        <!-- <div class="check-title">余额支付</div>
+        <checklist v-model="forBalance" label-position="left" :options="[{key: 0, value: `账户余额：${balance}`}]"></checklist> -->
         <div class="check-title">第三方支付</div>
         <checklist @click.native="forPublic = []" label-position="left" :max="1" v-model="forThird" :options="payList"></checklist>
         <template v-if="offline">

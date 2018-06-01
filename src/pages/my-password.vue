@@ -6,7 +6,7 @@
         :link="{
           name: 'CheckPhone',
           params: {
-            nextPath: 'chenge-pwd'
+            nextPath: 'set-password'
           }
         }"></cell>
       <cell title="交易密码"
