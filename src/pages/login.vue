@@ -49,7 +49,7 @@ export default {
       if (data.Code == 1) {
         this.$vux.toast.text('登录成功')
         this.$store.dispatch('getUserInfo')
-        this.$router.push({name: 'Me'})
+        this.$router.push({name: 'Me'}) // TODO: 哪来哪去
       } else {
         this.$vux.toast.text(data.Message)
       }

@@ -1,11 +1,14 @@
 <template>
-  <div class="login-input">
-    <font-icon name="key"></font-icon>
-    <input @input="$emit('input', vcode)" v-model="vcode" class="vcode-input" type="number" placeholder="输入验证码">
-    <span class="a" v-if="msgStatus">
-      <countdown v-model="msgTime" :start="msgStatus" @on-finish="msgRenew"></countdown>秒后重新发送
-    </span>
-    <span v-else class="a" @click="sendMsg">获取验证码</span>
+  <div>
+    <div class="login-input">
+      <font-icon name="key"></font-icon>
+      <input @input="$emit('input', vcode)" v-model="vcode" class="vcode-input" type="number" placeholder="输入验证码">
+      <span class="a" v-if="msgStatus">
+        <countdown v-model="msgTime" :start="msgStatus" @on-finish="msgRenew"></countdown>秒后重新发送
+      </span>
+      <span v-else class="a" @click="sendMsg">获取验证码</span>
+    </div>
+    <div class="tip">如您无法收验证码，请联系客服：0577-86588682</div>
   </div>
 </template>
 <script>
@@ -56,4 +59,7 @@ export default {
 
 <style scoped lang="less">
 @import '../styles/login.less';
+.tip{
+  font-size: 12px;
+}
 </style>

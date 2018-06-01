@@ -9,7 +9,6 @@
         {{dataInfo.Phone | hidePhone}}
       </div>
       <sms-send v-model="vcode" :phone="dataInfo.Phone" :type="1"></sms-send>
-      <div class="tip">如您无法收验证码，请联系客服：400-000-0000</div>
       <div class="btn-main" @click="goNext">确定</div>
     </div>
   </div>
@@ -40,9 +39,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.tip{
-  font-size: 12px;
-}
-</style>
