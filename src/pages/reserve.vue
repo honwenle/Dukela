@@ -3,8 +3,8 @@
     <div class="theme-bg">
       <d-header :tran="true">入住预定</d-header>
       <div class="top-tran">
-        <div>大床房</div>
-        <span class="feature-item" v-for="(item, i) in ['厨房','空调','洗衣机','独卫']" :key="i">{{item}}</span>
+        <div>{{detailData.TypeName}}</div>
+        <div>{{detailData.EquipmentContent}}</div>
       </div>
     </div>
     <group label-width="100px">
@@ -16,12 +16,15 @@
       <datetime title="离开时间" placeholder="请选择"></datetime>
     </group>
     <group>
-      <cell title="商品抵扣" :link="{name: 'Pay'}"></cell>
+      <cell title="商品抵扣" link="deduct"></cell>
     </group>
     <div class="bottom-bar">
       <div class="flex">
-        <div class="flex-2 text-right">现金:400元　T值:395元</div>
-        <div class="flex-1 btn-sm" @click="submitOrder">确定无误</div>
+        <div class="flex-2 text-right">
+          <div class="price">{{detailData.RoomPrice}}</div>
+          <span class="gray">已抵扣50元</span>
+        </div>
+        <div class="flex-1 btn-sm" @click="submitOrder">确定预定</div>
       </div>
     </div>
   </div>
@@ -30,14 +33,16 @@
 import {XInput, XNumber, Datetime} from 'vux'
 export default {
   components: {XInput, XNumber, Datetime},
+  computed: {
+    detailData() {
+      return this.$store.state.RoomDetail
+    }
+  },
   methods: {
     submitOrder() {
       // TODO: 提交订单
       this.$router.push({
-        name: 'Pay',
-        query: {
-          deduct: 1
-        }
+        name: 'Pay'
       })
     }
   }

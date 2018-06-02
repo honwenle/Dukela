@@ -12,7 +12,7 @@
     </group>
     <div class="bottom-bar">
       <div class="flex">
-        <div class="flex-2 text-right theme-color fz14">总价￥{{amount}}</div>
+        <div class="flex-2 text-right theme-color fz14">总价<div class="price">{{amount}}</div></div>
         <div class="flex-1 btn-sm" @click="submitOrder">确定买入</div>
       </div>
     </div>

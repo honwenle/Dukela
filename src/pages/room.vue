@@ -18,7 +18,7 @@
         </div>
       </div>
     </div>
-    <div class="h1">房间简介</div>
+    <div class="h1">规则说明</div>
     <div class="group cell">
       <div class="p" v-html="detailData.EquipmentContent"></div>
       <div class="p" v-html="detailData.RoomImportContent"></div>
@@ -28,7 +28,7 @@
       <div class="p" v-html="detailData.RoomContent"></div>
     </div>
     <div class="bottom-bar">
-      <span class="theme-color">￥<span class="big">{{detailData.RoomPrice}}</span></span>
+      <span class="price">{{detailData.RoomPrice}}</span>
       <div class="float-right btn-inline" @click="goOrder">立即预定</div>
     </div>
   </div>

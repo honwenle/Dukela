@@ -21,19 +21,17 @@
     <div class="h1">房间预定</div>
     <div class="group cell">
       <div class="room-list">
-        <div class="room flex" v-for="i in 3" :key="i">
+        <div class="room flex" v-for="item in roomList" :key="item.ID">
           <div class="flex-1">
-            <img class="img" src="https://o5omsejde.qnssl.com/demo/test1.jpg?type=webp" alt="">
+            <img class="img" src="https://o5omsejde.qnssl.com/demo/test1.jpg?type=webp" alt="xxx">
           </div>
           <div class="flex-4">
-            <div>高级大床房30㎡</div>
-            <div>
-              <span class="gray feature-item" v-for="(item, i) in ['厨房','空调','洗衣机','独卫']" :key="i">{{item}}</span>
-            </div>
-            <div class="theme-color">￥190</div>
+            <div>{{item.BeadhouseName}}</div>
+            <div class="gray">{{item.EquipmentContent}}</div>
+            <div class="price">{{item.RoomPrice}}</div>
           </div>
           <div class="flex-2 center">
-            <span class="btn-inline" style="padding: 3px 26px" @click="goRoom(i)">预定</span>
+            <span class="btn-inline" style="padding: 3px 26px" @click="goRoom(item.ID)">预定</span>
           </div>
         </div>
       </div>
@@ -68,6 +66,9 @@ export default {
     },
     detailData() {
       return this.$store.state.VillaDetail
+    },
+    roomList() {
+      return this.$store.state.RoomList
     }
   },
   mounted() {

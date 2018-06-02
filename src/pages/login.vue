@@ -65,14 +65,16 @@ export default {
         } else {
           console.log(err.msg)
         }
-        this.weiXinPlugin.getUserInfo(function(ret, err) {
-          if (ret.status) {
-            console.log(ret.token)
-            // TODO: 微信接口
-          } else {
-            console.log(err.msg)
-          }
-        })
+      })
+    },
+    getWxUser() {
+      this.weiXinPlugin.getUserInfo(function(ret, err) {
+        if (ret.status) {
+          console.log(ret.token)
+          // TODO: 微信接口
+        } else {
+          console.log(err.msg)
+        }
       })
     },
     async submitBind() {

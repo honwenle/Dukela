@@ -64,6 +64,7 @@ export default {
 }
 </script>
 <style scoped>
+/* TODO: banner一起滑动 */
 /* .list{
   top: calc(180px + 67px);
   height: calc(100vh - 180px - 67px - 50px);

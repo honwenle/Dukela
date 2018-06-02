@@ -15,6 +15,7 @@ import Goods from '@/pages/goods'
 import Villa from '@/pages/villa'
 import Room from '@/pages/room'
 import Reserve from '@/pages/reserve'
+import Deduct from '@/pages/deduct'
 import Result from '@/pages/result'
 import Buy from '@/pages/buy'
 import PayPublic from '@/pages/pay-public'
@@ -43,6 +44,10 @@ Vue.use(Router)
 export default new Router({
   // mode: 'history',
   routes: [
+    {
+      component: Deduct,
+      path: '/deduct'
+    },
     {
       component: MyPassword,
       path: '/my-password'
