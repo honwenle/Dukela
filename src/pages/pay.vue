@@ -9,39 +9,25 @@
       </div>
       <div class="theme-color">总价：{{detailData.Amount}}元</div>
     </div>
-    <div v-if="deduct">
-      <div class="check-box">
-        <div class="check-title">使用商品抵扣 <span class="orange">(只需390元)</span></div>
-        <checklist :max="1" label-position="left" :options="goodsList"></checklist>
-      </div>
-      <div class="bottom-bar">
-        <div class="flex">
-          <div class="flex-2 text-right">商品抵扣100元，剩余需支付<span class="theme-color">200</span>元</div>
-          <div class="flex-1 btn-sm" @click="afterDeduct">下一步</div>
+    <div class="check-box">
+      <!-- <div class="check-title">余额支付</div>
+      <checklist v-model="forBalance" label-position="left" :options="[{key: 0, value: `账户余额：${balance}`}]"></checklist> -->
+      <div class="check-title">第三方支付</div>
+      <checklist @click.native="forPublic = []" label-position="left" :max="1" v-model="forThird" :options="payList"></checklist>
+      <template v-if="offline">
+        <div class="check-title">
+          线下转账
+          <popover placement="right" style="display: inline-block">
+            <div slot="content" class="popover-content">
+              需要24小时之内打款，订单3个工作日内未打款将失效，打款5个工作日内确认。
+            </div>
+            <font-icon name="help" fontsize="22px" color="#fe5900"></font-icon>
+          </popover>
         </div>
-      </div>
+        <checklist label-position="left" @click.native="forThird = []" v-model="forPublic" :options="['公司对公账号']"></checklist>
+      </template>
     </div>
-    <div v-else>
-      <div class="check-box">
-        <!-- <div class="check-title">余额支付</div>
-        <checklist v-model="forBalance" label-position="left" :options="[{key: 0, value: `账户余额：${balance}`}]"></checklist> -->
-        <div class="check-title">第三方支付</div>
-        <checklist @click.native="forPublic = []" label-position="left" :max="1" v-model="forThird" :options="payList"></checklist>
-        <template v-if="offline">
-          <div class="check-title">
-            线下转账
-            <popover placement="right" style="display: inline-block">
-              <div slot="content" class="popover-content">
-                需要24小时之内打款，订单3个工作日内未打款将失效，打款5个工作日内确认。
-              </div>
-              <font-icon name="help" fontsize="22px" color="#fe5900"></font-icon>
-            </popover>
-          </div>
-          <checklist label-position="left" @click.native="forThird = []" v-model="forPublic" :options="['公司对公账号']"></checklist>
-        </template>
-      </div>
-      <div class="btn-full" @click="pay">确认支付{{detailData.Amount}}元</div>
-    </div>
+    <div class="btn-full" @click="pay">确认支付{{detailData.Amount}}元</div>
     <popup v-model="isShowPassword">
       <password @finishpwd="payBalance"></password>
     </popup>
@@ -58,24 +44,11 @@ export default {
     return {
       id: this.$route.query.id,
       offline: this.$route.query.offline,
-      deduct: this.$route.query.deduct,
       isShowPassword: false,
       balance: 500,
       forThird: [],
       forPublic: [],
       forBalance: [],
-      goodsList: [
-        {
-          key: 1,
-          value: '山庄1项目30㎡',
-          inlineDesc: '商品数：500份 T数：500个'
-        },
-        {
-          key: 2,
-          value: '山庄2项目30㎡',
-          inlineDesc: '商品数：500份 T数：500个'
-        }
-      ],
       payList: [
         {
           key: 2,
@@ -101,9 +74,6 @@ export default {
     this.$store.dispatch('getOrder', this.id)
   },
   methods: {
-    afterDeduct() {
-      this.deduct = 0
-    },
     onFinish() {
       console.log('计时结束')
     },

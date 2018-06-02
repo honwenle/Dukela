@@ -16,8 +16,11 @@
       <datetime title="离开时间" placeholder="请选择"></datetime>
     </group>
     <group>
-      <cell title="商品抵扣" link="deduct"></cell>
+      <cell title="商品抵扣" link="deduct" value="无可用商品"></cell>
     </group>
+    <div class="agreement">
+      <input type="checkbox"> 已阅读《入住协议》
+    </div>
     <div class="bottom-bar">
       <div class="flex">
         <div class="flex-2 text-right">
@@ -56,5 +59,8 @@ export default {
   margin: 0 12px;
   padding: 25px 20px 20px;
   color: #fff;
+}
+.agreement{
+  padding: 15px;
 }
 </style>
