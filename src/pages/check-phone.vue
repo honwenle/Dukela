@@ -2,13 +2,21 @@
   <div>
     <d-header>验证手机</d-header>
     <div class="center">
-      <div style="padding-top: 50px">
-        短信将会发送到您的手机
+      <div v-if="inputPhone" style="padding: 50px 0 10px;">
+        <div class="login-input">
+          <font-icon name="wo"></font-icon>
+          <input v-model="phone" type="text" pattern="[0-9]*" placeholder="输入手机号">
+        </div>
       </div>
-      <div style="padding-bottom: 10px">
-        {{dataInfo.Phone | hidePhone}}
+      <div v-else style="padding: 50px 0 10px;">
+        <div>
+          短信将会发送到您的手机
+        </div>
+        <div>
+          {{dataInfo.Phone | hidePhone}}
+        </div>
       </div>
-      <sms-send v-model="vcode" :phone="dataInfo.Phone" :type="1"></sms-send>
+      <sms-send v-model="vcode" :phone="inputPhone ? phone : dataInfo.Phone" :type="smsType"></sms-send>
       <div class="btn-main" @click="goNext">确定</div>
     </div>
   </div>
@@ -22,7 +30,10 @@ export default {
   },
   data() {
     return {
-      vcode: ''
+      phone: '',
+      vcode: '',
+      smsType: this.$route.params.smsType || 0,
+      inputPhone: this.$route.params.inputPhone || false
     }
   },
   methods: {
@@ -39,3 +50,6 @@ export default {
   }
 }
 </script>
+<style scoped>
+@import '../styles/login.less';
+</style>

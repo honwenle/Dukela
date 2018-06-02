@@ -23,6 +23,7 @@
         :link="{
           name: 'CheckPhone',
           params: {
+            smsType: 6,
             nextPath: 'change-phone'
           }
         }">

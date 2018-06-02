@@ -14,7 +14,7 @@
       <input v-model="password" type="password" placeholder="输入密码">
     </div>
     <div class="btn-main" :class="{'btn-disable': isDisable}" @click="submitBind">登录</div>
-    <div class="a">忘记密码</div>
+    <div class="a" @click="forgetPwd">忘记密码</div>
     <div class="sms-login">
         <div class="kksu">快速登录</div>
         <font-icon name="weixin_denglu" fontsize="40px" @click.native="wxLogin"></font-icon>
@@ -48,6 +48,16 @@ export default {
     })
   },
   methods: {
+    forgetPwd() {
+      this.$router.push({
+        name: 'CheckPhone',
+        params: {
+          inputPhone: true,
+          smsType: 5,
+          nextPath: 'set-password'
+        }
+      })
+    },
     wxLogin() {
       this.weiXinPlugin.auth(function(ret, err) {
         if (ret.status) {

@@ -6,6 +6,7 @@
         :link="{
           name: 'CheckPhone',
           params: {
+            smsType: 5,
             nextPath: 'set-password'
           }
         }"></cell>
@@ -14,6 +15,7 @@
         :link="{
           name: 'CheckPhone',
           params: {
+            smsType: 5,
             nextPath: 'set-tran-pwd'
           }
         }"></cell>
