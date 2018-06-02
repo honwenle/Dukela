@@ -49,7 +49,10 @@ export default {
       })
       if (data.Code == 1) {
         this.$router.push({
-          name: 'SetPassword'
+          name: 'SetPassword',
+          params: {
+            type: 1
+          }
         })
       } else {
         this.$vux.toast.text(data.Message)

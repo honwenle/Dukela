@@ -1,11 +1,11 @@
 <template>
-  <div class="wrap-fff center">
+  <div class="center">
     <d-header>设置密码</d-header>
-    <div class="top">
+    <div class="top" v-show="isReg">
       <div class="icon icon-users"></div>
       <div class="top-title">设置登录密码</div>
     </div>
-    <div class="login-input">
+    <div class="login-input" style="margin-top: 50px">
       <font-icon name="key"></font-icon>
       <input v-model="pwd1" type="password" placeholder="输入密码">
     </div>
@@ -23,7 +23,7 @@
   </div>
 </template>
 <script>
-// TODO: 区分改密码/设置密码/忘记密码
+import { mapState } from 'vuex'
 import ReConfirm from '@/components/re-confirm'
 export default {
   components: {
@@ -31,6 +31,7 @@ export default {
   },
   data() {
     return {
+      isReg: this.$route.params.type,
       show1: false,
       pwd1: '',
       pwd2: ''
@@ -39,14 +40,14 @@ export default {
   computed: {
     isDisable() {
       return this.pwd1 == '' || this.pwd2 == ''
-    }
+    },
+    ...mapState([
+      'SmsID',
+      'SmsPhone',
+      'SmsVCode'
+    ])
   },
   methods: {
-    goRealname() {
-      this.$router.replace({
-        name: 'Realname'
-      })
-    },
     checkPassword() {
       if (this.isDisable) {
         return false
@@ -59,7 +60,30 @@ export default {
         this.$vux.toast.text('再次输入密码不一致')
         return false
       }
-      this.submitPassword()
+      if(this.isReg) {
+        this.submitPassword()
+      } else {
+        this.updatePwd()
+      }
+    },
+    async updatePwd() {
+      let {data} = await this.$http.post('User/UpdatePassWord', {
+        SmsID: this.SmsID,
+        Phone: this.SmsPhone,
+        ValidateCode: this.SmsVCode,
+        PassWord: this.pwd1
+      })
+      if (data.Code == 1) {
+        this.$vux.alert.show({
+          title: '修改成功',
+          content: '请重新登录',
+          onHide: () => {
+            this.$router.push('login')
+          }
+        })
+      } else {
+        this.$vux.toast.text(data.Message)
+      }
     },
     async submitPassword() {
       let data = await this.$store.dispatch('register', {

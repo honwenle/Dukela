@@ -104,8 +104,7 @@ export default new Router({
     }, {
       path: '/set-password',
       name: 'SetPassword',
-      component: SetPassword,
-      meta: { keepAlive: true }
+      component: SetPassword
     }, {
       path: '/realname',
       name: 'Realname',
