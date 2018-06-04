@@ -5,9 +5,13 @@
       action-name="getUserProduct"
       :dataLength="goodsList.length"
       :height="`-${67}px`">
-      <checker type="checkbox" v-model="deductList" default-item-class="checker-item" selected-item-class="checker-on">
+      <checker v-model="deductId"
+        default-item-class="checker-item"
+        selected-item-class="checker-on"
+        @on-change="setDeduct">
         <checker-item v-for="item in goodsList" :key="item.ID" :value="item.ID">
           {{item.ProductName}}
+          <font-icon :name="item.ID == deductId ? 'radio' : 'radio1'"></font-icon>
         </checker-item>
       </checker>
     </list>
@@ -21,12 +25,17 @@ export default {
   },
   data() {
     return {
-      deductList: []
+      deductId: ''
     }
   },
   computed: {
     goodsList() {
       return this.$store.state.UserProduct
+    }
+  },
+  methods: {
+    setDeduct(val) {
+      this.$store.commit('setDeductId', val)
     }
   }
 }
@@ -34,8 +43,5 @@ export default {
 <style scoped>
 .checker-item{
   display: block;
-}
-.checker-on{
-  color: #f00;
 }
 </style>

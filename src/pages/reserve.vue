@@ -16,7 +16,12 @@
       <datetime title="离开时间" placeholder="请选择"></datetime>
     </group>
     <group>
-      <cell title="商品抵扣" link="deduct" value="无可用商品"></cell>
+      <cell title="商品抵扣" link="deduct">
+        <div v-if="goodsCount" class="deduct-tag">
+          {{goodsCount}}
+        </div>
+        <div v-else>无可用商品</div>
+      </cell>
     </group>
     <div class="agreement">
       <input type="checkbox"> 已阅读《入住协议》
@@ -39,7 +44,21 @@ export default {
   computed: {
     detailData() {
       return this.$store.state.RoomDetail
+    },
+    VillaData() {
+      return this.$store.state.VillaDetail
+    },
+    goodsCount() {
+      return this.$store.state.goodsCount
+    },
+    deductId() {
+      return this.$store.state.deductId
     }
+  },
+  mounted() {
+    this.$store.dispatch('getUserProduct', {
+      bid: this.VillaData.ID
+    })
   },
   methods: {
     submitOrder() {

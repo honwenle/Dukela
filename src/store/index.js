@@ -24,7 +24,9 @@ export default new Vuex.Store({
     UserProduct: [],
     UserOrderList: [],
     UserMessage: [],
-    ProductStream: []
+    ProductStream: [],
+    deductId: '',
+    goodsCount: 0
   },
   getters: {
     getRecordDetail: (state) => (id) => {
@@ -35,6 +37,9 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    setDeductId(state, id) {
+      state.deductId = id
+    },
     setUserMessage(state, items = []) {
       state.UserMessage = state.UserMessage.concat(items)
     },
@@ -106,11 +111,13 @@ export default new Vuex.Store({
     setUserInfo(state, data) {
       state.UserInfo = data
     },
-    setUserProduct(state, items = []) {
+    setUserProduct(state, items = [], count) {
       state.UserProduct = state.UserProduct.concat(items)
+      state.goodsCount = count
     },
     clearUserProduct(state) {
       state.UserProduct = []
+      state.goodsCount = 0
     },
     setProductStream(state, items = []) {
       state.ProductStream = state.ProductStream.concat(items)
@@ -151,12 +158,13 @@ export default new Vuex.Store({
       data.Code == 1 && commit('setProductStream', data.List)
       return data.Count || 0
     },
-    async getUserProduct({commit}, page = 1) {
-      let {data} = await http.post('UserProduct/GetModelListByUserID', {
+    async getUserProduct({commit}, {page = 1, bid = ''}) {
+      let {data} = await http.post('UserProduct/GetModelListByUserAndBeadhouse', {
         pageSize: PAGE_SIZE,
         pageIndex: page,
         orderby: '',
-        strSearchName: ''
+        strSearchName: '',
+        BeadhouseID: bid
       })
       page == 1 && commit('clearUserProduct')
       data.Code == 1 && commit('setUserProduct', data.List)
@@ -164,7 +172,10 @@ export default new Vuex.Store({
     },
     async getUserInfo({commit}, id) {
       let {data} = await http.post('User/GetModel')
-      data.Code == 1 && commit('setUserInfo', data.UserInfo)
+      if (data.Code == 1) {
+        data.UserInfo.IsSellPassword = data.IsSellPassword
+        commit('setUserInfo', data.UserInfo)
+      }
     },
     async wxPay({commit}, dt) {
       let {data} = await http.post('Pay/WxPay', dt)
