@@ -12,7 +12,7 @@
           <span>{{VillaData.ProvinceName+VillaData.CityName+VillaData.AreaName+VillaData.Address}}</span>
         </div>
         <div>
-          <a :href="`tel:${VillaData.xxx}`" class="theme-color">
+          <a :href="`tel:${VillaData.ContactTel}`" class="theme-color">
             <font-icon name="phone"></font-icon>
           </a>
         </div>

@@ -12,7 +12,7 @@
           <span>{{detailData.ProvinceName+detailData.CityName+detailData.AreaName+detailData.Address}}</span>
         </div>
         <div>
-          <a :href="`tel:${detailData.xxx}`" class="theme-color">
+          <a :href="`tel:${detailData.ContactTel}`" class="theme-color">
             <font-icon name="phone"></font-icon>
           </a>
         </div>
@@ -23,10 +23,10 @@
       <div class="room-list">
         <div class="room flex" v-for="item in roomList" :key="item.ID">
           <div class="flex-1">
-            <img class="img" src="https://o5omsejde.qnssl.com/demo/test1.jpg?type=webp" alt="xxx">
+            <img class="img" :src="$imgUrl + item.BigPicUrl">
           </div>
           <div class="flex-4">
-            <div class="ellipsis">{{item.BeadhouseName}}</div>
+            <div class="ellipsis">{{item.TypeName}}</div>
             <div class="gray">{{item.EquipmentContent}}</div>
             <div class="price">{{item.RoomPrice}}</div>
           </div>

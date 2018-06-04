@@ -16,7 +16,7 @@
         </group>
         <group class="box" :gutter="0">
           <cell title="支付方式：" :value="detailData.PayType"></cell>
-          <cell title="支付流水号：" :value="detailData.xxx"></cell>
+          <cell title="支付流水号：" :value="detailData.Trade_no"></cell>
           <cell title="订单号：" :value="detailData.OrderNumber"></cell>
           <cell title="支付时间：" :value="detailData.PayDate | DATEFORMAT"></cell>
           <cell title="创建时间：" :value="detailData.CreateTime | DATEFORMAT"></cell>
