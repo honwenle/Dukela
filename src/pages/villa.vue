@@ -26,7 +26,7 @@
             <img class="img" src="https://o5omsejde.qnssl.com/demo/test1.jpg?type=webp" alt="xxx">
           </div>
           <div class="flex-4">
-            <div>{{item.BeadhouseName}}</div>
+            <div class="ellipsis">{{item.BeadhouseName}}</div>
             <div class="gray">{{item.EquipmentContent}}</div>
             <div class="price">{{item.RoomPrice}}</div>
           </div>
