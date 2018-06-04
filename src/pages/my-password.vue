@@ -11,7 +11,7 @@
           }
         }"></cell>
       <cell title="交易密码"
-        :value="dataInfo.xxx ? '' : '暂无密码'"
+        :value="dataInfo.IsSellPassword ? '' : '暂无密码'"
         :link="{
           name: 'CheckPhone',
           params: {

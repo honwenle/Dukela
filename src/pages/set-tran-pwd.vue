@@ -33,7 +33,7 @@ export default {
             SellPassword: pwd
           })
           if (data.Code == 1) {
-            if (this.$store.state.UserInfo.xxx) {
+            if (this.$store.state.UserInfo.IsSellPassword) {
               this.$vux.toast.text('修改成功')
               this.$router.push('me')
             } else {
