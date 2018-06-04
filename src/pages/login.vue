@@ -3,7 +3,7 @@
     <d-header></d-header>
     <div class="top">
       <div class="icon icon-users"></div>
-      <div class="top-title">登录</div>
+      <div class="top-title" @click="wxCancelAuth">登录</div>
     </div>
     <div class="login-input">
       <font-icon name="wo"></font-icon>
@@ -58,10 +58,16 @@ export default {
         }
       })
     },
+    wxCancelAuth() {
+      this.weiXinPlugin.cancelAuth(function(ret, err) {
+        alert(ret.status)
+      })
+    },
     wxLogin() {
-      this.weiXinPlugin.auth(function(ret, err) {
+      this.weiXinPlugin.auth((ret, err) => {
         if (ret.status) {
           console.log(ret.token)
+          this.getWxUser()
         } else {
           console.log(err.msg)
         }
@@ -71,6 +77,7 @@ export default {
       this.weiXinPlugin.getUserInfo(function(ret, err) {
         if (ret.status) {
           console.log(ret.token)
+          alert(JSON.stringify(ret))
           // TODO: 微信接口
         } else {
           console.log(err.msg)

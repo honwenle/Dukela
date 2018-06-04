@@ -43,6 +43,7 @@ export default {
   },
   methods: {
     submitOrder() {
+      // TODO: 阅读协议
       // TODO: 提交订单
       this.$router.push({
         name: 'Pay'
