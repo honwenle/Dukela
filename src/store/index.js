@@ -300,10 +300,6 @@ export default new Vuex.Store({
       }
       return data
     },
-    async bindCard({commit}, dt) {
-      let {data} = await http.post('User/BindBank', dt)
-      return data
-    },
     async buyProduct({commit}, dt) {
       let {data} = await http.post('ProductOrderIn/Addinfo', dt)
       return data

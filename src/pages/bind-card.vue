@@ -11,7 +11,7 @@
         text-align="right"></x-input>
       <selector
         title="银行"
-        :disabled="isBank"
+        :readonly="isBank"
         v-model="Bank"
         :options="bankList"
         placeholder="请选择银行"
@@ -39,7 +39,7 @@
         placeholder-align="right"
         text-align="right"></x-input>
     </group>
-    <div v-if="isBank" class="btn-main" @click="bindCard">更换银行卡</div>
+    <div v-if="isBank" class="btn-main" @click="isBank = false">更换银行卡</div>
     <div v-else class="btn-main" @click="bindCard">确定</div>
   </div>
 </template>
@@ -70,7 +70,6 @@ export default {
         '平安银行',
         '其他'
       ],
-      // TODO: 读取已绑卡信息
       formData: {
         Bank: '',
         BankCardNo: '',
@@ -79,12 +78,25 @@ export default {
       }
     }
   },
+  mounted() {
+    this.isBank && this.getBankInfo()
+  },
   methods: {
+    async getBankInfo() {
+      let {data} = await this.$http.post('UserBank/GetList', {
+        pageSize: 1,
+        pageIndex: 1
+      })
+      if (data.Code == 1) {
+        this.formData = JSON.parse(data.List)[0]
+        this.Bank = this.bankList.indexOf(this.formData.Bank) > -1 ? this.formData.Bank : '其他'
+      }
+    },
     async bindCard() {
       if (this.Bank != '其他' && this.Bank != '') {
         this.formData.Bank = this.Bank
       }
-      let data = await this.$store.dispatch('bindCard', this.formData)
+      let {data} = await this.$http.post(`User/${this.formData.ID ? 'Edit' : ''}BindBank`, this.formData)
       if (data.Code == 1) {
         this.$vux.toast.text('绑定成功')
         this.$router.back()

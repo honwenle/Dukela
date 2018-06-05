@@ -28,6 +28,7 @@
   </div>
 </template>
 <script>
+// TODO: 不使用
 import {Checker, CheckerItem} from 'vux'
 export default {
   components: {

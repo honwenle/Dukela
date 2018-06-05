@@ -85,6 +85,7 @@ export default {
   methods: {
     async submitOrder() {
       // TODO: 阅读协议
+      // TODO: 存在抵扣 弹密码框
       let {data} = await this.$http.post('BeadhouseRoomReserveOrder/ReserveOrder', {
         BeadhouseID: this.VillaData.ID,
         RoomTypeID: this.detailData.ID,

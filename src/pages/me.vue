@@ -43,7 +43,7 @@ export default {
   },
   mounted() {
     this.UserKey && this.$store.dispatch('getUserInfo')
-    this.UserKey && this.$store.dispatch('getUserMessage')
+    this.UserKey && this.$store.dispatch('getUserMessage', {})
   }
 }
 </script>
