@@ -4,15 +4,15 @@
       都可拉
       <router-link v-if="!UserKey" slot="right" to="login" style="color: #60b63c">登录/注册</router-link>
     </d-header>
-    <div class="top">
-      <img src="../assets/banenr.png" alt="">
-    </div>
-    <div class="list">
       <list
         action-name="getHomeList"
         :dataLength="dataList.length"
-        :height="`-${67 + 180 + 50}px`"
+        :height="`-${67 + 50}px`"
       >
+    <div class="list">
+    <div class="top">
+      <img src="../assets/banenr.png" alt="">
+    </div>
         <div style="padding: 0 16px;">
           <div class="home-item" v-for="(item, i) in dataList" :key="i">
             <div class="bb" style="padding: 6px 15px">
@@ -34,8 +34,8 @@
             </div>
           </div>
         </div>
-      </list>
     </div>
+      </list>
   </div>
 </template>
 <script>
@@ -64,15 +64,6 @@ export default {
 }
 </script>
 <style scoped>
-/* TODO: banner一起滑动 */
-/* .list{
-  top: calc(180px + 67px);
-  height: calc(100vh - 180px - 67px - 50px);
-  width: 100%;
-  box-sizing: border-box;
-  position: absolute;
-  overflow: hidden;
-} */
 .top{
   height: 180px;
 }
