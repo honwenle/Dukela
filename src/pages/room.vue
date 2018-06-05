@@ -72,6 +72,7 @@ export default {
   },
   methods: {
     goOrder() {
+      this.$store.commit('clearDeduct')
       this.$router.push({
         name: 'Reserve'
       })

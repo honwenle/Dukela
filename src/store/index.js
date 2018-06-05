@@ -4,6 +4,7 @@ import http from '../scripts/http'
 import {dateFormat} from 'vux'
 Vue.use(Vuex)
 const PAGE_SIZE = 10
+// TODO: 数据清理
 export default new Vuex.Store({
   state: {
     homeList: [],
@@ -25,8 +26,9 @@ export default new Vuex.Store({
     UserOrderList: [],
     UserMessage: [],
     ProductStream: [],
-    deductId: '',
-    goodsCount: 0
+    deduct: {},
+    goodsCount: 0,
+    TRate: 1
   },
   getters: {
     getRecordDetail: (state) => (id) => {
@@ -37,8 +39,14 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    setDeductId(state, id) {
-      state.deductId = id
+    setTRate(state, tr) {
+      state.TRate = tr
+    },
+    setDeduct(state, data) {
+      state.deduct = data
+    },
+    clearDeduct(state) {
+      state.deduct = {}
     },
     setUserMessage(state, items = []) {
       state.UserMessage = state.UserMessage.concat(items)
@@ -111,7 +119,7 @@ export default new Vuex.Store({
     setUserInfo(state, data) {
       state.UserInfo = data
     },
-    setUserProduct(state, items = [], count) {
+    setUserProduct(state, {items = [], count}) {
       state.UserProduct = state.UserProduct.concat(items)
       state.goodsCount = count
     },
@@ -127,7 +135,13 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    async getUserMessage({commit}, page = 1) {
+    async getTRate({commit}) {
+      let {data} = await http.post('SysConfig/GetModel', {
+        ID: 1
+      })
+      data.Code == 1 && commit('setTRate', data.Info.TProportion)
+    },
+    async getUserMessage({commit}, {page = 1}) {
       let {data} = await http.post('UserMessage/GetList', {
         pageSize: PAGE_SIZE,
         pageIndex: page,
@@ -137,7 +151,7 @@ export default new Vuex.Store({
       data.Code == 1 && commit('setUserMessage', data.List)
       return data.Count || 0
     },
-    async getUserOrderList({commit}, page = 1) {
+    async getUserOrderList({commit}, {page = 1}) {
       let {data} = await http.post('ProductOrderIn/GetList', {
         pageSize: PAGE_SIZE,
         pageIndex: page,
@@ -147,7 +161,7 @@ export default new Vuex.Store({
       data.Code == 1 && commit('setUserOrderList', JSON.parse(data.List))
       return data.Count || 0
     },
-    async getProductStream({commit}, page = 1) {
+    async getProductStream({commit}, {page = 1}) {
       let {data} = await http.post('UserProductStream/GetModelListByUserID', {
         pageSize: PAGE_SIZE,
         pageIndex: page,
@@ -167,7 +181,10 @@ export default new Vuex.Store({
         BeadhouseID: bid
       })
       page == 1 && commit('clearUserProduct')
-      data.Code == 1 && commit('setUserProduct', data.List)
+      data.Code == 1 && commit('setUserProduct', {
+        items: data.List,
+        count: data.Count
+      })
       return data.Count || 0
     },
     async getUserInfo({commit}, id) {
@@ -224,7 +241,7 @@ export default new Vuex.Store({
       let {data} = await http.post('Product/GetModel', dt)
       data.Code == 1 && commit('setProduct', data.Model)
     },
-    async getVillaList({commit}, page = 1) {
+    async getVillaList({commit}, {page = 1}) {
       let {data} = await http.post('Beadhouse/GetList', {
         pageSize: PAGE_SIZE,
         pageIndex: page,
@@ -235,7 +252,7 @@ export default new Vuex.Store({
       data.Code == 1 && commit('setVillaList', JSON.parse(data.List))
       return data.Count || 0
     },
-    async getHomeList({commit}, page = 1) {
+    async getHomeList({commit}, {page = 1}) {
       let {data} = await http.post('Product/GetList', {
         pageSize: PAGE_SIZE,
         pageIndex: page,

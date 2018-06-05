@@ -29,7 +29,12 @@ export default {
   props: {
     actionName: [String],
     dataLength: [Number],
-    height: [String]
+    height: [String],
+    paramsData: {
+      default() {
+        return {}
+      }
+    }
   },
   mounted() {
     this.loadData()
@@ -47,7 +52,10 @@ export default {
     },
     async loadData() {
       this.onFetching = true
-      let count = await this.$store.dispatch(this.actionName, this.page)
+      let count = await this.$store.dispatch(this.actionName, {
+        page: this.page,
+        ...this.paramsData
+      })
       this.$refs.vuxscroller.donePulldown()
       this.$nextTick(() => {
         this.$refs.vuxscroller.reset()
