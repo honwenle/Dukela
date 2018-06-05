@@ -7,14 +7,14 @@
         <clocker v-if="detailData.CreateTime" :time="detailData.CreateTime | PAYDATEFORMAT" format="%M：%S" @on-finish="onFinish">
         </clocker>
       </div>
-      <div class="theme-color">总价：{{detailData.Amount}}元</div>
+      <div class="theme-color">总价：{{detailData.PayAmount}}元</div>
     </div>
     <div class="check-box">
       <!-- <div class="check-title">余额支付</div>
       <checklist v-model="forBalance" label-position="left" :options="[{key: 0, value: `账户余额：${balance}`}]"></checklist> -->
       <div class="check-title">第三方支付</div>
       <checklist @click.native="forPublic = []" label-position="left" :max="1" v-model="forThird" :options="payList"></checklist>
-      <template v-if="offline">
+      <template v-if="type == 0">
         <div class="check-title">
           线下转账
           <popover placement="right" style="display: inline-block">
@@ -27,7 +27,7 @@
         <checklist label-position="left" @click.native="forThird = []" v-model="forPublic" :options="['公司对公账号']"></checklist>
       </template>
     </div>
-    <div class="btn-full" @click="pay">确认支付{{detailData.Amount}}元</div>
+    <div class="btn-full" @click="pay">确认支付{{detailData.PayAmount}}元</div>
     <popup v-model="isShowPassword">
       <password @finishpwd="payBalance"></password>
     </popup>
@@ -43,7 +43,7 @@ export default {
   data() {
     return {
       id: this.$route.query.id,
-      offline: this.$route.query.offline,
+      type: this.$route.query.type,
       isShowPassword: false,
       balance: 500,
       forThird: [],
@@ -71,7 +71,10 @@ export default {
     }
   },
   mounted() {
-    this.$store.dispatch('getOrder', this.id)
+    this.$store.dispatch('getOrder', {
+      id: this.id,
+      type: this.type
+    })
   },
   methods: {
     onFinish() {
@@ -105,7 +108,8 @@ export default {
     },
     async payWechat() {
       let data = await this.$store.dispatch('wxPay', {
-        OrderID: this.id
+        OrderID: this.id,
+        OrderType: this.type + 1
       })
       if (data.Code == 1) {
         var wxPay = api.require('weiXin')
@@ -131,7 +135,8 @@ export default {
     },
     async payAlipay() {
       let data = await this.$store.dispatch('Alipay', {
-        OrderID: this.id
+        OrderID: this.id,
+        OrderType: this.type + 1
       })
       if (data.Code == 1) {
         var aliPay = api.require('aliPay')

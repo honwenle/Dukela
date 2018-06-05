@@ -69,7 +69,7 @@ export default {
             name: 'Pay',
             query: {
               id: data.OrderID,
-              offline: 1
+              type: 0
             }
           })
         } else {

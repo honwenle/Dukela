@@ -202,8 +202,9 @@ export default new Vuex.Store({
       let {data} = await http.post('Pay/AliPay', dt)
       return data
     },
-    async getOrder({commit}, id) {
-      let {data} = await http.post('ProductOrderIn/GetModel', {
+    async getOrder({commit}, {id, type}) {
+      let api = ['ProductOrderIn', 'BeadhouseRoomReserveOrder'][type]
+      let {data} = await http.post(api + '/GetModel', {
         id: id
       })
       data.Code == 1 && commit('setOrder', data.Model)

@@ -190,7 +190,8 @@ export default new Router({
     }, {
       path: '/reserve',
       name: 'Reserve',
-      component: Reserve
+      component: Reserve,
+      meta: { needLogin: true }
     }, {
       path: '/result',
       name: 'Result',

@@ -101,7 +101,8 @@ export default {
           this.$router.push({
             name: 'Pay',
             query: {
-              id: data.OrderID
+              id: data.OrderID,
+              type: 1
             }
           })
         } else {
