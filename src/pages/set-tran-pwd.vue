@@ -28,7 +28,7 @@ export default {
         this.reFresh()
       } else {
         if (pwd == this.pwd) {
-          // TODO: 区分是否有短信验证码
+          // 区分是否有短信验证码
           let {data} = await this.$http.post('User/UpdateSellPassword', {
             SellPassword: pwd
           })

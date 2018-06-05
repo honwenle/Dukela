@@ -90,7 +90,6 @@ export default {
         } else if (type == 4) {
           this.payUnion()
         }
-        // TODO: 支付结果弹窗确认
       } else if (this.forPublic.length == 1) {
         this.$router.push('pay-public')
       } else if (this.forBalance.length == 1) {
@@ -100,7 +99,7 @@ export default {
       }
     },
     payBalance(pwd) {
-      // TODO: 提交支付
+      // 提交支付
       console.log(pwd)
       this.$router.push({
         name: 'Result'
@@ -124,7 +123,7 @@ export default {
           sign: orderInfo.sign
         }, function(ret, err) {
           if (ret.status) {
-            // TODO: 成功
+            api.alert({ msg: ret.result })
           } else {
             api.alert({ msg: err.msg })
           }
@@ -143,11 +142,9 @@ export default {
         aliPay.payOrder({
           orderInfo: data.orderInfo
         }, function(ret, err) {
-          api.alert({
-            title: '支付结果',
-            msg: ret.code,
-            buttons: ['确定']
-          })
+          if (ret.code == 9000) {
+            this.$router.push('result')
+          }
         })
       } else {
         this.$vux.toast.text(data.Message)

@@ -68,7 +68,7 @@
   </div>
 </template>
 <script>
-// TODO: 订单状态
+// TODO: 区分订单状态
 import { Tab, TabItem } from 'vux'
 export default {
   components: {Tab, TabItem},
