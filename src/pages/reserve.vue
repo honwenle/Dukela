@@ -54,8 +54,9 @@ export default {
   },
   computed: {
     total() {
-      // TODO: 入住天数
-      return this.detailData.RoomPrice * 1
+      let seconds = new Date(this.formData.ReserveEndTime).getTime() - new Date(this.formData.ReserveStartTime).getTime()
+      let days = seconds/1000/60/60/24
+      return this.detailData.RoomPrice * (days || 1)
     },
     count() {
       return Math.min(this.total / this.deductInfo.price, this.deductInfo.count)
