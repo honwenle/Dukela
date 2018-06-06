@@ -13,7 +13,7 @@
       <font-icon name="key"></font-icon>
       <input v-model="password" type="password" placeholder="输入密码">
     </div>
-    <div class="btn-main" :class="{'btn-disable': isDisable}" @click="submitBind">登录</div>
+    <div class="btn-main" :class="{'btn-disable': isDisable}" @click="submitLogin">登录</div>
     <div class="a" @click="forgetPwd">忘记密码</div>
     <div class="sms-login">
         <div class="kksu">快速登录</div>
@@ -74,17 +74,26 @@ export default {
       })
     },
     getWxUser() {
-      this.weiXinPlugin.getUserInfo(function(ret, err) {
+      this.weiXinPlugin.getUserInfo((ret, err) => {
         if (ret.status) {
-          console.log(ret.token)
-          alert(JSON.stringify(ret))
-          // TODO: 微信接口
+          this.$store.commit('setWxInfo', ret)
+          this.$http.post('http://192.168.42.165/App/User/GetModelByOpenID', {
+            OpenID: ret.openid
+          }).then(({data}) => {
+            if (data.Code == 1) {
+              this.commit('setUserKey', data.UserKey)
+            } else {
+              // TODO: 去绑定手机
+              alert('还没注册，正在去绑卡')
+            }
+          })
+          // alert(JSON.stringify(ret))
         } else {
           console.log(err.msg)
         }
       })
     },
-    async submitBind() {
+    async submitLogin() {
       if (this.isDisable) {
         return false
       }

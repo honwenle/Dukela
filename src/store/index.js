@@ -28,7 +28,8 @@ export default new Vuex.Store({
     ProductStream: [],
     deduct: {},
     goodsCount: 0,
-    TRate: 1
+    TRate: 1,
+    wxInfo: {}
   },
   getters: {
     getRecordDetail: (state) => (id) => {
@@ -39,6 +40,9 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    setWxInfo(state, data) {
+      state.wxInfo = data
+    },
     setTRate(state, tr) {
       state.TRate = tr
     },
