@@ -191,7 +191,7 @@ export default new Router({
       path: '/reserve',
       name: 'Reserve',
       component: Reserve,
-      meta: { needLogin: true }
+      meta: { keepAlive: true, needLogin: true }
     }, {
       path: '/result',
       name: 'Result',

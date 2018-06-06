@@ -141,9 +141,11 @@ export default {
         var aliPay = api.require('aliPay')
         aliPay.payOrder({
           orderInfo: data.orderInfo
-        }, function(ret, err) {
+        }, (ret, err) => {
           if (ret.code == 9000) {
             this.$router.push('result')
+          } else {
+            this.$vux.toast.text(ret.code)
           }
         })
       } else {

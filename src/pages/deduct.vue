@@ -1,11 +1,12 @@
 <template>
   <div>
     <d-header>商品抵扣</d-header>
+    <div class="center fff-bg top" @click="clearDeduct">不使用商品抵扣</div>
     <list
       action-name="getUserProduct"
       :dataLength="goodsList.length"
       :paramsData="{bid: VillaData.ID}"
-      :height="`-${67}px`">
+      :height="`-${67 - 50}px`">
       <checker v-model="deductInfo"
         default-item-class="checker-item"
         selected-item-class="checker-on"
@@ -28,7 +29,6 @@
   </div>
 </template>
 <script>
-// TODO: 不使用
 import {Checker, CheckerItem} from 'vux'
 export default {
   components: {
@@ -51,6 +51,10 @@ export default {
     }
   },
   methods: {
+    clearDeduct() {
+      this.$store.commit('clearDeduct')
+      this.$router.back()
+    },
     setDeduct(val) {
       this.$store.commit('setDeduct', {
         id: val.ProductID,
@@ -83,5 +87,9 @@ export default {
 .col2{
   border-left: 1px solid #eee;
   padding-left: 15px;
+}
+.top{
+  height: 50px;
+  line-height: 50px;
 }
 </style>
