@@ -1,6 +1,6 @@
 <template>
   <div>
-    <d-header>商品抵扣</d-header>
+    <d-header :showBack="false">商品抵扣</d-header>
     <div class="center fff-bg top" @click="clearDeduct">不使用商品抵扣</div>
     <list
       action-name="getUserProduct"
@@ -53,7 +53,7 @@ export default {
   methods: {
     clearDeduct() {
       this.$store.commit('clearDeduct')
-      this.$router.back()
+      this.$emit('selectDeduct')
     },
     setDeduct(val) {
       this.$store.commit('setDeduct', {
@@ -62,8 +62,7 @@ export default {
         amount: val.TAmount * this.TRate,
         count: val.ProductCount
       })
-      // TODO: 返回不刷新
-      this.$router.back()
+      this.$emit('selectDeduct')
     }
   }
 }

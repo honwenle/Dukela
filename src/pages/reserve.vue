@@ -9,14 +9,14 @@
     </div>
     <group label-width="100px">
       <x-input title="房间数" value="1间" disabled></x-input>
-      <x-input v-model="formData.ReserveUser" title="入住人" placeholder="请填写姓名，需和身份证一致"></x-input>
-      <x-input v-model="formData.ReserveUserIDCard" title="身份证" placeholder="请填写身份证号码"></x-input>
-      <x-input v-model="formData.ReserveTel" title="联系手机" placeholder="请填写手机号码"></x-input>
-      <datetime v-model="formData.ReserveStartTime" title="入住时间" placeholder="请选择"></datetime>
-      <datetime v-model="formData.ReserveEndTime" title="离开时间" placeholder="请选择"></datetime>
+      <x-input v-model="formData.ReserveUser" required title="入住人" placeholder="请填写姓名，需和身份证一致"></x-input>
+      <x-input v-model="formData.ReserveUserIDCard" required title="身份证" placeholder="请填写身份证号码"></x-input>
+      <x-input v-model="formData.ReserveTel" required type="tel" is-type="china-mobile" title="联系手机" placeholder="请填写手机号码"></x-input>
+      <datetime v-model="formData.ReserveStartTime" required title="入住时间" placeholder="请选择"></datetime>
+      <datetime v-model="formData.ReserveEndTime" required title="离开时间" placeholder="请选择"></datetime>
     </group>
     <group>
-      <cell title="商品抵扣" link="deduct">
+      <cell title="商品抵扣" is-link @click.native="show1 = true">
         <div v-if="goodsCount" class="deduct-tag">
           {{goodsCount}}个可用
         </div>
@@ -24,7 +24,7 @@
       </cell>
     </group>
     <div class="agreement">
-      <input type="checkbox"> 已阅读《入住协议》
+      <input v-model="readed" type="checkbox"> 已阅读《入住协议》
     </div>
     <div class="bottom-bar">
       <div class="flex">
@@ -35,14 +35,20 @@
         <div class="flex-1 btn-sm" @click="submitOrder">确定预定</div>
       </div>
     </div>
+    <popup v-model="show1" height="100%">
+      <deduct @selectDeduct="show1 = false"></deduct>
+    </popup>
   </div>
 </template>
 <script>
-import {XInput, XNumber, Datetime} from 'vux'
+import Deduct from '@/pages/deduct'
+import {XInput, XNumber, Datetime, Popup} from 'vux'
 export default {
-  components: {XInput, XNumber, Datetime},
+  components: {XInput, XNumber, Datetime, Popup, Deduct},
   data() {
     return {
+      readed: false,
+      show1: false,
       formData: {
         ReserveUser: '',
         ReserveUserIDCard: '',
