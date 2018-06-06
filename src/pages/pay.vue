@@ -63,16 +63,6 @@ export default {
           value: '银行卡支付'
         }
       ],
-      msgText: [
-        {
-          title: '支付成功！',
-          content: '商品已进入您的商品库！'
-        },
-        {
-          title: '预定成功！',
-          content: '请按时办理入住！'
-        }
-      ],
       errText:{
         9000: '支付成功',
         4000: '系统异常',
@@ -143,13 +133,8 @@ export default {
           timeStamp: orderInfo.timeStamp,
           package: orderInfo.package,
           sign: orderInfo.sign
-        }, function(ret, err) {
-          if (ret.status) {
-            // TODO: 微信支付返回码
-            api.alert({ msg: ret.result })
-          } else {
-            api.alert({ msg: err.msg })
-          }
+        }, (ret, err) => {
+          this.goResult(ret.status, ret.status ? ret.result : err.msg)
         })
       } else {
         this.$vux.toast.text(data.Message)
@@ -165,7 +150,7 @@ export default {
         aliPay.payOrder({
           orderInfo: data.orderInfo
         }, (ret, err) => {
-          this.goResult(ret.code)
+          this.goResult(ret.code == 9000, this.errText[ret.code])
         })
       } else {
         this.$vux.toast.text(data.Message)
@@ -174,27 +159,16 @@ export default {
     payUnion() {
       this.$vux.toast.text('银联接口开发中')
     },
-    goResult(status) {
-      if (status == 9000) {
-        this.$router.push({
-          name: 'Result',
-          params: {
-            status: true,
-            type: this.type,
-            ...this.msgText[this.type]
-          }
-        })
-      } else {
-        this.$router.push({
-          name: 'Result',
-          params: {
-            status: false,
-            type: this.type,
-            title: '操作失败！',
-            content: this.errText[status]
-          }
-        })
-      }
+    goResult(status, content) {
+      this.$router.push({
+        name: 'Result',
+        params: {
+          status: status,
+          type: this.type,
+          title: status ? ['支付成功！', '预定成功！'][this.type] : '操作失败',
+          content: status ? ['商品已进入您的商品库！', '请按时办理入住！'][this.type] : content
+        }
+      })
     }
   }
 }
