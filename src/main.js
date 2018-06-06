@@ -52,7 +52,7 @@ Vue.filter('DATEFORMAT', function (strDate) {
   return intTime && dateFormat(new Date(parseInt(intTime)), 'YYYY-MM-DD HH:mm:ss')
 })
 Vue.filter('PAYDATEFORMAT', function (strDate) {
-  return dateFormat(new Date(parseInt(strDate.match(/\d{13}/)) + 60*30*1000), 'YYYY-MM-DD HH:mm:ss')
+  return dateFormat(new Date(parseInt(strDate.match(/\d{13}/)) + 60*60*1000), 'YYYY-MM-DD HH:mm:ss')
 })
 
 FastClick.attach(document.body)

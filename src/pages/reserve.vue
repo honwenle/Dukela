@@ -7,7 +7,7 @@
         <div>{{detailData.EquipmentContent}}</div>
       </div>
     </div>
-    <group label-width="100px">
+    <group label-width="100px" ref="form">
       <x-input title="房间数" value="1间" disabled></x-input>
       <x-input v-model="formData.ReserveUser" required title="入住人" placeholder="请填写姓名，需和身份证一致"></x-input>
       <x-input v-model="formData.ReserveUserIDCard" required title="身份证" placeholder="请填写身份证号码"></x-input>
@@ -24,7 +24,9 @@
       </cell>
     </group>
     <div class="agreement">
-      <input v-model="readed" type="checkbox"> 已阅读《入住协议》
+      <check-icon :value.sync="readed" type="plain">
+        已阅读《入住协议》
+      </check-icon>
     </div>
     <div class="bottom-bar">
       <div class="flex">
@@ -42,9 +44,9 @@
 </template>
 <script>
 import Deduct from '@/pages/deduct'
-import {XInput, XNumber, Datetime, Popup} from 'vux'
+import {XInput, XNumber, Datetime, Popup, CheckIcon} from 'vux'
 export default {
-  components: {XInput, XNumber, Datetime, Popup, Deduct},
+  components: {XInput, XNumber, Datetime, Popup, CheckIcon, Deduct},
   data() {
     return {
       readed: false,
@@ -61,6 +63,12 @@ export default {
   computed: {
     total() {
       let seconds = new Date(this.formData.ReserveEndTime).getTime() - new Date(this.formData.ReserveStartTime).getTime()
+      if (seconds <= 0) {
+        this.$nextTick(() => {
+          this.formData.ReserveStartTime = ''
+          this.formData.ReserveEndTime = ''
+        })
+      }
       let days = seconds/1000/60/60/24
       return this.detailData.RoomPrice * (days || 1)
     },
@@ -68,7 +76,7 @@ export default {
       return Math.min(this.total / this.deductInfo.price, this.deductInfo.count)
     },
     amount() {
-      return this.deductInfo.id ? Math.max(this.total - this.deductInfo.price * this.count, 0) : this.total
+      return this.deductInfo.id ? Math.max(this.total - Math.floor(this.deductInfo.price * this.count *100)/100, 0) : this.total
     },
     detailData() {
       return this.$store.state.RoomDetail
@@ -91,8 +99,19 @@ export default {
   },
   methods: {
     async submitOrder() {
-      // TODO: 阅读协议
       // TODO: 存在抵扣 弹密码框
+      let err = false
+      this.$refs.form.$children.forEach(i => {
+        err = !i.valid || err
+      })
+      if (err) {
+        this.$vux.toast.text('请填写正确信息')
+        return false
+      }
+      if (!this.readed) {
+        this.$vux.toast.text('请先阅读入住协议')
+        return false
+      }
       let {data} = await this.$http.post('BeadhouseRoomReserveOrder/ReserveOrder', {
         BeadhouseID: this.VillaData.ID,
         RoomTypeID: this.detailData.ID,
