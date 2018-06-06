@@ -12,11 +12,11 @@
       v-if="tabIndex == 0"
     >
       <div class="list">
-        <div class="list-item" v-for="(item, i) in dataList" :key="i" @click="goDetail(item.ID)">
-          <div class="list-padding">
+        <div class="list-item" v-for="(item, i) in dataList" :key="i">
+          <div class="list-padding" @click="goDetail(item.ID)">
             <div class="flex space-between">
               <div class="flex-1">{{item.ProductName}}</div>
-              <div class="btn-color color-success">买入成功</div>
+              <div class="btn-color color-success">{{item.OrderStatus | orderStatusName}}</div>
             </div>
             <div class="flex">
               <div class="gray flex-1">数量(个)</div>
@@ -31,8 +31,9 @@
               <div class="flex-1"></div>
             </div>
           </div>
-          <div class="list-padding2">
+          <div class="list-padding2 flex space-between flex-center">
             <div class="gray">{{item.CreateTime}}</div>
+            <div class="btn-inline" @click="goPay(item.ID)" v-if="item.OrderStatus == 0">去支付</div>
           </div>
         </div>
       </div>
@@ -68,7 +69,7 @@
   </div>
 </template>
 <script>
-// TODO: 区分订单状态
+// TODO: 区分订单状态颜色
 import { Tab, TabItem } from 'vux'
 export default {
   components: {Tab, TabItem},
@@ -88,6 +89,15 @@ export default {
         path: 'detail',
         query: {
           id
+        }
+      })
+    },
+    goPay(id) {
+      this.$router.push({
+        name: 'Pay',
+        query: {
+          id,
+          type: 0
         }
       })
     },

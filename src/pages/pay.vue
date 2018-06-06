@@ -62,7 +62,29 @@ export default {
           key: 4,
           value: '银行卡支付'
         }
-      ]
+      ],
+      msgText: [
+        {
+          title: '支付成功！',
+          content: '商品已进入您的商品库！'
+        },
+        {
+          title: '预定成功！',
+          content: '请按时办理入住！'
+        }
+      ],
+      errText:{
+        9000: '支付成功',
+        4000: '系统异常',
+        4001: '数据格式不正确',
+        4003: '该用户绑定的支付宝账户被冻结或不允许支付',
+        4004: '该用户已解除绑定',
+        4005: '绑定失败或没有绑定',
+        4006: '订单支付失败',
+        4010: '重新绑定账户',
+        6000: '支付服务正在进行升级操作',
+        6001: '用户中途取消支付操作'
+      }
     }
   },
   computed: {
@@ -123,6 +145,7 @@ export default {
           sign: orderInfo.sign
         }, function(ret, err) {
           if (ret.status) {
+            // TODO: 微信支付返回码
             api.alert({ msg: ret.result })
           } else {
             api.alert({ msg: err.msg })
@@ -142,11 +165,7 @@ export default {
         aliPay.payOrder({
           orderInfo: data.orderInfo
         }, (ret, err) => {
-          if (ret.code == 9000) {
-            this.$router.push('result')
-          } else {
-            this.$vux.toast.text(ret.code)
-          }
+          this.goResult(ret.code)
         })
       } else {
         this.$vux.toast.text(data.Message)
@@ -154,6 +173,28 @@ export default {
     },
     payUnion() {
       this.$vux.toast.text('银联接口开发中')
+    },
+    goResult(status) {
+      if (status == 9000) {
+        this.$router.push({
+          name: 'Result',
+          params: {
+            status: true,
+            type: this.type,
+            ...this.msgText[this.type]
+          }
+        })
+      } else {
+        this.$router.push({
+          name: 'Result',
+          params: {
+            status: false,
+            type: this.type,
+            title: '操作失败！',
+            content: this.errText[status]
+          }
+        })
+      }
     }
   }
 }

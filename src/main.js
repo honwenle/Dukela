@@ -44,6 +44,9 @@ Vue.filter('hidePhone', function (tel) {
 Vue.filter('typeName', function (type) {
   return ['无', '商品购买', '商品分红'][type]
 })
+Vue.filter('orderStatusName', function (type) {
+  return ['未支付', '已支付', '已退款', '已完成', '支付失效', '作废', '线下支付待审核'][type]
+})
 Vue.filter('DATEFORMAT', function (strDate) {
   const intTime = strDate.match(/\d{13}/)
   return intTime && dateFormat(new Date(parseInt(intTime)), 'YYYY-MM-DD HH:mm:ss')

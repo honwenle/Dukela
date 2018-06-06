@@ -117,7 +117,15 @@ export default {
         OrderID: oid
       })
       if (data.Code == 1) {
-        this.$router.push('result')
+        this.$router.push({
+          name: 'Result',
+          params: {
+            status: true,
+            type: 1,
+            title: '预定成功！',
+            content: '请按时办理入住！'
+          }
+        })
       }
     }
   }
