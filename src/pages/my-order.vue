@@ -7,9 +7,10 @@
     </tab>
     <list
       action-name="getUserOrderList"
+      :paramsData="{type: tabIndex}"
       :dataLength="dataList.length"
       :height="`-${67 + 44}px`"
-      v-if="tabIndex == 0"
+      v-show="tabIndex == 0"
     >
       <div class="list">
         <div class="list-item" v-for="(item, i) in dataList" :key="i">
@@ -39,29 +40,32 @@
       </div>
     </list>
     <list
-      action-name="getVillaList"
+      action-name="getUserOrderList"
+      :paramsData="{type: tabIndex}"
       :dataLength="dataList.length"
       :height="`-${67 + 50}px`"
-      v-else
+      v-show="tabIndex == 1"
     >
       <div class="list">
         <div class="list-item" v-for="(item, i) in dataList" :key="i">
-          <div class="list-padding flex">
-            <div class="flex-1">
-              <img class="img" src="https://o5omsejde.qnssl.com/demo/test1.jpg?type=webp">
+          <div class="list-padding" @click="goDetail(item.ID)">
+            <div class="flex space-between">
+              <div>{{item.BeadhouseName}}</div>
+              <div class="btn-color color-error">{{item.OrderStatus | reserveStatusName}}</div>
             </div>
-            <div class="flex-5">
-              <div class="flex space-between">
-                <div>山庄1项目</div>
-                <div class="btn-color color-error">待支付</div>
+            <div class="flex bg-eee m10">
+              <div class="flex-1">
+                <img v-if="item.BigPicUrl" class="img" :src="$imgUrl + item.BigPicUrl">
               </div>
-              <div class="gray">1间 大床房</div>
-              <div class="gray">2018-04-09 16：00 至 2018-04-10 15：59</div>
-              <div class="gray">总价：1000元</div>
+              <div class="flex-5">
+                <div class="gray">1间 {{item.TypeName}}</div>
+                <div class="gray">{{item.ReserveStartTime}} 至 {{item.ReserveEndTime}}</div>
+              </div>
             </div>
+            <div class="theme-color text-right">总价：{{item.Amount}}元 需支付：{{item.PayAmount}}元</div>
           </div>
-          <div class="list-padding2 text-right">
-            <div class="btn-inline">去付款</div>
+          <div v-if="item.OrderStatus == 0" class="list-padding2 text-right">
+            <div class="btn-inline" @click="goPay(item.ID)">去付款</div>
           </div>
         </div>
       </div>
@@ -97,19 +101,16 @@ export default {
         name: 'Pay',
         query: {
           id,
-          type: 0
+          type: this.tabIndex
         }
       })
     },
     switchTabItem (index) {
-      console.log('on-before-index-change', index)
-      this.$vux.loading.show({
-        text: '加载中'
+      this.tabIndex = index
+      this.$store.dispatch('getUserOrderList', {
+        page: 1,
+        type: index
       })
-      setTimeout(() => {
-        this.$vux.loading.hide()
-        this.tabIndex = index
-      }, 500)
     }
   }
 }
@@ -119,5 +120,8 @@ export default {
   width: 50px;
   height: 50px;
   vertical-align: middle;
+}
+.m10{
+  margin: 10px 0;
 }
 </style>

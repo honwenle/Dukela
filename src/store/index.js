@@ -151,8 +151,8 @@ export default new Vuex.Store({
       data.Code == 1 && commit('setUserMessage', data.List)
       return data.Count || 0
     },
-    async getUserOrderList({commit}, {page = 1}) {
-      let {data} = await http.post('ProductOrderIn/GetList', {
+    async getUserOrderList({commit}, {page = 1, type = 0}) {
+      let {data} = await http.post(['ProductOrderIn/GetList', 'BeadhouseRoomReserveOrder/GetAppList'][type], {
         pageSize: PAGE_SIZE,
         pageIndex: page,
         orderby: ''

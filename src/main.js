@@ -47,6 +47,9 @@ Vue.filter('typeName', function (type) {
 Vue.filter('orderStatusName', function (type) {
   return ['未支付', '已支付', '已退款', '已完成', '支付失效', '作废', '线下支付待审核'][type]
 })
+Vue.filter('reserveStatusName', function (type) {
+  return ['未支付', '已支付', '已退款', '已审核', '已入住', '已退房', '已失效'][type]
+})
 Vue.filter('DATEFORMAT', function (strDate) {
   const intTime = strDate.match(/\d{13}/)
   return intTime && dateFormat(new Date(parseInt(intTime)), 'YYYY-MM-DD HH:mm:ss')

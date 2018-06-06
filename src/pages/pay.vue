@@ -27,7 +27,7 @@
         <checklist label-position="left" @click.native="forThird = []" v-model="forPublic" :options="['公司对公账号']"></checklist>
       </template>
     </div>
-    <div class="btn-full" @click="pay">确认支付{{detailData.PayAmount}}元</div>
+    <div class="btn-full" :class="{'btn-disable': timeout}" @click="pay">确认支付{{detailData.PayAmount}}元</div>
     <popup v-model="isShowPassword">
       <password @finishpwd="payBalance"></password>
     </popup>
@@ -49,6 +49,7 @@ export default {
       forThird: [],
       forPublic: [],
       forBalance: [],
+      timeout: false,
       payList: [
         {
           key: 2,
@@ -90,9 +91,10 @@ export default {
   },
   methods: {
     onFinish() {
-      console.log('计时结束')
+      this.timeout = true
     },
     pay() {
+      if (this.timeout) return false
       if (this.forThird.length == 1) {
         let type = this.forThird[0]
         if (type == 2) {
