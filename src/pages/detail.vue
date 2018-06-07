@@ -26,6 +26,7 @@
   </div>
 </template>
 <script>
+// TODO: 区分不同状态
 export default {
   data() {
     return {

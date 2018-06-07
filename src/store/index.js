@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 import http from '../scripts/http'
 Vue.use(Vuex)
 const PAGE_SIZE = 10
-// TODO: 数据清理
+// FIXME: 数据清理
 export default new Vuex.Store({
   state: {
     homeList: [],
