@@ -44,11 +44,20 @@ Vue.filter('hidePhone', function (tel) {
 Vue.filter('typeName', function (type) {
   return ['无', '商品购买', '商品分红'][type]
 })
+Vue.filter('tagColor', function (type) {
+  if (type > 0 && type < 4) {
+    return 'color-success'
+  } else if (type == 4) {
+    return 'color-disable'
+  } else{
+    return 'color-error'
+  }
+})
 Vue.filter('orderStatusName', function (type) {
-  return ['未支付', '已支付', '已退款', '已完成', '支付失效', '作废', '线下支付待审核'][type]
+  return ['未支付', '已支付', '已退款', '已完成', '交易关闭', '线下支付待审核'][type]
 })
 Vue.filter('reserveStatusName', function (type) {
-  return ['未支付', '已支付', '已退款', '已审核', '已入住', '已退房', '已失效'][type]
+  return ['未支付', '已支付', '已退款', '预约成功', '交易关闭'][type]
 })
 Vue.filter('DATEFORMAT', function (strDate) {
   const intTime = strDate.match(/\d{13}/)

@@ -17,7 +17,7 @@
           <div class="list-padding" @click="goDetail(item.ID)">
             <div class="flex space-between">
               <div class="flex-1">{{item.ProductName}}</div>
-              <div class="btn-color color-success">{{item.OrderStatus | orderStatusName}}</div>
+              <div class="btn-color" :class="item.OrderStatus | tagColor">{{item.OrderStatus | orderStatusName}}</div>
             </div>
             <div class="flex">
               <div class="gray flex-1">数量(个)</div>
@@ -51,7 +51,7 @@
           <div class="list-padding" @click="goDetail(item.ID)">
             <div class="flex space-between">
               <div>{{item.BeadhouseName}}</div>
-              <div class="btn-color color-error">{{item.OrderStatus | reserveStatusName}}</div>
+              <div class="btn-color" :class="item.OrderStatus | tagColor">{{item.OrderStatus | reserveStatusName}}</div>
             </div>
             <div class="flex bg-eee m10">
               <div class="flex-1">
@@ -73,7 +73,6 @@
   </div>
 </template>
 <script>
-// TODO: 区分订单状态颜色
 import { Tab, TabItem } from 'vux'
 export default {
   components: {Tab, TabItem},
