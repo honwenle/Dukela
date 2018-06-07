@@ -48,7 +48,7 @@
         @click.native="wxBind"
         is-link>
         <div v-if="dataInfo.WXOpenID">
-          <font-icon name="weixin_denglu"></font-icon>
+          <font-icon name="weixin" color="#60b63c" fontsize="20px"></font-icon>
           {{dataInfo.FullName}}
         </div>
         <div v-else>未绑定</div>
@@ -118,5 +118,8 @@ export default {
   width: 2.5em;
   border-radius: 50%;
   vertical-align: middle;
+}
+.vux-popup-header{
+  padding-top: 20px;
 }
 </style>
