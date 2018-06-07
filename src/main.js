@@ -53,17 +53,20 @@ Vue.filter('tagColor', function (type) {
     return 'color-error'
   }
 })
+Vue.filter('payTypeName', function (type) {
+  return ['商品支付', '余额支付', '微信支付', '支付宝支付', '银联支付'][type]
+})
 Vue.filter('orderStatusName', function (type) {
-  return ['未支付', '已支付', '已退款', '已完成', '交易关闭', '线下支付待审核'][type]
+  return ['未支付', '已支付', '已退款', '已完成', '交易关闭', '待审核'][type]
 })
 Vue.filter('reserveStatusName', function (type) {
   return ['未支付', '已支付', '已退款', '预约成功', '交易关闭'][type]
 })
-Vue.filter('DATEFORMAT', function (strDate) {
+Vue.filter('DATEFORMAT', function (strDate = '') {
   const intTime = strDate.match(/\d{13}/)
   return intTime && dateFormat(new Date(parseInt(intTime)), 'YYYY-MM-DD HH:mm:ss')
 })
-Vue.filter('PAYDATEFORMAT', function (strDate) {
+Vue.filter('PAYDATEFORMAT', function (strDate = '') {
   return dateFormat(new Date(parseInt(strDate.match(/\d{13}/)) + 60*60*1000), 'YYYY-MM-DD HH:mm:ss')
 })
 
