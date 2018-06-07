@@ -45,7 +45,7 @@
     </group>
     <group>
       <cell title="微信绑定"
-        @click.native="wxAuth"
+        @click.native="wxBind"
         is-link>
         <div v-if="dataInfo.WXOpenID">
           <font-icon name="weixin" color="#60b63c" fontsize="20px"></font-icon>
@@ -91,6 +91,21 @@ export default {
     }
   },
   methods: {
+    wxBind() {
+      this.dataInfo.WXOpenID ? this.wxUnbind() : this.wxAuth()
+    },
+    async wxUnbind() {
+      this.$vux.confirm.show({
+        title: '是否解除绑定',
+        onConfirm: () => {
+          this.afterWxAuth({
+            openid: '',
+            nickname: '',
+            headimgurl: ''
+          })
+        }
+      })
+    },
     async afterWxAuth(ret) {
       let {data} = await this.$http.post('User/BindOpenID', {
         wXOpenID: ret.openid,
@@ -99,7 +114,7 @@ export default {
       })
       if (data.Code == 1) {
         this.$store.dispatch('getUserInfo')
-        this.$vux.toast.text('绑定成功')
+        this.$vux.toast.text(ret.openid ? '绑定成功' : '解绑成功')
       } else {
         this.$vux.toast.text(data.Message)
       }
