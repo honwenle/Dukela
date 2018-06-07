@@ -11,7 +11,14 @@
 
 <script>
 export default {
-  name: 'app'
+  name: 'app',
+  mounted() {
+    window.api && window.api.addEventListener({
+        name: 'myBack'
+    }, (ret, err) => {
+      this.$router.back()
+    })
+  }
 }
 </script>
 
