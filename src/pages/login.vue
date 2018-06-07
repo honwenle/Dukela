@@ -67,7 +67,13 @@ export default {
       this.weiXinPlugin.auth((ret, err) => {
         if (ret.status) {
           console.log(ret.token)
-          this.getWxUser()
+          this.weiXinPlugin.refreshToken((ret, err) => {
+            if (ret.status) {
+              this.getWxUser()
+            } else {
+              api.alert({ msg: err.msg })
+            }
+          })
         } else {
           console.log(err.msg)
         }
@@ -83,8 +89,7 @@ export default {
             if (data.Code == 1) {
               this.commit('setUserKey', data.UserKey)
             } else {
-              // TODO: 去绑定手机
-              alert('还没注册，正在去绑卡')
+              this.$router.push('wx-reg')
             }
           })
           // alert(JSON.stringify(ret))

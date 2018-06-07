@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import http from '../scripts/http'
-import {dateFormat} from 'vux'
 Vue.use(Vuex)
 const PAGE_SIZE = 10
 // TODO: 数据清理
@@ -290,6 +289,24 @@ export default new Vuex.Store({
         ...dt
       })
       data.Code == 1 && commit('setSmsCode', dt)
+      return data
+    },
+    async wxReg({state, commit}, dt) {
+      if (!state.SmsID) {
+        return {
+          Code: 2,
+          Message: '请先获取验证码'
+        }
+      }
+      let {data} = await http.post('User/AppAddInfo', {
+        SmsID: state.SmsID,
+        Phone: state.SmsPhone,
+        wXOpenID: state.wxInfo.openid,
+        fullName: state.wxInfo.nickname,
+        avator: state.wxInfo.headimgurl,
+        ...dt
+      })
+      data.Code == 1 && commit('setUserKey', data.UserKey)
       return data
     },
     async register({state, commit}, dt) {

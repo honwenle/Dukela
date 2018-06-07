@@ -8,6 +8,7 @@ import SetPassword from '@/pages/set-password'
 import SetTranPwd from '@/pages/set-tran-pwd'
 import Realname from '@/pages/realname'
 import BindCard from '@/pages/bind-card'
+import WxReg from '@/pages/wx-reg'
 
 import Home from '@/pages/home'
 import villaList from '@/pages/villaList'
@@ -44,6 +45,10 @@ Vue.use(Router)
 export default new Router({
   // mode: 'history',
   routes: [
+    {
+      component: WxReg,
+      path: '/wx-reg'
+    },
     {
       component: Deduct,
       path: '/deduct'
