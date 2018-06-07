@@ -45,7 +45,7 @@
     </group>
     <group>
       <cell title="微信绑定"
-        @click.native="wxBind"
+        @click.native="wxAuth"
         is-link>
         <div v-if="dataInfo.WXOpenID">
           <font-icon name="weixin" color="#60b63c" fontsize="20px"></font-icon>
@@ -70,8 +70,10 @@
   </div>
 </template>
 <script>
+import wxMixin from '@/mixins/wx'
 import { Group, Cell, XInput, Popup, PopupHeader, Radio } from 'vux'
 export default {
+  mixins: [wxMixin],
   components: {
     Group, Cell, XInput, Popup, PopupHeader, Radio
   },
@@ -89,8 +91,18 @@ export default {
     }
   },
   methods: {
-    wxBind() {
-      // TODO: 微信绑定
+    async afterWxAuth(ret) {
+      let {data} = await this.$http.post('User/BindOpenID', {
+        wXOpenID: ret.openid,
+        fullName: ret.nickname,
+        avator: ret.headimgurl
+      })
+      if (data.Code == 1) {
+        this.$store.dispatch('getUserInfo')
+        this.$vux.toast.text('绑定成功')
+      } else {
+        this.$vux.toast.text(data.Message)
+      }
     },
     showChangeNick() {
       this.nickName = this.dataInfo.FullName
@@ -99,7 +111,7 @@ export default {
     async submitNick() {
       let {data} = await this.$http({
         method: 'post',
-        url: '/User/EditFullName',
+        url: '/User/EditFullNameByUserID',
         data: {
           FullName: this.nickName
         }
@@ -116,6 +128,7 @@ export default {
 <style scoped>
 .avatar img {
   width: 2.5em;
+  height: 2.5em;
   border-radius: 50%;
   vertical-align: middle;
 }

@@ -93,9 +93,10 @@ export default new Vuex.Store({
     setVilla(state, data) {
       state.VillaDetail = data
     },
-    clearUserKey(state) {
+    clearUserInfo(state) {
       localStorage.removeItem('UserKey')
       state.UserKey = ''
+      state.UserInfo = {}
     },
     setUserKey(state, key) {
       localStorage.setItem('UserKey', key)

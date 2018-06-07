@@ -15,7 +15,7 @@ export default {
   },
   methods: {
     logout() {
-      this.$store.commit('clearUserKey')
+      this.$store.commit('clearUserInfo')
       this.$vux.toast.text('退出成功')
     }
   }

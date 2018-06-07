@@ -49,6 +49,7 @@
 │  ├─scripts
 │  │  ├─http.js axios配置封装
 │  │  └─url.js 路径等常量
+│  ├─mixins 混合共用代码
 │  ├─store 数据管理
 │  ├─styles 公共样式
 │  ├─App.vue 入口vue文件

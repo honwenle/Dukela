@@ -17,7 +17,7 @@
     <div class="a" @click="forgetPwd">忘记密码</div>
     <div class="sms-login">
         <div class="kksu">快速登录</div>
-        <font-icon name="weixin_denglu" fontsize="40px" @click.native="wxLogin"></font-icon>
+        <font-icon name="weixin_denglu" fontsize="40px" @click.native="wxAuth"></font-icon>
     </div>
     <div class="bottom-tip a" @click="$router.replace({name: 'Register'})">
       新用户点此注册 <font-icon name="forward"></font-icon>
@@ -25,7 +25,9 @@
   </div>
 </template>
 <script>
+import wxMixin from '@/mixins/wx'
 export default {
+  mixins: [wxMixin],
   data() {
     return {
       phone: '',
@@ -38,15 +40,6 @@ export default {
       return this.phone == '' || this.password == ''
     }
   },
-  mounted() {
-    this.weiXinPlugin.registerApp(function(ret, err) {
-      if (ret.status) {
-        console.log(ret.status)
-      } else {
-        console.log(err.msg)
-      }
-    })
-  },
   methods: {
     forgetPwd() {
       this.$router.push({
@@ -58,44 +51,19 @@ export default {
         }
       })
     },
-    wxCancelAuth() {
-      this.weiXinPlugin.cancelAuth(function(ret, err) {
-        alert(ret.status)
-      })
-    },
-    wxLogin() {
-      this.weiXinPlugin.auth((ret, err) => {
-        if (ret.status) {
-          console.log(ret.token)
-          this.weiXinPlugin.refreshToken((ret, err) => {
-            if (ret.status) {
-              this.getWxUser()
-            } else {
-              api.alert({ msg: err.msg })
-            }
-          })
+    afterWxAuth(ret) {
+      this.$http.post('User/GetModelByOpenID', {
+        OpenID: ret.openid
+      }).then(({data}) => {
+        if (data.Code == 1) {
+          this.$store.commit('setUserKey', data.UserKey)
+          this.$store.dispatch('getUserInfo')
+          this.$router.push('me')
         } else {
-          console.log(err.msg)
+          this.$router.push('wx-reg')
         }
-      })
-    },
-    getWxUser() {
-      this.weiXinPlugin.getUserInfo((ret, err) => {
-        if (ret.status) {
-          this.$store.commit('setWxInfo', ret)
-          this.$http.post('http://192.168.42.165/App/User/GetModelByOpenID', {
-            OpenID: ret.openid
-          }).then(({data}) => {
-            if (data.Code == 1) {
-              this.commit('setUserKey', data.UserKey)
-            } else {
-              this.$router.push('wx-reg')
-            }
-          })
-          // alert(JSON.stringify(ret))
-        } else {
-          console.log(err.msg)
-        }
+      }).catch(err => {
+        alert(err)
       })
     },
     async submitLogin() {
