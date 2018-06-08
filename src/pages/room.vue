@@ -5,7 +5,7 @@
       <div class="swiper">
         <swiper :list="slideList" loop auto></swiper>
       </div>
-      <div class="cell bb">{{detailData.TypeName}}</div>
+      <div class="cell bb fz15">{{detailData.TypeName}}</div>
       <div class="cell flex space-between">
         <div class="gray">
           <font-icon name="address"></font-icon>

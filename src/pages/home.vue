@@ -19,7 +19,7 @@
             <font-icon name="home1" color="#6e9cff"></font-icon>
             <div class="line-block">{{item.ProductName}}</div>
           </div>
-          <div class="flex flex-center" style="padding: 10px 0 7px 15px">
+          <div class="flex flex-center" style="padding: 10px 15px 7px">
             <div class="flex-1">
               <div class="gray">价格（元/小时）</div>
               <div class="big-num">{{item.ProductCost}}</div>
@@ -28,7 +28,7 @@
               <div class="gray"><font-icon name="rmb"></font-icon>已出售<span class="theme-color">{{item.ProductUsedCount}}小时</span></div>
               <div class="gray"><font-icon name="kucun"></font-icon>剩余{{item.ProductLessCount}}小时</div>
             </div>
-            <div class="flex-1 center">
+            <div class="flex-1 text-right">
               <div class="btn-outline orange">抢购</div>
             </div>
           </div>
