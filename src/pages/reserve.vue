@@ -17,10 +17,15 @@
     </group>
     <group>
       <cell title="商品抵扣" is-link @click.native="show1 = true">
-        <div v-if="goodsCount" class="deduct-tag">
-          {{goodsCount}}个可用
+        <div v-if="deductInfo.id">
+          {{deductInfo.name}}
         </div>
-        <div v-else>无可用商品</div>
+        <template v-else>
+          <div v-if="goodsCount" class="deduct-tag">
+            {{goodsCount}}个可用
+          </div>
+          <div v-else>无可用商品</div>
+        </template>
       </cell>
     </group>
     <div class="agreement">

@@ -58,6 +58,7 @@ export default {
     setDeduct(val) {
       this.$store.commit('setDeduct', {
         id: val.ProductID,
+        name: val.ProductName,
         price: val.TAmount * this.TRate / val.ProductCount,
         amount: val.TAmount * this.TRate,
         count: val.ProductCount
