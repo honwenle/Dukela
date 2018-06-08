@@ -134,8 +134,8 @@ export default {
         RoomTypeID: this.detailData.ID,
         RoomPrice: this.detailData.RoomPrice,
         PayProductID: this.deductInfo.id,
-        PayProductCount: this.count,
-        PayProductAmount: this.deductInfo.price * this.count,
+        PayProductCount: this.count || '',
+        PayProductAmount: this.deductInfo.price * this.count || '',
         ...this.formData
       })
       if (data.Code == 1) {
