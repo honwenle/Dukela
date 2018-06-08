@@ -13,27 +13,27 @@
     <div class="top">
       <img src="../assets/banenr.png" alt="">
     </div>
-        <div style="padding: 0 16px;">
-          <div class="home-item" v-for="(item, i) in dataList" :key="i">
-            <div class="bb" style="padding: 6px 15px">
-              <font-icon name="home1" color="#6e9cff"></font-icon>
-              {{item.ProductName}}
+      <div style="padding: 0 16px;">
+        <div class="home-item"  @click="goGoods(item.ID)" v-for="(item, i) in dataList" :key="i">
+          <div class="bb" style="padding: 6px 15px">
+            <font-icon name="home1" color="#6e9cff"></font-icon>
+            {{item.ProductName}}
+          </div>
+          <div class="flex flex-center" style="padding: 10px 0 7px 15px">
+            <div class="flex-1">
+              <div class="gray">价格（元/小时）</div>
+              <div class="big-num">{{item.ProductCost}}</div>
             </div>
-            <div class="flex flex-center" style="padding: 10px 0 7px 15px">
-              <div class="flex-1">
-                <div class="gray">价格（元/小时）</div>
-                <div class="big-num">{{item.ProductCost}}</div>
-              </div>
-              <div class="flex-1 border-left">
-                <div class="gray"><font-icon name="rmb"></font-icon>已出售<span class="theme-color">{{item.ProductUsedCount}}小时</span></div>
-                <div class="gray"><font-icon name="kucun"></font-icon>剩余{{item.ProductLessCount}}小时</div>
-              </div>
-              <div class="flex-1 center">
-                <div class="btn-outline orange" @click="goGoods(item.ID)">立即抢购</div>
-              </div>
+            <div class="flex-1 border-left">
+              <div class="gray"><font-icon name="rmb"></font-icon>已出售<span class="theme-color">{{item.ProductUsedCount}}小时</span></div>
+              <div class="gray"><font-icon name="kucun"></font-icon>剩余{{item.ProductLessCount}}小时</div>
+            </div>
+            <div class="flex-1 center">
+              <div class="btn-outline orange">立即抢购</div>
             </div>
           </div>
         </div>
+      </div>
     </div>
       </list>
   </div>
