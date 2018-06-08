@@ -1,6 +1,6 @@
 <template>
-  <div class="back" @click="$router.back()" style="paddingTop: 20px">
-    <font-icon name="back" fontsize="25px"></font-icon>
+  <div class="back" @click="$router.back()">
+    <font-icon name="back"></font-icon>
   </div>
 </template>
 <style scoped>
@@ -9,6 +9,13 @@
   top: 10px;
   left: 10px;
   z-index: 1000;
-  color: #cecece;
+  color: #fff;
+  background: rgba(0,0,0,.25);
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 50%;
+  font-size: 25px;
 }
 </style>
