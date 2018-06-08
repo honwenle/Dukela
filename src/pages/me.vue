@@ -8,7 +8,7 @@
         <div class="avatar">
           <img :src="dataInfo.Avator || require('../assets/user.png')">
         </div>
-        <div class="nick">{{dataInfo.FullName || '点击设置更多'}}</div>
+        <div class="nick">{{UserKey ? (dataInfo.FullName || '用户昵称') : '注册/登录'}}</div>
       </div>
     </div>
     <group :gutter="0">
@@ -59,13 +59,12 @@ export default {
   background-repeat: no-repeat;
 }
 .top.unlogin{
-  /* background-image: url('../assets/bg0.jpg'); */
-  filter: grayscale(100%);
+  /* filter: grayscale(100%); */
 }
 .avatar {
   width: 75px;
   height: 75px;
-  margin: auto;
+  margin: 0 auto 15px;
 }
 .avatar img {
   width: 100%;
