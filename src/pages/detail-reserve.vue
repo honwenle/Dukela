@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="page--detail">
     <d-header :tran="true" :theme-color="true">
       预定订单详情
       <div slot="right" v-if="isPay" @click="cancelOrder">取消订单</div>
