@@ -12,8 +12,8 @@
       <x-input v-model="formData.ReserveUser" required title="入住人" placeholder="请填写姓名，需和身份证一致"></x-input>
       <x-input v-model="formData.ReserveUserIDCard" required title="身份证" placeholder="请填写身份证号码"></x-input>
       <x-input v-model="formData.ReserveTel" required type="tel" is-type="china-mobile" title="联系手机" placeholder="请填写手机号码"></x-input>
-      <datetime v-model="formData.ReserveStartTime" style="text-align: left" required title="入住时间" placeholder="请选择"></datetime>
-      <datetime v-model="formData.ReserveEndTime" required title="离开时间" placeholder="请选择"></datetime>
+      <datetime v-model="formData.ReserveStartTime" format="YYYY-MM-DD HH:mm" valueTextAlign="left" required title="入住时间" placeholder="请选择"></datetime>
+      <datetime v-model="formData.ReserveEndTime" valueTextAlign="left" required title="离开时间" placeholder="请选择"></datetime>
     </group>
     <group>
       <cell title="商品抵扣" is-link @click.native="show1 = true">
@@ -80,7 +80,7 @@ export default {
         })
       }
       let days = seconds/1000/60/60/24
-      return this.detailData.RoomPrice * (days || 1)
+      return Math.floor(this.detailData.RoomPrice * (days || 1) * 100)/100
     },
     count() {
       return Math.min(this.total / this.deductInfo.price, this.deductInfo.count)
