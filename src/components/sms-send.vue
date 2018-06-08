@@ -42,6 +42,10 @@ export default {
       this.msgStatus = false
     },
     async sendMsg() {
+      if (!/^[1][3,4,5,7,8][0-9]{9}$/.test(this.phone)) {
+        this.$vux.toast.text('手机号不正确')
+        return false
+      }
       let data = await this.$store.dispatch('sendMsg', {
         Phone: this.phone,
         SmsType: this.type
