@@ -211,7 +211,20 @@ export default new Vuex.Store({
       let {data} = await http.post(api + '/GetModel', {
         id: id
       })
-      data.Code == 1 && commit('setOrder', data.Model)
+      if (data.Code == 1) {
+        let villa = data.BeadhouseModel
+        let room = data.RoomTypeModel
+        data.Model.Room = {
+          BeadhouseName: villa.BeadhouseName,
+          Address: villa.ProvinceName + villa.CityName + villa.AreaName + villa.Address,
+          TypeName: room.Name,
+          RoomPrice: room.RoomPrice,
+          RoomSize: room.RoomSize,
+          ContactTel: room.ContactTel,
+          TypeType: room.TypeName
+        }
+        commit('setOrder', data.Model)
+      }
     },
     async getRoomPic({commit}, dt) {
       let {data} = await http.post('BeadhouseRoomAttachment/GetAttachment', dt)

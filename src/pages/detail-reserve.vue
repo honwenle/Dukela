@@ -42,19 +42,21 @@
           <cell title="支付时间：" :value="detail.PayDate | DATEFORMAT"></cell>
           <cell title="创建时间：" :value="detail.CreateTime | DATEFORMAT"></cell>
         </group>
-        <div class="group box">
+        <div class="group box" v-if="detail.Room">
           <div class="cell flex space-between">
-            <div>xxx山庄</div>
+            <div>{{detail.Room.BeadhouseName}}</div>
             <div class="fz12" @click="$router.push('villaList')">查看<font-icon name="forward"></font-icon></div>
           </div>
-          <div class="cell gray bb">xxx地址</div>
-          <div class="cell">xxx30㎡大床房</div>
-          <div class="cell gray">单价：<div class="price">xxx180</div></div>
-          <div class="cell gray bb">xxx30㎡ | 标间</div>
+          <div class="cell gray bb">{{detail.Room.Address}}</div>
+          <div class="cell">{{detail.Room.TypeName}}</div>
+          <div class="cell gray">
+            单价：<div class="price">{{detail.Room.RoomPrice}}</div>
+          </div>
+          <div class="cell gray bb">{{detail.Room.RoomSize}}㎡ | {{detail.Room.TypeType}}</div>
           <div class="cell center">
-            <a :href="`tel:${15268701773}`" class="theme-color">
+            <a :href="`tel:${detail.Room.ContactTel}`" class="theme-color">
               <font-icon name="phone"></font-icon>
-              15268701xxx
+              {{detail.Room.ContactTel}}
             </a>
           </div>
         </div>
