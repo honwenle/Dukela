@@ -44,7 +44,8 @@ export default {
     ...mapState([
       'SmsID',
       'SmsPhone',
-      'SmsVCode'
+      'SmsVCode',
+      'UserKey'
     ])
   },
   methods: {
@@ -67,7 +68,8 @@ export default {
       }
     },
     async updatePwd() {
-      let {data} = await this.$http.post('User/UpdatePassWord', {
+      let api = this.UserKey ? 'UpdatePassWord' : 'FindPassWord'
+      let {data} = await this.$http.post('User/' + api, {
         SmsID: this.SmsID,
         Phone: this.SmsPhone,
         ValidateCode: this.SmsVCode,
