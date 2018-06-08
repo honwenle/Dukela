@@ -13,14 +13,14 @@
       <font-icon name="key"></font-icon>
       <input v-model="password" type="password" placeholder="输入密码">
     </div>
+    <div class="flex space-between switch-login">
+      <div class="a" @click="$router.replace({name: 'Register'})">免费注册</div>
+      <div class="a" @click="forgetPwd">忘记密码</div>
+    </div>
     <div class="btn-main" :class="{'btn-disable': isDisable}" @click="submitLogin">登录</div>
-    <div class="a" @click="forgetPwd">忘记密码</div>
     <div class="sms-login">
         <div class="kksu">快速登录</div>
         <font-icon name="weixin_denglu" fontsize="40px" @click.native="wxAuth"></font-icon>
-    </div>
-    <div class="bottom-tip a" @click="$router.replace({name: 'Register'})">
-      新用户点此注册 <font-icon name="forward"></font-icon>
     </div>
   </div>
 </template>

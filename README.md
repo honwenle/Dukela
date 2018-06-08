@@ -38,10 +38,12 @@
 ├─src
 │  ├─assets 静态资源
 │  ├─components 组件
-│  │  ├─back.vue
-│  │  ├─dkl-header.vue
-│  │  ├─list
-│  │  ├─password
+│  │  ├─back.vue 返回按钮
+│  │  ├─dkl-header.vue 头部
+│  │  ├─list.vue 回弹列表，刷新、加载
+│  │  ├─re-confirm.vue
+│  │  ├─sms-send.vue
+│  │  ├─password.vue
 │  │  └─font-icon
 │  ├─pages
 │  │  └─... 各个页面

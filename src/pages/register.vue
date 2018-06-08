@@ -12,8 +12,9 @@
     <sms-send v-model="vcode" :phone="phone" :type="4"></sms-send>
     <div class="fz12">点击注册，即代表同意<div class="a" @click="show1 = true">《TIME平台用户协议》</div></div>
     <div class="btn-main" :class="{'btn-disable': isDisable}" @click="submitBind">注册</div>
-    <div class="bottom-tip a" @click="$router.replace({name: 'Login'})">
-      已有账号，点此登录 <font-icon name="forward"></font-icon>
+    <div class="a" @click="$router.replace({name: 'Login'})">
+      已有账号，点此登录
+      <font-icon name="forward"></font-icon>
     </div>
     <x-dialog v-model="show1" hide-on-blur>
       <div class="wrap">
