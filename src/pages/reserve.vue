@@ -46,6 +46,7 @@
   </div>
 </template>
 <script>
+// TODO: 显示已选
 import Deduct from '@/pages/deduct'
 import Password from '@/components/password'
 import {XInput, XNumber, Datetime, Popup, CheckIcon} from 'vux'

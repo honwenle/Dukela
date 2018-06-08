@@ -89,7 +89,7 @@ export default {
   methods: {
     goDetail(id) {
       this.$router.push({
-        path: 'detail',
+        path: ['detail', 'detail-reserve'][this.tabIndex],
         query: {
           id
         }

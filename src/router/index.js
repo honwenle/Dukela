@@ -31,6 +31,7 @@ import MyGoods from '@/pages/my-goods'
 import GoodsRecord from '@/pages/goods-record'
 import RecordDetail from '@/pages/record-detail'
 import Detail from '@/pages/detail'
+import DetailReserve from '@/pages/detail-reserve'
 import MyOrder from '@/pages/my-order'
 import Messages from '@/pages/messages'
 import ChangePhone from '@/pages/change-phone'
@@ -45,6 +46,10 @@ Vue.use(Router)
 export default new Router({
   // mode: 'history',
   routes: [
+    {
+      component: DetailReserve,
+      path: '/detail-reserve'
+    },
     {
       component: WxReg,
       path: '/wx-reg'
