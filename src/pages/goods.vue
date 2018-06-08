@@ -5,7 +5,7 @@
       <div class="swiper">
         <swiper :list="slideList" loop auto></swiper>
       </div>
-      <div class="cell">{{detailData.ProductName}}</div>
+      <div class="cell fz15">{{detailData.ProductName}}</div>
       <div class="cell flex space-between bb">
         <div class="theme-color">已售：{{detailData.ProductUsedCount}}小时</div>
         <div class="gray">剩余：{{detailData.ProductLessCount}}小时</div>

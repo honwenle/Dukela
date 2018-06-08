@@ -16,7 +16,7 @@
         <div class="list-item" v-for="(item, i) in dataList" :key="i">
           <div class="list-padding" @click="goDetail(item.ID)">
             <div class="flex space-between">
-              <div class="flex-1">{{item.ProductName}}</div>
+              <div class="flex-1 fz15">{{item.ProductName}}</div>
               <div class="btn-color" :class="item.OrderStatus | tagColor">{{item.OrderStatus | orderStatusName}}</div>
             </div>
             <div class="flex">
@@ -34,7 +34,7 @@
           </div>
           <div class="list-padding2 flex space-between flex-center">
             <div class="gray">{{item.CreateTime}}</div>
-            <div class="btn-inline" @click="goPay(item.ID)" v-if="item.OrderStatus == 0">去支付</div>
+            <div class="btn-inline btn-sm" @click="goPay(item.ID)" v-if="item.OrderStatus == 0">去支付</div>
           </div>
         </div>
       </div>
