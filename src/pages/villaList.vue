@@ -16,10 +16,10 @@
           </div>
           <div class="flex-3">
             <div class="flex flex-center space-between">
-              <div>{{item.BeadhouseName}}</div>
+              <div class="fz17">{{item.BeadhouseName}}</div>
               <div class="fz12 theme-color">{{item.ReserveCount || 0}}人已入住</div>
             </div>
-            <div class="fz12 gray">{{item.BeadhouseTitle}}</div>
+            <div class="fz14 gray">{{item.BeadhouseTitle}}</div>
           </div>
         </div>
       </div>
@@ -57,5 +57,6 @@ export default {
   width: 62px;
   height: 62px;
   vertical-align: middle;
+  border-radius: 5px;
 }
 </style>
