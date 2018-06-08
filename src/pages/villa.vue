@@ -30,7 +30,7 @@
             <div class="gray">{{item.EquipmentContent}}</div>
             <div class="price">{{item.RoomPrice}}</div>
           </div>
-          <div class="flex-2 center">
+          <div class="flex-2 text-right">
             <span class="btn-inline" style="padding: 3px 26px" @click="goRoom(item.ID)">预定</span>
           </div>
         </div>

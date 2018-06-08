@@ -15,9 +15,9 @@
     </div>
       <div style="padding: 0 16px;">
         <div class="home-item"  @click="goGoods(item.ID)" v-for="(item, i) in dataList" :key="i">
-          <div class="bb" style="padding: 6px 15px">
+          <div class="bb home-item-h1" style="padding: 6px 15px">
             <font-icon name="home1" color="#6e9cff"></font-icon>
-            {{item.ProductName}}
+            <div class="line-block">{{item.ProductName}}</div>
           </div>
           <div class="flex flex-center" style="padding: 10px 0 7px 15px">
             <div class="flex-1">
@@ -29,7 +29,7 @@
               <div class="gray"><font-icon name="kucun"></font-icon>剩余{{item.ProductLessCount}}小时</div>
             </div>
             <div class="flex-1 center">
-              <div class="btn-outline orange">立即抢购</div>
+              <div class="btn-outline orange">抢购</div>
             </div>
           </div>
         </div>
@@ -86,5 +86,8 @@ export default {
 }
 .iconfont{
   margin-right: 10px;
+}
+.home-item-h1{
+  font-size: 14px;
 }
 </style>

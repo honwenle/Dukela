@@ -30,7 +30,7 @@ export default {
             }
           })
         } else {
-          alert(err.msg)
+          this.$vux.toast.text('用户授权失败')
         }
       })
     },

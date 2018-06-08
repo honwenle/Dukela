@@ -16,4 +16,8 @@ export default {
 </script>
 <style scoped>
 @import "./iconfont.css";
+.iconfont{
+  display: inline-block;
+  vertical-align: middle;
+}
 </style>
