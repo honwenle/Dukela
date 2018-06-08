@@ -214,14 +214,16 @@ export default new Vuex.Store({
       if (data.Code == 1) {
         let villa = data.BeadhouseModel
         let room = data.RoomTypeModel
-        data.Model.Room = {
-          BeadhouseName: villa.BeadhouseName,
-          Address: villa.ProvinceName + villa.CityName + villa.AreaName + villa.Address,
-          TypeName: room.Name,
-          RoomPrice: room.RoomPrice,
-          RoomSize: room.RoomSize,
-          ContactTel: room.ContactTel,
-          TypeType: room.TypeName
+        if (villa && room) {
+          data.Model.Room = {
+            BeadhouseName: villa.BeadhouseName,
+            Address: villa.ProvinceName + villa.CityName + villa.AreaName + villa.Address,
+            TypeName: room.Name,
+            RoomPrice: room.RoomPrice,
+            RoomSize: room.RoomSize,
+            ContactTel: room.ContactTel,
+            TypeType: room.TypeName
+          }
         }
         commit('setOrder', data.Model)
       }
