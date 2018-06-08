@@ -62,11 +62,13 @@ Vue.filter('orderStatusName', function (type) {
 Vue.filter('reserveStatusName', function (type) {
   return ['未支付', '已支付', '已退款', '预约成功', '交易关闭'][type]
 })
-Vue.filter('DATEFORMAT', function (strDate = '') {
+Vue.filter('DATEFORMAT', function (strDate) {
+  strDate = strDate || ''
   const intTime = strDate.match(/\d{13}/)
   return intTime && dateFormat(new Date(parseInt(intTime)), 'YYYY-MM-DD HH:mm:ss')
 })
-Vue.filter('PAYDATEFORMAT', function (strDate = '') {
+Vue.filter('PAYDATEFORMAT', function (strDate) {
+  strDate = strDate || ''
   return dateFormat(new Date(parseInt(strDate.match(/\d{13}/)) + 60*60*1000), 'YYYY-MM-DD HH:mm:ss')
 })
 
