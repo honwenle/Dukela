@@ -1,5 +1,5 @@
 <template>
-  <div class="center">
+  <div class="center page--register">
     <d-header>注册</d-header>
     <div class="top">
       <div class="icon icon-users"></div>
@@ -10,7 +10,9 @@
       <input v-model="phone" type="text" pattern="[0-9]*" placeholder="输入手机号">
     </div>
     <sms-send v-model="vcode" :phone="phone" :type="4"></sms-send>
-    <div class="fz12">点击注册，即代表同意<div class="a" @click="show1 = true">《TIME平台用户协议》</div></div>
+    <check-icon class="gray" :value.sync="readed" type="plain">
+      同意<span @click="show1 = true">《注册协议》</span>
+    </check-icon>
     <div class="btn-main" :class="{'btn-disable': isDisable}" @click="submitBind">注册</div>
     <div class="a" @click="$router.replace({name: 'Login'})">
       已有账号，点此登录
@@ -26,16 +28,17 @@
   </div>
 </template>
 <script>
-import { XDialog } from 'vux'
+import { XDialog, CheckIcon } from 'vux'
 export default {
   components: {
-    XDialog
+    XDialog, CheckIcon
   },
   data() {
     return {
       show1: false,
       phone: '',
-      vcode: ''
+      vcode: '',
+      readed: false
     }
   },
   computed: {
@@ -45,6 +48,9 @@ export default {
   },
   methods: {
     async submitBind() {
+      if (!this.readed) {
+        this.$vux.toast.text('请先同意注册协议')
+      }
       let data = await this.$store.dispatch('checkMsg', {
         ValidateCode: this.vcode
       })
