@@ -34,23 +34,28 @@
           <div class="price">{{amount}}</div>
           <span class="gray" v-if="deductInfo.id">已抵扣{{deductInfo.price * count}}元</span>
         </div>
-        <div class="flex-1 btn-sm" @click="submitOrder">确定预定</div>
+        <div class="flex-1 btn-sm" @click="clickOrder">确定预定</div>
       </div>
     </div>
     <popup v-model="show1" height="100%">
       <deduct @selectDeduct="show1 = false"></deduct>
     </popup>
+    <popup v-model="isShowPassword">
+      <password ref="pwd" @finishpwd="submitOrder"></password>
+    </popup>
   </div>
 </template>
 <script>
 import Deduct from '@/pages/deduct'
+import Password from '@/components/password'
 import {XInput, XNumber, Datetime, Popup, CheckIcon} from 'vux'
 export default {
-  components: {XInput, XNumber, Datetime, Popup, CheckIcon, Deduct},
+  components: {XInput, XNumber, Datetime, Popup, CheckIcon, Deduct, Password},
   data() {
     return {
       readed: false,
       show1: false,
+      isShowPassword: false,
       formData: {
         ReserveUser: '',
         ReserveUserIDCard: '',
@@ -98,8 +103,7 @@ export default {
     })
   },
   methods: {
-    async submitOrder() {
-      // TODO: 存在抵扣 弹密码框
+    clickOrder() {
       let err = false
       this.$refs.form.$children.forEach(i => {
         err = !i.valid || err
@@ -112,7 +116,15 @@ export default {
         this.$vux.toast.text('请先阅读入住协议')
         return false
       }
+      if (this.deductInfo.id) {
+        this.isShowPassword = true
+      } else {
+        this.submitOrder()
+      }
+    },
+    async submitOrder(pwd = '') {
       let {data} = await this.$http.post('BeadhouseRoomReserveOrder/ReserveOrder', {
+        OrderKey: pwd,
         BeadhouseID: this.VillaData.ID,
         RoomTypeID: this.detailData.ID,
         RoomPrice: this.detailData.RoomPrice,
@@ -135,6 +147,7 @@ export default {
         }
       } else {
         this.$vux.toast.text(data.Message)
+        this.$refs.pwd.clearPwd()
       }
     },
     async ReservePay(oid) {

@@ -50,6 +50,9 @@ export default {
       if (this.password.length == 6) {
         this.$emit('finishpwd', this.password.join(''))
       }
+    },
+    clearPwd() {
+      this.password = []
     }
   }
 }

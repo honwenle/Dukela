@@ -2,7 +2,7 @@
   <div class="bg-fff">
     <d-header :pervent="true"></d-header>
     <div class="bottom">
-      <password v-if="show" :is-pay="false" :title="title[step]" @finishpwd="inputDone"></password>
+      <password ref="pwd" :is-pay="false" :title="title[step]" @finishpwd="inputDone"></password>
     </div>
   </div>
 </template>
@@ -11,7 +11,6 @@ import Password from '@/components/password'
 export default {
   data() {
     return {
-      show: true,
       step: 0,
       title: ['请输入交易密码', '请再次输入交易密码'],
       pwd: ''
@@ -52,15 +51,9 @@ export default {
         } else {
           this.$vux.toast.text('两次密码不一致, 请重新设置')
           this.step --
-          this.reFresh()
+          this.$refs.pwd.clearPwd()
         }
       }
-    },
-    reFresh() {
-      this.show = false
-      this.$nextTick(() => {
-        this.show = true
-      })
     }
   }
 }
