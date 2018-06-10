@@ -10,12 +10,11 @@
     <group label-width="100px">
       <x-input v-model="num" :is-type="checkNum" @on-change="numParseInt" title="数量" type="number" :placeholder="this.detailData.SellLimitCount+'份起售，最多购入10000元'"></x-input>
     </group>
-    <div class="bottom-bar">
-      <div class="flex">
-        <div class="flex-2 text-right theme-color fz14">总价<div class="price">{{amount}}</div></div>
-        <div class="flex-1 btn-sm" @click="submitOrder">确定买入</div>
-      </div>
-    </div>
+    <submit-bar
+      :price="amount"
+      @onSubmit="submitOrder"
+      button="确定买入">
+    </submit-bar>
   </div>
 </template>
 <script>

@@ -36,10 +36,11 @@
     <div class="group cell">
       <div v-html="detailData.ProRemark || '暂无介绍'"></div>
     </div>
-    <div class="bottom-bar">
-      <span class="price">{{detailData.ProductCost}}</span> 元
-      <div class="float-right btn-inline" @click="goBuy">立即购买</div>
-    </div>
+    <submit-bar
+      :price="detailData.ProductCost"
+      @onSubmit="goBuy"
+      button="立即购买">
+    </submit-bar>
   </div>
 </template>
 <script>
@@ -85,10 +86,6 @@ export default {
 .p{
   color: #545454;
   font-weight: 300;
-}
-.bottom-bar{
-  padding: 15px;
-  box-sizing: border-box;
 }
 .big{
   font-size: 18px;

@@ -33,15 +33,12 @@
         已阅读《入住协议》
       </check-icon>
     </div>
-    <div class="bottom-bar">
-      <div class="flex">
-        <div class="flex-2 text-right">
-          <div class="price">{{amount}}</div>
-          <span class="gray" v-if="deductInfo.id">已抵扣{{deductInfo.price * count}}元</span>
-        </div>
-        <div class="flex-1 btn-sm" @click="clickOrder">确定预定</div>
-      </div>
-    </div>
+    <submit-bar
+      :price="amount"
+      @onSubmit="clickOrder"
+      button="确定预定">
+      <span class="gray" v-if="deductInfo.id">已抵扣{{deductInfo.price * count}}元</span>
+    </submit-bar>
     <popup v-model="show1" height="100%">
       <deduct @selectDeduct="show1 = false"></deduct>
     </popup>

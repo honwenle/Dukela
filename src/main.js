@@ -11,10 +11,12 @@ import FontIcon from '@/components/font-icon/index.vue'
 import DHeader from '@/components/dkl-header.vue'
 import List from '@/components/list.vue'
 import SmsSend from '@/components/sms-send'
+import SubmitBar from '@/components/submit-bar'
 import { LoadingPlugin, ToastPlugin, XHeader,
   AlertPlugin, ConfirmPlugin,
   Group, Cell, Scroller, dateFormat, Swiper } from 'vux'
 
+Vue.component('submit-bar', SubmitBar)
 Vue.component('swiper', Swiper)
 Vue.component('list', List)
 Vue.component('x-header', XHeader)
