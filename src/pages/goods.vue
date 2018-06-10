@@ -39,6 +39,7 @@
     <submit-bar
       :price="detailData.ProductCost"
       @onSubmit="goBuy"
+      :needReal="true"
       button="立即购买">
     </submit-bar>
   </div>

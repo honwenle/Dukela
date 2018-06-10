@@ -9,10 +9,33 @@
 </template>
 <script>
 export default {
-  props: ['price', 'button', 'disabled'],
+  props: ['price', 'button', 'disabled', 'needReal'],
+  computed: {
+    UserKey() {
+      return this.$store.state.UserKey
+    },
+    UserInfo() {
+      return this.$store.state.UserInfo
+    }
+  },
   methods: {
     clickSubmit() {
       if (this.disabled) return false
+      if (this.needReal) {
+        if (this.needReal && this.UserKey && !this.UserInfo.IsCardID) {
+          this.$vux.confirm.show({
+            title: '实名提示',
+            content: '是否立即实名',
+            onCancel: () => {
+              this.$emit('onSubmit')
+            },
+            onConfirm: () => {
+              this.$router.push('realname')
+            }
+          })
+        }
+        return false
+      }
       this.$emit('onSubmit')
     }
   }
