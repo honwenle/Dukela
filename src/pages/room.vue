@@ -30,6 +30,7 @@
     <submit-bar
       :price="detailData.RoomPrice"
       @onSubmit="goOrder"
+      :disabled="detailData.UnUseRoomCount <= 0"
       button="立即预定">
     </submit-bar>
   </div>

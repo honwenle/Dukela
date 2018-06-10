@@ -4,12 +4,18 @@
       合计：<div class="price">{{price}}</div>
       <slot></slot>
     </div>
-    <button class="bar-button" @click="$emit('onSubmit')">{{button}}</button>
+    <button class="bar-button" :class="{'disabled': disabled}" @click="clickSubmit">{{button}}</button>
   </div>
 </template>
 <script>
 export default {
-  props: ['price', 'button']
+  props: ['price', 'button', 'disabled'],
+  methods: {
+    clickSubmit() {
+      if (this.disabled) return false
+      this.$emit('onSubmit')
+    }
+  }
 }
 </script>
 <style scoped lang="less">
@@ -31,5 +37,9 @@ export default {
   color: #fff;
   width: 110px;
   height: 100%;
+}
+.bar-button.disabled{
+  background: #eee;
+  color: #000;
 }
 </style>
