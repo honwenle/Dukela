@@ -15,9 +15,9 @@
         @on-change="setDeduct">
         <checker-item v-for="item in goodsList" :key="item.ID" :value="item">
           <div class="flex flex-center check-box">
-            <div class="flex-1">
-              <div>{{item.ProductName}}</div>
-              <div>商品数：{{item.ProductCount}}</div>
+            <div class="flex-1" style="line-height: 1.8;">
+              <div class="fz15">{{item.ProductName}}</div>
+              <div class="gray">商品数：{{item.ProductCount}}</div>
             </div>
             <div class="flex-2 col2">
               <div class="price">{{item.TAmount * TRate}}</div>

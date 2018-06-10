@@ -6,7 +6,7 @@
       </d-header>
       <div class="top-tran flex flex-center space-between">
         <div>
-          <div>400</div>
+          <div>{{goodsNumber}}</div>
           <div class="gray">总商品数(个)</div>
         </div>
         <div>
@@ -39,6 +39,9 @@ export default {
   computed: {
     dataList() {
       return this.$store.state.UserProduct
+    },
+    goodsNumber() {
+      return this.$store.state.goodsNumber
     }
   }
 }

@@ -27,6 +27,7 @@ export default new Vuex.Store({
     ProductStream: [],
     deduct: {},
     goodsCount: 0,
+    goodsNumber: 0,
     TRate: 1,
     wxInfo: {}
   },
@@ -123,13 +124,15 @@ export default new Vuex.Store({
     setUserInfo(state, data) {
       state.UserInfo = data
     },
-    setUserProduct(state, {items = [], count}) {
+    setUserProduct(state, {items = [], count, num}) {
       state.UserProduct = state.UserProduct.concat(items)
       state.goodsCount = count
+      state.goodsNumber = num
     },
     clearUserProduct(state) {
       state.UserProduct = []
       state.goodsCount = 0
+      state.goodsNumber = 0
     },
     setProductStream(state, items = []) {
       state.ProductStream = state.ProductStream.concat(items)
@@ -187,7 +190,8 @@ export default new Vuex.Store({
       page == 1 && commit('clearUserProduct')
       data.Code == 1 && commit('setUserProduct', {
         items: data.List,
-        count: data.Count
+        count: data.Count,
+        num: data.Number
       })
       return data.Count || 0
     },
