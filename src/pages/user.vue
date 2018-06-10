@@ -4,8 +4,8 @@
     <group :gutter="0">
       <cell>
         <div class="avatar flex" slot="title">
-          <img :src="dataInfo.Avator">
-          <div>
+          <img :src="dataInfo.Avator || require('../assets/user0.png')">
+          <div style="margin-left: 5px;">
             <div>{{dataInfo.Phone | hidePhone}}</div>
             <div class="gray">ID:{{dataInfo.UserName}}</div>
           </div>
