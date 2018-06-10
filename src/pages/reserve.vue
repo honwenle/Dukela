@@ -3,8 +3,8 @@
     <div class="theme-bg">
       <d-header :tran="true">入住预定</d-header>
       <div class="top-tran">
-        <div>{{detailData.TypeName}}</div>
-        <div>{{detailData.EquipmentContent}}</div>
+        <div class="fz16">{{detailData.TypeName}}</div>
+        <div class="fz13" style="margin-top: 8px;">{{detailData.EquipmentContent}}</div>
       </div>
     </div>
     <group label-width="100px" ref="form">

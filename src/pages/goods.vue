@@ -5,30 +5,29 @@
       <div class="swiper">
         <swiper :list="slideList" loop auto></swiper>
       </div>
-      <div class="cell fz15">{{detailData.ProductName}}</div>
-      <div class="cell flex space-between bb">
-        <div class="theme-color">已售：{{detailData.ProductUsedCount}}小时</div>
-        <div class="gray">剩余：{{detailData.ProductLessCount}}小时</div>
+      <div class="cell bb">
+        <div class="fz16" style="padding-bottom: 5px">{{detailData.ProductName}}</div>
+        <div class="flex space-between">
+          <div class="theme-color">已售：{{detailData.ProductUsedCount}}小时</div>
+          <div class="gray">剩余：{{detailData.ProductLessCount}}小时</div>
+        </div>
       </div>
       <div class="cell gray">
         <font-icon name="address"></font-icon>
         <span>温州市鹿城区蒲中路222号李山投资集团</span>
       </div>
     </div>
-    <!-- <div class="group">
-      <div class="theme-color cell center">今日T值：0.3元/份</div>
-    </div> -->
     <div class="h1">规则说明</div>
     <div class="group cell">
-      <div>
+      <div class="row-gap">
         <span class="gray">属性</span>
         <span>购买可得{{detailData.ShareRate}}W</span>
       </div>
-      <div>
+      <div class="row-gap">
         <span class="gray">服务</span>
         <span>入住权·7天无理由退货</span>
       </div>
-      <div v-if="detailData.ProductContent">
+      <div class="row-gap" v-if="detailData.ProductContent">
         <span class="gray">规则</span>
         <span v-html="detailData.ProductContent"></span>
       </div>
@@ -38,7 +37,7 @@
       <div v-html="detailData.ProRemark || '暂无介绍'"></div>
     </div>
     <div class="bottom-bar">
-      <span class="theme-color big">{{detailData.ProductCost}}</span> 元/小时
+      <span class="price">{{detailData.ProductCost}}</span> 元
       <div class="float-right btn-inline" @click="goBuy">立即购买</div>
     </div>
   </div>

@@ -54,7 +54,7 @@ export default {
   height: 150px;
   background: rgba(255, 255, 255, .8);
   margin: 12px;
-  box-shadow: 0 0 12px #dcdcdc;
+  box-shadow: 0 5px 15px #dcdcdc;
   border-radius: 5px;
   padding: 30px;
   box-sizing: border-box;

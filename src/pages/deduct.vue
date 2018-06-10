@@ -1,6 +1,8 @@
 <template>
   <div>
-    <d-header :showBack="false">商品抵扣</d-header>
+    <div class="pop-header bb">
+      <span @click="$emit('selectDeduct')">取消</span>
+    </div>
     <div class="center fff-bg top" @click="clearDeduct">不使用商品抵扣</div>
     <list
       action-name="getUserProduct"
@@ -91,5 +93,11 @@ export default {
 .top{
   height: 50px;
   line-height: 50px;
+}
+.pop-header{
+  height: 44px;
+  line-height: 44px;
+  padding: 20px 15px 0;
+  background: #fff;
 }
 </style>

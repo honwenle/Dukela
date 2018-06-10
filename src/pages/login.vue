@@ -13,8 +13,9 @@
       <font-icon name="key"></font-icon>
       <input v-model="password" type="password" placeholder="输入密码">
     </div>
-    <div class="flex space-between switch-login">
+    <div class="switch-login">
       <div class="a" @click="$router.replace({name: 'Register'})">免费注册</div>
+      <span class="a"> | </span>
       <div class="a" @click="forgetPwd">忘记密码</div>
     </div>
     <div class="btn-main" :class="{'btn-disable': isDisable}" @click="submitLogin">登录</div>

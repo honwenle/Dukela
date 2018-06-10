@@ -25,8 +25,15 @@
               <div class="big-num">{{item.ProductCost}}</div>
             </div>
             <div class="flex-1 border-left">
-              <div class="gray"><font-icon name="rmb"></font-icon>已出售<span class="theme-color">{{item.ProductUsedCount}}小时</span></div>
-              <div class="gray"><font-icon name="kucun"></font-icon>剩余{{item.ProductLessCount}}小时</div>
+              <div class="gray">
+                <font-icon name="rmb"></font-icon>
+                <span class="black">已出售</span>
+                <span class="theme-color">{{item.ProductUsedCount}}小时</span>
+              </div>
+              <div class="gray">
+                <font-icon name="kucun"></font-icon>
+                <span class="black">剩余{{item.ProductLessCount}}小时</span>
+              </div>
             </div>
             <div class="flex-1 text-right">
               <div class="btn-outline orange">抢购</div>
@@ -88,6 +95,6 @@ export default {
   margin-right: 10px;
 }
 .home-item-h1{
-  font-size: 14px;
+  font-size: 16px;
 }
 </style>

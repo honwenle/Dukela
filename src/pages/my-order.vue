@@ -34,7 +34,7 @@
           </div>
           <div class="list-padding2 flex space-between flex-center">
             <div class="gray">{{item.CreateTime}}</div>
-            <div class="btn-inline btn-sm" @click="goPay(item.ID)" v-if="item.OrderStatus == 0">去支付</div>
+            <div class="btn-inline" @click="goPay(item.ID)" v-if="item.OrderStatus == 0">去支付</div>
           </div>
         </div>
       </div>

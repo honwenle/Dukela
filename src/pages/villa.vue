@@ -20,7 +20,7 @@
     </div>
     <div class="h1">房间预定</div>
     <div class="group cell">
-      <div class="room-list">
+      <div class="room-list" v-if="roomList.length > 0">
         <div class="room flex" v-for="item in roomList" :key="item.ID">
           <div class="flex-1">
             <img class="img" :src="$imgUrl + item.BigPicUrl">
@@ -35,9 +35,12 @@
           </div>
         </div>
       </div>
+      <div v-else>
+        暂无房间
+      </div>
     </div>
     <div class="h1">山庄介绍</div>
-    <div class="group cell">
+    <div class="page-content">
       <div v-html="detailData.BeadhouseContent || '暂无介绍'"></div>
     </div>
   </div>
