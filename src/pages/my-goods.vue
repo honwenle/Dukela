@@ -6,7 +6,7 @@
       </d-header>
       <div class="top-tran flex flex-center space-between">
         <div>
-          <div>{{goodsNumber}}</div>
+          <div class="big">{{goodsNumber}}</div>
           <div class="gray">总商品数(个)</div>
         </div>
         <div>
@@ -14,24 +14,26 @@
         </div>
       </div>
     </div>
-    <list
-      action-name="getUserProduct"
-      :dataLength="dataList.length"
-      :height="`-${228}px`"
-    >
-      <div class="goods-list">
-        <div class="list-item" v-for="(item, i) in dataList" :key="i">
-          <div class="flex gray space-between fz12">
-            <div>商品名称：</div>
-            <div>可用(个)</div>
-          </div>
-          <div class="flex space-between">
-            <div>{{item.ProductName}}</div>
-            <div class="theme-color">{{item.ProductCount}}</div>
+    <div class="goods-list">
+      <list
+        action-name="getUserProduct"
+        :dataLength="dataList.length"
+        :height="`-${228}px`"
+      >
+        <div>
+          <div class="list-item" v-for="(item, i) in dataList" :key="i">
+            <div class="flex gray space-between fz15">
+              <div>商品名称：</div>
+              <div>可用(个)</div>
+            </div>
+            <div class="flex space-between flex-baseline">
+              <div class="fz15">{{item.ProductName}}</div>
+              <div class="theme-color fz20">{{item.ProductCount}}</div>
+            </div>
           </div>
         </div>
-      </div>
-    </list>
+      </list>
+    </div>
   </div>
 </template>
 <script>
@@ -63,16 +65,18 @@ export default {
   box-sizing: border-box;
 }
 .goods-list{
-  padding: 12px;
+  padding: 0 12px;
 }
 .list-item{
   background: #fff;
-  padding: 0 34px;
+  padding: 5px 34px;
   margin-bottom: 15px;
   border-radius: 5px;
-  line-height: 2;
 }
 .fz12{
   font-size: 12px;
+}
+.big{
+  font-size: 25px;
 }
 </style>

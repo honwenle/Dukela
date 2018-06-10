@@ -3,7 +3,7 @@
     <d-header :tran="true" :theme-color="true">消费明细详情</d-header>
     <div class="top center">
       <div>{{detailData.ProductName}}</div>
-      <div class="cost-num">{{detailData.ProductCount}}</div>
+      <div class="cost-num fz25">{{detailData.ProductCount}}</div>
       <div class="theme-color">{{detailData.Type | typeName}}</div>
     </div>
     <group :gutter="-1">
@@ -41,5 +41,8 @@ export default {
   padding: 20px;
   position: relative;
   z-index: 1;
+}
+.fz25{
+  font-size: 25px;
 }
 </style>

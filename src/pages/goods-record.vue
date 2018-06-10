@@ -16,13 +16,15 @@
           <div class="flex-1">
             <div class="round-text"></div>
           </div>
-          <div class="flex-2">
-            <div>{{item.ProductName}}</div>
-            <div class="gray">{{item.Type | typeName}}</div>
-          </div>
-          <div class="flex-3 text-right">
-            <div class="cost-color cost-num">{{item.ProductCount}}</div>
-            <div class="gray">{{item.CreateTime | DATEFORMAT}}</div>
+          <div class="flex-5">
+            <div class="flex space-between fz16">
+              <div>{{item.ProductName}}</div>
+              <div class="cost-color cost-num">{{item.ProductCount}}</div>
+            </div>
+            <div class="flex space-between">
+              <div class="gray">{{item.Type | typeName}}</div>
+              <div class="gray">{{item.CreateTime | DATEFORMAT}}</div>
+            </div>
           </div>
         </div>
       </div>
