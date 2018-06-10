@@ -4,16 +4,16 @@
       都可拉
       <router-link v-if="!UserKey" slot="right" to="login" style="color: #60b63c">登录/注册</router-link>
     </d-header>
-    <div class="list">
-      <list
-        action-name="getHomeList"
-        :dataLength="dataList.length"
-        :height="`-${67 + 50}px`"
-      >
-        <div style="padding: 0 16px;">
-          <div class="top">
-            <swiper :list="homeBanner | bannerArr('BigPicUrl')" loop auto></swiper>
-          </div>
+    <list
+      action-name="getHomeList"
+      :dataLength="dataList.length"
+      :height="`-${67 + 50}px`"
+    >
+      <div>
+        <div class="top">
+          <swiper :list="homeBanner | bannerArr('BigPicUrl')" loop auto></swiper>
+        </div>
+        <div class="list" style="padding: 0 16px;">
           <div class="home-item"  @click="goGoods(item.ID)" v-for="(item, i) in dataList" :key="i">
             <div class="bb home-item-h1" style="padding: 6px 15px">
               <font-icon name="home1" color="#6e9cff"></font-icon>
@@ -41,8 +41,8 @@
             </div>
           </div>
         </div>
-      </list>
-    </div>
+      </div>
+    </list>
   </div>
 </template>
 <script>

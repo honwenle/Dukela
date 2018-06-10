@@ -9,7 +9,7 @@
     <group :gutter="-1">
       <cell title="订单类型：" :value="detailData.Type | typeName"></cell>
       <cell title="关联订单号：" :value="detailData.OrderNumber"></cell>
-      <cell title="够买时间：" :value="detailData.CreateTime | DATEFORMAT"></cell>
+      <cell title="购买时间：" :value="detailData.CreateTime | DATEFORMAT"></cell>
     </group>
     <group title="摘要">
       <cell title="商品名称：" :value="detailData.ProductName"></cell>
