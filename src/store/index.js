@@ -3,7 +3,6 @@ import Vuex from 'vuex'
 import http from '../scripts/http'
 Vue.use(Vuex)
 const PAGE_SIZE = 10
-// FIXME: 数据清理
 export default new Vuex.Store({
   state: {
     homeList: [],
@@ -247,7 +246,7 @@ export default new Vuex.Store({
         orderby: '',
         ...dt
       })
-      data.Code == 1 && commit('setRoomList', JSON.parse(data.List))
+      commit('setRoomList', data.Code == 1 ? JSON.parse(data.List) : [])
     },
     async getVillaPic({commit}, dt) {
       let {data} = await http.post('BeadhouseAttachment/GetAttachment', dt)

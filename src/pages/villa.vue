@@ -35,7 +35,7 @@
           </div>
         </div>
       </div>
-      <div v-else>
+      <div class="gray" v-else>
         暂无房间
       </div>
     </div>
