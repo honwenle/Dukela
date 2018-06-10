@@ -19,21 +19,21 @@
     </div>
     <div class="h1">规则说明</div>
     <div class="group cell">
-      <div class="row-gap">
+      <div class="row-gap flex">
         <span class="gray">属性</span>
         <span>购买可得{{detailData.ShareRate}}W</span>
       </div>
-      <div class="row-gap">
+      <div class="row-gap flex">
         <span class="gray">服务</span>
         <span>入住权·7天无理由退货</span>
       </div>
-      <div class="row-gap" v-if="detailData.ProductContent">
+      <div class="row-gap flex" v-if="detailData.ProductContent">
         <span class="gray">规则</span>
         <span v-html="detailData.ProductContent"></span>
       </div>
     </div>
     <div class="h1">山庄介绍</div>
-    <div class="group cell">
+    <div class="page-content">
       <div v-html="detailData.ProRemark || '暂无介绍'"></div>
     </div>
     <submit-bar
@@ -89,5 +89,9 @@ export default {
 }
 .big{
   font-size: 18px;
+}
+.row-gap .gray{
+  display: inline-block;
+  margin-right: 10px;
 }
 </style>

@@ -4,26 +4,28 @@
       入住预定
       <router-link v-if="!UserKey" slot="right" to="login" style="color: #60b63c">登录/注册</router-link>
     </d-header>
-    <list
-      action-name="getVillaList"
-      :dataLength="dataList.length"
-      :height="`-${67 + 50}px`"
-    >
-      <div class="list">
-        <div v-for="(item, i) in dataList" :key="i" class="home-item flex" @click="goVilla(item.ID)">
-          <div class="flex-1">
-            <img class="img" :src="$imgUrl + item.BigPicUrl">
-          </div>
-          <div class="flex-3">
-            <div class="flex flex-center space-between">
-              <div class="fz17">{{item.BeadhouseName}}</div>
-              <div class="fz12 theme-color">{{item.ReserveCount || 0}}人已入住</div>
+    <div class="list">
+      <list
+        action-name="getVillaList"
+        :dataLength="dataList.length"
+        :height="`-${67 + 50}px`"
+      >
+        <div>
+          <div v-for="(item, i) in dataList" :key="i" class="home-item flex" @click="goVilla(item.ID)">
+            <div class="flex-1">
+              <img class="img" :src="$imgUrl + item.BigPicUrl">
             </div>
-            <div class="fz14 gray">{{item.BeadhouseTitle}}</div>
+            <div class="flex-3">
+              <div class="flex flex-center space-between">
+                <div class="fz17">{{item.BeadhouseName}}</div>
+                <div class="fz12 theme-color">{{item.ReserveCount || 0}}人已入住</div>
+              </div>
+              <div class="fz14 gray">{{item.BeadhouseTitle}}</div>
+            </div>
           </div>
         </div>
-      </div>
-    </list>
+      </list>
+    </div>
   </div>
 </template>
 <script>
