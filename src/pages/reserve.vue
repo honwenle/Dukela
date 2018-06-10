@@ -119,9 +119,29 @@ export default {
         return false
       }
       if (this.deductInfo.id) {
-        this.isShowPassword = true
+        this.checkDeduct()
       } else {
         this.submitOrder()
+      }
+    },
+    async checkDeduct() {
+      let {data} = await this.$http.post('BeadhouseRoomReserveOrder/GetCheckOrder', {
+        ProductID: this.deductInfo.id
+      })
+      if (data.Code == 1) {
+        if (data.UseProductCount < this.deductInfo.count) {
+          this.$vux.confirm.show({
+            title: '操作提示',
+            content: '你的订单关联到未生效商品，如继续购买，则商品默认生效',
+            onConfirm: () => {
+              this.isShowPassword = true
+            }
+          })
+        } else {
+          this.isShowPassword = true
+        }
+      } else {
+        this.$vux.toast.text(data.Message)
       }
     },
     async submitOrder(pwd = '') {
