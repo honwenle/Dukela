@@ -13,8 +13,9 @@ import List from '@/components/list.vue'
 import SmsSend from '@/components/sms-send'
 import { LoadingPlugin, ToastPlugin, XHeader,
   AlertPlugin, ConfirmPlugin,
-  Group, Cell, Scroller, dateFormat } from 'vux'
+  Group, Cell, Scroller, dateFormat, Swiper } from 'vux'
 
+Vue.component('swiper', Swiper)
 Vue.component('list', List)
 Vue.component('x-header', XHeader)
 Vue.component('d-header', DHeader)
@@ -35,6 +36,15 @@ let isApp = navigator.userAgent.indexOf('dukela') > -1
 console.log(navigator.userAgent)
 Vue.prototype.isApp = isApp
 
+Vue.filter('bannerArr', function (oList, field = 'Url') {
+  return oList.map(item => {
+    return {
+      url: 'javascript:;',
+      img: url.imgUrl + item[field],
+      title: ''
+    }
+  })
+})
 Vue.filter('isIncome', function (type) {
   return type < 3 ? 'record-income' : 'record-outcome'
 })

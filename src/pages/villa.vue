@@ -3,7 +3,7 @@
     <back></back>
     <div class="group">
       <div class="swiper">
-        <swiper :list="slideList" loop auto></swiper>
+        <swiper :list="slideList | bannerArr" loop auto></swiper>
       </div>
       <div class="cell bb fz16">{{detailData.BeadhouseName}}</div>
       <div class="cell flex space-between">
@@ -46,11 +46,10 @@
   </div>
 </template>
 <script>
-import {Swiper} from 'vux'
 import Back from '@/components/back'
 export default {
   components: {
-    Swiper, Back
+    Back
   },
   data() {
     return {
@@ -59,13 +58,7 @@ export default {
   },
   computed: {
     slideList() {
-      return this.$store.state.VillaPic.map(item => {
-        return {
-          url: 'javascript:;',
-          img: this.$imgUrl + item.Url,
-          title: ''
-        }
-      })
+      return this.$store.state.VillaPic
     },
     detailData() {
       return this.$store.state.VillaDetail

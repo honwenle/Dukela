@@ -11,7 +11,7 @@
       >
     <div class="list">
     <div class="top">
-      <img src="../assets/banenr.png" alt="">
+      <swiper :list="homeBanner | bannerArr('BigPicUrl')" loop auto></swiper>
     </div>
       <div style="padding: 0 16px;">
         <div class="home-item"  @click="goGoods(item.ID)" v-for="(item, i) in dataList" :key="i">
@@ -48,7 +48,9 @@
 <script>
 export default {
   data() {
-    return {}
+    return {
+      homeBanner: []
+    }
   },
   computed: {
     dataList() {
@@ -58,7 +60,20 @@ export default {
       return this.$store.state.UserKey
     }
   },
+  mounted() {
+    this.getHomebanner()
+  },
   methods: {
+    async getHomebanner() {
+      let {data} = await this.$http.post('AppBanner/GetList', {
+        pageSize: 10,
+        pageIndex: 1,
+        orderby: ''
+      })
+      if (data.Code == 1) {
+        this.homeBanner = JSON.parse(data.List)
+      }
+    },
     goGoods(id) {
       this.$router.push({
         name: 'Goods',
