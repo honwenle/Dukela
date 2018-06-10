@@ -24,7 +24,7 @@ export default {
       if (this.step == 0) {
         this.pwd = pwd
         this.step ++
-        this.reFresh()
+        this.$refs.pwd.clearPwd()
       } else {
         if (pwd == this.pwd) {
           // 区分是否有短信验证码
