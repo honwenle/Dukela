@@ -72,14 +72,3 @@ export default {
   }
 }
 </script>
-<style scoped>
-.empty-list{
-  text-align: center;
-  padding-top: 80px;
-}
-.empty-list img{
-  width: 90px;
-  display: inline-block;
-  margin-bottom: 20px;
-}
-</style>

@@ -90,6 +90,7 @@ export default {
       let photo = e.target.files[0]
       reader.readAsDataURL(photo)
       formdata.append('file', photo)
+      this.$vux.loading.show()
       this.$http({
         method: 'post',
         isUpload: true,
@@ -102,9 +103,13 @@ export default {
         } else {
           this.$vux.toast.text(data.Message)
         }
+        this.$vux.loading.show()
+      }).catch(() => {
+        this.$vux.loading.hide()
       })
     },
     async submitCheck() {
+      this.$vux.loading.show()
       let {data} = await this.$http.post('UserBaiduApi/Addinfo', {
         ApiType: this.step + 1,
         ImageUrl: this.imgPath,
@@ -121,6 +126,7 @@ export default {
       } else {
         this.$vux.toast.text(data.Message)
       }
+      this.$vux.loading.hide()
     },
     nextStep() {
       if (this.name && this.idcard) {
