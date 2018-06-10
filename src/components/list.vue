@@ -8,8 +8,12 @@
       @on-scroll-bottom="moreData"
       :height="height"
       :pulldown-config="{downContent: '下拉刷新', upContent: '释放后更新', loadingContent: '加载中'}">
-      <slot></slot>
-      <load-more :show-loading="onFetching" :tip="noMore ? '暂无数据' : '正在加载'"></load-more>
+      <slot v-if="dataLength > 0"></slot>
+      <div class="empty-list" v-else>
+        <img src="../assets/empty.png" alt="">
+        <div class="fz15">暂无记录</div>
+      </div>
+      <load-more :show-loading="onFetching" :tip="noMore ? (dataLength > 0 ? '没有更多' : '') : '正在加载'"></load-more>
     </scroller>
   </div>
 </template>
@@ -66,3 +70,14 @@ export default {
   }
 }
 </script>
+<style scoped>
+.empty-list{
+  text-align: center;
+  padding-top: 80px;
+}
+.empty-list img{
+  width: 90px;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+</style>
