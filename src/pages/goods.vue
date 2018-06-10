@@ -32,7 +32,7 @@
         <span v-html="detailData.ProductContent"></span>
       </div>
     </div>
-    <div class="h1">山庄介绍</div>
+    <div class="h1">商品介绍</div>
     <div class="page-content">
       <div v-html="detailData.ProRemark || '暂无介绍'"></div>
     </div>

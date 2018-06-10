@@ -3,7 +3,6 @@
     <div class="pop-header bb">
       <span @click="$emit('selectDeduct')">取消</span>
     </div>
-    <div class="center fff-bg top" @click="clearDeduct">不使用商品抵扣</div>
     <list
       action-name="getUserProduct"
       :dataLength="goodsList.length"
@@ -28,6 +27,7 @@
         </checker-item>
       </checker>
     </list>
+    <div class="center main-bg nouse" @click="clearDeduct">不使用商品抵扣</div>
   </div>
 </template>
 <script>
@@ -90,9 +90,13 @@ export default {
   border-left: 1px solid #eee;
   padding-left: 15px;
 }
-.top{
+.nouse{
   height: 50px;
   line-height: 50px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  color: #fff;
 }
 .pop-header{
   height: 44px;
