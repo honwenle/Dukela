@@ -10,7 +10,7 @@
         <div
           v-for="item in dataList"
           :key="item.ID"
-          class="list-item flex cell flex-center"
+          class="fff-bg bb flex cell flex-center"
           :class="item.Type | isIncome"
           @click="goDetail(item.ID)">
           <div class="flex-1">
