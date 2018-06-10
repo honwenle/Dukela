@@ -19,7 +19,7 @@
               <div class="gray">商品数：{{item.ProductCount}}</div>
             </div>
             <div class="flex-2 col2">
-              <div class="price">{{item.TAmount * TRate}}</div>
+              <div class="price">{{item.TAmount * TRate | decimal}}</div>
               <div class="gray">抵扣价格</div>
             </div>
             <font-icon fontsize="22px" :name="item.ID == deductInfo.ID ? 'radio' : 'radio1'"></font-icon>

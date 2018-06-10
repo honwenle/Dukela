@@ -38,6 +38,9 @@ let isApp = navigator.userAgent.indexOf('dukela') > -1
 console.log(navigator.userAgent)
 Vue.prototype.isApp = isApp
 
+Vue.filter('decimal', function (num) {
+  return Math.floor(num * 100)/100
+})
 Vue.filter('bannerArr', function (oList, field = 'Url') {
   return oList.map(item => {
     return {
