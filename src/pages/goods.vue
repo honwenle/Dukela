@@ -5,17 +5,17 @@
       <div class="swiper">
         <swiper :list="slideList | bannerArr" loop auto></swiper>
       </div>
-      <div class="cell bb">
+      <div class="cell">
         <div class="fz16" style="padding-bottom: 5px">{{detailData.ProductName}}</div>
         <div class="flex space-between">
           <div class="theme-color">已售：{{detailData.ProductUsedCount}}小时</div>
           <div class="gray">剩余：{{detailData.ProductLessCount}}小时</div>
         </div>
       </div>
-      <div class="cell gray">
+      <!-- <div class="cell gray">
         <font-icon name="address"></font-icon>
-        <span>温州市鹿城区蒲中路222号李山投资集团</span>
-      </div>
+        <span>{{温州市鹿城区蒲中路222号李山投资集团}}</span>
+      </div> -->
     </div>
     <div class="h1">规则说明</div>
     <div class="group cell">
@@ -89,9 +89,5 @@ export default {
 }
 .big{
   font-size: 18px;
-}
-.row-gap .gray{
-  display: inline-block;
-  margin-right: 10px;
 }
 </style>

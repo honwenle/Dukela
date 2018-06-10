@@ -20,12 +20,12 @@
     </div>
     <div class="h1">规则说明</div>
     <div class="group cell">
-      <div class="p" v-html="detailData.EquipmentContent"></div>
-      <div class="p" v-html="detailData.RoomImportContent"></div>
+      <div class="row-gap"><span class="gray">附属设置</span> {{detailData.EquipmentContent}}</div>
+      <div class="row-gap"><span class="gray">重要事项</span> {{detailData.RoomImportContent}}</div>
     </div>
     <div class="h1">房间简介</div>
-    <div class="group cell">
-      <div class="p" v-html="detailData.RoomContent"></div>
+    <div class="page-content">
+      <div v-html="detailData.RoomContent"></div>
     </div>
     <submit-bar
       :price="detailData.RoomPrice"
