@@ -17,6 +17,7 @@ export default {
     logout() {
       this.$store.commit('clearUserInfo')
       this.$vux.toast.text('退出成功')
+      this.$router.push('login')
     }
   }
 }
