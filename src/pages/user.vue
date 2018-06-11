@@ -6,8 +6,8 @@
         <div class="avatar flex" slot="title">
           <img :src="dataInfo.Avator || require('../assets/user0.png')">
           <div style="margin-left: 5px;">
-            <div>{{dataInfo.Phone | hidePhone}}</div>
-            <div class="gray">ID:{{dataInfo.UserName}}</div>
+            <div>{{dataInfo.FullName | '用户昵称'}}</div>
+            <div class="gray">ID:{{dataInfo.IDName}}</div>
           </div>
         </div>
       </cell>
@@ -49,7 +49,7 @@
         is-link>
         <div v-if="dataInfo.WXOpenID">
           <font-icon name="weixin" color="#60b63c" fontsize="20px"></font-icon>
-          {{dataInfo.FullName}}
+          {{dataInfo.NickName}}
         </div>
         <div v-else>未绑定</div>
       </cell>
