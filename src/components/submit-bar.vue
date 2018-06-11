@@ -18,22 +18,20 @@ export default {
       return this.$store.state.UserInfo
     }
   },
+  mounted() {
+    this.needReal && this.UserKey && this.$store.dispatch('getUserInfo')
+  },
   methods: {
     clickSubmit() {
       if (this.disabled) return false
-      if (this.needReal) {
-        if (this.needReal && this.UserKey && !this.UserInfo.IsCardID) {
-          this.$vux.confirm.show({
-            title: '实名提示',
-            content: '是否立即实名',
-            onCancel: () => {
-              this.$emit('onSubmit')
-            },
-            onConfirm: () => {
-              this.$router.push('realname')
-            }
-          })
-        }
+      if (this.needReal && this.UserKey && !this.UserInfo.IsCardID) {
+        this.$vux.confirm.show({
+          title: '实名提示',
+          content: '是否立即实名',
+          onConfirm: () => {
+            this.$router.push('realname')
+          }
+        })
         return false
       }
       this.$emit('onSubmit')

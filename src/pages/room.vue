@@ -75,6 +75,7 @@ export default {
   },
   methods: {
     goOrder() {
+      if (this.detailData.UnUseRoomCount < 0) return false
       this.$store.commit('clearDeduct')
       this.$router.push({
         name: 'Reserve'
