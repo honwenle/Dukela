@@ -164,7 +164,7 @@ export default new Router({
       path: '/my-goods',
       name: 'MyGoods',
       component: MyGoods,
-      meta: { keepAlive: true, needLogin: true }
+      meta: { needLogin: true }
     }, {
       path: '/goods-record',
       name: 'GoodsRecord',

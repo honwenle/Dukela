@@ -179,7 +179,7 @@ export default {
       if (data.Code == 1) {
         this.$router.push({
           name: 'Result',
-          params: {
+          query: {
             status: true,
             type: 1,
             title: '预定成功！',

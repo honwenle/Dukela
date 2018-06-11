@@ -103,7 +103,7 @@ export default {
         } else {
           this.$vux.toast.text(data.Message)
         }
-        this.$vux.loading.show()
+        this.$vux.loading.hide()
       }).catch(() => {
         this.$vux.loading.hide()
       })

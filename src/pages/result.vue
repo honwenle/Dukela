@@ -15,10 +15,10 @@
 export default {
   data() {
     return {
-      status: this.$route.params.status,
-      type: this.$route.params.type,
-      title: this.$route.params.title,
-      content: this.$route.params.content
+      status: this.$route.query.status,
+      type: this.$route.query.type,
+      title: this.$route.query.title,
+      content: this.$route.query.content
     }
   }
 }

@@ -164,7 +164,7 @@ export default {
     goResult(status, content) {
       this.$router.push({
         name: 'Result',
-        params: {
+        query: {
           status: status,
           type: this.type,
           title: status ? ['支付成功！', '预定成功！'][this.type] : '操作失败',
