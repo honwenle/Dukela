@@ -53,7 +53,7 @@ export default {
         MessageID: id
       })
       this.$router.push({
-        path: ['detail', 'detail-reserve'][type],
+        path: ['detail', 'detail-reserve'][type-1],
         query: {
           id
         }
