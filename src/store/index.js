@@ -28,7 +28,8 @@ export default new Vuex.Store({
     goodsCount: 0,
     goodsNumber: 0,
     TRate: 1,
-    wxInfo: {}
+    wxInfo: {},
+    UserMessageCount: 0
   },
   getters: {
     getRecordDetail: (state) => (id) => {
@@ -39,6 +40,9 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    setUserMessageCount(state, data) {
+      state.UserMessageCount = data
+    },
     setWxInfo(state, data) {
       state.wxInfo = data
     },
@@ -141,6 +145,10 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    async getUserMessageCount({commit}) {
+      let {data} = await http.post('UserMessage/GetNoReadMessageCount')
+      data.Code == 1 && commit('setUserMessageCount', data.Model)
+    },
     async getTRate({commit}) {
       let {data} = await http.post('SysConfig/GetModel', {
         ID: 1

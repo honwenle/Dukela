@@ -44,7 +44,9 @@ export default {
   },
   methods: {
     goDetail(id, type) {
-      // TODO: 标记已读
+      this.$http.post('UserMessage/ReadMessage', {
+        MessageID: id
+      })
       this.$router.push({
         path: ['detail', 'detail-reserve'][type],
         query: {

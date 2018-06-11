@@ -15,7 +15,7 @@
       <cell title="我的商品库" link="my-goods"></cell>
       <cell title="我的订单" link="my-order"></cell>
       <cell title="我的消息" link="messages">
-        <badge v-if="msgList" :text="msgList"></badge>
+        <badge v-if="msgCount" :text="msgCount"></badge>
       </cell>
       <cell title="客服电话" is-link>
         <span class="theme-color"><font-icon name="phone"></font-icon></span>
@@ -37,13 +37,13 @@ export default {
     UserKey() {
       return this.$store.state.UserKey
     },
-    msgList() {
-      return this.$store.state.UserMessage.length
+    msgCount() {
+      return this.$store.state.UserMessageCount
     }
   },
   mounted() {
     this.UserKey && this.$store.dispatch('getUserInfo')
-    this.UserKey && this.$store.dispatch('getUserMessage', {})
+    this.UserKey && this.$store.dispatch('getUserMessageCount', {})
   }
 }
 </script>

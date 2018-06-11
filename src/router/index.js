@@ -151,8 +151,7 @@ export default new Router({
         }, {
           path: '/me',
           name: 'Me',
-          component: Me,
-          meta: { keepAlive: true }
+          component: Me
         }
       ]
     }, {
