@@ -12,13 +12,18 @@
             <img :src="require('../assets/msg-a' + item.EventType + '.png')" class="img">
           </div>
           <div class="flex-1" style="padding: 0 8px 0 17px">
-            <div class="message-box" @click="goDetail(item.KeyID)">
+            <div class="message-box" @click="goDetail(item.KeyID, item.EventType)">
               <div class="row-padding">
                 <div>{{item.Title}}</div>
                 <div>{{item.CreateTime | DATEFORMAT}}</div>
                 <div class="center box-content">
                   <div>{{item.Content.BeadhouseName}}</div>
-                  <div class="main-color">{{item.Content.ProductCount}}份</div>
+                  <div v-if="item.EventType == 1" class="main-color">
+                    {{item.Content.ProductCount}}份
+                  </div>
+                  <div v-if="item.EventType == 2">
+                    <span class="gray">入住时间：</span><span class="main-color">{{item.Content.ReserveStartTime}}</span>
+                  </div>
                 </div>
                 <div class="gray">订单号：{{item.Content.OrderNo}}</div>
               </div>
@@ -38,9 +43,10 @@ export default {
     }
   },
   methods: {
-    goDetail(id) {
+    goDetail(id, type) {
+      // TODO: 标记已读
       this.$router.push({
-        path: 'detail',
+        path: ['detail', 'detail-reserve'][type],
         query: {
           id
         }
