@@ -31,7 +31,7 @@
                   <span class="theme-color">{{item.ProductUsedCount}}小时</span>
                 </div>
                 <div class="gray">
-                  <font-icon name="kucun"></font-icon>
+                  <font-icon name="stock"></font-icon>
                   <span class="black">剩余{{item.ProductLessCount}}小时</span>
                 </div>
               </div>
