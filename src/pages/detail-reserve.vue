@@ -8,7 +8,7 @@
       <div class="detail-top">
         <div class="detail-title" v-if="isPay">
           待支付，剩
-          <clocker v-if="detail.CreateTime" :time="detail.CreateTime | PAYDATEFORMAT" format="%M分%S秒" @on-finish="$router.back()">
+          <clocker v-if="detail.CreateTime" :time="detail.CreateTime | PAYDATEFORMAT" format="%M分%S秒" @on-finish="detail.OrderStatus = 4">
           </clocker>
           关闭订单
         </div>
