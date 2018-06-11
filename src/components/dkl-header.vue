@@ -34,9 +34,6 @@ export default {
     },
     themeColor: {
       default: false
-    },
-    typeText: {
-      default: 1
     }
   },
   methods: {

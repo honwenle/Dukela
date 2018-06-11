@@ -154,7 +154,12 @@ export default new Vuex.Store({
         orderby: ''
       })
       page == 1 && commit('clearUserMessage')
-      data.Code == 1 && commit('setUserMessage', data.List)
+      if (data.Code == 1) {
+        commit('setUserMessage', data.List.map(item => {
+          item.Content = JSON.parse(item.Content)
+          return item
+        }))
+      }
       return data.Count || 0
     },
     async getUserOrderList({commit}, {page = 1, type = 0}) {

@@ -12,15 +12,15 @@
             <img :src="require('../assets/msg-a' + item.EventType + '.png')" class="img">
           </div>
           <div class="flex-1" style="padding: 0 8px 0 17px">
-            <div class="message-box">
+            <div class="message-box" @click="goDetail(item.KeyID)">
               <div class="row-padding">
-                <div>{{item.EventTypeName}}</div>
+                <div>{{item.Title}}</div>
                 <div>{{item.CreateTime | DATEFORMAT}}</div>
-                <div class="center">
-                  <div>{{item.Title}}</div>
-                  <div class="main-color">{{item.Content}}</div>
+                <div class="center box-content">
+                  <div>{{item.Content.BeadhouseName}}</div>
+                  <div class="main-color">{{item.Content.ProductCount}}份</div>
                 </div>
-                <div class="gray">订单号：xxxxxx</div>
+                <div class="gray">订单号：{{item.Content.OrderNo}}</div>
               </div>
               <div class="row-padding2">立即查看</div>
             </div>
@@ -35,6 +35,16 @@ export default {
   computed: {
     dataList() {
       return this.$store.state.UserMessage
+    }
+  },
+  methods: {
+    goDetail(id) {
+      this.$router.push({
+        path: 'detail',
+        query: {
+          id
+        }
+      })
     }
   }
 }
@@ -72,5 +82,9 @@ export default {
 }
 .item{
   margin-bottom: 17px;
+}
+.box-content{
+  font-size: 15px;
+  margin: 16px 0;
 }
 </style>
