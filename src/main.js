@@ -108,8 +108,9 @@ router.beforeEach((to, from, next) => {
       next()
     } else {
       Vue.$vux.confirm.show({
-        title: '操作提示',
-        content: '是否立即登录',
+        title: '请登录',
+        content: '登录后才可继续操作',
+        confirmText: '去登录',
         onCancel() {
           next(false)
         },

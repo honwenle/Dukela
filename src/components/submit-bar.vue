@@ -26,8 +26,9 @@ export default {
       if (this.disabled) return false
       if (this.needReal && this.UserKey && !this.UserInfo.IsCardID) {
         this.$vux.confirm.show({
-          title: '实名提示',
-          content: '是否立即实名',
+          title: '去实名认证',
+          content: '实名认证之后方可继续操作',
+          confirmText: '去认证',
           onConfirm: () => {
             this.$router.push('realname')
           }
