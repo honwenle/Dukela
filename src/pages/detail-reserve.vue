@@ -44,7 +44,7 @@
         </group>
         <div class="group box" v-if="detail.Room">
           <div class="cell flex space-between">
-            <div>{{detail.Room.BeadhouseName}}</div>
+            <div class="fz15">{{detail.Room.BeadhouseName}}</div>
             <div class="fz12" @click="$router.push('villaList')">查看<font-icon name="forward"></font-icon></div>
           </div>
           <div class="cell gray bb">{{detail.Room.Address}}</div>

@@ -50,7 +50,7 @@
         <div class="list-item" v-for="(item, i) in dataList" :key="i">
           <div class="list-padding" @click="goDetail(item.ID)">
             <div class="flex space-between">
-              <div>{{item.BeadhouseName}}</div>
+              <div class="fz15">{{item.BeadhouseName}}</div>
               <div class="btn-color" :class="item.OrderStatus | tagColor">{{item.OrderStatus | reserveStatusName}}</div>
             </div>
             <div class="flex bg-eee m10">

@@ -12,10 +12,6 @@
           <div class="gray">剩余：{{detailData.ProductLessCount}}小时</div>
         </div>
       </div>
-      <!-- <div class="cell gray">
-        <font-icon name="address"></font-icon>
-        <span>{{温州市鹿城区蒲中路222号李山投资集团}}</span>
-      </div> -->
     </div>
     <div class="h1">规则说明</div>
     <div class="group cell">
