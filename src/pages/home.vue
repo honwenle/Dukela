@@ -1,5 +1,8 @@
 <template>
   <div class="fixed-bottom">
+    <keep-alive>
+      <welcome v-if="isShowWelcome" @hideWelcome="isShowWelcome = false"></welcome>
+    </keep-alive>
     <d-header :showBack="false">
       都可拉
       <router-link v-if="!UserKey" slot="right" to="login" style="color: #60b63c">登录/注册</router-link>
@@ -46,10 +49,13 @@
   </div>
 </template>
 <script>
+import Welcome from '@/components/welcome'
 export default {
+  components: {Welcome},
   data() {
     return {
-      homeBanner: []
+      homeBanner: [],
+      isShowWelcome: true
     }
   },
   computed: {
