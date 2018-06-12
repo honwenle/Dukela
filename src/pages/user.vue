@@ -6,7 +6,7 @@
         <div class="avatar flex" slot="title">
           <img :src="dataInfo.Avator || require('../assets/user0.png')">
           <div style="margin-left: 5px;">
-            <div>{{dataInfo.FullName | '用户昵称'}}</div>
+            <div>{{dataInfo.FullName || '用户昵称'}}</div>
             <div class="gray">ID:{{dataInfo.IDName}}</div>
           </div>
         </div>

@@ -32,8 +32,7 @@ export default {
   data() {
     return {
       phone: '',
-      password: '',
-      weiXinPlugin: window.api.require('weiXin')
+      password: ''
     }
   },
   computed: {

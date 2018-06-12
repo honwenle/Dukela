@@ -55,7 +55,7 @@ export default {
   data() {
     return {
       homeBanner: [],
-      isShowWelcome: true
+      isShowWelcome: !localStorage.getItem('welcomeflag')
     }
   },
   computed: {

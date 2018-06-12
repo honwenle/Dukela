@@ -1,7 +1,7 @@
 export default {
   data() {
     return {
-      weiXinPlugin: window.api.require('weiXin')
+      weiXinPlugin: window.api && window.api.require('weiXin')
     }
   },
   mounted() {

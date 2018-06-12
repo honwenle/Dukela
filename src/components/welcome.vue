@@ -37,6 +37,7 @@ export default {
   components: {SwiperItem},
   methods: {
     hideWelcome() {
+      localStorage.setItem('welcomeflag', 1)
       this.$emit('hideWelcome')
     }
   }
