@@ -4,7 +4,7 @@
     <group :gutter="0">
       <cell title="版本信息" link="version">1.0版</cell>
     </group>
-    <div class="btn-main" @click="logout">退出</div>
+    <div class="btn-main" v-show="UserKey" @click="logout">退出</div>
   </div>
 </template>
 <script>
@@ -13,11 +13,16 @@ export default {
   components: {
     Group, Cell
   },
+  computed: {
+    UserKey() {
+      return this.$store.state.UserKey
+    }
+  },
   methods: {
     logout() {
       this.$store.commit('clearUserInfo')
       this.$vux.toast.text('退出成功')
-      this.$router.push('login')
+      this.$router.back()
     }
   }
 }
