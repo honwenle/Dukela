@@ -15,7 +15,7 @@
     <group>
       <cell title="昵称" :value="dataInfo.FullName || '暂无'" @click.native="showChangeNick" is-link></cell>
       <cell title="年龄" :value="dataInfo.Age ? (dataInfo.Age + '岁') : '暂无'"></cell>
-      <cell title="性别" :value="genderList[+dataInfo.Sex]"></cell>
+      <cell title="性别" :value="genderList[dataInfo.Sex]"></cell>
     </group>
     <group>
       <cell title="手机号"
@@ -81,7 +81,7 @@ export default {
     return {
       show1: false,
       show2: false,
-      genderList: ['女', '男'],
+      genderList: ['暂无', '男', '女'],
       nickName: ''
     }
   },
@@ -101,7 +101,8 @@ export default {
           this.afterWxAuth({
             openid: '',
             nickname: '',
-            headimgurl: ''
+            headimgurl: '',
+            sex: 0
           })
         }
       })
@@ -109,7 +110,7 @@ export default {
     async afterWxAuth(ret) {
       let {data} = await this.$http.post('User/BindOpenID', {
         wXOpenID: ret.openid,
-        fullName: ret.nickname,
+        NickName: ret.nickname,
         avator: ret.headimgurl,
         Sex: ret.sex
       })
