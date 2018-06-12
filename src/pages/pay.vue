@@ -162,7 +162,7 @@ export default {
       this.$vux.toast.text('银联接口开发中')
     },
     goResult(status, content) {
-      this.$router.push({
+      this.$router.replace({
         name: 'Result',
         query: {
           status: status,
