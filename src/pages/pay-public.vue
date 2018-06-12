@@ -5,9 +5,9 @@
     <div class="group">
       <div class="cell">
         <div>用户名：浙江都克拉网络科技有限公司</div>
-        <div>银行：中国农业银行</div>
-        <div>开户行：*****</div>
-        <div>账号：123456</div>
+        <div>银行：中国工商银行</div>
+        <div>开户行：温州经济技术开发区支行教育新村分理处</div>
+        <div>账号：1203006819000061501</div>
       </div>
     </div>
     <div class="cell">打款账户</div>

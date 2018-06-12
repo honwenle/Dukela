@@ -19,7 +19,7 @@
       </cell>
       <cell title="客服电话" is-link>
         <span class="theme-color"><font-icon name="phone"></font-icon></span>
-        <a class="theme-color" href="tel:057786588682">0577-86588682</a>
+        <a class="theme-color" href="tel:057788689777">0577-88689777</a>
       </cell>
     </group>
   </div>

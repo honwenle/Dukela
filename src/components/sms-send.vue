@@ -8,7 +8,7 @@
       </span>
       <span v-else class="a" @click="sendMsg">获取验证码</span>
     </div>
-    <div v-show="type == 6" class="tip">如您无法收验证码，请联系客服：0577-86588682</div>
+    <div v-show="type == 6" class="tip">如您无法收验证码，请联系客服：0577-88689777</div>
   </div>
 </template>
 <script>
