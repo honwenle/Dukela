@@ -337,7 +337,7 @@ export default new Vuex.Store({
         wXOpenID: state.wxInfo.openid,
         NickName: state.wxInfo.nickname,
         avator: state.wxInfo.headimgurl,
-        Sex: state.wxInfo.sex,
+        // Sex: state.wxInfo.sex,
         ...dt
       })
       data.Code == 1 && commit('setUserKey', data.UserKey)

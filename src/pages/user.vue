@@ -111,8 +111,8 @@ export default {
       let {data} = await this.$http.post('User/BindOpenID', {
         wXOpenID: ret.openid,
         NickName: ret.nickname,
-        avator: ret.headimgurl,
-        Sex: ret.sex
+        avator: ret.headimgurl
+        // Sex: ret.sex
       })
       if (data.Code == 1) {
         this.$store.dispatch('getUserInfo')

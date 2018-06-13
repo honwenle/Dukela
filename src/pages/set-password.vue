@@ -76,6 +76,7 @@ export default {
         PassWord: this.pwd1
       })
       if (data.Code == 1) {
+        this.$store.commit('clearUserInfo')
         this.$vux.alert.show({
           title: '修改成功',
           content: '请重新登录',

@@ -2,10 +2,7 @@
   <div>
     <d-header>实名认证</d-header>
     <div class="top">
-      <div class="realname-top-round">
-        <font-icon name="wo" fontsize="40px"></font-icon>
-      </div>
-      <div>您已通过实名认证</div>
+      <img src="../assets/real-img.png" alt="">
     </div>
     <group :gutter="0">
       <cell title="姓名"><span class="theme-color">{{dataInfo.RealName}}</span></cell>
@@ -30,10 +27,8 @@ export default {
 </script>
 <style scoped>
 .top{
-  background: linear-gradient(30deg, #3668fb, #837cfd);
-  text-align: center;
-  color: #fff;
-  padding: 32px 0;
+  padding: 15px;
+  background: #fff;
 }
 .realname-top-round{
   background: #fff;
