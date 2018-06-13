@@ -9,8 +9,28 @@
     </div>
     <group label-width="100px" ref="form">
       <x-input title="房间数" value="1间" disabled></x-input>
-      <x-input v-model="formData.ReserveUser" required title="入住人" placeholder="请填写姓名，需和身份证一致"></x-input>
-      <x-input v-model="formData.ReserveUserIDCard" required title="身份证" placeholder="请填写身份证号码"></x-input>
+      <x-input v-model="formData.ReserveUser" required title="入住人" placeholder="请填写姓名，需和身份证一致">
+        <div slot="label" style="width: 100px">
+          入住人
+          <popover placement="right" style="display: inline-block">
+            <div slot="content" class="popover-content">
+              实际入住人需和填写的一致
+            </div>
+            <font-icon name="help" color="#fe5900"></font-icon>
+          </popover>
+        </div>
+      </x-input>
+      <x-input v-model="formData.ReserveUserIDCard" required placeholder="请填写身份证号码">
+        <div slot="label" style="width: 100px">
+          身份证
+          <popover placement="right" style="display: inline-block">
+            <div slot="content" class="popover-content">
+              实际入住人需和填写的一致
+            </div>
+            <font-icon name="help" color="#fe5900"></font-icon>
+          </popover>
+        </div>
+      </x-input>
       <x-input v-model="formData.ReserveTel" required type="tel" is-type="china-mobile" title="联系手机" placeholder="请填写手机号码"></x-input>
       <datetime v-model="formData.ReserveStartTime" valueTextAlign="left" required title="入住时间" placeholder="请选择"></datetime>
       <datetime v-model="formData.ReserveEndTime" valueTextAlign="left" required title="离开时间" placeholder="请选择"></datetime>
@@ -50,9 +70,9 @@
 <script>
 import Deduct from '@/pages/deduct'
 import Password from '@/components/password'
-import {XInput, XNumber, Datetime, Popup, CheckIcon} from 'vux'
+import {XInput, XNumber, Datetime, Popup, CheckIcon, Popover} from 'vux'
 export default {
-  components: {XInput, XNumber, Datetime, Popup, CheckIcon, Deduct, Password},
+  components: {XInput, XNumber, Datetime, Popup, CheckIcon, Deduct, Password, Popover},
   data() {
     return {
       readed: false,

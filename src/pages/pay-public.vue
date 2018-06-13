@@ -39,7 +39,7 @@ export default {
       }
       let data = await this.$store.dispatch('dklPay', {
         OrderID: this.id,
-        BlankNo: this.bankno
+        BankNo: this.bankno
       })
       if (data.Code == 1) {
         this.$vux.alert.show({

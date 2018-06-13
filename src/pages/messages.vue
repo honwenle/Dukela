@@ -13,26 +13,35 @@
           </div>
           <div class="flex-1" style="padding: 0 8px 0 17px">
             <div class="message-box" @click="goDetail(item.ID, item.KeyID, item.EventType)">
-              <div class="row-padding">
-                <div>{{item.Title}}</div>
-                <div>{{item.CreateTime | DATEFORMAT}}</div>
-                <div class="center box-content">
-                  <template v-if="item.EventType == 1">
-                    <div>{{item.Content.ProductName}}</div>
-                    <div class="main-color">
-                      {{item.Content.ProductCount}}份
-                    </div>
-                  </template>
-                  <template v-if="item.EventType == 2">
-                    <div>入住山庄：{{item.Content.BeadhouseName}}</div>
-                    <div class="gray">
-                      入住时间：<span class="main-color">{{item.Content.ReserveStartTime}}</span>
-                    </div>
-                  </template>
+              <template v-if="item.EventType == 3">
+                <div class="row-padding">
+                  <div>{{item.Title}}</div>
+                  <div>{{item.Content.Content}}</div>
                 </div>
-                <div class="gray">订单号：{{item.Content.OrderNo}}</div>
-              </div>
-              <div class="row-padding2">立即查看</div>
+                <div class="row-padding2">{{item.CreateTime | DATEFORMAT}}</div>
+              </template>
+              <template v-else>
+                <div class="row-padding">
+                  <div>{{item.Title}}</div>
+                  <div>{{item.CreateTime | DATEFORMAT}}</div>
+                  <div class="center box-content">
+                    <template v-if="item.EventType == 1">
+                      <div>{{item.Content.ProductName}}</div>
+                      <div class="main-color">
+                        {{item.Content.ProductCount}}份
+                      </div>
+                    </template>
+                    <template v-if="item.EventType == 2">
+                      <div>入住山庄：{{item.Content.BeadhouseName}}</div>
+                      <div class="gray">
+                        入住时间：<span class="main-color">{{item.Content.ReserveStartTime}}</span>
+                      </div>
+                    </template>
+                  </div>
+                  <div class="gray">订单号：{{item.Content.OrderNo}}</div>
+                </div>
+                <div class="row-padding2">立即查看</div>
+              </template>
             </div>
           </div>
         </div>
@@ -53,7 +62,7 @@ export default {
         MessageID: id
       })
       this.$router.push({
-        path: ['detail', 'detail-reserve'][type-1],
+        path: ['detail', 'detail-reserve', 'my-realname'][type-1],
         query: {
           id: kid
         }

@@ -193,9 +193,4 @@ export default {
   font-size: 20px;
   margin: 5px 0;
 }
-.popover-content{
-  padding: 12px;
-  font-size: 12px;
-  border: 1px solid #eee;
-}
 </style>
