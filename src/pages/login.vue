@@ -1,4 +1,5 @@
 <template>
+<scroller lock-x>
   <div class="center">
     <d-header></d-header>
     <div class="top">
@@ -24,6 +25,7 @@
         <font-icon name="weixin_denglu" fontsize="40px" @click.native="wxAuth"></font-icon>
     </div>
   </div>
+</scroller>
 </template>
 <script>
 import wxMixin from '@/mixins/wx'

@@ -9,8 +9,8 @@
     </div>
     <group label-width="100px" ref="form">
       <x-input title="房间数" value="1间" disabled></x-input>
-      <x-input v-model="UserInfo.RealName" required disabled title="入住人" placeholder="请填写姓名，需和身份证一致"></x-input>
-      <x-input v-model="UserInfo.CardID" required disabled title="身份证" placeholder="请填写身份证号码"></x-input>
+      <x-input v-model="formData.ReserveUser" required title="入住人" placeholder="请填写姓名，需和身份证一致"></x-input>
+      <x-input v-model="formData.ReserveUserIDCard" required title="身份证" placeholder="请填写身份证号码"></x-input>
       <x-input v-model="formData.ReserveTel" required type="tel" is-type="china-mobile" title="联系手机" placeholder="请填写手机号码"></x-input>
       <datetime v-model="formData.ReserveStartTime" valueTextAlign="left" required title="入住时间" placeholder="请选择"></datetime>
       <datetime v-model="formData.ReserveEndTime" valueTextAlign="left" required title="离开时间" placeholder="请选择"></datetime>
@@ -59,6 +59,8 @@ export default {
       show1: false,
       isShowPassword: false,
       formData: {
+        ReserveUser: '',
+        ReserveUserIDCard: '',
         ReserveTel: '',
         ReserveStartTime: '',
         ReserveEndTime: ''
@@ -155,8 +157,6 @@ export default {
         PayProductID: this.deductInfo.id,
         PayProductCount: this.count || '',
         PayProductAmount: this.deductInfo.price * this.count || '',
-        ReserveUser: this.UserInfo.RealName,
-        ReserveUserIDCard: this.UserInfo.CardID,
         ...this.formData
       })
       if (data.Code == 1) {

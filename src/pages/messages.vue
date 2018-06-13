@@ -12,7 +12,7 @@
             <img :src="require('../assets/msg-a' + item.EventType + '.png')" class="img">
           </div>
           <div class="flex-1" style="padding: 0 8px 0 17px">
-            <div class="message-box" @click="goDetail(item.KeyID, item.EventType)">
+            <div class="message-box" @click="goDetail(item.ID, item.KeyID, item.EventType)">
               <div class="row-padding">
                 <div>{{item.Title}}</div>
                 <div>{{item.CreateTime | DATEFORMAT}}</div>
@@ -48,14 +48,14 @@ export default {
     }
   },
   methods: {
-    goDetail(id, type) {
+    goDetail(id, kid, type) {
       this.$http.post('UserMessage/ReadMessage', {
         MessageID: id
       })
       this.$router.push({
         path: ['detail', 'detail-reserve'][type-1],
         query: {
-          id
+          id: kid
         }
       })
     }
