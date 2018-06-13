@@ -1,6 +1,9 @@
 <template>
   <div>
-    <d-header>支付订单<a slot="right">付费规则</a></d-header>
+    <d-header>
+      支付订单
+      <!-- <a slot="right">付费规则</a> -->
+    </d-header>
     <div class="group center pay-top">
       <div class="gray">
         支付剩余时间

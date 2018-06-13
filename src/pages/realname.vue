@@ -24,11 +24,11 @@
         <div style="padding-bottom: 15px">请确认您的信息</div>
         <div class="login-input">
           <font-icon name="key"></font-icon>
-          <input v-model="name" disabled placeholder="输入姓名">
+          <input v-model="name" disabled placeholder="姓名">
         </div>
         <div class="login-input">
           <font-icon name="key"></font-icon>
-          <input v-model="idcard" disabled placeholder="输入身份证号">
+          <input v-model="idcard" disabled placeholder="身份证号">
         </div>
       </div>
       <div class="btn-full flex">
@@ -74,6 +74,9 @@ export default {
   computed: {
     isDisable() {
       return this.name == '' || this.idcard == ''
+    },
+    isSetPwd() {
+      return this.$store.state.UserInfo.IsSellPassword
     }
   },
   methods: {
@@ -90,26 +93,35 @@ export default {
       let photo = e.target.files[0]
       reader.readAsDataURL(photo)
       formdata.append('file', photo)
-      this.$vux.loading.show()
+      this.$vux.loading.show({
+        text: '正在上传'
+      })
       this.$http({
         method: 'post',
         isUpload: true,
         url: 'Upload/BatchUpload',
         data: formdata
       }).then(({data}) => {
+        this.$vux.loading.hide()
         if (data.Code == 1) {
           this.imgPath = data.FileList
           this.step == 0 && this.submitCheck()
         } else {
-          this.$vux.toast.text(data.Message)
+          this.$vux.alert.show({
+            content: data.Message
+          })
         }
-        this.$vux.loading.hide()
       }).catch(() => {
         this.$vux.loading.hide()
+        this.$vux.alert.show({
+          content: data.Message
+        })
       })
     },
     async submitCheck() {
-      this.$vux.loading.show()
+      this.$vux.loading.show({
+        text: '正在识别'
+      })
       let {data} = await this.$http.post('UserBaiduApi/Addinfo', {
         ApiType: this.step + 1,
         ImageUrl: this.imgPath,
@@ -121,10 +133,16 @@ export default {
           this.name = data.Model.RealName
           this.idcard = data.Model.CardID
         } else if (this.step == 1) {
-          this.show1 = true
+          if (this.isSetPwd) {
+            this.$router.back()
+          } else {
+            this.show1 = true
+          }
         }
       } else {
-        this.$vux.toast.text(data.Message)
+        this.$vux.alert.show({
+          content: data.Message
+        })
       }
       this.$vux.loading.hide()
     },
@@ -134,8 +152,7 @@ export default {
       } else {
         this.$vux.toast.text('请先通过身份证认证')
       }
-    },
-    goSetPwd() {}
+    }
   }
 }
 </script>
