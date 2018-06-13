@@ -43,6 +43,8 @@ export default {
         this.$store.commit('clearSmsState')
         this.$vux.toast.text('修改成功')
         this.$router.push('me')
+      } else {
+        this.$vux.toast.text(data.Message)
       }
     }
   }
