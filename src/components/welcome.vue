@@ -63,6 +63,7 @@ export default {
   display: inline-block;
   border-radius: .3em;
   padding: 5px 1em;
+  white-space: nowrap;
 }
 .wel-bt-big {
   font-size: 18px;

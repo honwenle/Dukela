@@ -14,7 +14,7 @@
     <group title="摘要">
       <cell title="商品名称：" :value="detailData.ProductName"></cell>
       <cell title="商品总数(个)：">
-        <div class="cost-num">{{detailData.ProductCount}}</div>
+        <div class="cost-num">{{detailData.ProductTCount}}</div>
       </cell>
       <cell title="途径：" :value="detailData.Type | typeName"></cell>
     </group>
