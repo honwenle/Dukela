@@ -201,7 +201,7 @@ export default new Vuex.Store({
       })
       page == 1 && commit('clearUserProduct')
       data.Code == 1 && commit('setUserProduct', {
-        items: data.List,
+        items: JSON.parse(data.List),
         count: data.Count,
         num: data.Number
       })

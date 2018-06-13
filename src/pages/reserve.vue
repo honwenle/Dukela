@@ -101,7 +101,7 @@ export default {
       return Math.floor(this.detailData.RoomPrice * (days || 1) * 100)/100
     },
     count() {
-      return Math.min(this.total / this.deductInfo.price, this.deductInfo.count)
+      return Math.min((this.total * this.detailData.RoomSize) / (this.deductInfo.price * this.deductInfo.size), this.deductInfo.count)
     },
     amount() {
       return this.deductInfo.id ? Math.max(this.total - Math.floor(this.deductInfo.price * this.count *100)/100, 0) : this.total

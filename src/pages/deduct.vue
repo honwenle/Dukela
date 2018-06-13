@@ -62,6 +62,7 @@ export default {
         id: val.ProductID,
         name: val.ProductName,
         price: val.TAmount * this.TRate / val.ProductCount,
+        size: val.ProductSize,
         amount: val.TAmount * this.TRate,
         count: val.ProductCount
       })
