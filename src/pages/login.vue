@@ -60,7 +60,7 @@ export default {
         if (data.Code == 1) {
           this.$store.commit('setUserKey', data.UserKey)
           this.$store.dispatch('getUserInfo')
-          this.$router.push('me')
+          this.$router.back()
         } else {
           this.$router.push('wx-reg')
         }
@@ -79,7 +79,7 @@ export default {
       if (data.Code == 1) {
         this.$vux.toast.text('登录成功')
         this.$store.dispatch('getUserInfo')
-        this.$router.push({name: 'Me'}) // XXX: 哪来哪去
+        this.$router.back()
       } else {
         this.$vux.toast.text(data.Message)
       }
