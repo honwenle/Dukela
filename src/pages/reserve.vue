@@ -57,7 +57,7 @@
       :price="amount"
       @onSubmit="clickOrder"
       button="确定预定">
-      <span class="gray" v-if="deductInfo.id">已抵扣{{deductInfo.price * count}}元</span>
+      <span class="gray" v-if="deductInfo.id">已抵扣{{(deductInfo.price * count) | decimal}}元</span>
     </submit-bar>
     <popup v-model="show1" height="100%">
       <deduct @selectDeduct="show1 = false"></deduct>
