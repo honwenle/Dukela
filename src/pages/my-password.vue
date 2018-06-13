@@ -3,6 +3,7 @@
     <d-header>密码管理</d-header>
     <group :gutter="0">
       <cell title="登录密码"
+        :value="dataInfo.IsLoginPassword ? '' : '暂无密码'"
         :link="{
           name: 'CheckPhone',
           params: {

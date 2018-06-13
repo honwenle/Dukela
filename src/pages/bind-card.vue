@@ -99,6 +99,7 @@ export default {
       let {data} = await this.$http.post(`User/${this.formData.ID ? 'Edit' : ''}BindBank`, this.formData)
       if (data.Code == 1) {
         this.$vux.toast.text('绑定成功')
+        this.$store.dispatch('getUserInfo')
         this.$router.back()
       } else {
         this.$vux.toast.text(data.Message)
