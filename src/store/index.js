@@ -335,7 +335,7 @@ export default new Vuex.Store({
         SmsID: state.SmsID,
         Phone: state.SmsPhone,
         wXOpenID: state.wxInfo.openid,
-        fullName: state.wxInfo.nickname,
+        NickName: state.wxInfo.nickname,
         avator: state.wxInfo.headimgurl,
         Sex: state.wxInfo.sex,
         ...dt

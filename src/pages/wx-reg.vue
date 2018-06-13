@@ -9,12 +9,17 @@
         </div>
       </div>
       <sms-send v-model="vcode" :phone="phone" :type="4"></sms-send>
+      <agreement v-model="readed"></agreement>
       <div class="btn-main" @click="submitWxReg">确定</div>
     </div>
   </div>
 </template>
 <script>
+import Agreement from '@/components/agreement'
 export default {
+  components: {
+    Agreement
+  },
   computed: {
     dataInfo() {
       return this.$store.state.wxInfo
@@ -23,11 +28,15 @@ export default {
   data() {
     return {
       phone: '',
-      vcode: ''
+      vcode: '',
+      readed: false
     }
   },
   methods: {
     async submitWxReg() {
+      if (!this.readed) {
+        this.$vux.toast.text('请先同意注册协议')
+      }
       let data = await this.$store.dispatch('wxReg', {
         ValidateCode: this.vcode
       })
