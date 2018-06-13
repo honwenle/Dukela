@@ -20,7 +20,7 @@
           </popover>
         </div>
       </x-input>
-      <x-input v-model="formData.ReserveUserIDCard" required placeholder="请填写身份证号码">
+      <x-input v-model="formData.ReserveUserIDCard" required placeholder="请填写身份证号码" :is-type="checkIdcard">
         <div slot="label" style="width: 100px">
           身份证
           <popover placement="right" style="display: inline-block">
@@ -129,6 +129,13 @@ export default {
     })
   },
   methods: {
+    checkIdcard(val) {
+      if (/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/.test(val)) {
+        return {valid: true}
+      } else {
+        return {valid: false, msg: '请输入正确身份证号'}
+      }
+    },
     clickOrder() {
       let err = false
       this.$refs.form.$children.forEach(i => {
