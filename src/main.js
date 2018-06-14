@@ -75,3 +75,8 @@ router.beforeEach((to, from, next) => {
     next()
   }
 })
+router.afterEach((to, from) => {
+  if (from.params.jump) {
+    router.push(from.params.jump)
+  }
+})

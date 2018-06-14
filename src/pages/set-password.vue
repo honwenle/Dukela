@@ -81,7 +81,8 @@ export default {
           title: '修改成功',
           content: '请重新登录',
           onHide: () => {
-            this.$router.push('login')
+            this.$route.params.jump = 'login'
+            this.$router.go(-4)
           }
         })
       } else {
