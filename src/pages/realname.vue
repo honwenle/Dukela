@@ -68,7 +68,8 @@ export default {
       img1: require('../assets/realname1.png'),
       img2: require('../assets/realname1.png'),
       imgPath: '',
-      show1: false
+      show1: false,
+      dontNoticeSetPwd: this.$route.params.noNotice
     }
   },
   computed: {
@@ -133,7 +134,7 @@ export default {
           this.name = data.Model.RealName
           this.idcard = data.Model.CardID
         } else if (this.step == 1) {
-          if (this.isSetPwd) {
+          if (this.isSetPwd || this.dontNoticeSetPwd) {
             this.$router.back()
           } else {
             this.show1 = true

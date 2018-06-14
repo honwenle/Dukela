@@ -30,7 +30,7 @@
       </cell>
       <cell title="实名认证"
         :value="dataInfo.IsCardID ? '已实名认证' : '还未进行实名认证'"
-        :link="dataInfo.IsCardID ? 'my-realname' : 'realname'">
+        @click.native="goRealname">
       </cell>
       <cell title="银行卡管理"
         :value="dataInfo.IsBank ? '已绑定' : '未绑定'"
@@ -91,6 +91,18 @@ export default {
     }
   },
   methods: {
+    goRealname() {
+      if (this.dataInfo.IsCardID) {
+        this.$router.push('my-realname')
+      } else {
+        this.$router.push({
+          name: 'Realname',
+          params: {
+            noNotice: true
+          }
+        })
+      }
+    },
     wxBind() {
       this.dataInfo.WXOpenID ? this.wxUnbind() : this.wxAuth()
     },
