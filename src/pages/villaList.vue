@@ -8,7 +8,7 @@
       <list
         action-name="getVillaList"
         :dataLength="dataList.length"
-        :height="`-${67 + 50}px`"
+        :height="`-${67 + 50}`"
       >
         <div>
           <div v-for="(item, i) in dataList" :key="i" class="home-item flex" @click="goVilla(item.ID)">

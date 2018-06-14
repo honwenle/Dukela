@@ -4,7 +4,7 @@
     <list
       action-name="getProductStream"
       :dataLength="dataList.length"
-      :height="`-67px`"
+      :height="`-67`"
     >
       <div class="list">
         <div

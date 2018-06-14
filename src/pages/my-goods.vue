@@ -18,7 +18,7 @@
       <list
         action-name="getUserProduct"
         :dataLength="dataList.length"
-        :height="`-${228}px`"
+        :height="`-${228}`"
       >
         <div>
           <div class="list-item" v-for="(item, i) in dataList" :key="i">

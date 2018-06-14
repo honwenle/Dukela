@@ -10,7 +10,7 @@
     <list
       action-name="getHomeList"
       :dataLength="dataList.length"
-      :height="`-${67 + 50}px`"
+      :height="`-${67 + 50}`"
     >
       <div>
         <div class="top">

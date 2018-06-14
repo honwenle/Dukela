@@ -4,7 +4,7 @@
     <list
       action-name="getUserMessage"
       :dataLength="dataList.length"
-      :height="`-${67}px`"
+      :height="`-${67}`"
     >
       <div class="message-wrap">
         <div class="item flex" v-for="item in dataList" :key="item.ID">

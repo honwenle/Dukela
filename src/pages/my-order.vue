@@ -9,7 +9,7 @@
       action-name="getUserOrderList"
       :paramsData="{type: tabIndex}"
       :dataLength="dataList.length"
-      :height="`-${67 + 44}px`"
+      :height="`-${67 + 44}`"
       v-show="tabIndex == 0"
     >
       <div class="list">
@@ -43,7 +43,7 @@
       action-name="getUserOrderList"
       :paramsData="{type: tabIndex}"
       :dataLength="dataList.length"
-      :height="`-${67 + 50}px`"
+      :height="`-${67 + 50}`"
       v-show="tabIndex == 1"
     >
       <div class="list">

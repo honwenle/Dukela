@@ -19,7 +19,7 @@
       </swiper-item>
       <swiper-item>
         <div class="wel-img" :style="'background-image: url('+ require('../assets/wc3.jpg') +');'">
-          <div class="wel-bt wel-bt-big" @click="hideWelcome">开启你的居旅时代</div>
+          <div class="wel-bt wel-bt-big" @click="hideWelcome">开启你的旅居时代</div>
         </div>
       </swiper-item>
     </swiper>

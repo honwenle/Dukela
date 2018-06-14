@@ -7,7 +7,7 @@
       action-name="getUserProduct"
       :dataLength="goodsList.length"
       :paramsData="{bid: VillaData.ID}"
-      :height="`-${67 - 50}px`">
+      :height="`${-67 - 50}`">
       <checker v-model="deductInfo"
         default-item-class="checker-item"
         selected-item-class="checker-on"
