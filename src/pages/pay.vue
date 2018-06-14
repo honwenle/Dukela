@@ -87,6 +87,7 @@ export default {
     }
   },
   mounted() {
+    this.$store.commit('clearOrder')
     this.$store.dispatch('getOrder', {
       id: this.id,
       type: this.type

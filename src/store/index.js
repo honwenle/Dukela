@@ -124,6 +124,9 @@ export default new Vuex.Store({
     setOrder(state, data) {
       state.OrderDetail = data
     },
+    clearOrder(state) {
+      state.OrderDetail = {}
+    },
     setUserInfo(state, data) {
       state.UserInfo = data
     },
