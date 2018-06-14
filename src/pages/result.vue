@@ -26,3 +26,9 @@ export default {
   }
 }
 </script>
+<style scoped>
+.btn-outline{
+  width: 45%;
+  box-sizing: border-box;
+}
+</style>

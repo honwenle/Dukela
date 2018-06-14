@@ -7,7 +7,7 @@
     <group :gutter="0">
       <cell title="姓名"><span class="theme-color">{{dataInfo.RealName}}</span></cell>
       <cell title="证件"><span class="theme-color">{{dataInfo.CardID}}</span></cell>
-      <cell title="性别"><span class="theme-color">{{['女', '男'][+dataInfo.Sex]}}</span></cell>
+      <cell title="性别"><span class="theme-color">{{['无', '男', '女'][dataInfo.Sex]}}</span></cell>
       <cell title="年龄"><span class="theme-color">{{dataInfo.Age}}</span></cell>
     </group>
   </div>

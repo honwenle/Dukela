@@ -211,6 +211,7 @@ export default new Vuex.Store({
       let {data} = await http.post('User/GetModel')
       if (data.Code == 1) {
         data.UserInfo.IsSellPassword = data.IsSellPassword
+        data.UserInfo.IsLoginPassword = data.IsLoginPassword
         commit('setUserInfo', data.UserInfo)
       }
     },
