@@ -25,10 +25,10 @@
   </div>
 </template>
 <script>
-import { Group, Cell, Badge } from 'vux'
+import { Badge } from 'vux'
 export default {
   components: {
-    Group, Cell, Badge
+    Badge
   },
   computed: {
     dataInfo() {

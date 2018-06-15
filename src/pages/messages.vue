@@ -8,7 +8,7 @@
     >
       <div class="message-wrap">
         <div class="item flex" v-for="item in dataList" :key="item.ID">
-          <div class="avatar">
+          <div class="avatar" :class="{'badge': !item.IsReader}">
             <img :src="require('../assets/msg-a' + item.EventType + '.png')" class="img">
           </div>
           <div class="flex-1" style="padding: 0 8px 0 17px">
@@ -108,5 +108,17 @@ export default {
 .box-content{
   font-size: 15px;
   margin: 16px 0;
+}
+.badge{
+  position: relative;
+}
+.badge::after{
+  content: '';
+  position: absolute;
+  background: #f74c31;
+  top: -3px;
+  right: -3px;
+  padding: 5px;
+  border-radius: 5px;
 }
 </style>
