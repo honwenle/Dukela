@@ -29,6 +29,7 @@
         }">
       </cell>
       <cell title="实名认证"
+        is-link
         :value="dataInfo.IsCardID ? '已实名认证' : '还未进行实名认证'"
         @click.native="goRealname">
       </cell>

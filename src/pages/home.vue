@@ -20,7 +20,7 @@
           <div class="home-item"  @click="goGoods(item.ID)" v-for="(item, i) in dataList" :key="i">
             <div class="bb home-item-h1" style="padding: 6px 15px">
               <font-icon name="home1" color="#6e9cff"></font-icon>
-              <div class="line-block">{{item.ProductName}}</div>
+              <div class="inline-block">{{item.ProductName}}</div>
             </div>
             <div class="flex flex-center" style="padding: 10px 15px 7px">
               <div class="flex-1">
