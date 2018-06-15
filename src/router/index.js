@@ -43,6 +43,7 @@ import Version from '@/pages/version'
 
 Vue.use(Router)
 
+// TODO: keepAlive机制需要review
 export default new Router({
   // mode: 'history',
   routes: [
@@ -173,7 +174,7 @@ export default new Router({
       path: '/my-order',
       name: 'MyOrder',
       component: MyOrder,
-      meta: { keepAlive: true, needLogin: true }
+      meta: { needLogin: true }
     }, {
       path: '/goods',
       name: 'Goods',
@@ -187,7 +188,7 @@ export default new Router({
       path: '/pay',
       name: 'Pay',
       component: Pay,
-      meta: { needLogin: true }
+      meta: { keepAlive: true, needLogin: true }
     }, {
       path: '/villa',
       name: 'Villa',
@@ -200,7 +201,7 @@ export default new Router({
       path: '/reserve',
       name: 'Reserve',
       component: Reserve,
-      meta: { needLogin: true }
+      meta: { keepAlive: true, needLogin: true }
     }, {
       path: '/result',
       name: 'Result',
