@@ -40,6 +40,7 @@ export default {
     async submitBind() {
       if (!this.readed) {
         this.$vux.toast.text('请先同意注册协议')
+        return false
       }
       let data = await this.$store.dispatch('checkMsg', {
         ValidateCode: this.vcode
