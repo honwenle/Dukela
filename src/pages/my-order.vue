@@ -8,12 +8,12 @@
     <list
       action-name="getUserOrderList"
       :paramsData="{type: tabIndex}"
-      :dataLength="dataList.length"
+      :dataLength="UserOrderList.length"
       :height="`-${67 + 44}`"
       v-show="tabIndex == 0"
     >
       <div class="list">
-        <div class="list-item" v-for="(item, i) in dataList" :key="i">
+        <div class="list-item" v-for="(item, i) in UserOrderList" :key="i">
           <div class="list-padding" @click="goDetail(item.ID)">
             <div class="flex space-between">
               <div class="flex-1 fz15">{{item.ProductName}}</div>
@@ -42,12 +42,12 @@
     <list
       action-name="getUserOrderList"
       :paramsData="{type: tabIndex}"
-      :dataLength="dataList.length"
+      :dataLength="UserReserveList.length"
       :height="`-${67 + 50}`"
       v-show="tabIndex == 1"
     >
       <div class="list">
-        <div class="list-item" v-for="(item, i) in dataList" :key="i">
+        <div class="list-item" v-for="(item, i) in UserReserveList" :key="i">
           <div class="list-padding" @click="goDetail(item.ID)">
             <div class="flex space-between">
               <div class="fz15">{{item.BeadhouseName}}</div>
@@ -82,8 +82,11 @@ export default {
     }
   },
   computed: {
-    dataList() {
+    UserOrderList() {
       return this.$store.state.UserOrderList
+    },
+    UserReserveList() {
+      return this.$store.state.UserReserveList
     }
   },
   methods: {

@@ -22,6 +22,7 @@ export default new Vuex.Store({
     RoomPic: [],
     UserProduct: [],
     UserOrderList: [],
+    UserReserveList: [],
     UserMessage: [],
     ProductStream: [],
     deduct: {},
@@ -66,6 +67,12 @@ export default new Vuex.Store({
     },
     clearUserOrderList(state) {
       state.UserOrderList = []
+    },
+    setUserReserveList(state, items = []) {
+      state.UserReserveList = state.UserReserveList.concat(items)
+    },
+    clearUserReserveList(state) {
+      state.UserReserveList = []
     },
     setVillaList(state, items = []) {
       state.villaList = state.villaList.concat(items)
@@ -179,8 +186,8 @@ export default new Vuex.Store({
         pageIndex: page,
         orderby: ''
       })
-      page == 1 && commit('clearUserOrderList')
-      data.Code == 1 && commit('setUserOrderList', JSON.parse(data.List))
+      page == 1 && commit(['clearUserOrderList', 'clearUserReserveList'][type])
+      data.Code == 1 && commit(['setUserOrderList', 'setUserReserveList'][type], JSON.parse(data.List))
       return data.Count || 0
     },
     async getProductStream({commit}, {page = 1}) {
