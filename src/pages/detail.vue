@@ -2,7 +2,7 @@
   <div class="page--detail">
     <d-header :tran="true" :theme-color="true">
       商品购入详情
-      <div slot="right" v-if="isPay" @click="cancelOrder">取消订单</div>
+      <div slot="right" v-if="isPay" @click="clickCancel">取消订单</div>
     </d-header>
     <div class="detail">
       <div class="detail-top">
@@ -66,6 +66,15 @@ export default {
       this.$store.dispatch('getOrder', {
         id: this.id,
         type: 0
+      })
+    },
+    clickCancel() {
+      this.$vux.confirm.show({
+        title: '确认取消',
+        content: '是否确认取消',
+        onConfirm: () => {
+          this.cancelOrder()
+        }
       })
     },
     async cancelOrder() {
