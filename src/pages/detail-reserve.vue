@@ -45,7 +45,7 @@
         <div class="group box" v-if="detail.Room">
           <div class="cell flex space-between">
             <div class="fz15">{{detail.Room.BeadhouseName}}</div>
-            <div class="fz12" @click="$router.push('villaList')">查看<font-icon name="forward"></font-icon></div>
+            <div class="fz12" @click="goVilla(detail.BeadhouseID)">查看<font-icon name="forward"></font-icon></div>
           </div>
           <div class="cell gray bb">{{detail.Room.Address}}</div>
           <div class="cell">{{detail.Room.TypeName}}</div>
@@ -95,6 +95,14 @@ export default {
     this.getDetail()
   },
   methods: {
+    goVilla(id) {
+      this.$router.push({
+        name: 'Villa',
+        query: {
+          id: id
+        }
+      })
+    },
     getDetail() {
       this.$store.dispatch('getOrder', {
         id: this.id,

@@ -241,7 +241,7 @@ export default new Vuex.Store({
             TypeName: room.Name,
             RoomPrice: room.RoomPrice,
             RoomSize: room.RoomSize,
-            ContactTel: room.ContactTel,
+            ContactTel: villa.ContactTel,
             TypeType: room.TypeName
           }
         }
