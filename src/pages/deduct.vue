@@ -9,6 +9,7 @@
       :paramsData="{bid: VillaData.ID}"
       :height="`${-67 - 50}`">
       <checker v-model="deductInfo"
+        radio-required
         default-item-class="checker-item"
         selected-item-class="checker-on"
         @on-change="setDeduct">
@@ -54,6 +55,7 @@ export default {
   },
   methods: {
     clearDeduct() {
+      this.deductInfo = {}
       this.$store.commit('clearDeduct')
       this.$emit('selectDeduct')
     },
