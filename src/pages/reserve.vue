@@ -32,8 +32,8 @@
         </div>
       </x-input>
       <x-input v-model="formData.ReserveTel" required type="tel" is-type="china-mobile" title="联系手机" placeholder="请填写手机号码"></x-input>
-      <datetime v-model="formData.ReserveStartTime" valueTextAlign="left" required title="入住时间" placeholder="请选择"></datetime>
-      <datetime v-model="formData.ReserveEndTime" valueTextAlign="left" required title="离开时间" placeholder="请选择"></datetime>
+      <datetime v-model="formData.ReserveStartTime" valueTextAlign="left" required title="入住时间" placeholder="请选择" :start-date="new Date() | dateFormat('YYYY-MM-DD')"></datetime>
+      <datetime v-model="formData.ReserveEndTime" valueTextAlign="left" required title="离开时间" placeholder="请选择" :start-date="formData.ReserveStartTime"></datetime>
     </group>
     <group>
       <cell title="商品抵扣" is-link @click.native="show1 = true">
@@ -68,6 +68,7 @@
   </div>
 </template>
 <script>
+import { dateFormat } from 'vux'
 import Deduct from '@/pages/deduct'
 import Password from '@/components/password'
 import {XInput, XNumber, Datetime, Popup, CheckIcon, Popover} from 'vux'
@@ -86,6 +87,9 @@ export default {
         ReserveEndTime: ''
       }
     }
+  },
+  filters: {
+    dateFormat
   },
   computed: {
     total() {
