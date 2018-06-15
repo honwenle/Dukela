@@ -1,30 +1,30 @@
 <template>
-    <transition name="fade">
-  <div class="welcome">
-    <swiper :height="height + 'px'" :show-dots="false">
-      <swiper-item>
-        <div class="wel-img" :style="'background-image: url('+ require('../assets/wc0.jpg') +');'">
-          <div class="wel-bt wel-bt-skip" @click="hideWelcome">跳过</div>
-        </div>
-      </swiper-item>
-      <swiper-item>
-        <div class="wel-img" :style="'background-image: url('+ require('../assets/wc1.jpg') +');'">
-          <div class="wel-bt wel-bt-skip" @click="hideWelcome">跳过</div>
-        </div>
-      </swiper-item>
-      <swiper-item>
-        <div class="wel-img" :style="'background-image: url('+ require('../assets/wc2.jpg') +');'">
-          <div class="wel-bt wel-bt-skip" @click="hideWelcome">跳过</div>
-        </div>
-      </swiper-item>
-      <swiper-item>
-        <div class="wel-img" :style="'background-image: url('+ require('../assets/wc3.jpg') +');'">
-          <div class="wel-bt wel-bt-big" @click="hideWelcome">开启你的旅居时代</div>
-        </div>
-      </swiper-item>
-    </swiper>
-  </div>
-    </transition>
+  <transition name="fade">
+    <div class="welcome">
+      <swiper :height="height + 'px'" dots-position="center" dots-class="swp-dots">
+        <swiper-item>
+          <div class="wel-img" :style="'background-image: url('+ require('../assets/wc0.jpg') +');'">
+            <div class="wel-bt wel-bt-skip" @click="hideWelcome">跳过</div>
+          </div>
+        </swiper-item>
+        <swiper-item>
+          <div class="wel-img" :style="'background-image: url('+ require('../assets/wc1.jpg') +');'">
+            <div class="wel-bt wel-bt-skip" @click="hideWelcome">跳过</div>
+          </div>
+        </swiper-item>
+        <swiper-item>
+          <div class="wel-img" :style="'background-image: url('+ require('../assets/wc2.jpg') +');'">
+            <div class="wel-bt wel-bt-skip" @click="hideWelcome">跳过</div>
+          </div>
+        </swiper-item>
+        <swiper-item>
+          <div class="wel-img" :style="'background-image: url('+ require('../assets/wc3.jpg') +');'">
+            <div class="wel-bt wel-bt-big" @click="hideWelcome">开启你的旅居时代</div>
+          </div>
+        </swiper-item>
+      </swiper>
+    </div>
+  </transition>
 </template>
 <script>
 import {SwiperItem} from 'vux'
@@ -43,7 +43,7 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style>
 .welcome{
   position: fixed;
   width: 100%;
@@ -77,5 +77,8 @@ export default {
   position: absolute;
   top: 6%;
   right: 8%;
+}
+.welcome .vux-slider .swp-dots{
+  bottom: 50px;
 }
 </style>

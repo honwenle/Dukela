@@ -1,11 +1,11 @@
 <template>
   <div>
     <d-header>对公账户</d-header>
-    <div class="cell">都克拉账户</div>
+    <div class="cell">都可拉账户</div>
     <div class="group">
       <div class="cell">
         <div class="row-gap">
-          <span class="gray">用户名：</span>浙江都克拉网络科技有限公司
+          <span class="gray">用户名：</span>浙江都可拉网络科技有限公司
         </div>
         <div class="row-gap">
           <span class="gray">银行：</span>中国工商银行
