@@ -134,6 +134,7 @@ export default {
           this.name = data.Model.RealName
           this.idcard = data.Model.CardID
         } else if (this.step == 1) {
+          this.$store.dispatch('getUserInfo')
           if (this.isSetPwd || this.dontNoticeSetPwd) {
             this.$router.back()
           } else {
