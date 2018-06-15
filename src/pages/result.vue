@@ -18,7 +18,7 @@
 export default {
   data() {
     return {
-      status: this.$route.query.status,
+      status: this.$route.query.status == 1,
       type: this.$route.query.type,
       title: this.$route.query.title,
       content: this.$route.query.content

@@ -169,7 +169,7 @@ export default {
       this.$router.replace({
         name: 'Result',
         query: {
-          status: status,
+          status: +status,
           type: this.type,
           title: status ? ['支付成功！', '预定成功！'][this.type] : '操作失败',
           content: status ? ['商品已进入您的商品库！', '请按时办理入住！'][this.type] : content
