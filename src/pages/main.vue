@@ -26,7 +26,7 @@ export default {
       tabList: [
         {
           label: '首页',
-          icon: 'home',
+          icon: this.$route.name == 'Home' ? 'dukela1' : 'dukela',
           route: 'Home'
         }, {
           label: '入住预定',
