@@ -14,7 +14,7 @@
           <img src="../assets/empty.png" alt="">
           <div class="fz15">暂无记录</div>
         </div>
-        <load-more :show-loading="onFetching" :tip="noMore ? (dataLength > 0 ? '没有更多' : '') : '正在加载'"></load-more>
+        <load-more :show-loading="onFetching" :tip="noMore ? ((dataLength > 0 && page > 1) ? '没有更多' : '') : '正在加载'"></load-more>
       </div>
     </scroller>
   </div>
