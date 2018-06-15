@@ -187,7 +187,7 @@ export default {
         RoomPrice: this.detailData.RoomPrice,
         PayProductID: this.deductInfo.id,
         PayProductCount: this.count || '',
-        PayProductAmount: this.deductInfo.price * this.count || '',
+        PayProductAmount: Math.floor((Math.ceil(this.deductInfo.price * this.count * 10000)/10000) * 100)/100 || '',
         ...this.formData
       })
       if (data.Code == 1) {
