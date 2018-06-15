@@ -138,6 +138,10 @@ export default {
       this.show1 = true
     },
     async submitNick() {
+      if (this.nickName.length < 6 || this.nickName.length > 20) {
+        this.$vux.toast.text('请输入6-20位字符')
+        return false
+      }
       let {data} = await this.$http({
         method: 'post',
         url: '/User/EditFullNameByUserID',
