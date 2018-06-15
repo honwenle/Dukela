@@ -217,6 +217,8 @@ export default {
             content: '请按时办理入住！'
           }
         })
+      } else {
+        this.$vux.toast.text(data.Message)
       }
     }
   }

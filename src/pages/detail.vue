@@ -23,9 +23,9 @@
           <cell title="商品总数(个)：" :value="detail.ProductCount"></cell>
           <cell title="商品单价(元)：" :value="detail.ProductCost"></cell>
         </group>
-        <group class="box" :gutter="0">
+        <group class="box" :gutter="0" label-width="100px">
           <cell v-show="show1" title="支付方式：" :value="detail.PayType | payTypeName"></cell>
-          <cell v-show="show1" title="支付流水号：" :value="detail.Trade_no"></cell>
+          <cell style="word-break: break-all;" v-show="show1" title="支付流水号：" :value="detail.Trade_no"></cell>
           <cell title="订单号：" :value="detail.OrderNumber"></cell>
           <cell v-show="show1" title="支付时间：" :value="detail.PayDate | DATEFORMAT"></cell>
           <cell title="创建时间：" :value="detail.CreateTime | DATEFORMAT"></cell>
