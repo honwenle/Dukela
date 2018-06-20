@@ -41,15 +41,50 @@
 │  │  ├─back.vue 返回按钮
 │  │  ├─dkl-header.vue 头部
 │  │  ├─list.vue 回弹列表，刷新、加载
-│  │  ├─re-confirm.vue
-│  │  ├─sms-send.vue
-│  │  ├─password.vue
-│  │  └─font-icon
+│  │  ├─re-confirm.vue 中断实名提醒框
+│  │  ├─sms-send.vue 短信发送
+│  │  ├─password.vue 密码框
+│  │  └─font-icon 字体图标
 │  ├─pages
-│  │  └─... 各个页面
+│  │  ├─bind-card.vue 绑卡
+│  │  ├─buy.vue 商品下单
+│  │  ├─change-phone.vue 修改手机号
+│  │  ├─check-phone.vue 验证手机
+│  │  ├─deduct.vue 抵扣选择
+│  │  ├─detail-reserve.vue 预约订单详情
+│  │  ├─detail.vue 商品订单详情
+│  │  ├─goods-record.vue 商品明细列表
+│  │  ├─goods.vue 商品详情
+│  │  ├─home.vue 主页（商品列表）
+│  │  ├─login.vue 登录
+│  │  ├─main.vue 主页容器
+│  │  ├─mall.vue 商城？
+│  │  ├─me.vue 我的
+│  │  ├─messages.vue 消息列表
+│  │  ├─my-goods.vue 我的商品库
+│  │  ├─my-order.vue 我的订单列表
+│  │  ├─my-password.vue 我的密码
+│  │  ├─my-realname.vue 我的实名
+│  │  ├─pay-public.vue 付款-对公转账
+│  │  ├─pay.vue 付款（收银台）
+│  │  ├─realname.vue 实名
+│  │  ├─record-detail.vue 商品明细详情
+│  │  ├─register.vue 注册
+│  │  ├─reserve.vue 预定下单
+│  │  ├─result.vue 支付/预定结果
+│  │  ├─room.vue 房间详情
+│  │  ├─set-password.vue 设置登录密码
+│  │  ├─set-tran-pwd.vue 设置交易密码
+│  │  ├─settings.vue 设置
+│  │  ├─user.vue 用户信息
+│  │  ├─version.vue 版本
+│  │  ├─villa.vue 山庄详情
+│  │  ├─villaList.vue 山庄列表
+│  │  └─wx-reg.vue 微信注册
 │  ├─router 路由
 │  ├─scripts
 │  │  ├─http.js axios配置封装
+│  │  ├─filter.js 过滤器
 │  │  └─url.js 路径等常量
 │  ├─mixins 混合共用代码
 │  ├─store 数据管理
@@ -68,7 +103,7 @@
 ### ApiCloud项目
 ```
 ├─config.xml APP配置文件
-├─index2.html vue入口文件
+├─vue.html vue入口文件
 └─index.html 入口文件
 ```
 
