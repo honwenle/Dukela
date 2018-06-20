@@ -37,6 +37,7 @@
       @onSubmit="goBuy"
       :needReal="true"
       button="立即购买">
+      <span slot="labelText">单价：</span>
     </submit-bar>
   </div>
 </template>

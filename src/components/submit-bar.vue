@@ -1,7 +1,7 @@
 <template>
   <div class="bottom-bar flex flex-center">
     <div class="bar-content flex-1">
-      合计：<div class="price">{{price}}</div>
+      <slot name="labelText">合计：</slot><div class="price">{{price}}</div>
       <slot></slot>
     </div>
     <button class="bar-button" :class="{'disabled': disabled}" @click="clickSubmit">{{button}}</button>
