@@ -1,9 +1,5 @@
 <template>
   <div class="fixed-bottom">
-    <d-header :showBack="false">
-      入住预定
-      <router-link v-if="!UserKey" slot="right" to="login" style="color: #60b63c">登录/注册</router-link>
-    </d-header>
     <div class="list">
       <list
         action-name="getVillaList"
@@ -33,9 +29,6 @@ export default {
   computed: {
     dataList() {
       return this.$store.state.villaList
-    },
-    UserKey() {
-      return this.$store.state.UserKey
     }
   },
   methods: {

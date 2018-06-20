@@ -1,5 +1,5 @@
 <template>
-  <div class="win-wrap">
+  <div class="">
     <div class="top" :class="{'unlogin': !UserKey}">
       <d-header :tran="true" :showBack="false">
         <span slot="right" @click="$router.push({name: 'Settings'})">设置</span>

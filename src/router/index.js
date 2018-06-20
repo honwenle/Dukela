@@ -142,7 +142,8 @@ export default new Router({
         }, {
           path: '/villaList',
           name: 'villaList',
-          component: villaList
+          component: villaList,
+          meta: { keepAlive: true }
         }, {
           path: '/mall',
           name: 'Mall',
@@ -151,7 +152,8 @@ export default new Router({
         }, {
           path: '/me',
           name: 'Me',
-          component: Me
+          component: Me,
+          meta: { keepAlive: true }
         }
       ]
     }, {

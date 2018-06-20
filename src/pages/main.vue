@@ -1,5 +1,11 @@
 <template>
   <div>
+    <template v-if="$route.name != 'Me'">
+      <d-header :showBack="false">
+        都可拉
+        <router-link v-if="!UserKey" slot="right" to="login" style="color: #60b63c">登录/注册</router-link>
+      </d-header>
+    </template>
     <transition name="fade" mode="out-in">
       <keep-alive>
         <router-view></router-view>
@@ -21,6 +27,11 @@
 import {Tabbar, TabbarItem} from 'vux'
 export default {
   components: {Tabbar, TabbarItem},
+  computed: {
+    UserKey() {
+      return this.$store.state.UserKey
+    }
+  },
   data() {
     return {
       tabList: [

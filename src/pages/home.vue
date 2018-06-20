@@ -3,10 +3,6 @@
     <keep-alive>
       <welcome v-if="isShowWelcome" @hideWelcome="isShowWelcome = false"></welcome>
     </keep-alive>
-    <d-header :showBack="false">
-      都可拉
-      <router-link v-if="!UserKey" slot="right" to="login" style="color: #60b63c">登录/注册</router-link>
-    </d-header>
     <list
       action-name="getHomeList"
       :dataLength="dataList.length"
@@ -61,9 +57,6 @@ export default {
   computed: {
     dataList() {
       return this.$store.state.homeList
-    },
-    UserKey() {
-      return this.$store.state.UserKey
     }
   },
   mounted() {
