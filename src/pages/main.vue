@@ -6,11 +6,11 @@
         <router-link v-if="!UserKey" slot="right" to="login" style="color: #60b63c">登录/注册</router-link>
       </d-header>
     </template>
-    <transition name="fade" mode="out-in">
+    <!-- <transition name="fade" mode="out-in"> -->
       <keep-alive>
         <router-view></router-view>
       </keep-alive>
-    </transition>
+    <!-- </transition> -->
     <tabbar>
       <tabbar-item
         v-for="(item, i) in tabList"

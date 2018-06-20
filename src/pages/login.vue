@@ -1,7 +1,7 @@
 <template>
-<scroller lock-x>
   <div class="center">
     <d-header></d-header>
+<scroller lock-x>
     <div class="top">
       <div class="icon icon-users"></div>
       <div class="top-title" @click="wxCancelAuth">登录</div>
@@ -24,8 +24,8 @@
         <div class="kksu">快速登录</div>
         <font-icon name="weixin_denglu" fontsize="40px" @click.native="wxAuth"></font-icon>
     </div>
-  </div>
 </scroller>
+  </div>
 </template>
 <script>
 import wxMixin from '@/mixins/wx'
