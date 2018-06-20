@@ -48,11 +48,6 @@
         </template>
       </cell>
     </group>
-    <div class="agreement">
-      <check-icon :value.sync="readed" type="plain">
-        已阅读《入住协议》
-      </check-icon>
-    </div>
     <submit-bar
       :price="amount"
       @onSubmit="clickOrder"
@@ -76,7 +71,6 @@ export default {
   components: {XInput, XNumber, Datetime, Popup, CheckIcon, Deduct, Password, Popover},
   data() {
     return {
-      readed: false,
       show1: false,
       isShowPassword: false,
       formData: {
@@ -147,10 +141,6 @@ export default {
       })
       if (err) {
         this.$vux.toast.text('请填写正确信息')
-        return false
-      }
-      if (!this.readed) {
-        this.$vux.toast.text('请先阅读入住协议')
         return false
       }
       if (this.deductInfo.id) {

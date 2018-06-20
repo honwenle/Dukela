@@ -59,7 +59,7 @@
       <popup-header
         left-text="取消"
         right-text="确定"
-        title="6-20位字符"
+        title="1-10位字符"
         :show-bottom-border="false"
         @on-click-left="show1 = false"
         @on-click-right="submitNick">
@@ -139,8 +139,8 @@ export default {
       this.show1 = true
     },
     async submitNick() {
-      if (this.nickName.length < 6 || this.nickName.length > 20) {
-        this.$vux.toast.text('请输入6-20位字符')
+      if (this.nickName.length < 1 || this.nickName.length > 10) {
+        this.$vux.toast.text('请输入1-10位字符')
         return false
       }
       let {data} = await this.$http({

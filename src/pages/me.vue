@@ -4,11 +4,11 @@
       <d-header :tran="true" :showBack="false">
         <span slot="right" @click="$router.push({name: 'Settings'})">设置</span>
       </d-header>
-      <div class="inline-block" @click="$router.push({name: 'User'})">
+      <div class="inline-block">
         <div class="avatar">
-          <img :src="dataInfo.Avator || require('../assets/user.png')">
+          <img @click="$router.push({name: 'User'})" :src="dataInfo.Avator || require('../assets/user.png')">
         </div>
-        <div class="nick">{{UserKey ? (dataInfo.FullName || '用户昵称') : '注册/登录'}}</div>
+        <div @click="$router.push({name: 'User'})" class="nick">{{UserKey ? (dataInfo.FullName || '用户昵称') : '注册/登录'}}</div>
       </div>
     </div>
     <group :gutter="0">
