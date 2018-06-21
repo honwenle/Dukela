@@ -44,7 +44,7 @@
       </cell>
       <cell title="密码管理" link="my-password"></cell>
     </group>
-    <group>
+    <group v-if="showWx">
       <cell title="微信绑定"
         @click.native="wxBind"
         is-link>

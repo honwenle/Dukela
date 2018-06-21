@@ -4,7 +4,7 @@
 <scroller lock-x>
     <div class="top">
       <div class="icon icon-users"></div>
-      <div class="top-title" @click="wxCancelAuth">登录</div>
+      <div class="top-title">登录</div>
     </div>
     <div class="login-input">
       <font-icon name="wo"></font-icon>
@@ -20,7 +20,7 @@
       <div class="a" @click="forgetPwd">忘记密码</div>
     </div>
     <div class="btn-main" :class="{'btn-disable': isDisable}" @click="submitLogin">登录</div>
-    <div class="sms-login">
+    <div class="sms-login" v-if="showWx">
         <div class="kksu">快速登录</div>
         <font-icon name="weixin_denglu" fontsize="40px" @click.native="wxAuth"></font-icon>
     </div>
