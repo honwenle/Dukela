@@ -49,6 +49,7 @@ export default {
   width: 100%;
   height: 100%;
   z-index: 501;
+  top: 0;
 }
 .wel-img{
   height: 100%;
