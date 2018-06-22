@@ -14,7 +14,7 @@
             <div class="flex-3">
               <div class="flex flex-center space-between">
                 <div class="fz17">{{item.BeadhouseName}}</div>
-                <div class="fz12 theme-color">{{(item.AppReserveCount + item.ReserveCount) || 0}}人已入住</div>
+                <div class="fz12 theme-color">{{(Number(item.AppReserveCount) + Number(item.ReserveCount)) || 0}}人已入住</div>
               </div>
               <div class="fz14 gray">{{item.BeadhouseTitle}}</div>
             </div>
