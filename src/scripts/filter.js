@@ -44,10 +44,11 @@ Vue.filter('orderStatusName', function (type) {
 Vue.filter('reserveStatusName', function (type) {
   return ['未支付', '已支付', '已退款', '预约成功', '交易关闭'][type]
 })
-Vue.filter('DATEFORMAT', function (strDate) {
+Vue.filter('dateFormat', dateFormat)
+Vue.filter('DATEFORMAT', function (strDate, fmt = 'YYYY-MM-DD HH:mm:ss') {
   strDate = strDate || ''
   const intTime = strDate.match(/\d{13}/)
-  return intTime && dateFormat(new Date(parseInt(intTime)), 'YYYY-MM-DD HH:mm:ss')
+  return intTime && dateFormat(new Date(parseInt(intTime)), fmt)
 })
 Vue.filter('PAYDATEFORMAT', function (strDate) {
   strDate = strDate || ''
