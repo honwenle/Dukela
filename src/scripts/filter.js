@@ -2,6 +2,9 @@ import url from './url'
 import Vue from 'vue'
 import {dateFormat} from 'vux'
 
+Vue.filter('decimal4to2', function (num) {
+  return Math.floor((Math.ceil(num * 10000)/10000) * 100)/100
+})
 Vue.filter('decimal', function (num) {
   return Math.floor(num * 100)/100
 })
