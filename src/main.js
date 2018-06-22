@@ -45,6 +45,7 @@ Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 window.apiready = function(){
+  Vue.prototype.version = isApp ? window.api.appVersion : 'web'
   new Vue({
     router,
     store,
