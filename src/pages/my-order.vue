@@ -78,7 +78,7 @@ export default {
   components: {Tab, TabItem},
   data() {
     return {
-      tabIndex: 0
+      tabIndex: this.$route.query.type || 0
     }
   },
   computed: {

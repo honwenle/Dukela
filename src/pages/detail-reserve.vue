@@ -53,7 +53,7 @@
             单价：<div class="price">{{detail.Room.RoomPrice}}</div>
           </div>
           <div class="cell gray bb">{{detail.Room.RoomSize}}㎡ | {{detail.Room.TypeType}}</div>
-          <div class="cell center">
+          <div class="cell center fz17">
             <a :href="`tel:${detail.Room.ContactTel}`" class="theme-color">
               <font-icon name="phone"></font-icon>
               {{detail.Room.ContactTel}}
