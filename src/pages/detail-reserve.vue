@@ -24,8 +24,8 @@
           <cell title="总金额(元)：">
             <div class="theme-color">{{detail.Amount}}</div>
           </cell>
-          <cell title="入住时间：" :value="detail.ReserveStartTime | DATEFORMAT"></cell>
-          <cell title="离开时间：" :value="detail.ReserveEndTime | DATEFORMAT"></cell>
+          <cell title="入住时间：" :value="detail.ReserveStartTime | DATEFORMAT('YYYY-MM-DD')"></cell>
+          <cell title="离开时间：" :value="detail.ReserveEndTime | DATEFORMAT('YYYY-MM-DD')"></cell>
         </group>
         <group v-if="isDeduct" class="box" :gutter="0">
           <cell title="支付方式：">
