@@ -7,15 +7,15 @@
         {{title}}<br>{{content}}
       </div>
       <div class="flex space-between">
-        <div class="btn-outline" @click="$router.push('my-order')">查看订单</div>
+        <div class="btn-outline" @click="$router.push({
+          path: 'my-order',
+          query: {
+            type: type
+          }
+        })">查看订单</div>
         <div class="btn-outline" @click="$router.go(-3-type)">返回首页</div>
       </div>
-      <div v-if="type == 0" class="btn-main w100p" @click="$router.push({
-        path: 'my-goods',
-        query: {
-          type: type
-        }
-      })">查看商品</div>
+      <div v-if="type == 0" class="btn-main w100p" @click="$router.push('my-goods')">查看商品</div>
     </div>
   </div>
 </template>
