@@ -8,7 +8,7 @@
       </cell>
     </group>
     <group label-width="100px">
-      <x-input v-model="num" :is-type="checkNum" @on-change="numParseInt" title="数量" type="number" :placeholder="this.detailData.SellLimitCount+'份起售，最多购入10000元'"></x-input>
+      <x-input v-model="num" :is-type="checkNum" @on-change="numParseInt" title="数量" type="number" :placeholder="`${detailData.SellLimitCount}份起售，最多购入${detailData.UserBuyLimitAmount}元`"></x-input>
     </group>
     <submit-bar
       :price="amount"
@@ -72,7 +72,9 @@ export default {
             }
           })
         } else {
-          this.$vux.toast.text(data.Message)
+          this.$vux.alert.show({
+            content: data.Message,
+          })
         }
       } else {
         this.$vux.toast.text(check.msg)

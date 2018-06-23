@@ -22,7 +22,7 @@
     <div class="group buy-group">
       <div class="cell">请输入打款账号</div>
       <div class="cell cell-input">
-        <input type="text" v-model="bankno" placeholder="请输入账号">
+        <input type="text" maxlength="30" v-model="bankno" placeholder="请输入账号">
       </div>
     </div>
     <div class="btn-full" @click="ok">确定</div>
@@ -44,6 +44,7 @@ export default {
     async ok() {
       if (this.bankno == '') {
         this.$vux.toast.text('请输入打款账户')
+        return false
       }
       let data = await this.$store.dispatch('dklPay', {
         OrderID: this.id,
@@ -57,7 +58,7 @@ export default {
               name: 'Result',
               query: {
                 status: 1,
-                type: 0,
+                type: 1,
                 title: '提交成功！',
                 content: '请尽快打款！'
               }
