@@ -52,8 +52,17 @@ export default {
       if (data.Code == 1) {
         this.$vux.alert.show({
           content: '请务必24小时之内打款！',
-          onHide () {
-            console.log('我知道了')
+          onHide: () => {
+            this.$route.params.jump = {
+              name: 'Result',
+              query: {
+                status: 1,
+                type: 0,
+                title: '提交成功！',
+                content: '请尽快打款！'
+              }
+            }
+            this.$router.go(-2)
           }
         })
       } else {
