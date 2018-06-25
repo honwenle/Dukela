@@ -150,6 +150,22 @@ export default {
       }
     },
     async checkDeduct() {
+      if (!this.UserInfo.IsSellPassword) {
+        this.$vux.confirm.show({
+          title: '未设置交易密码',
+          content: '是否设置交易密码',
+          onConfirm: () => {
+            this.$router.push({
+              name: 'CheckPhone',
+              params: {
+                smsType: 5,
+                nextPath: 'set-tran-pwd'
+              }
+            })
+          }
+        })
+        return false
+      }
       let {data} = await this.$http.post('BeadhouseRoomReserveOrder/GetCheckOrder', {
         ProductID: this.deductInfo.id
       })
