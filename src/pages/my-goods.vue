@@ -1,12 +1,12 @@
 <template>
   <div>
-    <div class="top">
+    <div class="wave-top">
       <d-header :tran="true">
         我的商品库
       </d-header>
-      <div class="top-tran flex flex-center space-between">
+      <div class="wave-top-tran flex flex-center space-between">
         <div>
-          <div class="big">{{goodsNumber}}</div>
+          <div class="fz25">{{goodsNumber}}</div>
           <div class="gray">总商品数(个)</div>
         </div>
         <div>
@@ -50,20 +50,6 @@ export default {
 </script>
 
 <style scoped>
-.top{
-  background: url('../assets/w-bg.png');
-  background-size: 100% 90%;
-  background-repeat: no-repeat;
-}
-.top-tran{
-  height: 150px;
-  background: rgba(255, 255, 255, .8);
-  margin: 12px;
-  box-shadow: 0 5px 15px #dcdcdc;
-  border-radius: 5px;
-  padding: 30px;
-  box-sizing: border-box;
-}
 .goods-list{
   padding: 0 12px;
 }
@@ -72,11 +58,5 @@ export default {
   padding: 5px 34px;
   margin-bottom: 15px;
   border-radius: 5px;
-}
-.fz12{
-  font-size: 12px;
-}
-.big{
-  font-size: 25px;
 }
 </style>
