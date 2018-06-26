@@ -2,7 +2,7 @@
   <div class="win-wrap">
     <d-header :tran="true" :theme-color="true">我的订单</d-header>
     <tab v-model="tabIndex" prevent-default @on-before-index-change="switchTabItem">
-      <tab-item selected>买入订单</tab-item>
+      <tab-item>买入订单</tab-item>
       <tab-item>预定订单</tab-item>
     </tab>
     <list
@@ -78,7 +78,7 @@ export default {
   components: {Tab, TabItem},
   data() {
     return {
-      tabIndex: this.$route.query.type || 0
+      tabIndex: Number(this.$route.query.type)
     }
   },
   computed: {
