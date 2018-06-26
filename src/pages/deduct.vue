@@ -71,7 +71,7 @@ export default {
         id: val.ProductID,
         name: val.ProductName,
         price: val.BeadhouseID == this.roomData.BeadhouseID ?
-          this.decimal4to2(val.ProductCount * this.roomData.RoomPrice / 24) :
+          this.decimal4to2(this.roomData.RoomPrice / 24) :
           (val.TAmount * this.TRate / val.ProductCount),
         size: val.ProductSize,
         amount: val.TAmount * this.TRate,
