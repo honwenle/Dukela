@@ -17,7 +17,11 @@
         :key="i"
         :link="tabRouter(item.route)"
         :selected="$route.name == item.route">
-        <font-icon slot="icon" :name="item.icon" fontsize="22px"></font-icon>
+        <font-icon
+          slot="icon"
+          :name="($route.name == 'Home' && i == 0) ? 'dukela1' : item.icon"
+          fontsize="22px"
+        ></font-icon>
         <span slot="label">{{item.label}}</span>
       </tabbar-item>
     </tabbar>
@@ -37,7 +41,7 @@ export default {
       tabList: [
         {
           label: '首页',
-          icon: this.$route.name == 'Home' ? 'dukela1' : 'dukela',
+          icon: 'dukela',
           route: 'Home'
         }, {
           label: '入住预定',
