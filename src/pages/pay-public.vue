@@ -58,9 +58,10 @@ export default {
               name: 'Result',
               query: {
                 status: 1,
-                type: 1,
+                type: 0,
                 title: '提交成功！',
-                content: '请尽快打款！'
+                content: '请尽快打款！',
+                isPub: true
               }
             }
             this.$router.go(-2)

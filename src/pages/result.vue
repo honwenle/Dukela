@@ -15,7 +15,7 @@
         })">查看订单</div>
         <div class="btn-outline" @click="$router.go(-3-type)">返回首页</div>
       </div>
-      <div v-if="type == 0" class="btn-main w100p" @click="$router.push('my-goods')">查看商品</div>
+      <div v-if="type == 0 && !isPub" class="btn-main w100p" @click="$router.push('my-goods')">查看商品</div>
     </div>
   </div>
 </template>
@@ -26,7 +26,8 @@ export default {
       status: this.$route.query.status == 1,
       type: this.$route.query.type,
       title: this.$route.query.title,
-      content: this.$route.query.content
+      content: this.$route.query.content,
+      isPub: this.$route.query.isPub
     }
   }
 }
