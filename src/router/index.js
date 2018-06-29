@@ -38,6 +38,8 @@ import ChangePhone from '@/pages/change-phone'
 import CheckPhone from '@/pages/check-phone'
 import MyRealname from '@/pages/my-realname'
 import MyPassword from '@/pages/my-password'
+import Help from '@/pages/help'
+import Feedback from '@/pages/feedback'
 
 import Version from '@/pages/version'
 
@@ -47,6 +49,14 @@ Vue.use(Router)
 export default new Router({
   // mode: 'history',
   routes: [
+    {
+      component: Feedback,
+      path: '/feedback'
+    },
+    {
+      component: Help,
+      path: '/help'
+    },
     {
       component: DetailReserve,
       path: '/detail-reserve'
