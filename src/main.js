@@ -13,10 +13,12 @@ import DHeader from '@/components/dkl-header.vue'
 import List from '@/components/list.vue'
 import SmsSend from '@/components/sms-send'
 import SubmitBar from '@/components/submit-bar'
+import TodayT from '@/components/todayT'
 import { LoadingPlugin, ToastPlugin, XHeader,
   AlertPlugin, ConfirmPlugin,
   Group, Cell, Scroller, Swiper } from 'vux'
 
+Vue.component('today-t', TodayT)
 Vue.component('submit-bar', SubmitBar)
 Vue.component('swiper', Swiper)
 Vue.component('list', List)
