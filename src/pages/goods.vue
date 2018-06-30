@@ -37,7 +37,7 @@
       @onSubmit="goBuy"
       :needReal="true"
       :disabled="!detailData.IsSelf"
-      button="立即购买">
+      :button="detailData.IsSelf ? '立即购买' : '即将上线'">
       <span slot="labelText">单价：</span>
     </submit-bar>
   </div>
