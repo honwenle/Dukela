@@ -36,6 +36,7 @@
       :price="detailData.ProductCost"
       @onSubmit="goBuy"
       :needReal="true"
+      :disabled="!detailData.IsSelf"
       button="立即购买">
       <span slot="labelText">单价：</span>
     </submit-bar>
