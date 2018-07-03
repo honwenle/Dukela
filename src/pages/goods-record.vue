@@ -39,9 +39,6 @@ export default {
     }
   },
   methods: {
-    isIncome(type) {
-      return type < 3
-    },
     goDetail(id) {
       this.$router.push({
         path: 'record-detail',
