@@ -110,6 +110,7 @@
 ## 开发、部署
 ### 开发
 [API swagger](http://101.132.146.168:114/swagger/ui/index#/)
+[API2](http://101.132.146.168:10013/swagger/ui/index#/)
 ``` bash
 # 安装依赖
 npm install
