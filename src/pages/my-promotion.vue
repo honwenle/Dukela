@@ -6,17 +6,17 @@
       </d-header>
       <div class="wave-top-tran flex flex-center space-between">
         <div>
-          <div class="fz25">{{400}}</div>
+          <div class="fz25">{{totalData.ZTAchievement}}</div>
           <div class="gray">我的推广业绩(万元)</div>
         </div>
         <div>
-          <div class="fz25">{{1000}}</div>
+          <div class="fz25">{{totalData.JLAchievement}}</div>
           <div class="gray">累计推广收益(元)</div>
         </div>
       </div>
     </div>
     <group>
-      <cell title="我的推广码" :value="123456"></cell>
+      <cell title="我的推广码" class="copyable" :value="UserInfo.InvitationCode"></cell>
       <cell title="收益明细" link="promotion-record"></cell>
     </group>
   </div>
@@ -24,7 +24,25 @@
 <script>
 export default {
   data() {
-    return {}
+    return {
+      totalData: {}
+    }
+  },
+  computed: {
+    UserInfo() {
+      return this.$store.state.UserInfo
+    }
+  },
+  mounted() {
+    this.getTotal()
+  },
+  methods: {
+    async getTotal() {
+      let {data} = await this.$http.post('User/GetAgentTotal')
+      if (data.Code == 1) {
+        this.totalData = JSON.parse(data.List)[0]
+      }
+    }
   }
 }
 </script>
