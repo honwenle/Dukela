@@ -9,6 +9,7 @@
     </group>
     <group label-width="100px">
       <x-input v-model="num" :is-type="checkNum" @on-change="numParseInt" title="数量" type="number" :placeholder="`${detailData.SellLimitCount}份起售，最多购入${detailData.UserBuyLimitAmount}元`"></x-input>
+      <x-input v-if="isFirstOrder" v-model="InvitationCode" title="邀请码" placeholder="如有邀请人，请输入邀请码"></x-input>
     </group>
     <submit-bar
       :price="amount"
@@ -25,7 +26,9 @@ export default {
   },
   data() {
     return {
-      num: ''
+      num: '',
+      InvitationCode: '',
+      isFirstOrder: false
     }
   },
   computed: {
@@ -36,7 +39,14 @@ export default {
       return this.$store.state.ProductDetail
     }
   },
+  mounted() {
+    this.checkFirstOrder()
+  },
   methods: {
+    async checkFirstOrder() {
+      let {data} = await this.$http.post('ProductOrderIn/GetIsOneOrder')
+      this.isFirstOrder = (data.Code == 1 && data.Count < 1)
+    },
     numParseInt(val) {
       this.$nextTick(()=> {
         this.num = parseInt(this.num)
@@ -61,7 +71,8 @@ export default {
           ProductID: this.detailData.ID,
           ProductName: this.detailData.ProductName,
           ProductCost: this.detailData.ProductCost,
-          ProductCount: this.num
+          ProductCount: this.num,
+          InvitationCode: this.InvitationCode
         })
         if (data.Code == 1) {
           this.$router.push({
