@@ -10,8 +10,8 @@
         <div
           v-for="item in dataList"
           :key="item.ID"
-          class="fff-bg bb flex cell flex-center"
-          :class="item.Type | isIncome">
+          v-show="item.Type == 0"
+          class="fff-bg bb flex cell flex-center record-income">
           <div class="flex-1">
             <div class="round-text"></div>
           </div>

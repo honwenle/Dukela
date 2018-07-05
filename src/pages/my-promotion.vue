@@ -6,11 +6,11 @@
       </d-header>
       <div class="wave-top-tran flex flex-center space-between">
         <div>
-          <div class="fz25">{{totalData.ZTAchievement}}</div>
-          <div class="gray">我的推广业绩(万元)</div>
+          <div class="fz25">{{totalData.OrderAmount}}</div>
+          <div class="gray">我的推广业绩(元)</div>
         </div>
         <div>
-          <div class="fz25">{{totalData.JLAchievement}}</div>
+          <div class="fz25">{{totalData.ZAchievement}}</div>
           <div class="gray">累计推广收益(元)</div>
         </div>
       </div>
