@@ -10,7 +10,7 @@
           <div class="gray">我的推广业绩(元)</div>
         </div>
         <div>
-          <div class="fz25">{{totalData.ZAchievement}}</div>
+          <div class="fz25">{{totalData.AppZAchievement}}</div>
           <div class="gray">累计推广收益(元)</div>
         </div>
       </div>

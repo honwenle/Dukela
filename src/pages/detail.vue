@@ -18,7 +18,7 @@
           </clocker>
           后生效
         </div>
-        <div class="detail-title" v-else>您的订单{{detail.OrderStatus | orderStatusName}}</div>
+        <div class="detail-title" v-if="!isPay && detail.OrderStatus != 1">您的订单{{detail.OrderStatus | orderStatusName}}</div>
       </div>
       <div class="detail-box">
         <group class="box" :gutter="0">
