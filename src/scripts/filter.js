@@ -50,7 +50,7 @@ Vue.filter('DATEFORMAT', function (strDate, fmt = 'YYYY-MM-DD HH:mm:ss') {
   const intTime = strDate.match(/\d{13}/)
   return intTime && dateFormat(new Date(parseInt(intTime)), fmt)
 })
-Vue.filter('PAYDATEFORMAT', function (strDate) {
+Vue.filter('PAYDATEFORMAT', function (strDate, hours = 1) {
   strDate = strDate || ''
-  return dateFormat(new Date(parseInt(strDate.match(/\d{13}/)) + 60*60*1000), 'YYYY-MM-DD HH:mm:ss')
+  return dateFormat(new Date(parseInt(strDate.match(/\d{13}/)) + hours * 60*60*1000), 'YYYY-MM-DD HH:mm:ss')
 })
