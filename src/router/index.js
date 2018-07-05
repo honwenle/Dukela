@@ -40,6 +40,8 @@ import MyRealname from '@/pages/my-realname'
 import MyPassword from '@/pages/my-password'
 import Help from '@/pages/help'
 import Feedback from '@/pages/feedback'
+import MyPromotion from '@/pages/my-promotion'
+import PromotionRecord from '@/pages/promotion-record'
 
 import Version from '@/pages/version'
 
@@ -55,7 +57,15 @@ export default new Router({
     },
     {
       component: Help,
-      path: '/help'
+      path: '/help',
+      component: PromotionRecord,
+      path: '/promotion-record',
+      meta: { needLogin: true }
+    },
+    {
+      component: MyPromotion,
+      path: '/my-promotion',
+      meta: { needLogin: true }
     },
     {
       component: DetailReserve,

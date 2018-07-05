@@ -30,7 +30,8 @@ export default new Vuex.Store({
     goodsNumber: 0,
     TRate: 1,
     wxInfo: {},
-    UserMessageCount: 0
+    UserMessageCount: 0,
+    AchievementList: []
   },
   getters: {
     getRecordDetail: (state) => (id) => {
@@ -152,9 +153,26 @@ export default new Vuex.Store({
     },
     clearProductStream(state) {
       state.ProductStream = []
+    },
+    setAchievementList(state, items = []) {
+      state.AchievementList = state.AchievementList.concat(items)
+    },
+    clearAchievementList(state) {
+      state.AchievementList = []
     }
   },
   actions: {
+    async getAchievementList({commit}, {page = 1}) {
+      let {data} = await http.post('Achievement/GetList', {
+        pageSize: PAGE_SIZE,
+        pageIndex: page,
+        orderby: '',
+        strSearchName: ''
+      })
+      page == 1 && commit('clearAchievementList')
+      data.Code == 1 && commit('setAchievementList', JSON.parse(data.List))
+      return data.Count || 0
+    },
     async getUserMessageCount({commit}) {
       let {data} = await http.post('UserMessage/GetNoReadMessageCount')
       data.Code == 1 && commit('setUserMessageCount', data.Model)

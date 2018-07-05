@@ -14,6 +14,7 @@
     <group :gutter="0">
       <cell title="我的商品库" link="my-goods"></cell>
       <cell title="我的订单" link="my-order"></cell>
+      <cell title="我的推广" link="my-promotion"></cell>
       <cell title="我的消息" link="messages">
         <badge v-if="msgCount" :text="msgCount"></badge>
       </cell>
