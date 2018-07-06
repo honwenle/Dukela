@@ -13,7 +13,7 @@
           <swiper :list="homeBanner | bannerArr('BigPicUrl')" loop auto></swiper>
         </div>
         <div class="list" style="padding: 0 16px;">
-          <div class="home-item"  @click="goGoods(item.ID)" v-for="(item, i) in dataList" :key="i">
+          <div class="home-item" :class="{'not-selling': item.IsSelf == 'False'}" @click="goGoods(item.ID)" v-for="(item, i) in dataList" :key="i">
             <div class="bb home-item-h1" style="padding: 6px 15px">
               <font-icon name="home1" color="#6e9cff"></font-icon>
               <div class="inline-block">{{item.ProductName}}</div>
@@ -96,6 +96,22 @@ export default {
   padding: 5px;
   font-size: 12px;
   white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+}
+.home-item.not-selling:after {
+  content: '期待中';
+  background: #B8B8B8;
+}
+.home-item:after {
+  content: '销售中';
+  position: absolute;
+  right: -22px;
+  top: 8px;
+  transform: rotate(45deg);
+  background: #FABA4C;
+  padding: 2px 24px;
+  color: #fff;
 }
 .big-num{
   font-size: 35px;

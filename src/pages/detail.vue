@@ -12,7 +12,13 @@
           </clocker>
           关闭订单
         </div>
-        <div class="detail-title" v-else>您的订单{{detail.OrderStatus | orderStatusName}}</div>
+        <div class="detail-title" v-if="detail.OrderStatus == 1">
+          已支付，
+          <clocker v-if="detail.PayDate" :time="detail.PayDate | PAYDATEFORMAT(7*24)" format="%D天%H小时%M分%S秒" @on-finish="detail.OrderStatus = 3">
+          </clocker>
+          后生效
+        </div>
+        <div class="detail-title" v-if="!isPay && detail.OrderStatus != 1">您的订单{{detail.OrderStatus | orderStatusName}}</div>
       </div>
       <div class="detail-box">
         <group class="box" :gutter="0">

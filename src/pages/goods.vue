@@ -5,12 +5,15 @@
       <div class="swiper">
         <swiper :list="slideList | bannerArr" loop auto></swiper>
       </div>
-      <div class="cell">
+      <div class="cell bb">
         <div class="fz16" style="padding-bottom: 5px">{{detailData.ProductName}}</div>
         <div class="flex space-between">
           <div class="theme-color">已售：{{detailData.ProductUsedCount}}小时</div>
           <div class="gray">剩余：{{detailData.ProductLessCount}}小时</div>
         </div>
+      </div>
+      <div class="cell">
+        <today-t></today-t>
       </div>
     </div>
     <div class="h1">规则说明</div>
