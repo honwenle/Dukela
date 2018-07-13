@@ -1,11 +1,11 @@
 <template>
   <div>
     <d-header>商品买入</d-header>
-    <group>
+    <!-- <group>
       <cell primary="content">
         <today-t :center="true"></today-t>
       </cell>
-    </group>
+    </group> -->
     <group label-width="100px">
       <cell title="商品名" value-align="left" :value="detailData.ProductName"></cell>
       <cell title="单价" value-align="left">
