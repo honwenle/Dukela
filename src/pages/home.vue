@@ -18,7 +18,7 @@
               <font-icon name="home1" color="#6e9cff"></font-icon>
               <div class="inline-block">{{item.ProductName}}</div>
             </div>
-            <div class="flex flex-center" style="padding: 10px 15px 7px">
+            <div class="flex flex-center" style="padding: 10px 15px 7px" v-if="item.IsSelf == 'True'">
               <div class="flex-1">
                 <div class="gray">价格（元/小时）</div>
                 <div class="big-num">{{item.ProductCost}}</div>
@@ -36,6 +36,17 @@
               </div>
               <div class="flex-1 text-right">
                 <div class="btn-outline orange">抢购</div>
+              </div>
+            </div>
+            <div v-else class="flex flex-center" style="padding: 10px 15px 7px">
+              <div class="flex-2 theme-color">
+                <font-icon name="jianzhu" fontsize="12px"></font-icon> {{item.Name}}
+              </div>
+              <div class="flex-3 theme-color">
+                <font-icon name="location" fontsize="12px"></font-icon> {{item.ProvinceName + '-' + item.CityName}}
+              </div>
+              <div class="flex-3 gray text-right" style="height: 20px;">
+                上线时间待公布
               </div>
             </div>
           </div>
