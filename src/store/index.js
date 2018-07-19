@@ -321,7 +321,8 @@ export default new Vuex.Store({
       let {data} = await http.post('Product/GetList', {
         pageSize: PAGE_SIZE,
         pageIndex: page,
-        orderby: ''
+        orderby: '',
+        IsSelf: 1
       })
       page == 1 && commit('clearHomeList')
       data.Code == 1 && commit('setHomeList', JSON.parse(data.List))

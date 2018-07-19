@@ -13,12 +13,12 @@
           <swiper :list="homeBanner | bannerArr('BigPicUrl')" loop auto></swiper>
         </div>
         <div class="list" style="padding: 0 16px;">
-          <div class="home-item" :class="{'not-selling': item.IsSelf == 'False'}" @click="goGoods(item.ID)" v-for="(item, i) in dataList" :key="i">
+          <div class="home-item" :class="{'not-selling': item.Type == 1}" @click="goGoods(item.ID)" v-for="(item, i) in dataList" :key="i">
             <div class="bb home-item-h1" style="padding: 6px 15px">
               <font-icon name="home1" color="#6e9cff"></font-icon>
               <div class="inline-block">{{item.ProductName}}</div>
             </div>
-            <div class="flex flex-center" style="padding: 10px 15px 7px" v-if="item.IsSelf == 'True'">
+            <div class="flex flex-center" style="padding: 10px 15px 7px" v-if="item.Type == 0">
               <div class="flex-1">
                 <div class="gray">价格（元/小时）</div>
                 <div class="big-num">{{item.ProductCost}}</div>

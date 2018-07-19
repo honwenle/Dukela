@@ -7,7 +7,7 @@
       </div>
       <div class="cell bb">
         <div class="fz16" style="padding-bottom: 5px">{{detailData.ProductName}}</div>
-        <div class="flex space-between">
+        <div v-show="detailData.Type != 1" class="flex space-between">
           <div class="theme-color">已售：{{detailData.ProductUsedCount}}小时</div>
           <div class="gray">剩余：{{detailData.ProductLessCount}}小时</div>
         </div>
@@ -18,7 +18,7 @@
     </div>
     <div class="h1">规则说明</div>
     <div class="group cell">
-      <div class="row-gap flex">
+      <div v-show="detailData.Type != 1" class="row-gap flex">
         <span class="gray">属性</span>
         <span>购买可得{{detailData.ShareRate}}W</span>
       </div>
@@ -36,6 +36,7 @@
       <div v-html="detailData.ProRemark || '暂无介绍'"></div>
     </div>
     <submit-bar
+      v-show="detailData.Type != 1"
       :price="detailData.ProductCost"
       @onSubmit="goBuy"
       :needReal="true"
