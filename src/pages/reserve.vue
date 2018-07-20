@@ -52,7 +52,9 @@
       :price="amount"
       @onSubmit="clickOrder"
       button="确定预定">
-      <span class="gray" v-if="deductInfo.id">已抵扣{{(deductInfo.price * count) | decimal}}元</span>
+      <span class="gray" v-if="deductInfo.id">
+        已抵扣{{deductPrice}}元
+      </span>
     </submit-bar>
     <popup v-model="show1" height="100%">
       <deduct @selectDeduct="show1 = false"></deduct>
@@ -98,11 +100,14 @@ export default {
       let days = seconds/1000/60/60/24
       return Math.floor(this.detailData.RoomPrice * (days || 1) * 100)/100
     },
+    deductPrice() {
+      return Math.min(this.deductInfo.price, this.total)
+    },
     count() {
-      return Math.min((this.total * this.detailData.RoomSize) / (this.deductInfo.price * this.deductInfo.size), this.deductInfo.count)
+      return this.deductInfo.count * this.deductPrice / this.deductInfo.price
     },
     amount() {
-      return this.deductInfo.id ? Math.max(this.total - Math.floor(this.deductInfo.price * this.count *100)/100, 0) : this.total
+      return this.deductInfo.id ? (this.total - this.deductPrice) : this.total
     },
     detailData() {
       return this.$store.state.RoomDetail
@@ -193,7 +198,7 @@ export default {
         RoomPrice: this.detailData.RoomPrice,
         PayProductID: this.deductInfo.id,
         PayProductCount: this.count || '',
-        PayProductAmount: Math.floor((Math.ceil(this.deductInfo.price * this.count * 10000)/10000) * 100)/100 || '',
+        PayProductAmount: this.deductPrice || '',
         ...this.formData
       })
       if (data.Code == 1) {

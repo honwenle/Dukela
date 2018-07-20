@@ -20,8 +20,7 @@
               <div class="gray">商品数：{{item.ProductCount}}</div>
             </div>
             <div class="flex-2 col2">
-              <!-- <div class="price">{{item.TAmount * TRate | decimal4to2}}</div> -->
-              <div class="price">{{item.ProductCount * roomData.RoomPrice / 24 | decimal4to2}}</div>
+              <div class="price">{{deductPrice(item)}}</div>
               <div class="gray">抵扣价格</div>
             </div>
             <font-icon fontsize="22px" :name="item.ID == deductInfo.ID ? 'radio' : 'radio1'"></font-icon>
@@ -61,6 +60,13 @@ export default {
     decimal4to2(num) {
       return Math.floor((Math.ceil(num * 10000)/10000) * 100)/100
     },
+    deductPrice(val) {
+      if (val.BeadhouseID == this.roomData.BeadhouseID) {
+        return this.decimal4to2(val.ProductCount * val.ProductSize * this.roomData.RoomPrice / 24 / this.roomData.RoomSize) 
+      } else {
+        this.decimal4to2(val.TAmount * this.TRate * val.ProductSize / this.roomData.RoomSize)
+      }
+    },
     clearDeduct() {
       this.deductInfo = {}
       this.$store.commit('clearDeduct')
@@ -70,11 +76,7 @@ export default {
       this.$store.commit('setDeduct', {
         id: val.ProductID,
         name: val.ProductName,
-        price: val.BeadhouseID == this.roomData.BeadhouseID ?
-          this.decimal4to2(this.roomData.RoomPrice / 24) :
-          (val.TAmount * this.TRate / val.ProductCount),
-        size: val.ProductSize,
-        amount: val.TAmount * this.TRate,
+        price: this.deductPrice(val),
         count: val.ProductCount
       })
       this.$emit('selectDeduct')
