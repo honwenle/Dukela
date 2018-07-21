@@ -27,7 +27,7 @@
                 <div class="gray">
                   <font-icon name="rmb"></font-icon>
                   <span class="black">已出售</span>
-                  <span class="theme-color">{{item.AppProductUsedCount + item.ProductUsedCount}}小时</span>
+                  <span class="theme-color">{{Number(item.AppProductUsedCount) + Number(item.ProductUsedCount)}}小时</span>
                 </div>
                 <div class="gray">
                   <font-icon name="stock"></font-icon>

@@ -8,7 +8,7 @@
       <div class="cell bb">
         <div class="fz16" style="padding-bottom: 5px">{{detailData.ProductName}}</div>
         <div v-show="detailData.Type != 1" class="flex space-between">
-          <div class="theme-color">已售：{{detailData.ProductUsedCount}}小时</div>
+          <div class="theme-color">已售：{{detailData.AppProductUsedCount + detailData.ProductUsedCount}}小时</div>
           <div class="gray">剩余：{{detailData.ProductLessCount}}小时</div>
         </div>
       </div>
