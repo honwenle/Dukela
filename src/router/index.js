@@ -26,6 +26,7 @@ import Mall from '@/pages/mall'
 
 import Me from '@/pages/me'
 import Settings from '@/pages/settings'
+
 import User from '@/pages/user'
 import MyGoods from '@/pages/my-goods'
 import GoodsRecord from '@/pages/goods-record'
@@ -38,6 +39,7 @@ import ChangePhone from '@/pages/change-phone'
 import CheckPhone from '@/pages/check-phone'
 import MyRealname from '@/pages/my-realname'
 import MyPassword from '@/pages/my-password'
+import MyAccount from '@/pages/my-account'
 import Help from '@/pages/help'
 import Feedback from '@/pages/feedback'
 import MyPromotion from '@/pages/my-promotion'
@@ -51,6 +53,11 @@ Vue.use(Router)
 export default new Router({
   // mode: 'history',
   routes: [
+    {
+      component: MyAccount,
+      path: '/my-account',
+      meta: { needLogin: true }
+    },
     {
       component: Feedback,
       path: '/feedback'
