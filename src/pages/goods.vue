@@ -12,9 +12,9 @@
           <div class="gray">剩余：{{detailData.ProductLessCount}}小时</div>
         </div>
       </div>
-      <!-- <div class="cell">
+      <div class="cell">
         <today-t></today-t>
-      </div> -->
+      </div>
     </div>
     <div class="h1">规则说明</div>
     <div class="group cell">

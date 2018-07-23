@@ -3,8 +3,8 @@ isTest = (location.href.indexOf('isTest') > -1 || location.host.indexOf('localho
 if (isTest) {
   baseURL = 'http://192.168.42.165/App/'
 } else {
-  // baseURL = 'http://weixin.doukela.com:10014/App/'
-  baseURL = 'http://weixin.doukela.com/App/'
+  baseURL = 'http://weixin.doukela.com:10014/App/'
+  // baseURL = 'http://weixin.doukela.com/App/'
 }
 export default {
   imgUrl: 'http://admin.doukela.com',
