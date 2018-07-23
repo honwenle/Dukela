@@ -13,10 +13,15 @@
       <div class="theme-color">总价：{{detailData.PayAmount}}元</div>
     </div>
     <div class="check-box">
-      <!-- <div class="check-title">余额支付</div>
-      <checklist v-model="forBalance" label-position="left" :options="[{key: 0, value: `账户余额：${balance}`}]"></checklist> -->
+      <div class="check-title">余额支付</div>
+      <checklist
+        v-model="forBalance"
+        label-position="left"
+        :options="[{key: 0, value: `账户余额：${UserInfo.AccountBalance}`}]"
+        @click.native="forPublic = [];forThird = []">
+      </checklist>
       <div class="check-title">第三方支付</div>
-      <checklist @click.native="forPublic = []" label-position="left" :max="1" v-model="forThird" :options="payList"></checklist>
+      <checklist @click.native="forPublic = [];forBalance = []" label-position="left" :max="1" v-model="forThird" :options="payList"></checklist>
       <template v-if="type == 0">
         <div class="check-title">
           线下转账
@@ -27,7 +32,7 @@
             <font-icon name="help" color="#fe5900"></font-icon>
           </popover>
         </div>
-        <checklist label-position="left" @click.native="forThird = []" v-model="forPublic" :options="['公司对公账号']"></checklist>
+        <checklist label-position="left" @click.native="forThird = [];forBalance = []" v-model="forPublic" :options="['公司对公账号']"></checklist>
       </template>
     </div>
     <div class="btn-full" :class="{'btn-disable': timeout}" @click="pay">确认支付{{detailData.PayAmount}}元</div>
@@ -48,7 +53,6 @@ export default {
       id: this.$route.query.id,
       type: this.$route.query.type,
       isShowPassword: false,
-      balance: 500,
       forThird: [],
       forPublic: [],
       forBalance: [],
@@ -84,6 +88,9 @@ export default {
   computed: {
     detailData() {
       return this.$store.state.OrderDetail
+    },
+    UserInfo() {
+      return this.$store.state.UserInfo
     }
   },
   mounted() {
@@ -116,12 +123,13 @@ export default {
         this.$vux.toast.text('请选择支付方式')
       }
     },
-    payBalance(pwd) {
-      // 提交支付
-      console.log(pwd)
-      this.$router.push({
-        name: 'Result'
+    async payBalance(pwd) {
+      let {data} = await this.$http.post('Pay/Dkl_Pay', {
+        OrderID: this.id,
+        OrderType: this.type + 1,
+        SellPassword: pwd
       })
+      this.goResult(data.Code == 1, data.Message)
     },
     async payWechat() {
       let data = await this.$store.dispatch('wxPay', {
