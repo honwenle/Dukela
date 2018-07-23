@@ -36,12 +36,11 @@
       <div v-html="detailData.ProRemark || '暂无介绍'"></div>
     </div>
     <submit-bar
-      v-show="detailData.Type != 1"
       :price="detailData.ProductCost"
       @onSubmit="goBuy"
       :needReal="true"
-      :disabled="!detailData.IsSelf"
-      :button="detailData.IsSelf ? '立即购买' : '即将上线'">
+      :disabled="detailData.Type"
+      :button="detailData.Type != 1 ? '立即购买' : '即将上线'">
       <span slot="labelText">单价：</span>
     </submit-bar>
   </div>
