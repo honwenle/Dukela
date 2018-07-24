@@ -35,6 +35,9 @@ Vue.filter('tagColor', function (type) {
     return 'color-error'
   }
 })
+Vue.filter('balanceTypeName', function (type) {
+  return ['未知', '分红收入', '推广收入', '买入商品支出', '预约入住支出', '提现支出', '退款'][type]
+})
 Vue.filter('payTypeName', function (type) {
   return ['商品支付', '余额支付', '微信支付', '支付宝支付', '银联支付'][type]
 })

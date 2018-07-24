@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="page--me">
     <div class="top" :class="{'unlogin': !UserKey}">
       <d-header :tran="true" :showBack="false">
         <span slot="right" @click="$router.push({name: 'Settings'})">设置</span>
@@ -11,10 +11,22 @@
         <div @click="$router.push({name: 'User'})" class="nick">{{UserKey ? (dataInfo.FullName || '用户昵称') : '注册/登录'}}</div>
       </div>
     </div>
-    <group :gutter="0">
-      <cell title="我的商品库" link="my-goods"></cell>
-      <cell title="我的订单" link="my-order"></cell>
-      <cell title="我的推广" link="my-promotion"></cell>
+    <div class="total-bar">
+      <div class="total flex flex-center center">
+        <div class="flex-1" @click="$router.push('my-balance')">
+          <div class="theme-color fz20">{{dataInfo.AccountBalance}}</div>
+          <div>账户余额(元)</div>
+        </div>
+        <div class="flex-1">
+          <div class="theme-color fz20">200.00</div>
+          <div>福利收益(元)</div>
+        </div>
+      </div>
+    </div>
+    <group>
+      <cell title="我的商品库" link="my-goods" value="转让"></cell>
+      <cell title="我的订单" link="my-order" value="累计100单"></cell>
+      <cell title="我的推广" link="my-promotion" value="累计收益20元"></cell>
       <cell title="我的消息" link="messages">
         <badge v-if="msgCount" :text="msgCount"></badge>
       </cell>
@@ -51,7 +63,7 @@ export default {
 
 <style scoped>
 .top{
-  padding-bottom: 30px;
+  padding-bottom: 50px;
   text-align: center;
   color: #fff;
   background-color: radial-gradient(at 50% 75%, #91c9ff, #5194ff);
@@ -71,4 +83,19 @@ export default {
   width: 100%;
   border-radius: 100%;
 }
+.total-bar{
+  margin-top: -45px;
+  padding: 0 18px;
+}
+.total{
+  height: 68px;
+  border-radius: 15px;
+  background: #fff;
+}
+/* .page--me .weui-cells{
+  background: transparent;
+}
+.page--me .weui-cell__ft{
+  color: #f00;
+} */
 </style>

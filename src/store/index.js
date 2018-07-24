@@ -31,7 +31,8 @@ export default new Vuex.Store({
     TRate: 1,
     wxInfo: {},
     UserMessageCount: 0,
-    AchievementList: []
+    AchievementList: [],
+    Balance: []
   },
   getters: {
     getRecordDetail: (state) => (id) => {
@@ -148,6 +149,12 @@ export default new Vuex.Store({
       state.goodsCount = 0
       state.goodsNumber = 0
     },
+    setBalance(state, items = []) {
+      state.Balance = state.Balance.concat(items)
+    },
+    clearBalance(state) {
+      state.Balance = []
+    },
     setProductStream(state, items = []) {
       state.ProductStream = state.ProductStream.concat(items)
     },
@@ -233,6 +240,17 @@ export default new Vuex.Store({
         count: data.Count,
         num: data.Number
       })
+      return data.Count || 0
+    },
+    async getBalance({commit}, {page = 1}) {
+      let {data} = await http.post('AccountBalance/GetList', {
+        pageSize: PAGE_SIZE,
+        pageIndex: page,
+        orderby: '',
+        strSearchName: ''
+      })
+      page == 1 && commit('clearBalance')
+      data.Code == 1 && commit('setBalance', JSON.parse(data.List))
       return data.Count || 0
     },
     async getUserInfo({commit}, id) {

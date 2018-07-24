@@ -40,11 +40,13 @@ import CheckPhone from '@/pages/check-phone'
 import MyRealname from '@/pages/my-realname'
 import MyPassword from '@/pages/my-password'
 import MyAccount from '@/pages/my-account'
+import MyBalance from '@/pages/my-balance'
 import Help from '@/pages/help'
 import Refund from '@/pages/refund'
 import Feedback from '@/pages/feedback'
 import MyPromotion from '@/pages/my-promotion'
 import PromotionRecord from '@/pages/promotion-record'
+import Withdraw from '@/pages/withdraw'
 
 import Version from '@/pages/version'
 
@@ -54,6 +56,16 @@ Vue.use(Router)
 export default new Router({
   // mode: 'history',
   routes: [
+    {
+      component: Withdraw,
+      path: '/withdraw',
+      meta: { needLogin: true }
+    },
+    {
+      component: MyBalance,
+      path: '/my-balance',
+      meta: { needLogin: true }
+    },
     {
       component: Refund,
       path: '/refund',
