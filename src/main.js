@@ -13,6 +13,7 @@ import DHeader from '@/components/dkl-header.vue'
 import List from '@/components/list.vue'
 import SmsSend from '@/components/sms-send'
 import SubmitBar from '@/components/submit-bar'
+import Protocol from '@/components/protocol'
 import TodayT from '@/components/todayT'
 import { LoadingPlugin, ToastPlugin, XHeader,
   AlertPlugin, ConfirmPlugin,
@@ -28,6 +29,7 @@ Vue.component('font-icon', FontIcon)
 Vue.component('group', Group)
 Vue.component('cell', Cell)
 Vue.component('scroller', Scroller)
+Vue.component('protocol', Protocol)
 Vue.component('sms-send', SmsSend)
 Vue.use(LoadingPlugin)
 Vue.use(ToastPlugin)
