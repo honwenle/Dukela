@@ -58,7 +58,13 @@ export default {
         OrderID: this.id
       })
       if (data.Code == 1) {
-        this.$router.back()
+        this.$vux.alert.show({
+          title: '申请成功！',
+          content: '退款金额原路径返回，\n线下转账金额将会返回到账户余额',
+          onHide: () => {
+            this.$router.back()
+          }
+        })
       } else {
         this.$vux.toast.text(data.Message)
       }
