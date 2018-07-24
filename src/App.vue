@@ -13,6 +13,7 @@
 export default {
   name: 'app',
   mounted() {
+    // TODO: 返回桌面
     window.api && window.api.addEventListener({
         name: 'myBack'
     }, (ret, err) => {
