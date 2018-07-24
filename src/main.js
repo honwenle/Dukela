@@ -15,15 +15,19 @@ import SmsSend from '@/components/sms-send'
 import SubmitBar from '@/components/submit-bar'
 import Protocol from '@/components/protocol'
 import TodayT from '@/components/todayT'
+import Vcode from '@/components/vcode'
 import { LoadingPlugin, ToastPlugin, XHeader,
-  AlertPlugin, ConfirmPlugin,
+  AlertPlugin, ConfirmPlugin, XInput, Countdown,
   Group, Cell, Scroller, Swiper } from 'vux'
 
 Vue.component('today-t', TodayT)
+Vue.component('countdown', Countdown)
 Vue.component('submit-bar', SubmitBar)
 Vue.component('swiper', Swiper)
 Vue.component('list', List)
+Vue.component('vcode', Vcode)
 Vue.component('x-header', XHeader)
+Vue.component('x-input', XInput)
 Vue.component('d-header', DHeader)
 Vue.component('font-icon', FontIcon)
 Vue.component('group', Group)
