@@ -3,6 +3,16 @@
     <d-header :tran="true" :theme-color="true">
       商品购入详情
       <div slot="right" v-if="isPay" @click="clickCancel">取消订单</div>
+      <div slot="right"
+        v-if="detail.OrderStatus == 1"
+        @click="$router.push({
+          path: 'refund',
+          query: {
+            id: id
+          }
+        })">
+        退货
+      </div>
     </d-header>
     <div class="detail">
       <div class="detail-top">

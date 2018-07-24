@@ -39,7 +39,7 @@ Vue.filter('payTypeName', function (type) {
   return ['商品支付', '余额支付', '微信支付', '支付宝支付', '银联支付'][type]
 })
 Vue.filter('orderStatusName', function (type) {
-  return ['未支付', '已支付', '已退款', '已完成', '交易关闭', '待审核'][type]
+  return ['未支付', '已支付', '已退款', '已完成', '交易关闭', '待审核', '退款中'][type]
 })
 Vue.filter('reserveStatusName', function (type) {
   return ['未支付', '已支付', '已退款', '预约成功', '交易关闭'][type]
