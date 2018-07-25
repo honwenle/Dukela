@@ -22,9 +22,9 @@ import { LoadingPlugin, ToastPlugin, XHeader,
   Group, Cell, Scroller, Swiper,
   Tab, TabItem, XNumber, Popup } from 'vux'
 
-  Vue.component('password', Password)
-  Vue.component('popup', Popup)
-  Vue.component('today-t', TodayT)
+Vue.component('password', Password)
+Vue.component('popup', Popup)
+Vue.component('today-t', TodayT)
 Vue.component('countdown', Countdown)
 Vue.component('submit-bar', SubmitBar)
 Vue.component('tab', Tab)
