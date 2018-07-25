@@ -84,6 +84,14 @@ export default {
         Amount: this.amount,
         BlankID: this.bankinfo.ID
       })
+      if (data.Code == 1) {
+        this.$router.push({
+          path: 'withdraw-result',
+          query: {
+            id: 0 // TODO: 接口返回id
+          }
+        })
+      }
       this.$vux.toast.text(data.Message)
     },
     async getBankInfo() {
