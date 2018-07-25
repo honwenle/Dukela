@@ -25,7 +25,7 @@
           :key="item.ID"
           class="bb flex flex-center list-item"
           :class="item.AType == 1 ? 'record-income' : 'record-outcome'"
-          @click="goDetail(item.ID)">
+          @click="goDetail(item)">
           <div class="flex-1">
             <div class="round-text"></div>
           </div>
@@ -55,6 +55,10 @@ export default {
     }
   },
   methods: {
+    goDetail(item) {
+      this.$store.commit('setBalanceDetail', item)
+      this.$router.push('balance-detail')
+    },
     clickWithdraw() {
       if (this.UserInfo.IsBank) {
         this.$router.push('withdraw')

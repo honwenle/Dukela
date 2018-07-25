@@ -33,7 +33,8 @@ export default new Vuex.Store({
     UserMessageCount: 0,
     AchievementList: [],
     Balance: [],
-    newsList: []
+    newsList: [],
+    balanceDetail: {}
   },
   getters: {
     getRecordDetail: (state) => (id) => {
@@ -44,6 +45,9 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    setBalanceDetail(state, data) {
+      state.balanceDetail = data
+    },
     setUserMessageCount(state, data) {
       state.UserMessageCount = data
     },
