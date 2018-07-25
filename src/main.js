@@ -18,11 +18,14 @@ import TodayT from '@/components/todayT'
 import Vcode from '@/components/vcode'
 import { LoadingPlugin, ToastPlugin, XHeader,
   AlertPlugin, ConfirmPlugin, XInput, Countdown,
-  Group, Cell, Scroller, Swiper } from 'vux'
+  Group, Cell, Scroller, Swiper,
+  Tab, TabItem } from 'vux'
 
 Vue.component('today-t', TodayT)
 Vue.component('countdown', Countdown)
 Vue.component('submit-bar', SubmitBar)
+Vue.component('tab', Tab)
+Vue.component('tab-item', TabItem)
 Vue.component('swiper', Swiper)
 Vue.component('list', List)
 Vue.component('vcode', Vcode)

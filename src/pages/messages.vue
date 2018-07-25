@@ -1,10 +1,16 @@
 <template>
-  <div>
-    <d-header :tran="true" :theme-color="true">我的消息</d-header>
+  <div class="page--messages">
+    <d-header :tran="true" :theme-color="true">
+      <tab v-model="tabIndex" default-color="#fff" active-color="#fff" bar-active-color="#fff">
+        <tab-item selected>消息</tab-item>
+        <tab-item>资讯</tab-item>
+      </tab>
+    </d-header>
     <list
       action-name="getUserMessage"
       :dataLength="dataList.length"
       :height="`-${67}`"
+      v-show="tabIndex == 0"
     >
       <div class="message-wrap">
         <div class="item flex" v-for="item in dataList" :key="item.ID">
@@ -47,16 +53,51 @@
         </div>
       </div>
     </list>
+    <list
+      action-name="getNews"
+      :dataLength="newsList.length"
+      :height="`-${67}`"
+      v-show="tabIndex == 1"
+    >
+      <div class="flex flex-center cell fff-bg bb"
+        v-for="item in newsList"
+        :key="item.ID"
+        @click="goNews(item.ID)">
+        <div class="flex-2">
+          <div class="fz16">{{item.Title}}</div>
+          <div class="fz12">{{item.CreateTime}}</div>
+        </div>
+        <div class="flex-1">
+          <img :src="$imgUrl + item.ImgUrl" alt="">
+        </div>
+      </div>
+    </list>
   </div>
 </template>
 <script>
 export default {
+  data() {
+    return {
+      tabIndex: 0
+    }
+  },
   computed: {
     dataList() {
       return this.$store.state.UserMessage
+    },
+    newsList() {
+      return this.$store.state.newsList
     }
   },
   methods: {
+    goNews(id) {
+      this.$router.push({
+        path: 'news',
+        query: {
+          id
+        }
+      })
+    },
     goDetail(id, kid, type) {
       this.$http.post('UserMessage/ReadMessage', {
         MessageID: id

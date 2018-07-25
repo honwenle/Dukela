@@ -32,7 +32,8 @@ export default new Vuex.Store({
     wxInfo: {},
     UserMessageCount: 0,
     AchievementList: [],
-    Balance: []
+    Balance: [],
+    newsList: []
   },
   getters: {
     getRecordDetail: (state) => (id) => {
@@ -166,9 +167,27 @@ export default new Vuex.Store({
     },
     clearAchievementList(state) {
       state.AchievementList = []
+    },
+    setNews(state, items = []) {
+      state.newsList = state.newsList.concat(items)
+    },
+    clearNews(state) {
+      state.newsList = []
     }
   },
   actions: {
+    async getNews({commit}, {page = 1}) {
+      let {data} = await http.post('News/GetList', {
+        pageSize: PAGE_SIZE,
+        pageIndex: page,
+        orderby: ''
+      })
+      page == 1 && commit('clearNews')
+      if (data.Code == 1) {
+        commit('setNews', JSON.parse(data.List))
+      }
+      return data.Count || 0
+    },
     async getAchievementList({commit}, {page = 1}) {
       let {data} = await http.post('Achievement/GetList', {
         pageSize: PAGE_SIZE,

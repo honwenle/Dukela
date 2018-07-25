@@ -47,6 +47,7 @@ import Feedback from '@/pages/feedback'
 import MyPromotion from '@/pages/my-promotion'
 import PromotionRecord from '@/pages/promotion-record'
 import Withdraw from '@/pages/withdraw'
+import News from '@/pages/news'
 
 import Version from '@/pages/version'
 
@@ -56,6 +57,11 @@ Vue.use(Router)
 export default new Router({
   // mode: 'history',
   routes: [
+    {
+      component: News,
+      path: '/news',
+      meta: { needLogin: true }
+    },
     {
       component: Withdraw,
       path: '/withdraw',

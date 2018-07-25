@@ -74,9 +74,7 @@
   </div>
 </template>
 <script>
-import { Tab, TabItem } from 'vux'
 export default {
-  components: {Tab, TabItem},
   data() {
     return {
       tabIndex: Number(this.$route.query.type) || 0
