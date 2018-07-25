@@ -42,11 +42,10 @@
   </div>
 </template>
 <script>
-import {Checklist, Clocker, Popup, Popover, CheckIcon} from 'vux'
-import Password from '@/components/password'
+import {Checklist, Clocker, Popover, CheckIcon} from 'vux'
 export default {
   components: {
-    Checklist, Clocker, Popup, Popover, Password, CheckIcon
+    Checklist, Clocker, Popover, CheckIcon
   },
   data() {
     return {

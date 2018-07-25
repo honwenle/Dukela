@@ -16,12 +16,15 @@ import SubmitBar from '@/components/submit-bar'
 import Protocol from '@/components/protocol'
 import TodayT from '@/components/todayT'
 import Vcode from '@/components/vcode'
+import Password from '@/components/password'
 import { LoadingPlugin, ToastPlugin, XHeader,
   AlertPlugin, ConfirmPlugin, XInput, Countdown,
   Group, Cell, Scroller, Swiper,
-  Tab, TabItem } from 'vux'
+  Tab, TabItem, XNumber, Popup } from 'vux'
 
-Vue.component('today-t', TodayT)
+  Vue.component('password', Password)
+  Vue.component('popup', Popup)
+  Vue.component('today-t', TodayT)
 Vue.component('countdown', Countdown)
 Vue.component('submit-bar', SubmitBar)
 Vue.component('tab', Tab)
@@ -31,6 +34,7 @@ Vue.component('list', List)
 Vue.component('vcode', Vcode)
 Vue.component('x-header', XHeader)
 Vue.component('x-input', XInput)
+Vue.component('x-number', XNumber)
 Vue.component('d-header', DHeader)
 Vue.component('font-icon', FontIcon)
 Vue.component('group', Group)
