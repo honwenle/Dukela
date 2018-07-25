@@ -21,7 +21,7 @@
         :height="`-${228}`"
       >
         <div>
-          <div class="list-item" v-for="(item, i) in dataList" :key="i">
+          <div class="list-item" v-for="(item, i) in dataList" :key="i" @click="showTransfer(item.ID)">
             <div class="flex gray space-between fz15">
               <div>商品名称：</div>
               <div>可用(个)</div>
@@ -44,6 +44,27 @@ export default {
     },
     goodsNumber() {
       return this.$store.state.goodsNumber
+    }
+  },
+  methods: {
+    showTransfer(id) {
+      this.$vux.confirm.show({
+        content: '转让或赠送',
+        cancelText: '赠送',
+        confirmText: '转让',
+        onCancel: () => {
+          this.$router.push({
+            path: 'transfer',
+            query: {id, type: 0}
+          })
+        },
+        onConfirm: () => {
+          this.$router.push({
+            path: 'transfer',
+            query: {id, type: 1}
+          })
+        }
+      })
     }
   }
 }

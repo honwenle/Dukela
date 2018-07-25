@@ -50,6 +50,7 @@ import PromotionRecord from '@/pages/promotion-record'
 import Withdraw from '@/pages/withdraw'
 import News from '@/pages/news'
 import WithdrawResult from '@/pages/withdraw-result'
+import Transfer from '@/pages/transfer'
 
 import Version from '@/pages/version'
 
@@ -59,6 +60,11 @@ Vue.use(Router)
 export default new Router({
   // mode: 'history',
   routes: [
+    {
+      component: Transfer,
+      path: '/transfer',
+      meta: { needLogin: true }
+    },
     {
       component: BalanceDetail,
       path: '/balance-detail',
