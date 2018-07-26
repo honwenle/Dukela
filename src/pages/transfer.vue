@@ -1,6 +1,6 @@
 <template>
   <div>
-    <d-header :tran="true" :theme-color="true">赠送</d-header>
+    <d-header :tran="true" :theme-color="true">转让</d-header>
     <group gutter="0">
       <cell title="XXXX" inline-desc="xxxxx"></cell>
     </group>
