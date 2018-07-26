@@ -7,10 +7,13 @@
       <div class="wave-top-tran flex flex-center space-between">
         <div>
           <div class="fz25">{{goodsNumber}}</div>
-          <div class="gray">总商品数(个)</div>
+          <div class="gray">
+            总商品数(个)
+            <span class="fz12 btn-outline" @click="$router.push({name: 'GoodsRecord'})">明细</span>
+          </div>
         </div>
         <div>
-          <span class="btn-inline" @click="$router.push({name: 'GoodsRecord'})">明细</span>
+          <span class="btn-inline" @click="$router.push('trans-list')">转让</span>
         </div>
       </div>
     </div>
@@ -21,7 +24,7 @@
         :height="`-${228}`"
       >
         <div>
-          <div class="list-item" v-for="(item, i) in dataList" :key="i" @click="showTransfer(item.ID)">
+          <div class="list-item" v-for="(item, i) in dataList" :key="i" @click="showTransfer(item)">
             <div class="flex gray space-between fz15">
               <div>商品名称：</div>
               <div>可用(个)</div>
@@ -47,22 +50,18 @@ export default {
     }
   },
   methods: {
-    showTransfer(id) {
+    showTransfer(item) {
+      this.$store.commit('setTransferGoods', item)
       this.$vux.confirm.show({
+        hideOnBlur: true,
         content: '转让或赠送',
         cancelText: '赠送',
         confirmText: '转让',
         onCancel: () => {
-          this.$router.push({
-            path: 'transfer',
-            query: {id, type: 0}
-          })
+          this.$router.push('give-other')
         },
         onConfirm: () => {
-          this.$router.push({
-            path: 'transfer',
-            query: {id, type: 1}
-          })
+          this.$router.push('transfer')
         }
       })
     }

@@ -51,6 +51,8 @@ import Withdraw from '@/pages/withdraw'
 import News from '@/pages/news'
 import WithdrawResult from '@/pages/withdraw-result'
 import Transfer from '@/pages/transfer'
+import GiveOther from '@/pages/give-other'
+import TransList from '@/pages/trans-list'
 
 import Version from '@/pages/version'
 
@@ -60,6 +62,16 @@ Vue.use(Router)
 export default new Router({
   // mode: 'history',
   routes: [
+    {
+      component: GiveOther,
+      path: '/give-other',
+      meta: { needLogin: true }
+    },
+    {
+      component: TransList,
+      path: '/trans-list',
+      meta: { needLogin: true }
+    },
     {
       component: Transfer,
       path: '/transfer',
