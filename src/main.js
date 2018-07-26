@@ -17,11 +17,13 @@ import Protocol from '@/components/protocol'
 import TodayT from '@/components/todayT'
 import Vcode from '@/components/vcode'
 import Password from '@/components/password'
+import Tw from '@/components/tw'
 import { LoadingPlugin, ToastPlugin, XHeader,
   AlertPlugin, ConfirmPlugin, XInput, Countdown,
   Group, Cell, Scroller, Swiper,
   Tab, TabItem, XNumber, Popup } from 'vux'
 
+Vue.component('tw', Tw)
 Vue.component('password', Password)
 Vue.component('popup', Popup)
 Vue.component('today-t', TodayT)

@@ -16,10 +16,7 @@
       <x-input v-model="num" :is-type="checkNum" @on-change="numParseInt" title="数量" type="number" :placeholder="`${detailData.SellLimitCount}份起售，最多购入${detailData.UserBuyLimitAmount}元`"></x-input>
       <x-input v-if="isFirstOrder" v-model="InvitationCode" title="邀请码" placeholder="如有邀请人，请输入邀请码"></x-input>
     </group>
-    <group label-width="100px">
-      <cell title="W(个)" value-align="left" :value="www"></cell>
-      <cell title="T(个)" value-align="left" :value="ttt"></cell>
-    </group>
+    <tw :num="num" :w="detailData.ShareRate" :price="detailData.ProductCost"></tw>
     <submit-bar
       :price="amount"
       @onSubmit="submitOrder"
@@ -41,20 +38,11 @@ export default {
     }
   },
   computed: {
-    TRate() {
-      return this.$store.state.TRate
-    },
     amount() {
       return (this.detailData.ProductCost || 0) * (parseInt(this.num) || 0)
     },
     detailData() {
       return this.$store.state.ProductDetail
-    },
-    www() {
-      return (this.num * this.detailData.ShareRate / 100) || 0
-    },
-    ttt() {
-      return (Math.floor(this.num * this.detailData.ProductCost * 10000 / this.TRate) / 10000) || 0
     }
   },
   mounted() {
