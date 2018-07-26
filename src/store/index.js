@@ -28,13 +28,17 @@ export default new Vuex.Store({
     deduct: {},
     goodsCount: 0,
     goodsNumber: 0,
-    TRate: 1,
+    Config: {
+      TProportion: 0,
+      MinWithdrawalsAmount: 0
+    },
     wxInfo: {},
     UserMessageCount: 0,
     AchievementList: [],
     Balance: [],
     newsList: [],
-    balanceDetail: {}
+    balanceDetail: {},
+    transferGoods: {}
   },
   getters: {
     getRecordDetail: (state) => (id) => {
@@ -45,6 +49,9 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    setTransferGoods(state, data) {
+      state.transferGoods = data
+    },
     setBalanceDetail(state, data) {
       state.balanceDetail = data
     },
@@ -54,8 +61,8 @@ export default new Vuex.Store({
     setWxInfo(state, data) {
       state.wxInfo = data
     },
-    setTRate(state, tr) {
-      state.TRate = tr
+    setConfig(state, data) {
+      state.Config = data
     },
     setDeduct(state, data) {
       state.deduct = data
@@ -207,11 +214,11 @@ export default new Vuex.Store({
       let {data} = await http.post('UserMessage/GetNoReadMessageCount')
       data.Code == 1 && commit('setUserMessageCount', data.Model)
     },
-    async getTRate({commit}) {
+    async getConfig({commit}) {
       let {data} = await http.post('SysConfig/GetModel', {
         ID: 1
       })
-      data.Code == 1 && commit('setTRate', data.Info.TProportion)
+      data.Code == 1 && commit('setConfig', data.Info)
     },
     async getUserMessage({commit}, {page = 1}) {
       let {data} = await http.post('UserMessage/GetList', {

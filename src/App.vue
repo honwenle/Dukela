@@ -19,6 +19,7 @@ export default {
     }, (ret, err) => {
       this.$router.back()
     })
+    this.$store.dispatch('getConfig')
   }
 }
 </script>

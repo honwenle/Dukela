@@ -126,7 +126,6 @@ export default {
     }
   },
   mounted() {
-    this.$store.dispatch('getTRate')
     this.$store.dispatch('getUserProduct', {
       bid: this.VillaData.ID
     })

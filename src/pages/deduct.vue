@@ -47,7 +47,7 @@ export default {
       return this.$store.state.RoomDetail
     },
     TRate() {
-      return this.$store.state.TRate
+      return this.$store.state.Config.TProportion
     },
     goodsList() {
       return this.$store.state.UserProduct

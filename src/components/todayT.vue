@@ -6,12 +6,9 @@
 </template>
 <script>
 export default {
-  mounted() {
-    this.$store.dispatch('getTRate')
-  },
   computed: {
     TRate() {
-      return this.$store.state.TRate
+      return this.$store.state.Config.TProportion
     }
   },
   props: {
