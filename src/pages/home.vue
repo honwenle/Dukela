@@ -18,24 +18,24 @@
               <font-icon name="home1" color="#6e9cff"></font-icon>
               <div class="inline-block">{{item.ProductName}}</div>
             </div>
-            <div class="flex flex-center" style="padding: 10px 15px 7px" v-if="item.Type == 0">
-              <div class="flex-1">
-                <div class="gray">价格（元/小时）</div>
-                <div class="big-num">{{item.ProductCost}}</div>
+            <div class="home-item-cell" v-if="item.Type == 0">
+              <div class="flex space-between flex-center">
+                <div>
+                  <span class="big-num">{{item.ProductCost}}</span>
+                  <span class="gray">元/小时</span>
+                </div>
+                <div class="text-right">
+                  <div class="btn-outline orange">抢购</div>
+                </div>
               </div>
-              <div class="flex-1 border-left">
+              <div class="flex space-between">
                 <div class="gray">
-                  <font-icon name="rmb"></font-icon>
-                  <span class="black">已出售</span>
+                  <span>已出售</span>
                   <span class="theme-color">{{Number(item.AppProductUsedCount) + Number(item.ProductUsedCount)}}小时</span>
                 </div>
                 <div class="gray">
-                  <font-icon name="stock"></font-icon>
-                  <span class="black">剩余{{item.ProductLessCount}}小时</span>
+                  <span>剩余{{item.ProductLessCount}}小时</span>
                 </div>
-              </div>
-              <div class="flex-1 text-right">
-                <div class="btn-outline orange">抢购</div>
               </div>
             </div>
             <div v-else class="flex flex-center" style="padding: 10px 15px 7px">
@@ -137,5 +137,8 @@ export default {
 }
 .home-item-h1{
   font-size: 16px;
+}
+.home-item-cell{
+  padding: 10px 15px 7px;
 }
 </style>
