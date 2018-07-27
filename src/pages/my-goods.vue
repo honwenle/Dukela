@@ -25,13 +25,18 @@
       >
         <div>
           <div class="list-item" v-for="(item, i) in dataList" :key="i" @click="showTransfer(item)">
-            <div class="flex gray space-between fz15">
-              <div>商品名称：</div>
-              <div>可用(个)</div>
+            <div class="fz16">{{item.ProductName}}</div>
+            <div class="gray flex">
+              <div class="w100">可用(个)</div>
+              <div>T(个)</div>
             </div>
-            <div class="flex space-between flex-baseline">
-              <div class="fz15">{{item.ProductName}}</div>
-              <div class="theme-color fz20">{{item.ProductCount}}</div>
+            <div class="flex flex-center">
+              <div class="w100 theme-color fz20">{{item.ProductCount}}</div>
+              <div class="fz16">{{item.TAmount}}</div>
+            </div>
+            <div class="progress">
+              <div class="text-right theme-color" style="padding-bottom: 10px">可转让：{{item.TransferCount}}个</div>
+              <x-progress :percent="100 * item.TransferCount / item.ProductCount" :show-cancel="false"></x-progress>
             </div>
           </div>
         </div>
@@ -75,8 +80,15 @@ export default {
 }
 .list-item{
   background: #fff;
-  padding: 5px 34px;
+  padding: 15px;
   margin-bottom: 15px;
   border-radius: 5px;
+}
+.w100 {
+  width: 100px;
+}
+.progress{
+  padding-bottom: 10px;
+  margin-top: -15px;
 }
 </style>
