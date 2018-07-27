@@ -63,7 +63,7 @@ export default {
       if (val.BeadhouseID == this.roomData.BeadhouseID) {
         return this.decimal4to2(val.ProductCount * val.ProductSize * this.roomData.RoomPrice / 24 / this.roomData.RoomSize) 
       } else {
-        this.decimal4to2(val.TAmount * this.TRate * val.ProductSize / this.roomData.RoomSize)
+        return this.decimal4to2(val.TAmount * this.TRate * val.ProductSize / this.roomData.RoomSize)
       }
     },
     clearDeduct() {
