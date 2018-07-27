@@ -5,7 +5,7 @@
       <cell :title="transferGoods.ProductName" :inline-desc="`持有${transferGoods.ProductCount}个`"></cell>
     </group>
     <group label-width="100px">
-      <x-number fillable title="数量" align="left" v-model="ProductCount" :min="0" :max="+transferGoods.ProductCount"></x-number>
+      <x-number fillable title="数量(个)" align="left" v-model="ProductCount" :min="0" :max="+transferGoods.ProductCount"></x-number>
       <x-input title="赠送人账户" placeholder="请填写" v-model="ToUserPhone"></x-input>
     </group>
     <tw :num="ProductCount" :w="transferGoods.ShareRate" :price="transferGoods.ProductCost"></tw>
@@ -39,7 +39,7 @@ export default {
   },
   computed: {
     total() {
-      return Math.floor(100 * this.$store.state.Config.TProportion * this.transferGoods.ProductCount * this.ProductCount / this.transferGoods.TAmount) / 100
+      return this.transferGoods.ProductCost * this.ProductCount
     },
     transferGoods() {
       return this.$store.state.transferGoods

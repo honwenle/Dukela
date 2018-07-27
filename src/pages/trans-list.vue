@@ -21,7 +21,7 @@
                 </div>
                 <div style="padding-right: 10px">
                   <div class="gray">可转让(个)</div>
-                  <div>{{item.ProductCount}}</div>
+                  <div>{{item.TransferCount}}</div>
                 </div>
                 <div>
                   <div class="gray">平台价格(元/个)</div>
@@ -35,8 +35,8 @@
       </checker>
     </list>
     <div class="flex trans-bottom">
-      <div class="flex-1 fff-bg">赠送</div>
-      <div class="flex-1 theme-bg white">转让</div>
+      <div @click="goTrans(0)" class="flex-1 fff-bg">赠送</div>
+      <div @click="goTrans(1)" class="flex-1 theme-bg white">转让</div>
     </div>
   </div>
 </template>
@@ -55,6 +55,13 @@ export default {
   methods: {
     setTransferGoods(item) {
       this.$store.commit('setTransferGoods', item)
+    },
+    goTrans(type) {
+      if (!this.goodsInfo.ID) {
+        this.$vux.toast.text('请先选择商品')
+        return false
+      }
+      this.$router.push(['give-other', 'transfer'][type])
     }
   }
 }
