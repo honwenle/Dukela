@@ -13,7 +13,7 @@
         selected-item-class="checker-on"
         @on-change="setDeduct">
         <checker-item v-for="item in goodsList" :key="item.ID" :value="item">
-          <div class="flex flex-center check-box">
+          <div class="flex flex-center checker-box">
             <div class="flex-1" style="line-height: 1.8;">
               <div class="fz15">{{item.ProductName}}</div>
               <div class="gray">商品数：{{item.ProductCount}}</div>
@@ -31,11 +31,7 @@
   </div>
 </template>
 <script>
-import {Checker, CheckerItem} from 'vux'
 export default {
-  components: {
-    Checker, CheckerItem
-  },
   data() {
     return {
       deductInfo: {}
@@ -83,26 +79,7 @@ export default {
   }
 }
 </script>
-<style scoped lang="less">
-.checker-item{
-  display: block;
-  padding: 12px 15px 0;
-  .iconfont{
-    color: #eee;
-  }
-}
-.check-box{
-  background: #fff;
-  padding: 10px 15px;
-  font-size: 14px;
-}
-.checker-on .iconfont{
-  color: @theme-color;
-}
-.col2{
-  border-left: 1px solid #eee;
-  padding-left: 15px;
-}
+<style scoped>
 .nouse{
   height: 50px;
   line-height: 50px;

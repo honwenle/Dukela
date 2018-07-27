@@ -21,8 +21,11 @@ import Tw from '@/components/tw'
 import { LoadingPlugin, ToastPlugin, XHeader,
   AlertPlugin, ConfirmPlugin, XInput, Countdown,
   Group, Cell, Scroller, Swiper,
-  Tab, TabItem, XNumber, Popup } from 'vux'
+  Tab, TabItem, XNumber, Popup,
+  Checker, CheckerItem } from 'vux'
 
+Vue.component('checker', Checker)
+Vue.component('checker-item', CheckerItem)
 Vue.component('tw', Tw)
 Vue.component('password', Password)
 Vue.component('popup', Popup)
