@@ -32,6 +32,11 @@ export default {
       isShowPro: false
     }
   },
+  watch: {
+    ProductCount(newValue, old) {
+      this.ProductCount = Math.floor(newValue)
+    }
+  },
   computed: {
     total() {
       return Math.floor(100 * this.$store.state.Config.TProportion * this.transferGoods.ProductCount * this.ProductCount / this.transferGoods.TAmount) / 100
