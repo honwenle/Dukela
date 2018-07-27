@@ -2,11 +2,11 @@
   <div>
     <d-header :tran="true" :theme-color="true">转让</d-header>
     <group gutter="0">
-      <cell :title="transferGoods.ProductName" :inline-desc="`持有${transferGoods.ProductCount}个`"></cell>
+      <cell :title="transferGoods.ProductName" :inline-desc="`持有${transferGoods.ProductCount}个 可转让${transferGoods.TransferCount}个`"></cell>
     </group>
     <group label-width="100px">
-      <x-number fillable title="数量(个)" align="left" v-model="ProductCount" :min="0" :max="+transferGoods.TransferCount"></x-number>
-      <x-input title="价格(元)" placeholder="请填写" v-model="ProductAmount"></x-input>
+      <x-number fillable title="数量(个)" align="left" v-model="ProductCount" :min="1" :max="+transferGoods.TransferCount"></x-number>
+      <x-input title="价格(元)" :inline-desc="`指导价格${transferGoods.GuidanceCost}元`" :placeholder="`可设置区间为${minPrice}-${transferGoods.ProductCost}`" v-model="ProductAmount"></x-input>
     </group>
     <tw :num="ProductCount" :w="transferGoods.ShareRate" :price="transferGoods.ProductCost"></tw>
     <submit-bar
@@ -26,7 +26,7 @@
 export default {
   data() {
     return {
-      ProductCount: 0,
+      ProductCount: 1,
       ProductAmount: '',
       isShowPassword: false,
       isShowPro: false
@@ -38,11 +38,17 @@ export default {
     }
   },
   computed: {
+    minPrice() {
+      return this.transferGoods.ProductCost - this.transferGoods.ProductCost * this.ProductCostRate / 100
+    },
     total() {
       return this.transferGoods.ProductCost * this.ProductCount
     },
     transferGoods() {
       return this.$store.state.transferGoods
+    },
+    ProductCostRate() {
+      return this.$store.state.Config.ProductCostRate
     }
   },
   methods: {
@@ -51,6 +57,10 @@ export default {
       this.isShowPassword = true
     },
     clickSubmit() {
+      if (this.ProductAmount < this.minPrice || this.ProductAmount > this.transferGoods.ProductCost) {
+        this.$vux.toast.text('请按要求填写价格')
+        return false
+      }
       if (localStorage.getItem('protocol_trans')) {
         this.isShowPassword = true
       } else {
@@ -67,6 +77,7 @@ export default {
       })
       if (data.Code == 1) {
         this.isShowPassword = false
+        this.$vux.toast.text('提交成功')
         this.$router.back()
       } else {
         this.$vux.toast.text(data.Message)
