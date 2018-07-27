@@ -6,7 +6,6 @@
     <list
       action-name="getUserProduct"
       :dataLength="goodsList.length"
-      :paramsData="{bid: VillaData.ID}"
       :height="`${-67 - 50}`">
       <checker v-model="deductInfo"
         radio-required

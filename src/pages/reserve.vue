@@ -126,9 +126,7 @@ export default {
     }
   },
   mounted() {
-    this.$store.dispatch('getUserProduct', {
-      bid: this.VillaData.ID
-    })
+    this.$store.dispatch('getUserProduct', {})
   },
   methods: {
     checkIdcard(val) {
