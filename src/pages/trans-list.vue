@@ -11,20 +11,33 @@
         selected-item-class="checker-on"
         @on-change="setTransferGoods">
         <checker-item v-for="item in goodsList" :key="item.ID" :value="item">
-          <div class="flex flex-center checker-box">
-            <div class="flex-1" style="line-height: 1.8;">
-              <div class="fz15">{{item.ProductName}}</div>
-              <div class="gray">商品数：{{item.ProductCount}}</div>
-            </div>
-            <div class="flex-2 col2">
-              <div class="price">{{item.ID}}</div>
-              <div class="gray">抵扣价格</div>
+          <div class="flex flex-center checker-box bb">
+            <div class="flex-5">
+              <div class="trans-item-title">{{item.ProductName}}</div>
+              <div class="flex">
+                <div style="padding-right: 10px">
+                  <div class="gray">可用(个)</div>
+                  <div>{{item.ProductCount}}</div>
+                </div>
+                <div style="padding-right: 10px">
+                  <div class="gray">可转让(个)</div>
+                  <div>{{item.ProductCount}}</div>
+                </div>
+                <div>
+                  <div class="gray">平台价格(元/个)</div>
+                  <div>{{item.ProductCount}}</div>
+                </div>
+              </div>
             </div>
             <font-icon fontsize="22px" :name="item.ID == goodsInfo.ID ? 'radio' : 'radio1'"></font-icon>
           </div>
         </checker-item>
       </checker>
     </list>
+    <div class="flex trans-bottom">
+      <div class="flex-1 fff-bg">赠送</div>
+      <div class="flex-1 theme-bg white">转让</div>
+    </div>
   </div>
 </template>
 <script>
@@ -46,3 +59,17 @@ export default {
   }
 }
 </script>
+<style scoped>
+.trans-item-title{
+  font-size: 16px;
+  padding: 5px 0;
+}
+.trans-bottom{
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+}
+</style>
