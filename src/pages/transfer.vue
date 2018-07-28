@@ -9,7 +9,11 @@
       <x-input title="价格(元)" :inline-desc="`指导价格${transferGoods.GuidanceCost}元`" :placeholder="`可设置区间为${minPrice}-${transferGoods.ProductCost}`" v-model="ProductAmount"></x-input>
     </group>
     <tw :num="ProductCount" :w="transferGoods.ShareRate" :price="transferGoods.ProductCost"></tw>
+    <div class="timeout-bar" v-if="timeout">
+      {{timeout}}
+    </div>
     <submit-bar
+      v-else
       :price="total"
       @onSubmit="clickSubmit"
       button="确定转让">
@@ -29,7 +33,8 @@ export default {
       ProductCount: 1,
       ProductAmount: '',
       isShowPassword: false,
-      isShowPro: false
+      isShowPro: false,
+      timeout: ''
     }
   },
   watch: {
@@ -37,18 +42,29 @@ export default {
       this.ProductCount = Math.floor(newValue)
     }
   },
+  mounted() {
+    let now = new Date()
+    now = now.getHours()
+    if (now <= this.Config.StartHours) {
+      this.timeout = `今日${this.Config.StartHours}点开始`
+    } else if (now >= this.Config.EndHours) {
+      this.timeout = `今日已截止，明日${this.Config.StartHours}点开始`
+    } else {
+      this.timeout = ''
+    }
+  },
   computed: {
     minPrice() {
-      return this.transferGoods.ProductCost - this.transferGoods.ProductCost * this.ProductCostRate / 100
+      return this.transferGoods.ProductCost - this.transferGoods.ProductCost * this.Config.ProductCostRate / 100
     },
     total() {
-      return this.transferGoods.ProductCost * this.ProductCount
+      return this.ProductAmount * this.ProductCount
     },
     transferGoods() {
       return this.$store.state.transferGoods
     },
-    ProductCostRate() {
-      return this.$store.state.Config.ProductCostRate
+    Config() {
+      return this.$store.state.Config
     }
   },
   methods: {
@@ -87,3 +103,16 @@ export default {
   }
 }
 </script>
+<style scoped>
+.timeout-bar{
+  font-size: 16px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #AFAFAF;
+  color: #fff;
+}
+</style>
