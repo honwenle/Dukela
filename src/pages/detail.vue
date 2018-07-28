@@ -65,7 +65,7 @@ export default {
       return this.detail.OrderStatus == 4
     },
     show1() {
-      return [1,2,3,5].indexOf(this.detail.OrderStatus) > -1
+      return [1,2,3,5,6].indexOf(this.detail.OrderStatus) > -1
     },
     isPay() {
       return this.detail.OrderStatus == 0
