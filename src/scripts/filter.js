@@ -18,13 +18,13 @@ Vue.filter('bannerArr', function (oList, field = 'Url') {
   })
 })
 Vue.filter('isIncome', function (type) {
-  return type < 3 ? 'record-income' : 'record-outcome'
+  return (type == 3 || type == 5 || type == 6) ? 'record-outcome' : 'record-income'
 })
 Vue.filter('hidePhone', function (tel = '') {
   return tel.replace(/(\d{3})\d{4}(\d{4})/, '$1****$2')
 })
 Vue.filter('goodsRecordTypeName', function (type) {
-  return ['无', '商品买入', '商品分红', '商品入住抵扣', '退款', '赠送', '转让', '转让失败'][type]
+  return ['其它', '商品买入', '商品分红', '商品入住抵扣', '退款', '赠送', '转让', '转让失败'][type]
 })
 Vue.filter('tagColor', function (type) {
   if (type > 0 && type < 4) {
@@ -36,7 +36,7 @@ Vue.filter('tagColor', function (type) {
   }
 })
 Vue.filter('balanceTypeName', function (type) {
-  return ['未知', '分红收入', '推广收入', '买入商品支出', '预约入住支出', '提现支出', '退款'][type]
+  return ['其它', '分红收入', '推广收入', '买入商品支出', '预约入住支出', '提现支出', '退款'][type]
 })
 Vue.filter('payTypeName', function (type) {
   return ['商品支付', '余额支付', '微信支付', '支付宝支付', '银联支付'][type]
