@@ -23,8 +23,8 @@ Vue.filter('isIncome', function (type) {
 Vue.filter('hidePhone', function (tel = '') {
   return tel.replace(/(\d{3})\d{4}(\d{4})/, '$1****$2')
 })
-Vue.filter('typeName', function (type) {
-  return ['无', '商品购买', '商品分红'][type]
+Vue.filter('goodsRecordTypeName', function (type) {
+  return ['无', '商品买入', '商品分红', '商品入住抵扣', '退款', '赠送', '转让', '转让失败'][type]
 })
 Vue.filter('tagColor', function (type) {
   if (type > 0 && type < 4) {

@@ -247,7 +247,7 @@ export default new Vuex.Store({
     },
     async getProductStream({commit}, {page = 1}) {
       let {data} = await http.post('UserProductStream/GetModelListByUserID', {
-        pageSize: PAGE_SIZE,
+        pageSize: 15,
         pageIndex: page,
         orderby: '',
         strSearchName: ''
