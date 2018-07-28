@@ -14,11 +14,15 @@
     <div class="total-bar">
       <div class="total flex flex-center center">
         <div class="flex-1" @click="$router.push('my-balance')">
-          <div class="theme-color fz20">{{dataInfo.AccountBalance}}</div>
+          <div class="theme-color fz20">
+            <countup :end-val="dataInfo.AccountBalance || 0" :decimals="2"></countup>
+          </div>
           <div>账户余额(元)</div>
         </div>
         <div class="flex-1">
-          <div class="theme-color fz20">200.00</div>
+          <div class="theme-color fz20">
+            <countup :end-val="dataInfo.xxx || 200" :decimals="2"></countup>
+          </div>
           <div>福利收益(元)</div>
         </div>
       </div>
@@ -55,7 +59,6 @@ export default {
     }
   },
   mounted() {
-    this.UserKey && this.$store.dispatch('getUserInfo')
     this.UserKey && this.$store.dispatch('getUserMessageCount', {})
   }
 }

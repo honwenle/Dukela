@@ -20,6 +20,7 @@ export default {
       this.$router.back()
     })
     this.$store.dispatch('getConfig')
+    localStorage.getItem('UserKey') && this.$store.dispatch('getUserInfo')
   }
 }
 </script>
