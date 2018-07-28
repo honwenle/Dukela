@@ -10,7 +10,7 @@
     </group>
     <tw :num="ProductCount" :pid="transferGoods.ProductID"></tw>
     <submit-bar
-      :price="total"
+      :price="total | decimal"
       @onSubmit="clickSubmit"
       button="确定赠送">
     </submit-bar>
@@ -23,7 +23,9 @@
   </div>
 </template>
 <script>
+import checkGoods from '@/mixins/check-goods'
 export default {
+  mixins: [checkGoods],
   data() {
     return {
       ProductCount: 1,
@@ -48,15 +50,20 @@ export default {
   methods: {
     clickAgree() {
       this.isShowPro = false
-      this.isShowPassword = true
+      this.showPassword()
     },
     clickSubmit() {
       if (localStorage.getItem('protocol_give')) {
-        this.isShowPassword = true
+        this.showPassword()
       } else {
         localStorage.setItem('protocol_give', 1)
         this.isShowPro = true
       }
+    },
+    showPassword() {
+      this.checkGoods(this.transferGoods.ProductID, this.ProductCount, () => {
+        this.isShowPassword = true
+      })
     },
     async submitTransfer(pwd) {
       let {data} = await this.$http.post('User/GiveUserProduct', {
