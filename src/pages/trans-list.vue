@@ -4,6 +4,9 @@
     <list
       action-name="getUserProduct"
       :dataLength="goodsList.length"
+      :paramsData="{
+        IsZR: 1
+      }"
       :height="`${-67 - 50}`">
       <checker v-model="goodsInfo"
         radio-required

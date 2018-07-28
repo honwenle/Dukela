@@ -32,7 +32,7 @@ export default {
       return this.$store.state.Config.TProportion
     },
     www() {
-      return (this.num * this.WRate) || 0
+      return (Math.floor(this.num * this.WRate * 100) / 100) || 0
     },
     ttt() {
       return (Math.floor(this.num * this.TPrice * 10000) / 10000) || 0
