@@ -5,10 +5,10 @@
       <cell :title="transferGoods.ProductName" :inline-desc="`持有${transferGoods.ProductCount}个`"></cell>
     </group>
     <group label-width="100px">
-      <x-number fillable title="数量(个)" align="left" v-model="ProductCount" :min="0" :max="+transferGoods.ProductCount"></x-number>
+      <x-number fillable title="数量(个)" align="left" v-model="ProductCount" :min="1" :max="+transferGoods.ProductCount"></x-number>
       <x-input title="赠送人账户" placeholder="请填写" v-model="ToUserPhone"></x-input>
     </group>
-    <tw :num="ProductCount" :w="transferGoods.ShareRate" :price="transferGoods.ProductCost"></tw>
+    <tw :num="ProductCount" :pid="transferGoods.ProductID"></tw>
     <submit-bar
       :price="total"
       @onSubmit="clickSubmit"
@@ -26,7 +26,7 @@
 export default {
   data() {
     return {
-      ProductCount: 0,
+      ProductCount: 1,
       ToUserPhone: '',
       isShowPassword: false,
       isShowPro: false
