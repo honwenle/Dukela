@@ -27,8 +27,8 @@
                   <div>{{item.TransferCount}}</div>
                 </div>
                 <div>
-                  <div class="gray">平台价格(元/个)</div>
-                  <div>{{item.ProductCount}}</div>
+                  <div class="gray">指导价格(元/个)</div>
+                  <div>{{item.GuidanceCost}}</div>
                 </div>
               </div>
             </div>
