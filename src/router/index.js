@@ -26,6 +26,9 @@ import Mall from '@/pages/mall'
 
 import Me from '@/pages/me'
 import Settings from '@/pages/settings'
+import Help from '@/pages/help'
+import HelpDetail from '@/pages/help-detail'
+import Feedback from '@/pages/feedback'
 
 import User from '@/pages/user'
 import MyGoods from '@/pages/my-goods'
@@ -42,9 +45,7 @@ import MyPassword from '@/pages/my-password'
 import MyAccount from '@/pages/my-account'
 import MyBalance from '@/pages/my-balance'
 import BalanceDetail from '@/pages/balance-detail'
-import Help from '@/pages/help'
 import Refund from '@/pages/refund'
-import Feedback from '@/pages/feedback'
 import MyPromotion from '@/pages/my-promotion'
 import PromotionRecord from '@/pages/promotion-record'
 import Withdraw from '@/pages/withdraw'
@@ -118,6 +119,12 @@ export default new Router({
     {
       component: Help,
       path: '/help',
+    },
+    {
+      component: HelpDetail,
+      path: '/help-detail',
+    },
+    {
       component: PromotionRecord,
       path: '/promotion-record',
       meta: { needLogin: true }

@@ -37,6 +37,8 @@ export default new Vuex.Store({
     AchievementList: [],
     Balance: [],
     newsList: [],
+    helpList: [],
+    helpDetail: {},
     balanceDetail: {},
     transferGoods: {}
   },
@@ -49,6 +51,15 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    setHelpDetail(state, data) {
+      state.helpDetail = data
+    },
+    setHelpList(state, items = []) {
+      state.helpList = state.helpList.concat(items)
+    },
+    clearHelpList(state) {
+      state.helpList = []
+    },
     setTransferGoods(state, data) {
       state.transferGoods = data
     },
@@ -187,6 +198,18 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    async getHelpList({commit}, {page = 1}) {
+      let {data} = await http.post('Help/GetList', {
+        pageSize: PAGE_SIZE,
+        pageIndex: page,
+        orderby: ''
+      })
+      page == 1 && commit('clearHelpList')
+      if (data.Code == 1) {
+        commit('setHelpList', JSON.parse(data.List))
+      }
+      return data.Count || 0
+    },
     async getNews({commit}, {page = 1}) {
       let {data} = await http.post('News/GetList', {
         pageSize: PAGE_SIZE,

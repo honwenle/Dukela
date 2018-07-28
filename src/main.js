@@ -20,11 +20,12 @@ import Password from '@/components/password'
 import Tw from '@/components/tw'
 import { LoadingPlugin, ToastPlugin, XHeader,
   AlertPlugin, ConfirmPlugin, XInput, Countdown,
-  Group, Cell, Scroller, Swiper,
+  Group, Cell, Scroller, Swiper, XTextarea,
   Tab, TabItem, XNumber, Popup, Countup,
   Checker, CheckerItem, XProgress } from 'vux'
 
 Vue.component('checker', Checker)
+Vue.component('x-textarea', XTextarea)
 Vue.component('countup', Countup)
 Vue.component('x-progress', XProgress)
 Vue.component('checker-item', CheckerItem)
