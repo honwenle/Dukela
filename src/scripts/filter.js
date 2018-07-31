@@ -39,7 +39,7 @@ Vue.filter('balanceTypeName', function (type) {
   return ['其它', '分红收入', '推广收入', '买入商品支出', '预约入住支出', '提现支出', '退款'][type]
 })
 Vue.filter('payTypeName', function (type) {
-  return ['商品支付', '余额支付', '微信支付', '支付宝支付', '银联支付'][type]
+  return ['商品支付', '余额支付', '微信支付', '支付宝支付', '银联支付', '线下转账', '商品赠送'][type]
 })
 Vue.filter('orderStatusName', function (type) {
   return ['未支付', '已支付', '已退款', '已完成', '交易关闭', '待审核', '退款中'][type]

@@ -41,7 +41,7 @@
         </group>
         <group class="box" :gutter="0" label-width="100px">
           <cell v-show="show1" title="支付方式：" :value="detail.PayType | payTypeName"></cell>
-          <cell class="word-break copyable" v-show="show1" title="支付流水号：" :value="detail.Trade_no"></cell>
+          <cell class="word-break copyable" v-show="show1 && detail.PayType != 5" title="支付流水号：" :value="detail.Trade_no"></cell>
           <cell title="订单号：" :value="detail.OrderNumber"></cell>
           <cell v-show="show1" title="支付时间：" :value="detail.PayDate | DATEFORMAT"></cell>
           <cell title="创建时间：" :value="detail.CreateTime | DATEFORMAT"></cell>
