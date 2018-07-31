@@ -15,6 +15,7 @@ import Home from '@/pages/home'
 import villaList from '@/pages/villaList'
 import Goods from '@/pages/goods'
 import Villa from '@/pages/villa'
+import BDMap from '@/pages/map'
 import Room from '@/pages/room'
 import Reserve from '@/pages/reserve'
 import Deduct from '@/pages/deduct'
@@ -64,6 +65,10 @@ Vue.use(Router)
 export default new Router({
   // mode: 'history',
   routes: [
+    {
+      component: BDMap,
+      path: '/map'
+    },
     {
       component: BindAccount,
       path: '/bind-account',
