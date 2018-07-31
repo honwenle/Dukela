@@ -22,9 +22,13 @@ import { LoadingPlugin, ToastPlugin, XHeader,
   AlertPlugin, ConfirmPlugin, XInput, Countdown,
   Group, Cell, Scroller, Swiper, XTextarea,
   Tab, TabItem, XNumber, Popup, Countup,
-  Checker, CheckerItem, XProgress } from 'vux'
+  Checker, CheckerItem, XProgress,
+  Swipeout, SwipeoutItem, SwipeoutButton } from 'vux'
 
 Vue.component('checker', Checker)
+Vue.component('swipeout', Swipeout)
+Vue.component('swipeout-item', SwipeoutItem)
+Vue.component('swipeout-button', SwipeoutButton)
 Vue.component('x-textarea', XTextarea)
 Vue.component('countup', Countup)
 Vue.component('x-progress', XProgress)

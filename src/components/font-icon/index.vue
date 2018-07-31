@@ -16,7 +16,7 @@ export default {
 </script>
 <style scoped>
 /* @import "./iconfont.css"; */
-@import "//at.alicdn.com/t/font_659107_68rj7orzjpr.css";
+@import "//at.alicdn.com/t/font_659107_2v9jlczs5md.css";
 .iconfont{
   display: inline-block;
   vertical-align: middle;

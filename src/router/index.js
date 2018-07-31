@@ -8,6 +8,7 @@ import SetPassword from '@/pages/set-password'
 import SetTranPwd from '@/pages/set-tran-pwd'
 import Realname from '@/pages/realname'
 import BindCard from '@/pages/bind-card'
+import BindAccount from '@/pages/bind-account'
 import WxReg from '@/pages/wx-reg'
 
 import Home from '@/pages/home'
@@ -63,6 +64,11 @@ Vue.use(Router)
 export default new Router({
   // mode: 'history',
   routes: [
+    {
+      component: BindAccount,
+      path: '/bind-account',
+      meta: { needLogin: true }
+    },
     {
       component: GiveOther,
       path: '/give-other',
