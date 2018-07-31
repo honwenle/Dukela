@@ -21,7 +21,7 @@
         </div>
         <div class="flex-1">
           <div class="theme-color fz20">
-            <countup :end-val="dataInfo.xxx || 200" :decimals="2"></countup>
+            <countup :end-val="dataInfo.xxx || 0" :decimals="2"></countup>
           </div>
           <div>福利收益(元)</div>
         </div>
@@ -29,10 +29,10 @@
     </div>
     <group>
       <cell title="我的商品库" link="my-goods" value="转让"></cell>
-      <cell title="我的订单" link="my-order" value="累计100单"></cell>
-      <cell title="我的推广" link="my-promotion" value="累计收益20元"></cell>
+      <cell title="我的订单" link="my-order" :value="`累计${UserTotal.OrderCount}单`"></cell>
+      <cell title="我的推广" link="my-promotion" :value="`累计收益${UserTotal.AchievementAmount}元`"></cell>
       <cell title="我的消息" link="messages">
-        <badge v-if="msgCount" :text="msgCount"></badge>
+        <badge v-if="UserTotal.NotReadMessageCount" :text="UserTotal.NotReadMessageCount"></badge>
       </cell>
       <cell title="客服电话" is-link>
         <span class="theme-color"><font-icon name="phone"></font-icon></span>
@@ -54,12 +54,12 @@ export default {
     UserKey() {
       return this.$store.state.UserKey
     },
-    msgCount() {
-      return this.$store.state.UserMessageCount
+    UserTotal() {
+      return this.$store.state.UserTotal
     }
   },
   mounted() {
-    this.UserKey && this.$store.dispatch('getUserMessageCount', {})
+    this.UserKey && this.$store.dispatch('getUserTotal')
   }
 }
 </script>

@@ -33,7 +33,7 @@ export default new Vuex.Store({
       MinWithdrawalsAmount: 0
     },
     wxInfo: {},
-    UserMessageCount: 0,
+    UserTotal: 0,
     AchievementList: [],
     Balance: [],
     newsList: [],
@@ -66,8 +66,8 @@ export default new Vuex.Store({
     setBalanceDetail(state, data) {
       state.balanceDetail = data
     },
-    setUserMessageCount(state, data) {
-      state.UserMessageCount = data
+    setUserTotal(state, data) {
+      state.UserTotal = data
     },
     setWxInfo(state, data) {
       state.wxInfo = data
@@ -233,9 +233,9 @@ export default new Vuex.Store({
       data.Code == 1 && commit('setAchievementList', JSON.parse(data.List))
       return data.Count || 0
     },
-    async getUserMessageCount({commit}) {
-      let {data} = await http.post('UserMessage/GetNoReadMessageCount')
-      data.Code == 1 && commit('setUserMessageCount', data.Model)
+    async getUserTotal({commit}) {
+      let {data} = await http.post('User/GetTotal')
+      data.Code == 1 && commit('setUserTotal', JSON.parse(data.List)[0])
     },
     async getConfig({commit}) {
       let {data} = await http.post('SysConfig/GetModel', {
