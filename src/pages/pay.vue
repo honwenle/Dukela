@@ -117,6 +117,22 @@ export default {
       } else if (this.forPublic.length == 1) {
         this.$router.push('pay-public')
       } else if (this.forBalance.length == 1) {
+        if (!this.UserInfo.IsSellPassword) {
+          this.$vux.confirm.show({
+            title: '未设置交易密码',
+            content: '是否设置交易密码',
+            onConfirm: () => {
+              this.$router.push({
+                name: 'CheckPhone',
+                params: {
+                  smsType: 5,
+                  nextPath: 'set-tran-pwd'
+                }
+              })
+            }
+          })
+          return false
+        }
         this.isShowPassword = true
       } else {
         this.$vux.toast.text('请选择支付方式')
