@@ -43,15 +43,7 @@ export default {
     }
   },
   mounted() {
-    let now = new Date()
-    now = now.getHours()
-    if (now <= this.Config.StartHours) {
-      this.timeout = `今日${this.Config.StartHours}点开始`
-    } else if (now >= this.Config.EndHours) {
-      this.timeout = `今日已截止，明日${this.Config.StartHours}点开始`
-    } else {
-      this.timeout = ''
-    }
+    this.checkTime()
   },
   computed: {
     minPrice() {
@@ -68,6 +60,20 @@ export default {
     }
   },
   methods: {
+    async checkTime() {
+      let {data} = await this.$http.post('User/CheckTransfer')
+      if (data.Code == 0) {
+        let now = new Date(data.Time.match(/\d{13}/))
+        now = now.getHours()
+        if (now < data.StartHours) {
+          this.timeout = `今日${data.StartHours}点开始`
+        } else if (now >= data.EndHours) {
+          this.timeout = `今日已截止，明日${data.StartHours}点开始`
+        }
+      } else {
+        this.timeout = ''
+      }
+    },
     clickAgree() {
       this.isShowPro = false
       this.isShowPassword = true
