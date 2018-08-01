@@ -210,6 +210,7 @@ export default {
         this.$router.push({
           name: 'Result',
           query: {
+            id: oid,
             status: 1,
             type: 1,
             title: '预定成功！',
