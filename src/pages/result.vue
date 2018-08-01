@@ -13,7 +13,7 @@
             id
           }
         })">查看订单</div>
-        <div class="btn-outline" @click="$router.go(-3-type)">返回首页</div>
+        <div class="btn-outline" @click="$router.go(-4-type)">返回首页</div>
       </div>
       <div v-if="type == 0 && !isPub" class="btn-main w100p" @click="$router.push('my-goods')">查看商品</div>
     </div>
