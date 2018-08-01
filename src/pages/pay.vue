@@ -192,6 +192,7 @@ export default {
       this.$router.replace({
         name: 'Result',
         query: {
+          id: this.id,
           status: +status,
           type: this.type,
           title: status ? ['支付成功！', '预定成功！'][this.type] : '操作失败',
