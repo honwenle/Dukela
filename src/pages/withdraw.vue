@@ -2,7 +2,7 @@
   <div>
     <d-header :tran="true" :theme-color="true">
       提现
-      <div slot="right">提现规则</div>
+      <!-- <div slot="right">提现规则</div> -->
     </d-header>
     <group>
       <cell :title="bankinfo.Bank"
