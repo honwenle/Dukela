@@ -47,6 +47,9 @@ Vue.filter('orderStatusName', function (type) {
 Vue.filter('reserveStatusName', function (type) {
   return ['未支付', '已支付', '已退款', '预约成功', '交易关闭'][type]
 })
+Vue.filter('reserveStatusTitle', function (type) {
+  return ['待支付', '您的订单已支付，待审核', '您的订单审核未通过，3个工作日内退款', '您的房间已预定成功', '您的订单已取消'][type]
+})
 Vue.filter('dateFormat', dateFormat)
 Vue.filter('DATEFORMAT', function (strDate, fmt = 'YYYY-MM-DD HH:mm:ss') {
   strDate = strDate || ''

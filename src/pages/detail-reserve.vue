@@ -12,7 +12,7 @@
           </clocker>
           关闭订单
         </div>
-        <div class="detail-title" v-else>您的订单{{detail.OrderStatus | reserveStatusName}}</div>
+        <div class="detail-title" v-else>{{detail.OrderStatus | reserveStatusTitle}}</div>
       </div>
       <div class="detail-box">
         <group v-if="show2" class="box" :gutter="0">
