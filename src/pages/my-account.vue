@@ -12,8 +12,8 @@
           <font-icon color="#3694FA" v-if="item.PassWord == UserKey" name="gou"></font-icon>
         </div>
       </swipeout-item>
-      <swipeout-item>
-        <div slot="content" class="flex flex-center item-content" @click="accountList.length < 3 && $router.push('bind-account')">
+      <swipeout-item v-if="accountList.length < 3">
+        <div slot="content" class="flex flex-center item-content" @click="$router.push('bind-account')">
           <font-icon name="jia"></font-icon>
           绑定账号
         </div>
@@ -57,7 +57,7 @@ export default {
     },
     async getAccountList() {
       let {data} = await this.$http.post('User/GetSubsidiaryUserList', {
-        MainUserID: this.UserInfo.MainUserID | 0
+        MainUserID: this.UserInfo.MainUserID || 0
       })
       if (data.Code == 1) {
         this.accountList = data.List
