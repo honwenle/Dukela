@@ -11,7 +11,7 @@
           v-for="item in dataList"
           :key="item.ID"
           class="fff-bg bb flex cell flex-center"
-          :class="item.Type | isIncome"
+          :class="item.Type | isWelfare"
           @click="goDetail(item)">
           <div class="flex-1">
             <div class="round-text"></div>

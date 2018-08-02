@@ -20,6 +20,9 @@ Vue.filter('bannerArr', function (oList, field = 'Url') {
 Vue.filter('isIncome', function (type) {
   return (type == 3 || type == 5 || type == 6) ? 'record-outcome' : 'record-income'
 })
+Vue.filter('isWelfare', function (type) {
+  return (type > 2 && type < 6) ? 'record-outcome' : 'record-income'
+})
 Vue.filter('hidePhone', function (tel = '') {
   return tel.replace(/(\d{3})\d{4}(\d{4})/, '$1****$2')
 })
@@ -30,7 +33,7 @@ Vue.filter('welfareTypeName', function (type) {
   return ['其它', '按照W分现金', '按照W分商品', '按照商品金额分商品'][type]
 })
 Vue.filter('welfareRecordTypeName', function (type) {
-  return ['其它', '商品买入', '商品分红', '赠送', '转让', '转让失败'][type]
+  return ['其它', '商品买入', '商品分红', '赠送', '转让', '转让失败', '接受赠送'][type]
 })
 Vue.filter('tagColor', function (type) {
   if (type > 0 && type < 4) {
