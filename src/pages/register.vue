@@ -19,6 +19,8 @@
   </div>
 </template>
 <script>
+// TODO: 绑定子账号 回跳
+// TODO: 邀请码
 import Agreement from '@/components/agreement'
 export default {
   components: {
