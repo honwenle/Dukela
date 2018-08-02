@@ -9,7 +9,7 @@
       <cell title="时间" :value="balanceDetail.UpdateTime"></cell>
       <cell title="余额(元)" :value="balanceDetail.AccountBalance"></cell>
       <cell title="状态" :value="balanceDetail.SourceType != 5 ? '已完成' : ['审核中', '审核通过', '提现失败', '已打款'][balanceDetail.Status]"></cell>
-      <cell title="原因" v-if="balanceDetail.SourceType == 5" :value="balanceDetail.xxx"></cell>
+      <cell title="原因" v-if="balanceDetail.SourceType == 5" :value="balanceDetail.Remark"></cell>
     </group>
   </div>
 </template>
