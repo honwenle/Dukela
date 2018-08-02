@@ -36,6 +36,7 @@ export default new Vuex.Store({
     UserTotal: 0,
     AchievementList: [],
     Balance: [],
+    Welfare: [],
     newsList: [],
     helpList: [],
     helpDetail: {},
@@ -178,6 +179,12 @@ export default new Vuex.Store({
     clearBalance(state) {
       state.Balance = []
     },
+    setWelfare(state, items = []) {
+      state.Welfare = state.Welfare.concat(items)
+    },
+    clearWelfare(state) {
+      state.Welfare = []
+    },
     setProductStream(state, items = []) {
       state.ProductStream = state.ProductStream.concat(items)
     },
@@ -304,6 +311,17 @@ export default new Vuex.Store({
       })
       page == 1 && commit('clearBalance')
       data.Code == 1 && commit('setBalance', JSON.parse(data.List))
+      return data.Count || 0
+    },
+    async getWelfare({commit}, {page = 1}) {
+      let {data} = await http.post('UserDividend/GetList', {
+        pageSize: PAGE_SIZE,
+        pageIndex: page,
+        orderby: '',
+        strSearchName: ''
+      })
+      page == 1 && commit('clearWelfare')
+      data.Code == 1 && commit('setWelfare', JSON.parse(data.List))
       return data.Count || 0
     },
     async getUserInfo({commit}, id) {

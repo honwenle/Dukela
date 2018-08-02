@@ -56,6 +56,7 @@ import WithdrawResult from '@/pages/withdraw-result'
 import Transfer from '@/pages/transfer'
 import GiveOther from '@/pages/give-other'
 import TransList from '@/pages/trans-list'
+import MyWelfare from '@/pages/my-welfare'
 
 import Version from '@/pages/version'
 
@@ -68,6 +69,11 @@ export default new Router({
     {
       component: BDMap,
       path: '/map'
+    },
+    {
+      component: MyWelfare,
+      path: '/my-welfare',
+      meta: { needLogin: true }
     },
     {
       component: BindAccount,

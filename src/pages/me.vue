@@ -19,7 +19,7 @@
           </div>
           <div>账户余额(元)</div>
         </div>
-        <div class="flex-1">
+        <div class="flex-1" @click="$router.push('my-welfare')">
           <div class="theme-color fz20">
             <countup :end-val="dataInfo.xxx || 0" :decimals="2"></countup>
           </div>
