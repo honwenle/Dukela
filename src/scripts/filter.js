@@ -27,7 +27,7 @@ Vue.filter('goodsRecordTypeName', function (type) {
   return ['其它', '商品买入', '商品分红', '商品入住抵扣', '退款', '赠送', '转让', '转让失败'][type]
 })
 Vue.filter('welfareRecordTypeName', function (type) {
-  return ['其它', '商品买入', '商品分红', '退款', '赠送', '转让', '转让失败'][type]
+  return ['其它', '商品买入', '商品分红', '赠送', '转让', '转让失败'][type]
 })
 Vue.filter('tagColor', function (type) {
   if (type > 0 && type < 4) {
