@@ -36,7 +36,9 @@ import User from '@/pages/user'
 import MyGoods from '@/pages/my-goods'
 import GoodsRecord from '@/pages/goods-record'
 import WelfareRecord from '@/pages/welfare-record'
-import RecordDetail from '@/pages/record-detail'
+import GoodsRecordDetail from '@/pages/goods-record-detail'
+import WelfareDetail from '@/pages/welfare-detail'
+import WelfareRecordDetail from '@/pages/welfare-record-detail'
 import Detail from '@/pages/detail'
 import DetailReserve from '@/pages/detail-reserve'
 import MyOrder from '@/pages/my-order'
@@ -177,8 +179,16 @@ export default new Router({
       path: '/version'
     },
     {
-      component: RecordDetail,
-      path: '/record-detail'
+      component: GoodsRecordDetail,
+      path: '/goods-record-detail'
+    },
+    {
+      component: WelfareDetail,
+      path: '/welfare-detail'
+    },
+    {
+      component: WelfareRecordDetail,
+      path: '/welfare-record-detail'
     },
     {
       component: PayPublic,

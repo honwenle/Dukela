@@ -41,7 +41,7 @@ export default {
   methods: {
     goDetail(id) {
       this.$router.push({
-        path: 'record-detail',
+        path: 'welfare-record-detail',
         query: {
           id: id
         }
