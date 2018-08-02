@@ -35,6 +35,7 @@ import Feedback from '@/pages/feedback'
 import User from '@/pages/user'
 import MyGoods from '@/pages/my-goods'
 import GoodsRecord from '@/pages/goods-record'
+import WelfareRecord from '@/pages/welfare-record'
 import RecordDetail from '@/pages/record-detail'
 import Detail from '@/pages/detail'
 import DetailReserve from '@/pages/detail-reserve'
@@ -275,6 +276,9 @@ export default new Router({
       name: 'GoodsRecord',
       component: GoodsRecord,
       meta: { keepAlive: true }
+    }, {
+      path: '/welfare-record',
+      component: WelfareRecord
     }, {
       path: '/my-order',
       name: 'MyOrder',

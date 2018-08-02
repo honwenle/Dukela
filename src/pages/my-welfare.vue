@@ -14,7 +14,7 @@
           <div class="gray">持有W(个)</div>
         </div>
         <div>
-          <span class="btn-inline" @click="$router.push('xxx')">W明细</span>
+          <span class="btn-inline" @click="$router.push('welfare-record')">W明细</span>
         </div>
       </div>
     </div>

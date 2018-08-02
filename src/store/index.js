@@ -25,6 +25,7 @@ export default new Vuex.Store({
     UserReserveList: [],
     UserMessage: [],
     ProductStream: [],
+    ShareStream: [],
     deduct: {},
     goodsCount: 0,
     goodsNumber: 0,
@@ -191,6 +192,12 @@ export default new Vuex.Store({
     clearProductStream(state) {
       state.ProductStream = []
     },
+    setShareStream(state, items = []) {
+      state.ShareStream = state.ShareStream.concat(items)
+    },
+    clearShareStream(state) {
+      state.ShareStream = []
+    },
     setAchievementList(state, items = []) {
       state.AchievementList = state.AchievementList.concat(items)
     },
@@ -284,6 +291,17 @@ export default new Vuex.Store({
       })
       page == 1 && commit('clearProductStream')
       data.Code == 1 && commit('setProductStream', data.List)
+      return data.Count || 0
+    },
+    async getShareStream({commit}, {page = 1}) {
+      let {data} = await http.post('UserShareSteam/GetList', {
+        pageSize: 15,
+        pageIndex: page,
+        orderby: '',
+        strSearchName: ''
+      })
+      page == 1 && commit('clearShareStream')
+      data.Code == 1 && commit('setShareStream', JSON.parse(data.List))
       return data.Count || 0
     },
     async getUserProduct({commit}, {page = 1, bid = ''}) {
