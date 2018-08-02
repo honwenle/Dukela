@@ -26,6 +26,9 @@ Vue.filter('hidePhone', function (tel = '') {
 Vue.filter('goodsRecordTypeName', function (type) {
   return ['其它', '商品买入', '商品分红', '商品入住抵扣', '退款', '赠送', '转让', '转让失败'][type]
 })
+Vue.filter('welfareTypeName', function (type) {
+  return ['其它', '按照W分现金', '按照W分商品', '按照商品金额分商品'][type]
+})
 Vue.filter('welfareRecordTypeName', function (type) {
   return ['其它', '商品买入', '商品分红', '赠送', '转让', '转让失败'][type]
 })

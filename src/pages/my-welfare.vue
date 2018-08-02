@@ -63,8 +63,8 @@ export default {
   },
   methods: {
     goDetail(item) {
-      this.$store.commit('setBalanceDetail', item)
-      this.$router.push('balance-detail')
+      this.$store.commit('setRecordDetail', item)
+      this.$router.push('welfare-detail')
     }
   }
 }
