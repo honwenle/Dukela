@@ -81,7 +81,7 @@ export default {
           InvitationCode: this.InvitationCode
         })
         if (data.Code == 1) {
-          this.$router.push({
+          this.$router.replace({
             name: 'Pay',
             query: {
               id: data.OrderID,

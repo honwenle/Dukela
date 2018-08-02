@@ -187,7 +187,7 @@ export default {
       })
       if (data.Code == 1) {
         if (this.amount > 0) {
-          this.$router.push({
+          this.$router.replace({
             name: 'Pay',
             query: {
               id: data.OrderID,
