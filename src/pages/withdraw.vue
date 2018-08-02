@@ -36,7 +36,6 @@
   </div>
 </template>
 <script>
-// TODO: 最小提现
 export default {
   data() {
     return {
@@ -87,10 +86,7 @@ export default {
       })
       if (data.Code == 1) {
         this.$router.push({
-          path: 'withdraw-result',
-          query: {
-            id: 0 // TODO: 接口返回id
-          }
+          path: 'withdraw-result'
         })
       }
       this.$vux.toast.text(data.Message)

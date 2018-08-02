@@ -9,12 +9,11 @@
         <div style="padding-left: 10px">预计1-3个工作日到账</div>
       </timeline-item>
     </timeline>
-    <div class="btn-main">查看详情</div>
+    <div class="btn-main" @click="$router.go(-2)">查看详情</div>
   </div>
 </template>
 <script>
 import { Timeline, TimelineItem } from 'vux'
-// TODO: 到详情
 export default {
   components: {
     Timeline, TimelineItem
