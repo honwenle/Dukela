@@ -42,7 +42,8 @@ export default new Vuex.Store({
     helpList: [],
     helpDetail: {},
     balanceDetail: {},
-    transferGoods: {}
+    transferGoods: {},
+    RecordDetail: {}
   },
   getters: {
     getRecordDetail: (state) => (id) => {
@@ -53,6 +54,9 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    setRecordDetail(state, data) {
+      state.RecordDetail = data
+    },
     setHelpDetail(state, data) {
       state.helpDetail = data
     },
