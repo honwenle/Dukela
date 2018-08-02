@@ -23,7 +23,7 @@
             </div>
             <div class="flex space-between">
               <div class="gray">{{item.CreateTime}}</div>
-              <div class="gray">总计：{{item.xxx}}</div>
+              <div class="gray">总计：{{item.UserShareCount}}</div>
             </div>
           </div>
         </div>
