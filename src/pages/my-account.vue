@@ -22,6 +22,7 @@
   </div>
 </template>
 <script>
+// 主账号权限
 export default {
   data() {
     return {
