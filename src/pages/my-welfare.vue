@@ -36,7 +36,9 @@
           <div class="flex-5">
             <div class="flex space-between fz16">
               <div>{{item.ProductName}}</div>
-              <div class="main-color">+{{item.DividendCount + item.Type != 1 ? ('份' + item.DividendProductName) : ''}}</div>
+              <div class="main-color">
+                +{{item.DividendCount}}<span v-show="item.Type != 1">份{{item.DividendProductName}}</span>
+              </div>
             </div>
             <div class="flex space-between">
               <div class="gray" v-if="item.Type == 3">总金额：{{item.Amount}}</div>
