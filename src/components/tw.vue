@@ -7,12 +7,6 @@
 <script>
 export default {
   props: ['num', 'w', 'price', 'pid'],
-  data() {
-    return {
-      TPrice: this.price / this.TRate,
-      WRate: this.w / 100
-    }
-  },
   methods: {
     async getPrice() {
       let {data} = await this.$http.post('User/Get_Number', {
@@ -28,6 +22,12 @@ export default {
     this.pid && this.getPrice()
   },
   computed: {
+    TPrice() {
+      return this.price / this.TRate
+    },
+    WRate() {
+      return this.w / 100
+    },
     TRate() {
       return this.$store.state.Config.TProportion
     },
