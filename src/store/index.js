@@ -10,6 +10,7 @@ export default new Vuex.Store({
     SmsID: '',
     SmsPhone: '',
     SmsVCode: '',
+    InvitationCode: '',
     ProductDetail: {},
     UserKey: localStorage.getItem('UserKey'),
     ProductPic: [],
@@ -54,6 +55,9 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    setInvitationCode(state, code) {
+      state.InvitationCode = code
+    },
     setRecordDetail(state, data) {
       state.RecordDetail = data
     },
@@ -488,10 +492,13 @@ export default new Vuex.Store({
         SmsID: state.SmsID,
         Phone: state.SmsPhone,
         ValidateCode: state.SmsVCode,
+        InvitationCode: state.InvitationCode,
         ...dt
       })
       if (data.Code == 1) {
-        commit('setUserKey', data.Model)
+        if (!sessionStorage.getItem('isSubAccount')) {
+          commit('setUserKey', data.Model)
+        }
         commit('clearSmsState')
       }
       return data

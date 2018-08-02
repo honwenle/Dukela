@@ -94,8 +94,12 @@ export default {
         password: this.pwd1
       })
       if (data.Code == 1) {
-        this.show1 = true
-        this.$store.dispatch('getUserInfo')
+        if (sessionStorage.getItem('isSubAccount')) {
+          this.$router.go(-3)
+        } else {
+          this.show1 = true
+          this.$store.dispatch('getUserInfo')
+        }
       } else {
         this.$vux.toast.text(data.Message)
       }

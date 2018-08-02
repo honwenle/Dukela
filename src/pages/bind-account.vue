@@ -51,6 +51,7 @@ export default {
           content: '请先注册',
           confirmText: '去注册',
           onConfirm: () => {
+            sessionStorage.setItem('isSubAccount', true)
             this.$router.push('register')
           }
         })
