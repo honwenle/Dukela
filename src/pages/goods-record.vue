@@ -19,7 +19,7 @@
           <div class="flex-5">
             <div class="flex space-between fz16">
               <div>{{item.Type | goodsRecordTypeName}}</div>
-              <div class="cost-color cost-num">{{item.ProductCount}}</div>
+              <div class="cost-color cost-num">{{item.ProductCount.toFixed(2)}}</div>
             </div>
             <div class="flex space-between">
               <div class="gray">{{item.CreateTime | DATEFORMAT}}</div>
