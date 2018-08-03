@@ -34,7 +34,8 @@
                     <template v-if="item.EventType != 2 && item.EventType != 8">
                       <div>{{item.Content.ProductName}}</div>
                       <div class="main-color">
-                        {{item.Content.ProductCount}}份
+                        <span v-if="item.EventType == 5">{{item.Content.Content}}</span>
+                        <span v-else>{{item.Content.ProductCount}}份</span>
                       </div>
                     </template>
                     <template v-if="item.EventType == 2">
