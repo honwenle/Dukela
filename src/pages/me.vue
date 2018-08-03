@@ -32,7 +32,7 @@
       <cell title="我的订单" link="my-order" :value="`累计${UserTotal.OrderCount}单`"></cell>
       <cell title="我的推广" link="my-promotion" :value="`累计收益${UserTotal.AchievementAmount}元`"></cell>
       <cell title="我的消息" link="messages">
-        <badge v-if="UserTotal.NotReadMessageCount" :text="UserTotal.NotReadMessageCount"></badge>
+        <badge v-if="UserTotal.NotReadMessageCount != 0" :text="UserTotal.NotReadMessageCount"></badge>
       </cell>
       <cell title="客服电话" is-link>
         <span class="theme-color"><font-icon name="phone"></font-icon></span>

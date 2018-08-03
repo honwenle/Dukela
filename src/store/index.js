@@ -46,14 +46,6 @@ export default new Vuex.Store({
     transferGoods: {},
     RecordDetail: {}
   },
-  getters: {
-    getRecordDetail: (state) => (id) => {
-      return state.ProductStream.find(item => item.ID == id)
-    },
-    getOrderDetail: (state) => (id) => {
-      return state.UserOrderList.find(item => parseInt(item.ID) == id)
-    }
-  },
   mutations: {
     setInvitationCode(state, code) {
       state.InvitationCode = code

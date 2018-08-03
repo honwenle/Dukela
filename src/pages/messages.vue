@@ -15,7 +15,7 @@
       <div class="message-wrap">
         <div class="item flex" v-for="item in dataList" :key="item.ID">
           <div class="avatar" :class="{'badge': !item.IsReader}">
-            <img :src="require('../assets/msg-a' + item.EventType + '.png')" class="img">
+            <img :src="msgImgList[typeImgMap[item.EventType]]" class="img">
           </div>
           <div class="flex-1" style="padding: 0 8px 0 17px">
             <div class="message-box" @click="goDetail(item.ID, item.KeyID, item.EventType)">
@@ -31,7 +31,7 @@
                   <div>{{item.Title}}</div>
                   <div>{{item.CreateTime | DATEFORMAT}}</div>
                   <div class="center box-content">
-                    <template v-if="item.EventType == 1">
+                    <template v-if="item.EventType != 2 && item.EventType != 8">
                       <div>{{item.Content.ProductName}}</div>
                       <div class="main-color">
                         {{item.Content.ProductCount}}份
@@ -41,6 +41,13 @@
                       <div>入住山庄：{{item.Content.BeadhouseName}}</div>
                       <div class="gray">
                         入住时间：<span class="main-color">{{item.Content.ReserveStartTime | dateFormat('YYYY-MM-DD')}}</span>
+                      </div>
+                    </template>
+                    <template v-if="item.EventType == 8">
+                      <div>项目福利</div>
+                      <div>
+                        <span v-if="item.Content.Type != 1">{{item.Content.DividendProductName}}：</span>
+                        <span class="main-color">{{item.Content.Content}}</span>
                       </div>
                     </template>
                   </div>
@@ -75,11 +82,20 @@
   </div>
 </template>
 <script>
-// TODO: 新模板
 export default {
   data() {
     return {
-      tabIndex: 0
+      apiName: '',
+      storeName: '',
+      tabIndex: 0,
+      msgImgList: [
+        require('../assets/msg-a1.png'),
+        require('../assets/msg-a2.png'),
+        require('../assets/msg-a3.png'),
+        require('../assets/msg-a4.png'),
+        require('../assets/msg-a5.png')
+      ],
+      typeImgMap: [0, 0, 1, 2, 3, 2, 4, 0, 0, 3]
     }
   },
   computed: {
@@ -103,12 +119,33 @@ export default {
       this.$http.post('UserMessage/ReadMessage', {
         MessageID: id
       })
+      if (type == 4 || type == 6 || type == 9) {
+        this.apiName = 'UserProductStream'
+        this.storeName = 'setRecordDetail'
+      } else if (type == 5) {
+        this.apiName = 'AccountBalance'
+        this.storeName = 'setBalanceDetail'
+      } else if (type == 8) {
+        this.apiName = 'UserDividend'
+        this.storeName = 'setRecordDetail'
+      }
+      this.apiName && this.getDetail()
       this.$router.push({
-        path: ['detail', 'detail-reserve', 'my-realname'][type-1],
+        path: ['detail', 'detail-reserve', 'my-realname',
+          'goods-record-detail', 'balance-detail', 'goods-record-detail',
+          'promotion-record', 'welfare-detail', 'goods-record-detail'][type-1],
         query: {
           id: kid
         }
       })
+    },
+    async getDetail(id) {
+      let {data} = await this.$http.post(this.apiName + '/GetModel', {
+        id
+      })
+      if (data.Code == 1) {
+        this.$store.commit(this.storeName, data.Model)
+      }
     }
   }
 }

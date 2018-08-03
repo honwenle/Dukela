@@ -22,14 +22,9 @@
 </template>
 <script>
 export default {
-  data() {
-    return {
-      id: this.$route.query.id
-    }
-  },
   computed: {
     detailData() {
-      return this.$store.getters.getRecordDetail(this.id)
+      return this.$store.state.RecordDetail
     }
   }
 }

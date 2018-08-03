@@ -12,7 +12,7 @@
           :key="item.ID"
           class="fff-bg bb flex cell flex-center"
           :class="item.Type | isIncome"
-          @click="goDetail(item.ID)">
+          @click="goDetail(item)">
           <div class="flex-1">
             <div class="round-text"></div>
           </div>
@@ -39,12 +39,10 @@ export default {
     }
   },
   methods: {
-    goDetail(id) {
+    goDetail(item) {
+      this.$store.commit('setRecordDetail', item)
       this.$router.push({
         path: 'goods-record-detail',
-        query: {
-          id: id
-        }
       })
     }
   }
