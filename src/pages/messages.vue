@@ -38,7 +38,7 @@
                       </div>
                     </template>
                     <template v-if="item.EventType == 2">
-                      <div>入住山庄：{{item.Content.BeadhouseName}}</div>
+                      <div>{{item.Content.BeadhouseName}}</div>
                       <div class="gray">
                         入住时间：<span class="main-color">{{item.Content.ReserveStartTime | dateFormat('YYYY-MM-DD')}}</span>
                       </div>
