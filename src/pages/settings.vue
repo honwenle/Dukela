@@ -24,6 +24,7 @@ export default {
   methods: {
     logout() {
       this.$store.commit('clearUserInfo')
+      this.$store.commit('setUserTotal', {})
       this.$vux.toast.text('退出成功')
       this.$router.back()
     }

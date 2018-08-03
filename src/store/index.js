@@ -35,7 +35,7 @@ export default new Vuex.Store({
       MinWithdrawalsAmount: 0
     },
     wxInfo: {},
-    UserTotal: 0,
+    UserTotal: {},
     AchievementList: [],
     Balance: [],
     Welfare: [],
@@ -342,13 +342,14 @@ export default new Vuex.Store({
       data.Code == 1 && commit('setWelfare', JSON.parse(data.List))
       return data.Count || 0
     },
-    async getUserInfo({commit}, id) {
+    async getUserInfo({dispatch, commit}, id) {
       let {data} = await http.post('User/GetModel')
       if (data.Code == 1) {
         data.UserInfo.IsSellPassword = data.IsSellPassword
         data.UserInfo.IsLoginPassword = data.IsLoginPassword
         commit('setUserInfo', data.UserInfo)
       }
+      dispatch('getUserTotal')
     },
     async wxPay({commit}, dt) {
       let {data} = await http.post('Pay/WxPay', dt)
