@@ -207,7 +207,7 @@ export default {
         OrderID: oid
       })
       if (data.Code == 1) {
-        this.$router.push({
+        this.$router.replace({
           name: 'Result',
           query: {
             id: oid,

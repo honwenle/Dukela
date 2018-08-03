@@ -144,6 +144,7 @@ export default {
         OrderType: this.type + 1,
         SellPassword: pwd
       })
+      this.$store.dispatch('getUserInfo')
       this.goResult(data.Code == 1, data.Message)
     },
     async payWechat() {
