@@ -53,6 +53,10 @@ export default {
       this.showPassword()
     },
     clickSubmit() {
+      if (this.ToUserPhone == '') {
+        this.$vux.toast.text('请填写赠送人')
+        return false
+      }
       if (localStorage.getItem('protocol_give')) {
         this.showPassword()
       } else {

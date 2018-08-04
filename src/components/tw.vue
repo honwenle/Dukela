@@ -7,14 +7,21 @@
 <script>
 export default {
   props: ['num', 'w', 'price', 'pid'],
+  data() {
+    return {
+      tprice: 0,
+      wrate: 0
+    }
+  },
   methods: {
     async getPrice() {
       let {data} = await this.$http.post('User/Get_Number', {
-        ProductID: this.pid
+        ProductID: this.pid,
+        PCount: this.num
       })
       if (data.Code == 1) {
-        this.TPrice = data.List[0]
-        this.WRate = data.List[1]
+        this.tprice = data.List[0]
+        this.wrate = data.List[1]
       }
     }
   },
@@ -32,10 +39,10 @@ export default {
       return this.$store.state.Config.TProportion
     },
     www() {
-      return (Math.floor(this.num * this.WRate * 100) / 100) || 0
+      return (Math.floor(this.num * (this.pid ? this.wrate : this.WRate) * 100) / 100) || 0
     },
     ttt() {
-      return (Math.floor(this.num * this.TPrice * 10000) / 10000) || 0
+      return (Math.floor(this.num * (this.pid ? this.tprice : this.TPrice) * 10000) / 10000) || 0
     }
   }
 }

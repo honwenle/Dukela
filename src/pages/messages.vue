@@ -34,7 +34,7 @@
                     <template v-if="item.EventType != 2 && item.EventType != 8">
                       <div>{{item.Content.ProductName}}</div>
                       <div class="main-color">
-                        <span v-if="item.EventType == 5">{{item.Content.Content}}</span>
+                        <span v-if="item.EventType == 5"><div>提现金额</div>￥：{{item.Content.Content}}</span>
                         <span v-else>{{item.Content.ProductCount}}份</span>
                       </div>
                     </template>
@@ -130,7 +130,7 @@ export default {
         this.apiName = 'UserDividend'
         this.storeName = 'setRecordDetail'
       }
-      this.apiName && this.getDetail()
+      this.apiName && this.getDetail(kid)
       this.$router.push({
         path: ['detail', 'detail-reserve', 'my-realname',
           'goods-record-detail', 'balance-detail', 'goods-record-detail',
@@ -142,7 +142,7 @@ export default {
     },
     async getDetail(id) {
       let {data} = await this.$http.post(this.apiName + '/GetModel', {
-        id
+        KeyID: id
       })
       if (data.Code == 1) {
         this.$store.commit(this.storeName, data.Model)
