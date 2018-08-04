@@ -27,7 +27,7 @@ Vue.filter('hidePhone', function (tel = '') {
   return tel.replace(/(\d{3})\d{4}(\d{4})/, '$1****$2')
 })
 Vue.filter('goodsRecordTypeName', function (type) {
-  return ['其它', '商品买入', '商品分红', '商品入住抵扣', '退款', '赠送', '转让', '转让失败'][type]
+  return ['其它', '商品买入', '商品分红', '商品入住抵扣', '退款', '赠送', '转让', '转让失败', '接受赠送'][type]
 })
 Vue.filter('welfareTypeName', function (type) {
   return ['其它', '按照W分现金', '按照W分商品', '按照商品金额分商品'][type]
