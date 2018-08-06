@@ -6,11 +6,11 @@
       </d-header>
       <div class="wave-top-tran flex flex-center space-between">
         <div>
-          <div class="fz25">222</div>
+          <div class="fz25">{{Number(UserTotal.DividendCount + UserTotal.DividendProductCost) || 0}}</div>
           <div class="gray">累计收益(元)</div>
         </div>
         <div>
-          <div class="fz25">222</div>
+          <div class="fz25">{{UserInfo.ShareCount}}</div>
           <div class="gray">持有W(个)</div>
         </div>
         <div>
@@ -59,6 +59,9 @@ export default {
     },
     UserInfo() {
       return this.$store.state.UserInfo
+    },
+    UserTotal() {
+      return this.$store.state.UserTotal
     }
   },
   methods: {

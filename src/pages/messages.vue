@@ -96,7 +96,7 @@ export default {
         require('../assets/msg-a4.png'),
         require('../assets/msg-a5.png')
       ],
-      typeImgMap: [0, 0, 1, 2, 3, 2, 4, 0, 0, 3]
+      typeImgMap: [0, 0, 1, 2, 3, 2, 4, 0, 0, 3, 0]
     }
   },
   computed: {
@@ -134,7 +134,7 @@ export default {
       this.$router.push({
         path: ['detail', 'detail-reserve', 'my-realname',
           'goods-record-detail', 'balance-detail', 'goods-record-detail',
-          'promotion-record', 'welfare-detail', 'goods-record-detail'][type-1],
+          'promotion-record', 'welfare-detail', 'goods-record-detail', 'goods-record-detail'][type-1],
         query: {
           id: kid
         }

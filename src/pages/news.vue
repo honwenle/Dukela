@@ -3,8 +3,8 @@
     <d-header :tran="true" :theme-color="true">资讯</d-header>
     <div class="news-wrap">
       <div class="fz16">{{detailData.Title}}</div>
-      <div class="fz12">{{detailData.CreateTime | DATEFORMAT}}</div>
-      <div class="img"><img :src="$imgUrl + detailData.ImgUrl" alt=""></div>
+      <div class="gray fz12" style="margin: 10px;">{{detailData.CreateTime | DATEFORMAT}}</div>
+      <div class="img" style="margin: 10px;"><img :src="$imgUrl + detailData.ImgUrl" alt=""></div>
       <div v-html="detailData.Content"></div>
     </div>
   </div>
