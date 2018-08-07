@@ -1,7 +1,10 @@
 <template>
   <div>
-    <d-header>{{helpDetail.Title}}</d-header>
-    <div class="p-content" v-html="helpDetail.Content"></div>
+    <d-header>帮助</d-header>
+    <div class="p-content">
+      <div class="p-title">{{helpDetail.Title}}</div>
+      <div v-html="helpDetail.Content"></div>
+    </div>
   </div>
 </template>
 <script>
@@ -14,6 +17,11 @@ export default {
 }
 </script>
 <style scoped>
+.p-title{
+  font-size: 18px;
+  text-align: center;
+  margin: 10px;
+}
 .p-content{
   padding: 15px;
   font-size: 16px;

@@ -53,6 +53,9 @@ export default {
   computed: {
     goodsList() {
       return this.$store.state.UserProduct
+    },
+    transferGoods() {
+      return this.$store.state.transferGoods
     }
   },
   methods: {
@@ -62,6 +65,10 @@ export default {
     goTrans(type) {
       if (!this.goodsInfo.ID) {
         this.$vux.toast.text('请先选择商品')
+        return false
+      }
+      if (type == 1 && this.transferGoods.TransferCount <= 0) {
+        this.$vux.toast.text('可转让商品数为0')
         return false
       }
       this.$router.push(['give-other', 'transfer'][type])

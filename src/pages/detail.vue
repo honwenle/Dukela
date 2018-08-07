@@ -55,6 +55,7 @@
           <cell title="订单号：" :value="detail.OrderNumber"></cell>
           <cell v-show="show1" title="支付时间：" :value="detail.PayDate | DATEFORMAT"></cell>
           <cell title="创建时间：" :value="detail.CreateTime | DATEFORMAT"></cell>
+          <cell title="生效时间：" v-if="detail.FinishDate" :value="detail.FinishDate | DATEFORMAT"></cell>
         </group>
         <div @click="goPay" class="btn-main main-bg main-shadow" v-if="isPay">去支付</div>
       </div>

@@ -52,6 +52,9 @@ export default {
     },
     goodsNumber() {
       return this.$store.state.goodsNumber
+    },
+    transferGoods() {
+      return this.$store.state.transferGoods
     }
   },
   methods: {
@@ -66,6 +69,10 @@ export default {
           this.$router.push('give-other')
         },
         onConfirm: () => {
+          if (this.transferGoods.TransferCount <= 0) {
+            this.$vux.toast.text('可转让商品数为0')
+            return false
+          }
           this.$router.push('transfer')
         }
       })

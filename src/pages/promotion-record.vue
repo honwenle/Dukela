@@ -4,13 +4,15 @@
     <list
       action-name="getAchievementList"
       :dataLength="dataList.length"
+      :paramsData="{
+        Type: 0
+      }"
       :height="`-67`"
     >
       <div class="list">
         <div
           v-for="item in dataList"
           :key="item.ID"
-          v-show="item.Type == 0"
           class="fff-bg bb flex cell flex-center record-income">
           <div class="flex-1">
             <div class="round-text"></div>

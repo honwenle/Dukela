@@ -6,7 +6,7 @@
     </group>
     <group label-width="100px">
       <x-number fillable title="数量(个)" align="left" v-model="ProductCount" :min="1" :max="+transferGoods.TransferCount"></x-number>
-      <x-input title="价格(元)" :inline-desc="`指导价格${transferGoods.GuidanceCost}元`" :placeholder="`可设置区间为${minPrice}-${transferGoods.ProductCost}`" v-model="ProductAmount"></x-input>
+      <x-input title="价格(元)" :inline-desc="`指导价格${transferGoods.GuidanceCost}元`" :placeholder="`可设置区间为${minPrice}-${maxPrice}`" v-model="ProductAmount"></x-input>
     </group>
     <tw :num="ProductCount" :pid="transferGoods.ProductID"></tw>
     <div class="timeout-bar" v-if="timeout">
@@ -48,6 +48,9 @@ export default {
   computed: {
     minPrice() {
       return this.transferGoods.ProductCost - this.transferGoods.ProductCost * this.Config.ProductCostRate / 100
+    },
+    maxPrice() {
+      return this.transferGoods.ProductCost + this.transferGoods.ProductCost * this.Config.ProductCostRate2 / 100
     },
     total() {
       return this.ProductAmount * this.ProductCount

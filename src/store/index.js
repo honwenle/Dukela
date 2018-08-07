@@ -162,6 +162,19 @@ export default new Vuex.Store({
       state.OrderDetail = {}
     },
     setUserInfo(state, data) {
+      // if (api) {
+      //   var push = api.require('push')
+      //   push.bind({
+      //     userName: 'testName',
+      //     userId: data.IDName
+      //   }, function(ret,err) {
+      //     if(ret.status) {
+      //         api.alert({msg:'绑定成功'})
+      //     } else {
+      //         api.alert({msg:err.msg})
+      //     }
+      //   })
+      // }
       state.UserInfo = data
     },
     setUserProduct(state, {items = [], count, num}) {
