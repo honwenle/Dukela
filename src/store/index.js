@@ -162,19 +162,17 @@ export default new Vuex.Store({
       state.OrderDetail = {}
     },
     setUserInfo(state, data) {
-      // if (api) {
-      //   var push = api.require('push')
-      //   push.bind({
-      //     userName: 'testName',
-      //     userId: data.IDName
-      //   }, function(ret,err) {
-      //     if(ret.status) {
-      //         api.alert({msg:'绑定成功'})
-      //     } else {
-      //         api.alert({msg:err.msg})
-      //     }
-      //   })
-      // }
+      // var push = api.require('push')
+      // push.bind({
+      //   userName: 'testName',
+      //   userId: data.IDName
+      // }, function(ret,err) {
+      //   if(ret.status) {
+      //       api.alert({msg:'绑定成功'})
+      //   } else {
+      //       api.alert({msg:err.msg})
+      //   }
+      // })
       state.UserInfo = data
     },
     setUserProduct(state, {items = [], count, num}) {
@@ -254,7 +252,8 @@ export default new Vuex.Store({
         pageSize: PAGE_SIZE,
         pageIndex: page,
         orderby: '',
-        strSearchName: ''
+        strSearchName: '',
+        Type: 0
       })
       page == 1 && commit('clearAchievementList')
       data.Code == 1 && commit('setAchievementList', JSON.parse(data.List))

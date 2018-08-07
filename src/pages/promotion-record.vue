@@ -4,9 +4,6 @@
     <list
       action-name="getAchievementList"
       :dataLength="dataList.length"
-      :paramsData="{
-        Type: 0
-      }"
       :height="`-67`"
     >
       <div class="list">
