@@ -132,6 +132,21 @@ export default new Vuex.Store({
       state.VillaDetail = data
     },
     clearUserInfo(state) {
+      try {
+        var push = api.require('push')
+        push.unbind({
+          userName: state.UserInfo.UserName,
+          userId: state.UserInfo.IDName
+        }, function(ret,err){
+          if(ret.status){
+            console.log({msg:'解除绑定成功'})
+          }else{
+            api.alert({msg:err.msg})
+          }
+        })
+      } catch (e) {
+        console.log(e, '不在APP内无法解绑通知')
+      }
       localStorage.removeItem('UserKey')
       state.UserKey = ''
       state.UserInfo = {}
@@ -162,17 +177,21 @@ export default new Vuex.Store({
       state.OrderDetail = {}
     },
     setUserInfo(state, data) {
-      // var push = api.require('push')
-      // push.bind({
-      //   userName: 'testName',
-      //   userId: data.IDName
-      // }, function(ret,err) {
-      //   if(ret.status) {
-      //       api.alert({msg:'绑定成功'})
-      //   } else {
-      //       api.alert({msg:err.msg})
-      //   }
-      // })
+      try {
+        var push = api.require('push')
+        push.bind({
+          userName: data.UserName,
+          userId: data.IDName
+        }, function(ret,err) {
+          if(ret.status) {
+              console.log({msg:'绑定成功'})
+          } else {
+              api.alert({msg:err.msg})
+          }
+        })
+      } catch (e) {
+        console.log(e, '不在APP内无法绑定通知')
+      }
       state.UserInfo = data
     },
     setUserProduct(state, {items = [], count, num}) {
