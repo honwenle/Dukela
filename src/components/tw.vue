@@ -1,7 +1,7 @@
 <template>
   <group label-width="100px">
-    <cell title="W(个)" value-align="left" :value="www"></cell>
-    <cell title="T(个)" value-align="left" :value="ttt"></cell>
+    <cell title="W(个)" value-align="left" :value="pid ? www : _www"></cell>
+    <cell title="T(个)" value-align="left" :value="pid ? ttt : _ttt"></cell>
   </group>
 </template>
 <script>
@@ -20,8 +20,9 @@ export default {
         PCount: this.num
       })
       if (data.Code == 1) {
-        this.tprice = data.List[0]
-        this.wrate = data.List[1]
+        this.pcount = data.List[0]
+        this.tprice = data.List[1]
+        this.wrate = data.List[2]
       }
     }
   },
@@ -39,10 +40,16 @@ export default {
       return this.$store.state.Config.TProportion
     },
     www() {
-      return (Math.floor(this.num * (this.pid ? this.wrate : this.WRate) * 100) / 100) || 0
+      return this.wrate * this.num / this.pcount
+    },
+    _www() {
+      return Math.floor(this.num * this.WRate * 100) / 100
     },
     ttt() {
-      return (Math.floor(this.num * (this.pid ? this.tprice : this.TPrice) * 10000) / 10000) || 0
+      return this.tprice * this.num / this.pcount
+    },
+    _ttt() {
+      return Math.floor(this.num * this.TPrice * 10000) / 10000
     }
   }
 }
