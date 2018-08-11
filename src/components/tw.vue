@@ -16,8 +16,7 @@ export default {
   methods: {
     async getPrice() {
       let {data} = await this.$http.post('User/Get_Number', {
-        ProductID: this.pid,
-        PCount: this.num
+        ProductID: this.pid
       })
       if (data.Code == 1) {
         this.pcount = data.List[0]
