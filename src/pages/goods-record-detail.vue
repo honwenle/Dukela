@@ -7,6 +7,7 @@
       <div class="theme-color">{{detailData.Type | goodsRecordTypeName}}</div>
     </div>
     <group :gutter="-1">
+      <cell title="T数(T)：" :value="detailData.ProductTAmount"></cell>
       <cell title="订单类型：" :value="detailData.Type | goodsRecordTypeName"></cell>
       <cell title="关联订单号：" :value="detailData.OrderNumber"></cell>
       <cell title="购买时间：" :value="detailData.CreateTime | DATEFORMAT"></cell>
