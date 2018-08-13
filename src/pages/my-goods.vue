@@ -27,11 +27,11 @@
           <div class="list-item" v-for="(item, i) in dataList" :key="i" @click="showTransfer(item)">
             <div class="fz16">{{item.ProductName}}</div>
             <div class="gray flex">
-              <div class="w100">可用(个)</div>
+              <div class="w-half">可用(个)</div>
               <div>T(个)</div>
             </div>
             <div class="flex flex-center">
-              <div class="w100 theme-color fz20">{{item.ProductCount}}</div>
+              <div class="w-half theme-color fz20">{{item.ProductCount}}</div>
               <div class="fz16">{{item.TAmount}}</div>
             </div>
             <div class="progress">
@@ -91,8 +91,8 @@ export default {
   margin-bottom: 15px;
   border-radius: 5px;
 }
-.w100 {
-  width: 100px;
+.w-half {
+  width: 40%;
 }
 .progress{
   padding-bottom: 10px;

@@ -21,7 +21,7 @@
         </div>
         <div class="flex-1" @click="$router.push('my-welfare')">
           <div class="theme-color fz20">
-            <countup :end-val="Number(UserTotal.DividendCount + UserTotal.DividendProductCost) || 0" :decimals="2"></countup>
+            <countup :end-val="Number(UserTotal.DividendCount) + Number(UserTotal.DividendProductCost) || 0" :decimals="2"></countup>
           </div>
           <div>福利收益(元)</div>
         </div>

@@ -42,13 +42,13 @@ export default {
       return this.wrate * this.num / this.pcount
     },
     _www() {
-      return Math.floor(this.num * this.WRate * 100) / 100
+      return (Math.floor(this.num * this.WRate * 100) / 100) || 0
     },
     ttt() {
       return this.tprice * this.num / this.pcount
     },
     _ttt() {
-      return Math.floor(this.num * this.TPrice * 10000) / 10000
+      return (Math.floor(this.num * this.TPrice * 10000) / 10000) || 0
     }
   }
 }

@@ -50,7 +50,7 @@ export default {
       return this.transferGoods.ProductCost - this.transferGoods.ProductCost * this.Config.ProductCostRate / 100
     },
     maxPrice() {
-      return this.transferGoods.ProductCost + this.transferGoods.ProductCost * this.Config.ProductCostRate2 / 100
+      return Number(this.transferGoods.ProductCost) + this.transferGoods.ProductCost * this.Config.ProductCostRate2 / 100
     },
     total() {
       return this.ProductAmount * this.ProductCount
