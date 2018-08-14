@@ -142,7 +142,7 @@ export default {
     },
     async getDetail(id) {
       let {data} = await this.$http.post(this.apiName + '/GetModel', {
-        KeyID: id
+        id
       })
       if (data.Code == 1) {
         this.$store.commit(this.storeName, data.Model)
