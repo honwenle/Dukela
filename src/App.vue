@@ -13,11 +13,14 @@
 export default {
   name: 'app',
   mounted() {
+    // TODO: 返回桌面
     window.api && window.api.addEventListener({
         name: 'myBack'
     }, (ret, err) => {
       this.$router.back()
     })
+    this.$store.dispatch('getConfig')
+    localStorage.getItem('UserKey') && this.$store.dispatch('getUserInfo')
   }
 }
 </script>

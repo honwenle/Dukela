@@ -44,6 +44,8 @@ html, body{
   -webkit-tap-highlight-color:rgba(0, 0, 0, 0);
   -webkit-user-select:none;
   font-size: 13px;
+  max-height: 100%;
+  max-width: 100%;
 }
 .copyable{
   -webkit-user-select: text;
@@ -79,6 +81,9 @@ input{
 .btn-outline.orange{
   border: 1px solid @main-color;
   color: @main-color;
+}
+.white{
+  color: #fff;
 }
 .btn-main {
   text-align: center;
@@ -195,6 +200,9 @@ input{
   font-size: 18px;
   position: fixed;
   bottom: 0;
+}
+.btn-full.theme-color{
+  background: @theme-color;
 }
 .fixed-bottom{
   padding-bottom: 50px;
@@ -377,6 +385,22 @@ input{
     content: '支';
   }
 }
+.record-money{
+  .round-text{
+    background: #f79d70;
+  }
+  .round-text::before{
+    content: '钱';
+  }
+}
+.record-goods{
+  .round-text{
+    background: #aacafe;
+  }
+  .round-text::before{
+    content: '商';
+  }
+}
 .price{
   display: inline-block;
   color: @theme-color;
@@ -463,4 +487,34 @@ input{
 .ellipsis{
   text-overflow: ellipsis;
   overflow: hidden;
+}
+
+.page--messages .vux-tab{
+  background: transparent;
+  height: 40px;
+}
+.page--messages .vux-tab .vux-tab-item{
+  background: none;
+}
+
+.vux-checker-item.checker-item{
+  display: block;
+  .iconfont{
+    color: #eee;
+  }
+}
+.checker-box{
+  background: #fff;
+  padding: 10px 15px;
+  font-size: 14px;
+}
+.vux-checker-item.checker-on .iconfont{
+  color: @theme-color;
+}
+.col2{
+  border-left: 1px solid #eee;
+  padding-left: 15px;
+}
+.p0-10{
+  padding: 0 10px;
 }

@@ -7,7 +7,7 @@
       </div>
       <div class="cell bb fz16">{{detailData.BeadhouseName}}</div>
       <div class="cell flex space-between">
-        <div class="gray">
+        <div class="gray" @click="$router.push('map')">
           <font-icon name="address"></font-icon>
           <span>{{detailData.ProvinceName+detailData.CityName+detailData.AreaName+detailData.Address}}</span>
         </div>

@@ -13,21 +13,46 @@ import DHeader from '@/components/dkl-header.vue'
 import List from '@/components/list.vue'
 import SmsSend from '@/components/sms-send'
 import SubmitBar from '@/components/submit-bar'
+import Protocol from '@/components/protocol'
 import TodayT from '@/components/todayT'
+import Vcode from '@/components/vcode'
+import Password from '@/components/password'
+import Tw from '@/components/tw'
 import { LoadingPlugin, ToastPlugin, XHeader,
-  AlertPlugin, ConfirmPlugin,
-  Group, Cell, Scroller, Swiper } from 'vux'
+  AlertPlugin, ConfirmPlugin, XInput, Countdown,
+  Group, Cell, Scroller, Swiper, XTextarea,
+  Tab, TabItem, XNumber, Popup, Countup,
+  Checker, CheckerItem, XProgress,
+  Swipeout, SwipeoutItem, SwipeoutButton } from 'vux'
 
+Vue.component('checker', Checker)
+Vue.component('swipeout', Swipeout)
+Vue.component('swipeout-item', SwipeoutItem)
+Vue.component('swipeout-button', SwipeoutButton)
+Vue.component('x-textarea', XTextarea)
+Vue.component('countup', Countup)
+Vue.component('x-progress', XProgress)
+Vue.component('checker-item', CheckerItem)
+Vue.component('tw', Tw)
+Vue.component('password', Password)
+Vue.component('popup', Popup)
 Vue.component('today-t', TodayT)
+Vue.component('countdown', Countdown)
 Vue.component('submit-bar', SubmitBar)
+Vue.component('tab', Tab)
+Vue.component('tab-item', TabItem)
 Vue.component('swiper', Swiper)
 Vue.component('list', List)
+Vue.component('vcode', Vcode)
 Vue.component('x-header', XHeader)
+Vue.component('x-input', XInput)
+Vue.component('x-number', XNumber)
 Vue.component('d-header', DHeader)
 Vue.component('font-icon', FontIcon)
 Vue.component('group', Group)
 Vue.component('cell', Cell)
 Vue.component('scroller', Scroller)
+Vue.component('protocol', Protocol)
 Vue.component('sms-send', SmsSend)
 Vue.use(LoadingPlugin)
 Vue.use(ToastPlugin)

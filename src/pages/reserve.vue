@@ -68,8 +68,10 @@
 import { dateFormat } from 'vux'
 import Deduct from '@/pages/deduct'
 import Password from '@/components/password'
+import checkGoods from '@/mixins/check-goods'
 import {XInput, XNumber, Datetime, Popup, CheckIcon, Popover} from 'vux'
 export default {
+  mixins: [checkGoods],
   components: {XInput, XNumber, Datetime, Popup, CheckIcon, Deduct, Password, Popover},
   data() {
     return {
@@ -126,10 +128,7 @@ export default {
     }
   },
   mounted() {
-    this.$store.dispatch('getTRate')
-    this.$store.dispatch('getUserProduct', {
-      bid: this.VillaData.ID
-    })
+    this.$store.dispatch('getUserProduct', {})
   },
   methods: {
     checkIdcard(val) {
@@ -154,7 +153,7 @@ export default {
         this.submitOrder()
       }
     },
-    async checkDeduct() {
+    checkDeduct() {
       if (!this.UserInfo.IsSellPassword) {
         this.$vux.confirm.show({
           title: '未设置交易密码',
@@ -171,24 +170,9 @@ export default {
         })
         return false
       }
-      let {data} = await this.$http.post('BeadhouseRoomReserveOrder/GetCheckOrder', {
-        ProductID: this.deductInfo.id
+      this.checkGoods(this.deductInfo.id, this.deductInfo.count, () => {
+        this.isShowPassword = true
       })
-      if (data.Code == 1) {
-        if (data.UseProductCount < this.deductInfo.count) {
-          this.$vux.confirm.show({
-            title: '操作提示',
-            content: '你的订单关联到未生效商品，如继续购买，则商品默认生效',
-            onConfirm: () => {
-              this.isShowPassword = true
-            }
-          })
-        } else {
-          this.isShowPassword = true
-        }
-      } else {
-        this.$vux.toast.text(data.Message)
-      }
     },
     async submitOrder(pwd = '') {
       let {data} = await this.$http.post('BeadhouseRoomReserveOrder/ReserveOrder', {
@@ -203,7 +187,7 @@ export default {
       })
       if (data.Code == 1) {
         if (this.amount > 0) {
-          this.$router.push({
+          this.$router.replace({
             name: 'Pay',
             query: {
               id: data.OrderID,
@@ -223,9 +207,10 @@ export default {
         OrderID: oid
       })
       if (data.Code == 1) {
-        this.$router.push({
+        this.$router.replace({
           name: 'Result',
           query: {
+            id: oid,
             status: 1,
             type: 1,
             title: '预定成功！',

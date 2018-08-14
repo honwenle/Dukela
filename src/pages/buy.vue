@@ -1,11 +1,11 @@
 <template>
   <div>
     <d-header>商品买入</d-header>
-    <!-- <group>
+    <group>
       <cell primary="content">
         <today-t :center="true"></today-t>
       </cell>
-    </group> -->
+    </group>
     <group label-width="100px">
       <cell title="商品名" value-align="left" :value="detailData.ProductName"></cell>
       <cell title="单价" value-align="left">
@@ -14,8 +14,8 @@
     </group>
     <group label-width="100px">
       <x-input v-model="num" :is-type="checkNum" @on-change="numParseInt" title="数量" type="number" :placeholder="`${detailData.SellLimitCount}份起售，最多购入${detailData.UserBuyLimitAmount}元`"></x-input>
-      <x-input v-if="isFirstOrder" v-model="InvitationCode" title="邀请码" placeholder="如有邀请人，请输入邀请码"></x-input>
     </group>
+    <tw :num="num" :w="detailData.ShareRate" :price="detailData.ProductCost"></tw>
     <submit-bar
       :price="amount"
       @onSubmit="submitOrder"
@@ -32,7 +32,6 @@ export default {
   data() {
     return {
       num: '',
-      InvitationCode: '',
       isFirstOrder: false
     }
   },
@@ -44,14 +43,7 @@ export default {
       return this.$store.state.ProductDetail
     }
   },
-  mounted() {
-    this.checkFirstOrder()
-  },
   methods: {
-    async checkFirstOrder() {
-      let {data} = await this.$http.post('ProductOrderIn/GetIsOneOrder')
-      this.isFirstOrder = (data.Code == 1 && data.Count < 1)
-    },
     numParseInt(val) {
       this.$nextTick(()=> {
         this.num = parseInt(this.num)
@@ -76,11 +68,10 @@ export default {
           ProductID: this.detailData.ID,
           ProductName: this.detailData.ProductName,
           ProductCost: this.detailData.ProductCost,
-          ProductCount: this.num,
-          InvitationCode: this.InvitationCode
+          ProductCount: this.num
         })
         if (data.Code == 1) {
-          this.$router.push({
+          this.$router.replace({
             name: 'Pay',
             query: {
               id: data.OrderID,

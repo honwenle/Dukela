@@ -12,7 +12,7 @@
           </clocker>
           关闭订单
         </div>
-        <div class="detail-title" v-else>您的订单{{detail.OrderStatus | reserveStatusName}}</div>
+        <div class="detail-title" v-else>{{detail.OrderStatus | reserveStatusTitle}}</div>
       </div>
       <div class="detail-box">
         <group v-if="show2" class="box" :gutter="0">
@@ -37,7 +37,7 @@
         </group>
         <group class="box" :gutter="0" label-width="100px">
           <cell v-if="show1 && !isDeduct" title="支付方式：" :value="detail.PayType | payTypeName"></cell>
-          <cell class="word-break copyable" v-if="show1" title="支付流水号：" :value="detail.TransactionID"></cell>
+          <cell class="word-break copyable" v-if="detail.TransactionID" title="支付流水号：" :value="detail.TransactionID"></cell>
           <cell title="订单号：" :value="detail.OrderNumber"></cell>
           <cell title="支付时间：" :value="detail.PayDate | DATEFORMAT"></cell>
           <cell title="创建时间：" :value="detail.CreateTime | DATEFORMAT"></cell>

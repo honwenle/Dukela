@@ -7,7 +7,7 @@
       </div>
       <div class="cell bb fz15">{{detailData.TypeName}}</div>
       <div class="cell flex space-between">
-        <div class="gray">
+        <div class="gray" @click="$router.push('map')">
           <font-icon name="address"></font-icon>
           <span>{{VillaData.ProvinceName+VillaData.CityName+VillaData.AreaName+VillaData.Address}}</span>
         </div>
@@ -20,6 +20,7 @@
     </div>
     <div class="h1">规则说明</div>
     <div class="group cell">
+      <div class="row-gap"><span class="gray">房间面积</span> {{detailData.RoomSize}}平米</div>
       <div class="row-gap"><span class="gray">附属设备</span> {{detailData.EquipmentContent}}</div>
       <div class="row-gap"><span class="gray">重要事项</span> {{detailData.RoomImportContent}}</div>
     </div>
@@ -33,6 +34,7 @@
       :needReal="true"
       :disabled="detailData.UnUseRoomCount <= 0"
       button="立即预定">
+      <span slot="labelText">单价：</span>
     </submit-bar>
   </div>
 </template>

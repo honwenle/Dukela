@@ -10,6 +10,7 @@ export default new Vuex.Store({
     SmsID: '',
     SmsPhone: '',
     SmsVCode: '',
+    InvitationCode: '',
     ProductDetail: {},
     UserKey: localStorage.getItem('UserKey'),
     ProductPic: [],
@@ -25,31 +26,56 @@ export default new Vuex.Store({
     UserReserveList: [],
     UserMessage: [],
     ProductStream: [],
+    ShareStream: [],
     deduct: {},
     goodsCount: 0,
     goodsNumber: 0,
-    TRate: 1,
-    wxInfo: {},
-    UserMessageCount: 0,
-    AchievementList: []
-  },
-  getters: {
-    getRecordDetail: (state) => (id) => {
-      return state.ProductStream.find(item => item.ID == id)
+    Config: {
+      TProportion: 0,
+      MinWithdrawalsAmount: 0
     },
-    getOrderDetail: (state) => (id) => {
-      return state.UserOrderList.find(item => parseInt(item.ID) == id)
-    }
+    wxInfo: {},
+    UserTotal: {},
+    AchievementList: [],
+    Balance: [],
+    Welfare: [],
+    newsList: [],
+    helpList: [],
+    helpDetail: {},
+    balanceDetail: {},
+    transferGoods: {},
+    RecordDetail: {}
   },
   mutations: {
-    setUserMessageCount(state, data) {
-      state.UserMessageCount = data
+    setInvitationCode(state, code) {
+      state.InvitationCode = code
+    },
+    setRecordDetail(state, data) {
+      state.RecordDetail = data
+    },
+    setHelpDetail(state, data) {
+      state.helpDetail = data
+    },
+    setHelpList(state, items = []) {
+      state.helpList = state.helpList.concat(items)
+    },
+    clearHelpList(state) {
+      state.helpList = []
+    },
+    setTransferGoods(state, data) {
+      state.transferGoods = data
+    },
+    setBalanceDetail(state, data) {
+      state.balanceDetail = data
+    },
+    setUserTotal(state, data) {
+      state.UserTotal = data
     },
     setWxInfo(state, data) {
       state.wxInfo = data
     },
-    setTRate(state, tr) {
-      state.TRate = tr
+    setConfig(state, data) {
+      state.Config = data
     },
     setDeduct(state, data) {
       state.deduct = data
@@ -106,6 +132,21 @@ export default new Vuex.Store({
       state.VillaDetail = data
     },
     clearUserInfo(state) {
+      try {
+        var push = api.require('push')
+        push.unbind({
+          userName: state.UserInfo.UserName,
+          userId: state.UserInfo.IDName
+        }, function(ret,err){
+          if(ret.status){
+            console.log({msg:'解除绑定成功'})
+          }else{
+            api.alert({msg:err.msg})
+          }
+        })
+      } catch (e) {
+        console.log(e, '不在APP内无法解绑通知')
+      }
       localStorage.removeItem('UserKey')
       state.UserKey = ''
       state.UserInfo = {}
@@ -136,6 +177,21 @@ export default new Vuex.Store({
       state.OrderDetail = {}
     },
     setUserInfo(state, data) {
+      try {
+        var push = api.require('push')
+        push.bind({
+          userName: data.UserName,
+          userId: data.IDName
+        }, function(ret,err) {
+          if(ret.status) {
+              console.log({msg:'绑定成功'})
+          } else {
+              api.alert({msg:err.msg})
+          }
+        })
+      } catch (e) {
+        console.log(e, '不在APP内无法绑定通知')
+      }
       state.UserInfo = data
     },
     setUserProduct(state, {items = [], count, num}) {
@@ -148,40 +204,89 @@ export default new Vuex.Store({
       state.goodsCount = 0
       state.goodsNumber = 0
     },
+    setBalance(state, items = []) {
+      state.Balance = state.Balance.concat(items)
+    },
+    clearBalance(state) {
+      state.Balance = []
+    },
+    setWelfare(state, items = []) {
+      state.Welfare = state.Welfare.concat(items)
+    },
+    clearWelfare(state) {
+      state.Welfare = []
+    },
     setProductStream(state, items = []) {
       state.ProductStream = state.ProductStream.concat(items)
     },
     clearProductStream(state) {
       state.ProductStream = []
     },
+    setShareStream(state, items = []) {
+      state.ShareStream = state.ShareStream.concat(items)
+    },
+    clearShareStream(state) {
+      state.ShareStream = []
+    },
     setAchievementList(state, items = []) {
       state.AchievementList = state.AchievementList.concat(items)
     },
     clearAchievementList(state) {
       state.AchievementList = []
+    },
+    setNews(state, items = []) {
+      state.newsList = state.newsList.concat(items)
+    },
+    clearNews(state) {
+      state.newsList = []
     }
   },
   actions: {
+    async getHelpList({commit}, {page = 1}) {
+      let {data} = await http.post('Help/GetList', {
+        pageSize: PAGE_SIZE,
+        pageIndex: page,
+        orderby: ''
+      })
+      page == 1 && commit('clearHelpList')
+      if (data.Code == 1) {
+        commit('setHelpList', JSON.parse(data.List))
+      }
+      return data.Count || 0
+    },
+    async getNews({commit}, {page = 1}) {
+      let {data} = await http.post('News/GetList', {
+        pageSize: PAGE_SIZE,
+        pageIndex: page,
+        orderby: ''
+      })
+      page == 1 && commit('clearNews')
+      if (data.Code == 1) {
+        commit('setNews', JSON.parse(data.List))
+      }
+      return data.Count || 0
+    },
     async getAchievementList({commit}, {page = 1}) {
       let {data} = await http.post('Achievement/GetList', {
         pageSize: PAGE_SIZE,
         pageIndex: page,
         orderby: '',
-        strSearchName: ''
+        strSearchName: '',
+        Type: 0
       })
       page == 1 && commit('clearAchievementList')
       data.Code == 1 && commit('setAchievementList', JSON.parse(data.List))
       return data.Count || 0
     },
-    async getUserMessageCount({commit}) {
-      let {data} = await http.post('UserMessage/GetNoReadMessageCount')
-      data.Code == 1 && commit('setUserMessageCount', data.Model)
+    async getUserTotal({commit}) {
+      let {data} = await http.post('User/GetTotal')
+      data.Code == 1 && commit('setUserTotal', JSON.parse(data.List)[0])
     },
-    async getTRate({commit}) {
+    async getConfig({commit}) {
       let {data} = await http.post('SysConfig/GetModel', {
         ID: 1
       })
-      data.Code == 1 && commit('setTRate', data.Info.TProportion)
+      data.Code == 1 && commit('setConfig', data.Info)
     },
     async getUserMessage({commit}, {page = 1}) {
       let {data} = await http.post('UserMessage/GetList', {
@@ -210,13 +315,24 @@ export default new Vuex.Store({
     },
     async getProductStream({commit}, {page = 1}) {
       let {data} = await http.post('UserProductStream/GetModelListByUserID', {
-        pageSize: PAGE_SIZE,
+        pageSize: 15,
         pageIndex: page,
         orderby: '',
         strSearchName: ''
       })
       page == 1 && commit('clearProductStream')
       data.Code == 1 && commit('setProductStream', data.List)
+      return data.Count || 0
+    },
+    async getShareStream({commit}, {page = 1}) {
+      let {data} = await http.post('UserShareSteam/GetList', {
+        pageSize: 15,
+        pageIndex: page,
+        orderby: '',
+        strSearchName: ''
+      })
+      page == 1 && commit('clearShareStream')
+      data.Code == 1 && commit('setShareStream', JSON.parse(data.List))
       return data.Count || 0
     },
     async getUserProduct({commit}, {page = 1, bid = ''}) {
@@ -235,13 +351,36 @@ export default new Vuex.Store({
       })
       return data.Count || 0
     },
-    async getUserInfo({commit}, id) {
+    async getBalance({commit}, {page = 1}) {
+      let {data} = await http.post('AccountBalance/GetList', {
+        pageSize: PAGE_SIZE,
+        pageIndex: page,
+        orderby: '',
+        strSearchName: ''
+      })
+      page == 1 && commit('clearBalance')
+      data.Code == 1 && commit('setBalance', JSON.parse(data.List))
+      return data.Count || 0
+    },
+    async getWelfare({commit}, {page = 1}) {
+      let {data} = await http.post('UserDividend/GetList', {
+        pageSize: PAGE_SIZE,
+        pageIndex: page,
+        orderby: '',
+        strSearchName: ''
+      })
+      page == 1 && commit('clearWelfare')
+      data.Code == 1 && commit('setWelfare', JSON.parse(data.List))
+      return data.Count || 0
+    },
+    async getUserInfo({dispatch, commit}, id) {
       let {data} = await http.post('User/GetModel')
       if (data.Code == 1) {
         data.UserInfo.IsSellPassword = data.IsSellPassword
         data.UserInfo.IsLoginPassword = data.IsLoginPassword
         commit('setUserInfo', data.UserInfo)
       }
+      dispatch('getUserTotal')
     },
     async wxPay({commit}, dt) {
       let {data} = await http.post('Pay/WxPay', dt)
@@ -377,10 +516,13 @@ export default new Vuex.Store({
         SmsID: state.SmsID,
         Phone: state.SmsPhone,
         ValidateCode: state.SmsVCode,
+        InvitationCode: state.InvitationCode,
         ...dt
       })
       if (data.Code == 1) {
-        commit('setUserKey', data.Model)
+        if (!sessionStorage.getItem('isSubAccount')) {
+          commit('setUserKey', data.Model)
+        }
         commit('clearSmsState')
       }
       return data

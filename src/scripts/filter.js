@@ -18,13 +18,22 @@ Vue.filter('bannerArr', function (oList, field = 'Url') {
   })
 })
 Vue.filter('isIncome', function (type) {
-  return type < 3 ? 'record-income' : 'record-outcome'
+  return (type == 3 || type == 5 || type == 6) ? 'record-outcome' : 'record-income'
+})
+Vue.filter('isWelfare', function (type) {
+  return (type > 2 && type < 6) ? 'record-outcome' : 'record-income'
 })
 Vue.filter('hidePhone', function (tel = '') {
   return tel.replace(/(\d{3})\d{4}(\d{4})/, '$1****$2')
 })
-Vue.filter('typeName', function (type) {
-  return ['无', '商品购买', '商品分红'][type]
+Vue.filter('goodsRecordTypeName', function (type) {
+  return ['其它', '商品买入', '商品分红', '商品入住抵扣', '退款', '赠送', '转让', '转让失败', '接受赠送'][type]
+})
+Vue.filter('welfareTypeName', function (type) {
+  return ['其它', '按照W分现金', '按照W分商品', '按照商品金额分商品'][type]
+})
+Vue.filter('welfareRecordTypeName', function (type) {
+  return ['其它', '商品买入', '商品分红', '赠送', '转让', '转让失败', '接受赠送'][type]
 })
 Vue.filter('tagColor', function (type) {
   if (type > 0 && type < 4) {
@@ -35,14 +44,20 @@ Vue.filter('tagColor', function (type) {
     return 'color-error'
   }
 })
+Vue.filter('balanceTypeName', function (type) {
+  return ['其它', '分红收入', '推广收入', '买入商品支出', '预约入住支出', '提现支出', '退款'][type]
+})
 Vue.filter('payTypeName', function (type) {
-  return ['商品支付', '余额支付', '微信支付', '支付宝支付', '银联支付'][type]
+  return ['商品支付', '余额支付', '微信支付', '支付宝支付', '银联支付', '线下转账', '商品赠送'][type]
 })
 Vue.filter('orderStatusName', function (type) {
-  return ['未支付', '已支付', '已退款', '已完成', '交易关闭', '待审核'][type]
+  return ['未支付', '已支付', '已退款', '已完成', '交易关闭', '待审核', '退款中'][type]
 })
 Vue.filter('reserveStatusName', function (type) {
   return ['未支付', '已支付', '已退款', '预约成功', '交易关闭'][type]
+})
+Vue.filter('reserveStatusTitle', function (type) {
+  return ['待支付', '您的订单已支付，待审核', '您的订单审核未通过，3个工作日内退款', '您的房间已预定成功', '您的订单已取消'][type]
 })
 Vue.filter('dateFormat', dateFormat)
 Vue.filter('DATEFORMAT', function (strDate, fmt = 'YYYY-MM-DD HH:mm:ss') {

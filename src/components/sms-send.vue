@@ -12,11 +12,7 @@
   </div>
 </template>
 <script>
-import { Countdown } from 'vux'
 export default {
-  components: {
-    Countdown
-  },
   data() {
     return {
       vcode: '',

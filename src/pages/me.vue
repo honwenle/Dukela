@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="page--me">
     <div class="top" :class="{'unlogin': !UserKey}">
       <d-header :tran="true" :showBack="false">
         <span slot="right" @click="$router.push({name: 'Settings'})">设置</span>
@@ -11,12 +11,28 @@
         <div @click="$router.push({name: 'User'})" class="nick">{{UserKey ? (dataInfo.FullName || '用户昵称') : '注册/登录'}}</div>
       </div>
     </div>
-    <group :gutter="0">
-      <cell title="我的商品库" link="my-goods"></cell>
-      <cell title="我的订单" link="my-order"></cell>
-      <cell title="我的推广" link="my-promotion"></cell>
+    <div class="total-bar">
+      <div class="total flex flex-center center">
+        <div class="flex-1" @click="$router.push('my-balance')">
+          <div class="theme-color fz20">
+            <countup :end-val="dataInfo.AccountBalance || 0" :decimals="2"></countup>
+          </div>
+          <div>账户余额(元)</div>
+        </div>
+        <div class="flex-1" @click="$router.push('my-welfare')">
+          <div class="theme-color fz20">
+            <countup :end-val="Number(UserTotal.DividendCount) + Number(UserTotal.DividendProductCost) || 0" :decimals="2"></countup>
+          </div>
+          <div>福利收益(元)</div>
+        </div>
+      </div>
+    </div>
+    <group>
+      <cell title="我的商品库" link="my-goods" value="转让"></cell>
+      <cell title="我的订单" link="my-order" :value="UserTotal.OrderCount && `累计${UserTotal.OrderCount}单`"></cell>
+      <cell title="我的推广" link="my-promotion" :value="UserTotal.AchievementAmount && `累计收益${UserTotal.AchievementAmount}元`"></cell>
       <cell title="我的消息" link="messages">
-        <badge v-if="msgCount" :text="msgCount"></badge>
+        <badge v-if="UserTotal.NotReadMessageCount > 0" :text="UserTotal.NotReadMessageCount < 100 ? UserTotal.NotReadMessageCount : '99+'"></badge>
       </cell>
       <cell title="客服电话" is-link>
         <span class="theme-color"><font-icon name="phone"></font-icon></span>
@@ -38,20 +54,19 @@ export default {
     UserKey() {
       return this.$store.state.UserKey
     },
-    msgCount() {
-      return this.$store.state.UserMessageCount
+    UserTotal() {
+      return this.$store.state.UserTotal
     }
   },
   mounted() {
-    this.UserKey && this.$store.dispatch('getUserInfo')
-    this.UserKey && this.$store.dispatch('getUserMessageCount', {})
+    this.UserKey && this.$store.dispatch('getUserTotal')
   }
 }
 </script>
 
 <style scoped>
 .top{
-  padding-bottom: 30px;
+  padding-bottom: 50px;
   text-align: center;
   color: #fff;
   background-color: radial-gradient(at 50% 75%, #91c9ff, #5194ff);
@@ -71,4 +86,19 @@ export default {
   width: 100%;
   border-radius: 100%;
 }
+.total-bar{
+  margin-top: -45px;
+  padding: 0 18px;
+}
+.total{
+  height: 68px;
+  border-radius: 15px;
+  background: #fff;
+}
+/* .page--me .weui-cells{
+  background: transparent;
+}
+.page--me .weui-cell__ft{
+  color: #f00;
+} */
 </style>

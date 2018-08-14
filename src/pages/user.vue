@@ -13,7 +13,8 @@
       </cell>
     </group>
     <group>
-      <cell title="昵称" :value="dataInfo.FullName || '暂无'" @click.native="showChangeNick" is-link></cell>
+      <cell title="账户昵称" :value="dataInfo.FullName || '暂无'" @click.native="showChangeNick" is-link></cell>
+      <cell title="账户管理" link="my-account"></cell>
       <cell title="年龄" :value="dataInfo.Age ? (dataInfo.Age + '岁') : '暂无'"></cell>
       <cell title="性别" :value="genderList[dataInfo.Sex]"></cell>
     </group>

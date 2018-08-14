@@ -8,12 +8,14 @@ import SetPassword from '@/pages/set-password'
 import SetTranPwd from '@/pages/set-tran-pwd'
 import Realname from '@/pages/realname'
 import BindCard from '@/pages/bind-card'
+import BindAccount from '@/pages/bind-account'
 import WxReg from '@/pages/wx-reg'
 
 import Home from '@/pages/home'
 import villaList from '@/pages/villaList'
 import Goods from '@/pages/goods'
 import Villa from '@/pages/villa'
+import BDMap from '@/pages/map'
 import Room from '@/pages/room'
 import Reserve from '@/pages/reserve'
 import Deduct from '@/pages/deduct'
@@ -26,10 +28,17 @@ import Mall from '@/pages/mall'
 
 import Me from '@/pages/me'
 import Settings from '@/pages/settings'
+import Help from '@/pages/help'
+import HelpDetail from '@/pages/help-detail'
+import Feedback from '@/pages/feedback'
+
 import User from '@/pages/user'
 import MyGoods from '@/pages/my-goods'
 import GoodsRecord from '@/pages/goods-record'
-import RecordDetail from '@/pages/record-detail'
+import WelfareRecord from '@/pages/welfare-record'
+import GoodsRecordDetail from '@/pages/goods-record-detail'
+import WelfareDetail from '@/pages/welfare-detail'
+import WelfareRecordDetail from '@/pages/welfare-record-detail'
 import Detail from '@/pages/detail'
 import DetailReserve from '@/pages/detail-reserve'
 import MyOrder from '@/pages/my-order'
@@ -38,10 +47,19 @@ import ChangePhone from '@/pages/change-phone'
 import CheckPhone from '@/pages/check-phone'
 import MyRealname from '@/pages/my-realname'
 import MyPassword from '@/pages/my-password'
-import Help from '@/pages/help'
-import Feedback from '@/pages/feedback'
+import MyAccount from '@/pages/my-account'
+import MyBalance from '@/pages/my-balance'
+import BalanceDetail from '@/pages/balance-detail'
+import Refund from '@/pages/refund'
 import MyPromotion from '@/pages/my-promotion'
 import PromotionRecord from '@/pages/promotion-record'
+import Withdraw from '@/pages/withdraw'
+import News from '@/pages/news'
+import WithdrawResult from '@/pages/withdraw-result'
+import Transfer from '@/pages/transfer'
+import GiveOther from '@/pages/give-other'
+import TransList from '@/pages/trans-list'
+import MyWelfare from '@/pages/my-welfare'
 
 import Version from '@/pages/version'
 
@@ -52,12 +70,81 @@ export default new Router({
   // mode: 'history',
   routes: [
     {
+      component: BDMap,
+      path: '/map'
+    },
+    {
+      component: MyWelfare,
+      path: '/my-welfare',
+      meta: { needLogin: true }
+    },
+    {
+      component: BindAccount,
+      path: '/bind-account',
+      meta: { needLogin: true }
+    },
+    {
+      component: GiveOther,
+      path: '/give-other',
+      meta: { needLogin: true }
+    },
+    {
+      component: TransList,
+      path: '/trans-list',
+      meta: { needLogin: true }
+    },
+    {
+      component: Transfer,
+      path: '/transfer',
+      meta: { needLogin: true }
+    },
+    {
+      component: BalanceDetail,
+      path: '/balance-detail',
+      meta: { needLogin: true }
+    },
+    {
+      component: WithdrawResult,
+      path: '/withdraw-result'
+    },
+    {
+      component: News,
+      path: '/news',
+      meta: { needLogin: true }
+    },
+    {
+      component: Withdraw,
+      path: '/withdraw',
+      meta: { needLogin: true }
+    },
+    {
+      component: MyBalance,
+      path: '/my-balance',
+      meta: { needLogin: true }
+    },
+    {
+      component: Refund,
+      path: '/refund',
+      meta: { needLogin: true }
+    },
+    {
+      component: MyAccount,
+      path: '/my-account',
+      meta: { needLogin: true }
+    },
+    {
       component: Feedback,
       path: '/feedback'
     },
     {
       component: Help,
       path: '/help',
+    },
+    {
+      component: HelpDetail,
+      path: '/help-detail',
+    },
+    {
       component: PromotionRecord,
       path: '/promotion-record',
       meta: { needLogin: true }
@@ -92,8 +179,16 @@ export default new Router({
       path: '/version'
     },
     {
-      component: RecordDetail,
-      path: '/record-detail'
+      component: GoodsRecordDetail,
+      path: '/goods-record-detail'
+    },
+    {
+      component: WelfareDetail,
+      path: '/welfare-detail'
+    },
+    {
+      component: WelfareRecordDetail,
+      path: '/welfare-record-detail'
     },
     {
       component: PayPublic,
@@ -191,6 +286,9 @@ export default new Router({
       name: 'GoodsRecord',
       component: GoodsRecord,
       meta: { keepAlive: true }
+    }, {
+      path: '/welfare-record',
+      component: WelfareRecord
     }, {
       path: '/my-order',
       name: 'MyOrder',

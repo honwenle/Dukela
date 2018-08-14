@@ -8,12 +8,12 @@
       </div>
       <div class="flex space-between">
         <div class="btn-outline" @click="$router.push({
-          path: 'my-order',
+          path: ['detail', 'detail-reserve'][type],
           query: {
-            type: type
+            id
           }
         })">查看订单</div>
-        <div class="btn-outline" @click="$router.go(-3-type)">返回首页</div>
+        <div class="btn-outline" @click="$router.go(-2-type)">返回首页</div>
       </div>
       <div v-if="type == 0 && !isPub" class="btn-main w100p" @click="$router.push('my-goods')">查看商品</div>
     </div>
@@ -23,6 +23,7 @@
 export default {
   data() {
     return {
+      id: this.$route.query.id,
       status: this.$route.query.status == 1,
       type: this.$route.query.type,
       title: this.$route.query.title,
