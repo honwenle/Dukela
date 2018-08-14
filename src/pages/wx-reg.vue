@@ -42,6 +42,7 @@ export default {
         ValidateCode: this.vcode
       })
       if (data.Code == 1) {
+        this.$store.dispatch('getUserInfo')
         this.$router.push('me')
       } else {
         this.$vux.toast.text(data.Message)
