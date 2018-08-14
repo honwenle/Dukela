@@ -5,7 +5,7 @@
       <cell title="版本信息" link="version">{{version}}版</cell>
       <cell title="帮助" link="help"></cell>
       <cell title="意见反馈" link="feedback"></cell>
-      <cell title="推送设置" link="set-push"></cell>
+      <!-- <cell title="推送设置" link="set-push"></cell> -->
     </group>
     <div class="btn-main" v-show="UserKey" @click="logout">退出</div>
   </div>
