@@ -1,7 +1,7 @@
 <template>
   <group label-width="100px">
-    <cell title="W(个)" value-align="left" :value="pid ? www : _www"></cell>
-    <cell title="T(个)" value-align="left" :value="pid ? ttt : _ttt"></cell>
+    <cell title="W(个)" value-align="left" :value="(pid ? www : _www) | decimal4"></cell>
+    <cell title="T(个)" value-align="left" :value="(pid ? ttt : _ttt) | decimal4"></cell>
   </group>
 </template>
 <script>

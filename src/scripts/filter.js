@@ -8,6 +8,9 @@ Vue.filter('decimal4to2', function (num) {
 Vue.filter('decimal', function (num) {
   return Math.floor(num * 100)/100
 })
+Vue.filter('decimal4', function (num) {
+  return Math.floor(num * 10000)/10000
+})
 Vue.filter('bannerArr', function (oList, field = 'Url') {
   return oList.map(item => {
     return {
