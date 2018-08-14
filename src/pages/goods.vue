@@ -20,7 +20,7 @@
     <div class="group cell">
       <div v-show="detailData.Type != 1" class="row-gap flex">
         <span class="gray">属性</span>
-        <span>购买可得{{detailData.ShareRate}}W</span>
+        <span>购买可得{{detailData.ShareRate / 100}}W</span>
       </div>
       <div class="row-gap flex">
         <span class="gray">服务</span>
