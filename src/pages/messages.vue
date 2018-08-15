@@ -47,7 +47,7 @@
                     <template v-if="item.EventType == 8">
                       <div>项目福利</div>
                       <div>
-                        <span v-if="item.Content.Type != 1">{{item.Content.DividendProductName}}：</span>
+                        <span v-if="item.Content.Type != 1 && item.Content.DividendProductName">{{item.Content.DividendProductName}}：</span>
                         <span class="main-color">{{item.Content.Content}}</span>
                       </div>
                     </template>
@@ -96,7 +96,7 @@ export default {
         require('../assets/msg-a4.png'),
         require('../assets/msg-a5.png')
       ],
-      typeImgMap: [0, 0, 1, 2, 3, 2, 4, 0, 0, 3, 0]
+      typeImgMap: [0, 0, 1, 2, 3, 2, 4, 0, 0, 3, 0, 4]
     }
   },
   computed: {
@@ -120,7 +120,7 @@ export default {
       this.$http.post('UserMessage/ReadMessage', {
         MessageID: id
       })
-      if (type == 4 || type == 6 || type == 9) {
+      if (type == 4 || type == 6 || type == 9 || type == 11) {
         this.apiName = 'UserProductStream'
         this.storeName = 'setRecordDetail'
       } else if (type == 5) {
@@ -134,7 +134,7 @@ export default {
       this.$router.push({
         path: ['detail', 'detail-reserve', 'my-realname',
           'goods-record-detail', 'balance-detail', 'goods-record-detail',
-          'promotion-record', 'welfare-detail', 'goods-record-detail', 'goods-record-detail'][type-1],
+          'promotion-record', 'welfare-detail', 'goods-record-detail', 'goods-record-detail', 'goods-record-detail'][type-1],
         query: {
           id: kid
         }
