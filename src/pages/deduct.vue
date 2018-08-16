@@ -20,7 +20,7 @@
             </div>
             <div class="flex-2 col2">
               <div class="price">{{deductPrice(item)}}</div>
-              <div class="gray">抵扣价格</div>
+              <div class="gray">可抵扣价格</div>
             </div>
             <font-icon fontsize="22px" :name="item.ID == deductInfo.ID ? 'radio' : 'radio1'"></font-icon>
           </div>
