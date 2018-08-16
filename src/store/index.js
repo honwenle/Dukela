@@ -267,7 +267,7 @@ export default new Vuex.Store({
       return data.Count || 0
     },
     async getAchievementList({commit}, {page = 1}) {
-      let {data} = await http.post('Achievement/GetList', {
+      let {data} = await http.post('Achievement/GetAppList', {
         pageSize: PAGE_SIZE,
         pageIndex: page,
         orderby: '',
