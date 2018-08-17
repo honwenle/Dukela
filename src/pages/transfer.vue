@@ -82,7 +82,7 @@ export default {
       this.isShowPassword = true
     },
     clickSubmit() {
-      if (this.ProductAmount < this.minPrice || this.ProductAmount > this.transferGoods.ProductCost) {
+      if (this.ProductAmount < this.minPrice || this.ProductAmount > this.maxPrice) {
         this.$vux.toast.text('请按要求填写价格')
         return false
       }
