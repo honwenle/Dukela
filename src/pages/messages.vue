@@ -83,6 +83,7 @@
   </div>
 </template>
 <script>
+// 事件类型ID（1商品买入订单；2入住预约订单;3实名认证通过4;商品赠送5;提现申请6;转让7;推广收益8;分红收益9;接收赠送;10;退货申请）
 export default {
   data() {
     return {
@@ -96,7 +97,7 @@ export default {
         require('../assets/msg-a4.png'),
         require('../assets/msg-a5.png')
       ],
-      typeImgMap: [0, 0, 1, 2, 3, 2, 4, 0, 0, 3, 0, 4]
+      typeImgMap: [0, 0, 1, 2, 3, 2, 4, 0, 0, 3, 0, 4, 2]
     }
   },
   computed: {
@@ -134,7 +135,7 @@ export default {
       this.$router.push({
         path: ['detail', 'detail-reserve', 'my-realname',
           'goods-record-detail', 'balance-detail', 'goods-record-detail',
-          'promotion-record', 'welfare-detail', 'goods-record-detail', 'goods-record-detail', 'goods-record-detail'][type-1],
+          'promotion-record', 'welfare-detail', 'goods-record-detail', 'goods-record-detail', 'goods-record-detail', ''][type-1],
         query: {
           id: kid
         }
