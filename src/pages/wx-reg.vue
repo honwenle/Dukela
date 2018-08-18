@@ -9,6 +9,10 @@
         </div>
       </div>
       <sms-send v-model="vcode" :phone="phone" :type="4"></sms-send>
+      <div class="login-input">
+        <font-icon name="yaoqingma"></font-icon>
+        <input v-model="InvitationCode" type="text" placeholder="如有邀请人，请输入邀请码">
+      </div>
       <agreement v-model="readed"></agreement>
       <div class="btn-main" @click="submitWxReg">确定</div>
     </div>
@@ -29,7 +33,8 @@ export default {
     return {
       phone: '',
       vcode: '',
-      readed: false
+      readed: false,
+      InvitationCode: ''
     }
   },
   methods: {
@@ -38,6 +43,7 @@ export default {
         this.$vux.toast.text('请先同意注册协议')
         return false
       }
+      this.$store.commit('setInvitationCode', this.InvitationCode)
       let data = await this.$store.dispatch('wxReg', {
         ValidateCode: this.vcode
       })

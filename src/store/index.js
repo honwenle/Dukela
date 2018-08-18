@@ -505,6 +505,7 @@ export default new Vuex.Store({
         wXOpenID: state.wxInfo.openid,
         NickName: state.wxInfo.nickname,
         avator: state.wxInfo.headimgurl,
+        InvitationCode: state.InvitationCode,
         // Sex: state.wxInfo.sex,
         ...dt
       })
