@@ -24,7 +24,7 @@
       </div>
       <div class="row-gap flex">
         <span class="gray">服务</span>
-        <span>入住权·7天无理由退货</span>
+        <span>入住权·7天无理由退货·{{detailData.ProductSize}}平米</span>
       </div>
       <div class="row-gap flex" v-if="detailData.ProductContent">
         <span class="gray">规则</span>
