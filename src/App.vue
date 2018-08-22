@@ -20,7 +20,7 @@ export default {
         timeout:10
       }, (ret, err) => {
         // alert(JSON.parse(ret.data))
-        this.$store.commit('setInvitationCode', JSON.parse(ret.data).xx)
+        this.$store.commit('setInvitationCode', JSON.parse(ret.data).icode)
       })
     } catch (e) {
       console.log(e)
