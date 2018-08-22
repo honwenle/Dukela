@@ -147,10 +147,6 @@ export default {
         this.$vux.toast.text('请填写正确信息')
         return false
       }
-      if (this.amount > 0) {
-        this.$vux.toast.text('请选择足够抵扣的商品')
-        return false
-      }
       if (this.deductInfo.id) {
         this.checkDeduct()
       } else {
