@@ -18,10 +18,10 @@
     </div>
     <div class="h1">规则说明</div>
     <div class="group cell">
-      <div v-show="detailData.Type != 1" class="row-gap flex">
+      <!-- <div v-show="detailData.Type != 1" class="row-gap flex">
         <span class="gray">属性</span>
         <span>购买可得{{detailData.ShareRate / 100}}W</span>
-      </div>
+      </div> -->
       <div class="row-gap flex">
         <span class="gray">服务</span>
         <span>入住权·7天无理由退货·{{detailData.ProductSize}}平米</span>

@@ -9,13 +9,13 @@
           <div class="fz25">{{Number(UserTotal.DividendCount) + Number(UserTotal.DividendProductCost) | decimal}}</div>
           <div class="gray">累计收益(元)</div>
         </div>
-        <div>
+        <!-- <div>
           <div class="fz25">{{UserInfo.ShareCount}}</div>
           <div class="gray">持有W(个)</div>
         </div>
         <div>
           <span class="btn-inline" @click="$router.push('welfare-record')">W明细</span>
-        </div>
+        </div> -->
       </div>
     </div>
     <div class="goods-list">
@@ -42,7 +42,7 @@
             </div>
             <div class="flex space-between">
               <div class="gray" v-if="item.Type == 3">总金额：{{item.Amount}}</div>
-              <div class="gray" v-else>W(个)：{{item.OrderShareCount}}</div>
+              <div class="gray" v-else>T(个)：{{item.OrderShareCount}}</div>
               <div class="gray">{{item.CreateTime}}</div>
             </div>
           </div>

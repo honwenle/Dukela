@@ -9,7 +9,7 @@
       <cell title="价格(元)" :value="detail.ProductCost"></cell>
     </group>
     <group>
-      <cell title="W(个)" :value="detail.ShareAmount"></cell>
+      <!-- <cell title="W(个)" :value="detail.ShareAmount"></cell> -->
       <cell title="T(个)" :value="detail.TAmount"></cell>
     </group>
     <group>

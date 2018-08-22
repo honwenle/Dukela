@@ -43,11 +43,11 @@
               T数(个)：<font-icon name="help" color="#fe5900" @click.native="$vux.toast.text('商品生效后有效！')" />
             </div>
           </cell>
-          <cell :value="detail.ShareAmount">
+          <!-- <cell :value="detail.ShareAmount">
             <div slot="title">
               W(个)：<font-icon name="help" color="#fe5900" @click.native="$vux.toast.text('商品生效后有效！')" />
             </div>
-          </cell>
+          </cell> -->
         </group>
         <group class="box" :gutter="0" label-width="100px">
           <cell v-show="show1" title="支付方式：" :value="detail.PayType | payTypeName"></cell>
