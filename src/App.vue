@@ -14,6 +14,17 @@ export default {
   name: 'app',
   mounted() {
     // TODO: 返回桌面
+    try {
+      var openinstall = api.require('openinstall')
+      openinstall.getInstall({
+        timeout:10
+      }, (ret, err) => {
+        // alert(JSON.parse(ret.data))
+        this.$store.commit('setInvitationCode', JSON.parse(ret.data).xx)
+      })
+    } catch (e) {
+      console.log(e)
+    }
     window.api && window.api.addEventListener({
         name: 'myBack'
     }, (ret, err) => {

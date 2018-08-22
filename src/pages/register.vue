@@ -32,13 +32,15 @@ export default {
     return {
       phone: '',
       vcode: '',
-      readed: false,
-      InvitationCode: ''
+      readed: false
     }
   },
   computed: {
     isDisable() {
       return this.phone == '' || this.vcode == ''
+    },
+    InvitationCode() {
+      return this.$store.state.InvitationCode
     }
   },
   methods: {

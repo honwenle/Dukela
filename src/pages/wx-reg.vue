@@ -27,14 +27,16 @@ export default {
   computed: {
     dataInfo() {
       return this.$store.state.wxInfo
+    },
+    InvitationCode() {
+      return this.$store.state.InvitationCode
     }
   },
   data() {
     return {
       phone: '',
       vcode: '',
-      readed: false,
-      InvitationCode: ''
+      readed: false
     }
   },
   methods: {
