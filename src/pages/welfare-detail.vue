@@ -8,7 +8,7 @@
     <group :gutter="-1">
       <cell title="福利方式：" :value="detailData.Type | welfareTypeName"></cell>
       <cell title="流水号：" :value="detailData.DividendNo"></cell>
-      <cell title="时间：" :value="detailData.CreateTime | DATEFORMAT"></cell>
+      <cell title="时间：" :value="detailData.CreateTime"></cell>
     </group>
   </div>
 </template>

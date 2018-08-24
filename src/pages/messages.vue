@@ -83,7 +83,7 @@
   </div>
 </template>
 <script>
-// 事件类型ID（1商品买入订单；2入住预约订单;3实名认证通过4;商品赠送5;提现申请6;转让7;推广收益8;分红收益9;接收赠送;10;退货申请）
+// 事件类型ID（1商品买入订单；2入住预约订单;3实名认证通过4;商品赠送5;提现申请6;转让7;推广收益8;分红收益9;接收赠送;10;退货申请;11;申请转让;）
 export default {
   data() {
     return {
@@ -121,10 +121,10 @@ export default {
       this.$http.post('UserMessage/ReadMessage', {
         MessageID: id
       })
-      if (type == 4 || type == 6 || type == 9 || type == 11) {
+      if (type == 4 || type == 9 || type == 11) {
         this.apiName = 'UserProductStream'
         this.storeName = 'setRecordDetail'
-      } else if (type == 5) {
+      } else if (type == 5 || type == 6) {
         this.apiName = 'AccountBalance'
         this.storeName = 'setBalanceDetail'
       } else if (type == 8) {
@@ -134,8 +134,8 @@ export default {
       this.apiName && this.getDetail(kid)
       this.$router.push({
         path: ['detail', 'detail-reserve', 'my-realname',
-          'goods-record-detail', 'balance-detail', 'goods-record-detail',
-          'promotion-record', 'welfare-detail', 'goods-record-detail', 'goods-record-detail', 'goods-record-detail', ''][type-1],
+          'goods-record-detail', 'balance-detail', 'balance-detail',
+          'promotion-record', 'welfare-detail', 'goods-record-detail', 'detail', 'goods-record-detail', ''][type-1],
         query: {
           id: kid
         }
@@ -146,7 +146,7 @@ export default {
         id
       })
       if (data.Code == 1) {
-        this.$store.commit(this.storeName, data.Model)
+        this.$store.commit(this.storeName, JSON.parse(data.Model))
       }
     }
   }
