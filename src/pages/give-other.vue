@@ -18,7 +18,7 @@
       <password ref="pwd" @finishpwd="submitTransfer"></password>
     </popup>
     <protocol title="赠送协议" v-model="isShowPro" @agree="clickAgree">
-      <p>XXX: 协议内容</p>
+      <!-- <p>XXX: 协议内容</p> -->
     </protocol>
   </div>
 </template>
