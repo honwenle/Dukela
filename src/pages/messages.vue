@@ -34,7 +34,7 @@
                     <template v-if="item.EventType != 2 && item.EventType != 8">
                       <div>{{item.Content.ProductName}}</div>
                       <div class="main-color">
-                        <span v-if="item.EventType == 5 || item.EventType == 7">{{item.Content.Content}}</span>
+                        <span v-if="item.EventType == 5 || item.EventType == 7 || item.EventType == 12">{{item.Content.Content}}</span>
                         <span v-else>{{item.Content.ProductCount}}份</span>
                       </div>
                     </template>
@@ -52,7 +52,7 @@
                       </div>
                     </template>
                   </div>
-                  <div class="gray">订单号：{{item.Content.OrderNo}}</div>
+                  <div class="gray" v-show="item.Content.OrderNo">订单号：{{item.Content.OrderNo}}</div>
                 </div>
                 <div class="row-padding2">立即查看</div>
               </template>
@@ -83,7 +83,7 @@
   </div>
 </template>
 <script>
-// 事件类型ID（1商品买入订单；2入住预约订单;3实名认证通过4;商品赠送5;提现申请6;转让7;推广收益8;分红收益9;接收赠送;10;退货申请;11;申请转让;）
+// 事件类型ID（1:商品买入订单;2:入住预约订单;3:实名认证通过;4;商品赠送;5:提现申请;6:转让;7:推广收益;8:分红收益;9:接收赠送;10:退货申请;11:申请转让;12:用户注册下家;）
 export default {
   data() {
     return {
