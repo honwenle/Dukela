@@ -29,6 +29,9 @@ export default {
         name: 'myBack'
     }, (ret, err) => {
       this.$router.back()
+      if (this.$route.matched[0].path == '') {
+        api.closeWidget()
+      }
     })
     this.$store.dispatch('getConfig')
     localStorage.getItem('UserKey') && this.$store.dispatch('getUserInfo')
