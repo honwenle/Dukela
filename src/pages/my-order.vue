@@ -54,7 +54,7 @@
               <div class="fz15">{{item.BeadhouseName}}</div>
               <div class="btn-color" :class="item.OrderStatus | tagColor">{{item.OrderStatus | reserveStatusName}}</div>
             </div>
-            <div class="flex bg-eee m10">
+            <div class="flex bg-eee m10 flex-center">
               <div class="flex-1">
                 <img v-if="item.BigPicUrl" class="img" :src="$imgUrl + item.BigPicUrl">
               </div>
