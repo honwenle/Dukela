@@ -8,7 +8,7 @@
       </div>
     </div>
     <group label-width="100px" ref="form">
-      <x-input title="房间数" value="1间" disabled></x-input>
+      <x-input title="房间数" v-model="formData.RoomCount"></x-input>
       <x-input v-model="formData.ReserveUser" required title="入住人" placeholder="请填写姓名，需和身份证一致">
         <div slot="label" style="width: 100px">
           入住人
@@ -78,9 +78,10 @@ export default {
       show1: false,
       isShowPassword: false,
       formData: {
-        ReserveUser: '',
-        ReserveUserIDCard: '',
-        ReserveTel: '',
+        RoomCount: 1,
+        ReserveUser: '提醒我删除',
+        ReserveUserIDCard: '330322199206020000',
+        ReserveTel: '15268701777',
         ReserveStartTime: '',
         ReserveEndTime: ''
       }
@@ -100,7 +101,7 @@ export default {
         })
       }
       let days = seconds/1000/60/60/24
-      return Math.floor(this.detailData.RoomPrice * (days || 1) * 100)/100
+      return Math.floor(this.detailData.RoomPrice * (days || 1) * this.formData.RoomCount * 100)/100
     },
     deductPrice() {
       return Math.min(this.deductInfo.price, this.total)
@@ -181,11 +182,12 @@ export default {
     async submitOrder(pwd = '') {
       let {data} = await this.$http.post('BeadhouseRoomReserveOrder/ReserveOrder', {
         OrderKey: pwd,
+        RoomCount: this.formData.RoomCount,
         BeadhouseID: this.VillaData.ID,
         RoomTypeID: this.detailData.ID,
         RoomPrice: this.detailData.RoomPrice,
         PayProductID: this.deductInfo.id,
-        PayProductCount: this.count || '',
+        PayProductCount: Math.floor(this.count * 10000) / 10000 || '',
         PayProductAmount: this.deductPrice || '',
         ...this.formData
       })
