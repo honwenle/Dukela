@@ -19,6 +19,7 @@
           <cell title="原因：" :value="detail.OrderMessage"></cell>
         </group>
         <group class="box" :gutter="0">
+          <cell title="房间数：" :value="detail.RoomCount"></cell>
           <cell title="入住人：" :value="detail.ReserveUser"></cell>
           <cell title="联系电话：" :value="detail.ReserveTel"></cell>
           <cell title="总金额(元)：">
