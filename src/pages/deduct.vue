@@ -16,11 +16,14 @@
           <div class="flex flex-center checker-box">
             <div class="flex-1" style="line-height: 1.8;">
               <div class="fz15">{{item.ProductName}}</div>
-              <div class="gray">商品数：{{item.ProductCount}}</div>
             </div>
             <div class="flex-2 col2">
-              <div class="price">{{deductPrice(item)}}</div>
-              <div class="gray">可抵扣价格</div>
+              <div class="gray">
+                可抵扣商品数：<span class="theme-color">{{item.ProductCount}}</span>
+              </div>
+              <div class="gray">
+                可抵扣T数：<span class="theme-color">{{item.TAmount}}</span>
+              </div>
             </div>
             <font-icon fontsize="22px" :name="item.ID == deductInfo.ID ? 'radio' : 'radio1'"></font-icon>
           </div>
@@ -52,28 +55,13 @@ export default {
     }
   },
   methods: {
-    decimal4to2(num) {
-      return Math.floor((Math.ceil(num * 10000)/10000) * 100)/100
-    },
-    deductPrice(val) {
-      if (val.BeadhouseID == this.roomData.BeadhouseID) {
-        return this.decimal4to2(val.ProductCount * val.ProductSize * this.roomData.RoomPrice / 24 / this.roomData.RoomSize) 
-      } else {
-        return this.decimal4to2(val.TAmount * this.TRate * val.ProductSize / this.roomData.RoomSize)
-      }
-    },
     clearDeduct() {
       this.deductInfo = {}
       this.$store.commit('clearDeduct')
       this.$emit('selectDeduct')
     },
     setDeduct(val) {
-      this.$store.commit('setDeduct', {
-        id: val.ProductID,
-        name: val.ProductName,
-        price: this.deductPrice(val),
-        count: val.ProductCount
-      })
+      this.$store.commit('setDeduct', val)
       this.$emit('selectDeduct')
     }
   }

@@ -3,8 +3,8 @@
     <div class="theme-bg">
       <d-header :tran="true">入住预定</d-header>
       <div class="top-tran">
-        <div class="fz16">{{detailData.TypeName}}</div>
-        <div class="fz13" style="margin-top: 8px;">{{detailData.EquipmentContent}}</div>
+        <div class="fz16">{{RoomDetail.TypeName}}</div>
+        <div class="fz13" style="margin-top: 8px;">{{RoomDetail.EquipmentContent}}</div>
       </div>
     </div>
     <group label-width="100px" ref="form">
@@ -37,8 +37,8 @@
     </group>
     <group>
       <cell title="商品抵扣" is-link @click.native="show1 = true">
-        <div v-if="deductInfo.id">
-          {{deductInfo.name}}
+        <div v-if="deductInfo.ProductID">
+          {{deductInfo.ProductName}}
         </div>
         <template v-else>
           <div v-if="goodsCount" class="deduct-tag">
@@ -48,13 +48,14 @@
         </template>
       </cell>
     </group>
+    <div class="submit-bar-info" v-if="deductInfo.ProductID">
+      已抵扣商品{{isEnough ? needProductCount : deductInfo.ProductCount}}份
+    </div>
     <submit-bar
-      :price="amount"
+      :disabled="!isEnough"
+      :price="total"
       @onSubmit="clickOrder"
       button="确定预定">
-      <span class="gray" v-if="deductInfo.id">
-        已抵扣{{deductPrice}}元
-      </span>
     </submit-bar>
     <popup v-model="show1" height="100%">
       <deduct @selectDeduct="show1 = false"></deduct>
@@ -79,9 +80,12 @@ export default {
       isShowPassword: false,
       formData: {
         RoomCount: 1,
-        ReserveUser: '提醒我删除',
-        ReserveUserIDCard: '330322199206020000',
-        ReserveTel: '15268701777',
+        // ReserveUser: '提醒我删除',
+        // ReserveUserIDCard: '330322199206020000',
+        // ReserveTel: '15268701777',
+        ReserveUser: '',
+        ReserveUserIDCard: '',
+        ReserveTel: '',
         ReserveStartTime: '',
         ReserveEndTime: ''
       }
@@ -91,7 +95,20 @@ export default {
     dateFormat
   },
   computed: {
-    total() {
+    needProductCount() {
+      let diff = 1
+      if(this.RoomDetail.BeadhouseID != this.deductInfo.BeadhouseID) {
+        diff = this.deductInfo.ProductCost / this.TRate * this.deductInfo.ProductCount / this.deductInfo.TAmount
+      }
+      return Math.floor(diff * this.RoomDetail.RoomSize / this.deductInfo.ProductSize * this.hourCount * this.formData.RoomCount * 10000) / 10000
+    },
+    isEnough() {
+      return this.deductInfo.ProductCount >= this.needProductCount 
+    },
+    TRate() {
+      return this.$store.state.Config.TProportion
+    },
+    hourCount() {
       let seconds = new Date(this.formData.ReserveEndTime).getTime() - new Date(this.formData.ReserveStartTime).getTime()
       if (seconds <= 0) {
         this.$vux.toast.text('请选择至少一天')
@@ -100,19 +117,12 @@ export default {
           this.formData.ReserveEndTime = ''
         })
       }
-      let days = seconds/1000/60/60/24
-      return Math.floor(this.detailData.RoomPrice * (days || 1) * this.formData.RoomCount * 100)/100
+      return seconds/1000/60/60
     },
-    deductPrice() {
-      return Math.min(this.deductInfo.price, this.total)
+    total() {
+      return Math.floor(this.RoomDetail.RoomPrice * (this.hourCount / 24 || 1) * this.formData.RoomCount * 100)/100
     },
-    count() {
-      return this.deductInfo.count * this.deductPrice / this.deductInfo.price
-    },
-    amount() {
-      return this.deductInfo.id ? (this.total - this.deductPrice) : this.total
-    },
-    detailData() {
+    RoomDetail() {
       return this.$store.state.RoomDetail
     },
     VillaData() {
@@ -148,11 +158,11 @@ export default {
         this.$vux.toast.text('请填写正确信息')
         return false
       }
-      if (this.amount > 0) {
-        this.$vux.toast.text('请选择足够抵扣的商品')
-        return false
-      }
-      if (this.deductInfo.id) {
+      // if (!this.isEnough) {
+      //   this.$vux.toast.text('请选择足够抵扣的商品')
+      //   return false
+      // }
+      if (this.deductInfo.ProductID) {
         this.checkDeduct()
       } else {
         this.submitOrder()
@@ -175,7 +185,7 @@ export default {
         })
         return false
       }
-      this.checkGoods(this.deductInfo.id, this.deductInfo.count, () => {
+      this.checkGoods(this.deductInfo.ProductID, this.deductInfo.count, () => {
         this.isShowPassword = true
       })
     },
@@ -184,15 +194,15 @@ export default {
         OrderKey: pwd,
         RoomCount: this.formData.RoomCount,
         BeadhouseID: this.VillaData.ID,
-        RoomTypeID: this.detailData.ID,
-        RoomPrice: this.detailData.RoomPrice,
-        PayProductID: this.deductInfo.id,
-        PayProductCount: Math.floor(this.count * 10000) / 10000 || '',
+        RoomTypeID: this.RoomDetail.ID,
+        RoomPrice: this.RoomDetail.RoomPrice,
+        PayProductID: this.deductInfo.ProductID,
+        PayProductCount: this.needProductCount,
         PayProductAmount: this.deductPrice || '',
         ...this.formData
       })
       if (data.Code == 1) {
-        if (this.amount > 0) {
+        if (!this.isEnough) {
           this.$router.replace({
             name: 'Pay',
             query: {
@@ -203,6 +213,10 @@ export default {
         } else {
           this.ReservePay(data.OrderID)
         }
+      } else if (data.Code == -1) {
+        this.$store.dispatch('getConfig')
+        this.$refs.pwd.clearPwd()
+        this.isShowPassword = false
       } else {
         this.$vux.toast.text(data.Message)
         this.$refs.pwd.clearPwd()
@@ -224,6 +238,7 @@ export default {
           }
         })
       } else {
+        // 跳转错误结果页
         this.$vux.toast.text(data.Message)
       }
     }
@@ -248,5 +263,13 @@ export default {
   padding: 5px 10px;
   border-radius: 3px;
   font-size: 14px;
+}
+.submit-bar-info{
+  bottom: 50px;
+  position: fixed;
+  width: 100%;
+  background: #cefdbc;
+  text-align: center;
+  padding: 5px 0;
 }
 </style>

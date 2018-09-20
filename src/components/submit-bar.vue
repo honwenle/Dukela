@@ -61,7 +61,7 @@ export default {
   height: 100%;
 }
 .bar-button.disabled{
-  background: #eee;
-  color: #000;
+  background: #bbb;
+  color: #fff;
 }
 </style>
