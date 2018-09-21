@@ -8,7 +8,7 @@
       </div>
     </div>
     <group label-width="100px" ref="form">
-      <x-input title="房间数" v-model="formData.RoomCount"></x-input>
+      <x-number align="left" :min="1" title="房间数" v-model="formData.RoomCount"></x-number>
       <x-input v-model="formData.ReserveUser" required title="入住人" placeholder="请填写姓名，需和身份证一致">
         <div slot="label" style="width: 100px">
           入住人
@@ -49,11 +49,11 @@
       </cell>
     </group>
     <div class="submit-bar-info" v-if="deductInfo.ProductID">
-      已抵扣商品{{isEnough ? needProductCount : deductInfo.ProductCount}}份
+      已抵扣商品{{isEnough ? needProductCount : deductInfo.ProductCount}}份{{isEnough ? '' : '，不足以抵扣'}}
     </div>
     <submit-bar
       :disabled="!isEnough"
-      :price="total"
+      :price="isEnough ? 0 : total"
       @onSubmit="clickOrder"
       button="确定预定">
     </submit-bar>
