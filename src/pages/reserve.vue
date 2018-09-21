@@ -152,7 +152,9 @@ export default {
     clickOrder() {
       let err = false
       this.$refs.form.$children.forEach(i => {
-        err = !i.valid || err
+        if (i.title != '房间数') {
+          err = !i.valid || err
+        }
       })
       if (err) {
         this.$vux.toast.text('请填写正确信息')
