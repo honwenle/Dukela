@@ -216,6 +216,7 @@ export default {
           this.ReservePay(data.OrderID)
         }
       } else if (data.Code == -1) {
+        this.$vux.toast.text(data.Message)
         this.$store.dispatch('getConfig')
         this.$refs.pwd.clearPwd()
         this.isShowPassword = false
